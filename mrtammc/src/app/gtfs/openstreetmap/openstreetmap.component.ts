@@ -117,6 +117,8 @@ export class OpenstreetmapComponent implements OnInit {
   purple_points = [];
   blue_points = [];
   group1;
+  myTrains;
+  notfollow = true;
 
   constructor(@Inject(DOCUMENT) private document,
     private renderer: Renderer2,
@@ -166,6 +168,7 @@ export class OpenstreetmapComponent implements OnInit {
       this.purple_points.push(marker);
 
     });
+
     this.getPosition(blue).forEach(position => {
       this.blue_points.push(L.circle([position[1], position[0]], { color: 'green', radius: 3 }));
     });
@@ -174,10 +177,20 @@ export class OpenstreetmapComponent implements OnInit {
     this.group1.addTo(this.map);
 
     setInterval(async () => {
-      // find
+      // find  active train
       this.activeTrains = await this.promise_getTrain(this.timeToMidnight());
-      this.moveTrain(this.timeToMidnight());
+
+      // select view
+      if (this.notfollow == true) {
+        this.myTrains = await this.moveTrain(this.timeToMidnight());
+        // console.log(this.myTrains);
+      } else {
+        //await this.singletrip(this.timeToMidnight())
+      }
+
+
     }, 5000);
+
   }
 
 
@@ -185,88 +198,95 @@ export class OpenstreetmapComponent implements OnInit {
   timeToMidnight() {
     const time = new Date();
     const secs = +time.getHours() * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
-    // const secs = 22 * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
+    //const secs = 20 * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
     return secs;
   }
 
   async promise_getTrain(secs: number) {
     return new Promise(async (resolve, reject) => {
-      const stopslist = await this.gtfsService.getstopwithroutes();
-      let stationA;
-      let stationB;
-      for (let i = 0; i < stopslist.length; i++) {
-        // console.log(`${stopslist[i].route}  routename ${stopslist[i].routename} `);
-        const stops = stopslist[i].stops;
-        if (stops[0] !== undefined) {
-          stationA = stops[0].stopid;
-          stationB = stops[stops.length - 1].stopid;
+      const stopslists = await this.gtfsService.getstopwithroutes();
+
+      let stationA: any;
+      let stationB: any;
+      for (let i = 0; i < stopslists.length; i++) {
+        //console.log(`${stopslists[i].route}  routename ${stopslists[i].routename} `);
+        const stops = stopslists[i].stops;
+        if (stops.length > 0) {
+          stationA = stops[0].stopid;      //first station
+          stationB = stops[stops.length - 1].stopid; // last station
         }
 
       }
-
+      const activeTrains = [];
+      // get data from api
       const trips = await this.gtfsService.getTrips().then((trip) => trip);
       const stop_times = await this.gtfsService.getStopTimes().then((stop_time => stop_time));
-      const activeTrains = [];
+      //console.log('560 -----', stop_times.length)
       const grouped = this.groupBy(stop_times, stop => stop.tripId);
+
       grouped.forEach((values, key) => {
-        // key is trip_id, values is all trips
+        //console.log('565--------',key, values.length, values);
         const selectedTrain = [];
         const selectTrips = [];
         const trains = [];
+
         for (const trip of values) {
-          if (trip.stopId === stationA || trip.stopId === stationB) {
-            selectTrips.push(trip);
-          }
+          //if (trip.stopId === stationA || trip.stopId === stationB) {
+          selectTrips.push(trip);
+          //}
         }
-        for (let i = 0; i < selectTrips.length; i += 2) {
-          if ((selectTrips[i + 1])) {
-            const a = selectTrips[i].stopId + ' ' + selectTrips[i].arrivalSecs;
-            const b = selectTrips[i + 1].stopId + ' ' + selectTrips[i + 1].departureSecs;
-            const stop_id = `${selectTrips[i].stopId} to ${selectTrips[i + 1].stopId}`;
-            const arrival_time = selectTrips[i].arrivalTime;
-            const departure_time = selectTrips[i + 1].departureTime;
-            const arrival_secs = selectTrips[i].arrivalSecs;
-            const departure_secs = selectTrips[i + 1].departureSecs;
-            const trip_tripid = trips.find(trip => trip.tripId === selectTrips[i].tripId);
-            const shape = trip_tripid.shapeId;
-            const object = Object.assign({}, {
-              stop_idA: `${selectTrips[i].stopId}`,
-              stop_idB: `${selectTrips[i + 1].stopId}`,
-              trip_id: `${selectTrips[i].tripId}`,
-              shape_id: `${shape}`,
-              direction_id: `${trip_tripid.directionId}`,
-              arrival_secs: `${selectTrips[i].arrivalSecs}`,
-              departure_secs: `${selectTrips[i + 1].departureSecs}`,
-              arrival_time: `${selectTrips[i].arrivalTime}`,
-              departure_time: `${selectTrips[i + 1].departureTime}`
-            });
-            trains.push(object);
+
+        //console.log('575--------',key, selectTrips.length, selectTrips);
+        // create train info object
+        if (selectTrips !== undefined) {
+          for (let i = 0; i < selectTrips.length; i += 2) {
+            if ((selectTrips[i + 1])) {
+              const trip_tripid = trips.find(trip => trip.tripId === selectTrips[i].tripId);
+
+              if (trip_tripid !== undefined) {
+
+                const shape = trip_tripid.shapeId;
+                const object = Object.assign({}, {
+                  stop_idA: `${selectTrips[i].stopId}`,
+                  stop_idB: `${selectTrips[i + 1].stopId}`,
+                  trip_id: `${selectTrips[i].tripId}`,
+                  shape_id: `${shape}`,
+                  direction_id: `${trip_tripid.directionId}`,
+                  arrival_secs: `${selectTrips[i].arrivalSecs}`,
+                  departure_secs: `${selectTrips[i + 1].departureSecs}`,
+                  arrival_time: `${selectTrips[i].arrivalTime}`,
+                  departure_time: `${selectTrips[i + 1].departureTime}`
+                });
+                trains.push(object);  // get train
+              } else {
+
+              }
+            }
           }
+        } else {
+          console.log("")
         }
-        const isActiveTrain = (t) => {
+
+        const isActiveTrain = (t: any) => {    // test train
           if ((secs >= t.arrival_secs) && (secs < t.departure_secs)) {
             return true;
           } else {
             return false;
           }
         };
+        //console.log('611 ---- trains.length', trains.length)
         for (let i = 0; i < trains.length; i++) {
           if (isActiveTrain(trains[i])) {
             if (trains[i]) {
-              selectedTrain.push(trains[i]);
+              activeTrains.push(trains[i]);
             }
-          }
-        }
-        // console.log(selectedTrain);
-        for (let i = 0; i < selectedTrain.length; i++) {
-          if (selectedTrain[i]) {
-            activeTrains.push(selectedTrain[i]);
           }
         }
         resolve(activeTrains);
       });
     });
   }
+
 
   getPosition(arr) {
     const result = []
@@ -402,12 +422,12 @@ export class OpenstreetmapComponent implements OnInit {
       }
 
       this.purple_points[start_x].addTo(this.group1)
-                                 .bindPopup(contentmarker)
-                                 .bindTooltip(markerLabel, {
-                                    permanent: true,
-                                    direction: 'top',
-                                    className: 'tooltipclass'
-                                  });
+        .bindPopup(contentmarker)
+        .bindTooltip(markerLabel, {
+          permanent: true,
+          direction: 'top',
+          className: 'tooltipclass'
+        });
 
     }
 

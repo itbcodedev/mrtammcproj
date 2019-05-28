@@ -98,5 +98,9 @@ module.exports = function(io) {
 
   })
 
+  router.get('/stopwithroutes', async (req, res) => {
+    const stops = gtfs.getRoutesById();
+    res.json(stops);
+  });
   return router
 };

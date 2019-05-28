@@ -261,13 +261,14 @@ export class GooglemapComponent implements OnInit, AfterViewInit {
       await this.gtfsService.updateActiveTrains(this.myTrains)
         .subscribe(data => data);
 
-    }, 1000);
+    }, 2000);
+
   }
 
   timeToMidnight() {
     const time = new Date();
     const secs = +time.getHours() * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
-    //const secs = 21 * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
+    //const secs = 20 * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
     return secs;
   }
 
@@ -426,7 +427,9 @@ export class GooglemapComponent implements OnInit, AfterViewInit {
              <span> ละติจูด ${stop.stopLat}  ลองจิจูด ${stop.stopLon}</span>
              </p>
 
-             <span class="badge badge-info"> ${nexttrips.tripId} - ${nexttrips.tripHeadsign} @ เข้า ${nexttrips.arrivalTime} ออก ${nexttrips.departureTime}</span>
+             <button type="button" class="btn btn-primary btn-sm" style="padding: 0.25rem 0.2rem; font-size: 0.75rem;">
+             ${nexttrips.tripId} - ${nexttrips.tripHeadsign} @ เข้า ${nexttrips.arrivalTime} ออก ${nexttrips.departureTime}
+             </button>
           </div>
         </div>
       `;
@@ -541,7 +544,7 @@ export class GooglemapComponent implements OnInit, AfterViewInit {
   async promise_getTrain(secs: number) {
     return new Promise(async (resolve, reject) => {
       const stopslists = await this.gtfsService.getstopwithroutes();
-      //console.log(stopslists);
+
       let stationA: any;
       let stationB: any;
       for (let i = 0; i < stopslists.length; i++) {
@@ -595,7 +598,7 @@ export class GooglemapComponent implements OnInit, AfterViewInit {
                 });
                 trains.push(object);  // get train
               } else {
-                console.log('')
+
               }
             }
           }
