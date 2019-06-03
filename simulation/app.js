@@ -1,6 +1,6 @@
 const fs = require('fs'),
-    path = require('path'),
-    xmlReader = require('read-xml');
+      path = require('path'),
+      xmlReader = require('read-xml');
 
 const convert = require('xml-js');
 var request = require('request');

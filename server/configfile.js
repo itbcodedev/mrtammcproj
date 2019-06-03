@@ -1,4 +1,4 @@
-const { loadGTFSDataFromFile } = require("./src/gtfs-helper");
+const { loadGTFSDataFromFile } = require("./routes/gtfs-helper");
 
 function loadConfigfile(file) {
   const url = "./configfiles/" + file;

@@ -11,6 +11,7 @@ const StopTime = require('../models/gtfs/stop-time');
 const Stop = require('../models/gtfs/stop');
 const Transfer = require('../models/gtfs/transfer');
 const Trip = require('../models/gtfs/trip');
+const RouteInfo = require('../models/gtfs/route-info')
 
 const StopAttributes = require('../models/non-standard/stop-attributes');
 const Timetable = require('../models/non-standard/timetable');

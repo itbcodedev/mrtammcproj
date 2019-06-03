@@ -77,6 +77,8 @@ const StopTime = require('./models/gtfs/stop-time')
 const Stop = require('./models/gtfs/stop')
 const Transfer = require('./models/gtfs/transfer')
 const Trip = require('./models/gtfs/trip')
+const RouteInfo = require('./models/gtfs/route_info')
+
 
 const DATABASE = {
   agencies: [],
@@ -85,7 +87,8 @@ const DATABASE = {
   stops: [],
   calendar: [],
   shapes: [],
-  periods: []
+  periods: [],
+  route_infos: []
 };
 
 
@@ -101,6 +104,7 @@ async function init() {
   DATABASE.trips = await loadGTFSDataFromFile('./feed/trips.txt', agency_key);
   DATABASE.calendar = await loadGTFSDataFromFile('./feed/calendar.txt', agency_key);
   DATABASE.stop_times = await loadGTFSDataFromFile('./feed/stop_times.txt', agency_key);
+  DATABASE.route_infos = await loadGTFSDataFromFile('./feed/route_infos.txt', agency_key);
 
   //console.log(DATABASE.stops)
   Agency.insertMany(DATABASE.agencies)
@@ -123,6 +127,7 @@ async function init() {
 
   StopTime.insertMany(DATABASE.stop_times)
       //.then(success => console.log(success)).catch(err => console.log(err.code, err.errmsg))
+  RouteInfo.insertMany(DATABASE.route_infos)
 };
 
 module.exports =  {

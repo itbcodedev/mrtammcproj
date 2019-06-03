@@ -9,15 +9,13 @@ import { environment } from '../../environments/environment';
 export class WebsocketService {
   baseSocket = environment.baseSocket;
 
-  //create socket object
+  //create socket connection
   socket: any;
   readonly url: string = this.baseSocket
 
   constructor() {
     this.socket = io(this.url);
   }
-
-
 
   listen(eventName: string) {
     return new Observable( (subscriber) => {

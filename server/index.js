@@ -16,20 +16,21 @@ const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 
 // router
-const gtfsRouter = require('./src/gtfs.router');
-const gtfsRouter2 = require('./src/gtfs-router2')(io);
+const gtfsRouter = require('./routes/gtfs.router');
+const gtfsRouter2 = require('./routes/gtfs-router2')(io);
 
-const userRouter = require('./src/user.router');
-const parkRouter = require('./src/parking.router');
-const fareRouter = require('./src/fare.router');
-const calTripRouter = require('./src/caltrip.router');
-const alertRouter = require('./src/alert.router');
-const fileRoute = require('./src/file.router');
-const configfile = require('./src/configfile.router');
-const listdir = require('./src/listdir.router');
-const ldap = require('./src/ldap.router');
-const kmlRouter = require('./src/kml.router');
-const gtfsdbRouter = require('./src/gtfsdb.router');
+const userRouter = require('./routes/user.router');
+const parkRouter = require('./routes/parking.router');
+const fareRouter = require('./routes/fare.router');
+const calTripRouter = require('./routes/caltrip.router');
+const alertRouter = require('./routes/alert.router');
+const fileRoute = require('./routes/file.router');
+const configfile = require('./routes/configfile.router');
+const listdir = require('./routes/listdir.router');
+const ldap = require('./routes/ldap.router');
+const kmlRouter = require('./routes/kml.router');
+const gtfsdbRouter = require('./routes/gtfsdb.router');
+
 database.init();
 
 

@@ -3,7 +3,7 @@ const {
   loadStopsWithTrip,
   loadStopsWithStopTimes,
   loadStopswithRoutes
-} = require('./src/gtfs-helper');
+} = require('./routes/gtfs-helper');
 
 const DATABASE = {
   agencies: [],
@@ -28,7 +28,7 @@ async function init() {
   DATABASE.stopWithStopTimes = await loadStopsWithStopTimes();
   DATABASE.stopsWithTrip = await loadStopsWithTrip();
   DATABASE.stopWithRoutes = await loadStopswithRoutes();
-  
+
 };
 
 module.exports = {

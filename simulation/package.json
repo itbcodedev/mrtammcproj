@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "lodash": "^4.17.11",
+    "node-fetch": "^2.6.0",
     "read-xml": "^3.0.0",
     "request": "^2.88.0",
     "xml-js": "^1.6.11"
