@@ -2,26 +2,42 @@ const {TrainSimulator} = require('../server/process/train_simulator');
 const train_config = require('../simulation/train_config')
 const path_config = require('../simulation/path_config.json')
 const gtfs = require('../server/controllers/gtfs')
+const request = require('request');
 
-
-const simulate = async () => {
+const simulate = async (io) => {
 
   const train00011 = new TrainSimulator(gtfs,"00011",path_config)
   await train00011.main()
-  console.log('train11.trip_gtfs.....', train00011.trip_gtfs.length)
+
+  train00011.trip_gtfs.map(trip => {
+    request({
+        //url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
+        url: "http://localhost:3000/api/v2/simulate",
+        method: "POST",
+        json: true,
+        body: trip
+    }, function (error, response, body){
+        console.log(response);
+    });
+  })
+
+  //console.log('train11.trip_gtfs.....', train00011.trip_gtfs.length)
 
   const train00012 = new TrainSimulator(gtfs,"00012",path_config)
   await train00012.main()
-  console.log('train12.trip_gtfs.....', train00012.trip_gtfs.length)
+  //io.sockets.emit('gtfsrt', train00012.trip_gtfs);
+  //console.log('train12.trip_gtfs.....', train00012.trip_gtfs.length)
 
   const train00013 = new TrainSimulator(gtfs,"00013",path_config)
   await train00013.main()
-  console.log('train13.trip_gtfs.....', train00013.trip_gtfs.length)
+  //io.sockets.emit('gtfsrt', train00013.trip_gtfs);
+  //console.log('train13.trip_gtfs.....', train00013.trip_gtfs.length)
 
   const train00014 = new TrainSimulator(gtfs,"00014",path_config)
   await train00014.main()
-  console.log('train14.trip_gtfs.....', train00014.trip_gtfs.length)
+  //io.sockets.emit('gtfsrt', train00014.trip_gtfs);
+  //console.log('train14.trip_gtfs.....', train00014.trip_gtfs.length)
 
 }
 
-module.exports = {simulate}
+module.exports.simulate = simulate

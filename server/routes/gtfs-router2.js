@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const http = require('http')
-const io = require('socket.io')(http);
+
 const gtfs = require('../controllers/gtfs')
 
 

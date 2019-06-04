@@ -5,6 +5,7 @@ import { GooglemapComponent } from './googlemap/googlemap.component';
 import { EditorComponent } from './editor/editor.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { OpenstreetmapComponent } from './openstreetmap/openstreetmap.component';
+import { GtfsrtComponent } from './gtfsrt/gtfsrt.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,6 @@ import { OpenstreetmapComponent } from './openstreetmap/openstreetmap.component'
     UiModule,
     AgGridModule.withComponents(null)
   ],
-  declarations: [GooglemapComponent, EditorComponent, OpenstreetmapComponent]
+  declarations: [GooglemapComponent, EditorComponent, OpenstreetmapComponent, GtfsrtComponent]
 })
 export class GtfsModule { }

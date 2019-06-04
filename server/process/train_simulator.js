@@ -90,8 +90,8 @@ exports.TrainSimulator = class {
           "entity": {
             "id": "${tripEntity}",
             "vehicle": {
-              trip: {
-                trip_id: "${tripId}"
+              "trip": {
+                "trip_id": "${tripId}"
               },
               "position": {
                 "latitude": "${latitude}",
@@ -101,7 +101,7 @@ exports.TrainSimulator = class {
           }
         }
         `
-        return gtfsrt
+        return JSON.parse(gtfsrt)
       })
       return trip_gtfs
     }

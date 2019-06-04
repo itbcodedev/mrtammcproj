@@ -90,9 +90,8 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const {simulate} = require('./simulation')
-simulate()
-
-//setInterval(simulate, 1500);
+//simulate()
+setInterval(simulate, 1500);
 
 server.listen(PORT, () => {
   console.log(`Server start port ${PORT}`)

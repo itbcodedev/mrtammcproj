@@ -17,6 +17,7 @@ export const environment = {
     {file: 'trips.txt', validatefile: 'file1', path: 'file1'}
   ],
   baseUrl: 'http://mmc_app1.mrta.co.th',
-  baseSocket: 'ws://mmc_app1.mrta.co.th:3000'
+  baseSocket: 'ws://mmc_app1.mrta.co.th:3000',
+  ws_url: 'ws://mmc_app1.mrta.co.th:3000'
 
 };
