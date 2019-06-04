@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
+    "mongoose": "^5.5.12",
     "node-fetch": "^2.6.0",
     "read-xml": "^3.0.0",
     "request": "^2.88.0",

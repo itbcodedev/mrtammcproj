@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 
 const RouteInfoSchema = new mongoose.Schema({
-  
+
   agency_key: {
+    type: String,
+    required: true,
+    index: true
+  },
+  route_name: {
     type: String,
     required: true,
     index: true
@@ -37,7 +42,10 @@ const RouteInfoSchema = new mongoose.Schema({
   },
   runtime: {
     type: String,
-    required: true,
+    index: true
+  },
+  direction: {
+    type: String,
     index: true
   }
 })

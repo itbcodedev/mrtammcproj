@@ -40,7 +40,6 @@
               "./node_modules/jquery-ui-dist/jquery-ui.min.css"
             ],
             "scripts": [
-
               "src/assets/leaflet/leaflet.js",
               "src/assets/leaflet/Leaflet.MakiMarkers.js",
               "src/assets/leafleticon/leaflet.awesome-markers.js",

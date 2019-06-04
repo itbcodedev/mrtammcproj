@@ -1,10 +1,6 @@
-const train_config = require('./train_config')
-const path_config = require('./path_config.json')
-const gtfs = require('../server/controllers/gtfs')
+const blue_chalearm_path_in = require('./path/blue_chalearm_path_in.json')
+const blue_chalearm_path_out = require('./path/blue_chalearm_path_out.json')
+const purpleline_path_in = require('./path/purpleline_path_in.json')
+const purpleline_path_out = require('./path/purpleline_path_out.json')
 
-if (train_config.simulation) {
-  const {TrainSimulator} = require('../server/process/train_simulator');
-  //
-  const train = new TrainSimulator(gtfs,"00014",path_config)
-  train.train
-}
+console.log(blue_chalearm_path_in.points.length)

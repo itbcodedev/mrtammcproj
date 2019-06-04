@@ -48,6 +48,9 @@ xmlReader.readXML(fs.readFileSync(FILE), function(err, data) {
       	"entity": {
       		"id": "${tripEntity}",
       		"vehicle": {
+            trip: {
+              trip_id: "${tripId}"
+            },
       			"position": {
       				"latitude": "${latitude}",
       				"longitude": "${longitude}"

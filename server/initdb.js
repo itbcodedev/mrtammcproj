@@ -77,7 +77,7 @@ const StopTime = require('./models/gtfs/stop-time')
 const Stop = require('./models/gtfs/stop')
 const Transfer = require('./models/gtfs/transfer')
 const Trip = require('./models/gtfs/trip')
-const RouteInfo = require('./models/gtfs/route_info')
+const RouteInfo = require('./models/gtfs/route-info')
 
 
 const DATABASE = {
