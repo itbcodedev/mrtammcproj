@@ -68,7 +68,7 @@ module.exports = function(io) {
   });
 
   router.post('/simulate',  (req,res,next) => {
-    console.log(req.body)
+    //console.log(req.body)
     io.sockets.emit('gtfsrt', req.body);
     return res.status(200).json(req.body);
 

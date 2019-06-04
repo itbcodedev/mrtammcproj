@@ -10,8 +10,6 @@ exports.TrainSimulator = class {
     this.route_id = route_id
     this.path_config = path_config
 
-    console.log(path.blue_chalearm_path_out.points.length)
-
   }
 
   getfileFromConfig(route_id,config) {
@@ -26,10 +24,11 @@ exports.TrainSimulator = class {
     const mmt = moment();
     const mmtMidnight = mmt.clone().startOf('day');
     const diffSeconds = mmt.diff(mmtMidnight, 'seconds');
-
+    //console.log('route_id',this.route_id)
+    //console.log('path_config',this.path_config)
     const fileindex = this.getfileFromConfig(this.route_id,this.path_config)
     this.file = this.path_config[fileindex].filepath;
-    console.log('file', this.file)
+    //console.log('file', this.file)
     const routeinfo = await this.trainAdvance(diffSeconds)
     this.routeinfo = routeinfo
   }
@@ -47,7 +46,8 @@ exports.TrainSimulator = class {
 
     function checktime(trip, start_time, endtime_time) {
       const format = 'hh:mm:ss'
-      const CurrentDate = moment();
+      const CurrentDate = moment().subtract('hours',5);
+      //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
       let timenow = CurrentDate.format("HH:mm:ss")
       //let timenow = "10:10:10"
       trip.time_now = timenow
@@ -67,7 +67,9 @@ exports.TrainSimulator = class {
       const index = path.config.findIndex(c => {
         return (c.route_name == trip.route_name && c.direction == trip.direction)
       })
+
       if ( index > -1) {
+        //console.log('72 file.......', path.config[index].file)
         return path.config[index].file
       }
 
@@ -75,23 +77,34 @@ exports.TrainSimulator = class {
 
     function transformFormat(trips) {
       const trip_gtfs = trips.map(trip => {
-        const time = trip.time_now
+        const time_now= trip.time_now
         const tripEntity = `${trip.route_name}-${trip.trip_id}`
         const tripId = trip.trip_id
         const latitude = trip.location.latitude
         const longitude = trip.location.longitude
+        const start_time_secs = trip.start_time_secs
+        const end_time_secs =trip.end_time_secs
+        const time_now_sec = trip.time_now_sec
+        const start_time = trip.start_time
+        const end_time = trip.end_time
+
         const gtfsrt = `
         {
           "header": {
             "gtfs_realtime_version": "2.0",
             "incrementality": "FULL_DATASET",
-            "timestamp": "${time}"
+            "timestamp": "${time_now}"
           },
           "entity": {
             "id": "${tripEntity}",
             "vehicle": {
               "trip": {
-                "trip_id": "${tripId}"
+                "trip_id": "${tripId}",
+                "start_time_secs": "${start_time_secs}",
+                "end_time_secs": "${end_time_secs}",
+                "time_now_sec": "${time_now_sec}",
+                "start_time": "${start_time}",
+                "end_time": "${end_time}"
               },
               "position": {
                 "latitude": "${latitude}",
@@ -111,6 +124,8 @@ exports.TrainSimulator = class {
         const delta_t = trip.time_now_sec - trip.start_time_secs
         const runtime_secs = trip.runtime_secs
         const filemodule = getPathfile(trip)
+        console.log('127 this.route_name ', trip.route_name)
+        console.log('128 filemodule..........',filemodule )
         const loc_length = path[`${filemodule}`].points.length
 
         const loc_order = Math.round((delta_t/runtime_secs)*loc_length)
@@ -140,12 +155,13 @@ exports.TrainSimulator = class {
 
       const routeinfos_loc = addlocation(routeinfos_now)
 
-      console.log('routeinfos_now...', routeinfos_now.length)
-
+      //console.log('routeinfos_now...', routeinfos_now.length)
+      //console.log(routeinfos_loc)
       const trip_gtfs  = transformFormat(routeinfos_loc)
       return trip_gtfs
+
     } catch (err) {
-      console.log(err)
+      //sconsole.log(err)
       return 0
     }
   }
@@ -157,3 +173,28 @@ exports.TrainSimulator = class {
 
 
 }
+
+// ]   {
+// [0]     agency_key: 'MRTA_Transit',
+// [0]     route_name: 'blue',
+// [0]     trip_id: '082946',
+// [0]     start_point: 'HUA',
+// [0]     start_time: '22:33:15',
+// [0]     end_point: 'TAO',
+// [0]     end_time: '23:07:31',
+// [0]     length: '21028',
+// [0]     runtime: '',
+// [0]     direction: '1',
+// [0]     __v: 0,
+// [0]     start_time_secs: 81195,
+// [0]     end_time_secs: 83251,
+// [0]     runtime_secs: 2056,
+// [0]     time_now: '22:33:50',
+// [0]     time_now_sec: 81230,
+// [0]     file: 'blue_chalearm_path_out',
+// [0]     location: {
+// [0]       index: 36,
+// [0]       latitude: '13.7363351676309',
+// [0]       longitude: '100.52005564644'
+// [0]     }
+// [0]   }

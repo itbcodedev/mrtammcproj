@@ -69,12 +69,14 @@ export class GtfsrtComponent implements OnInit {
     this._gtfsws.listen('gtfsrt').subscribe(data => {
       this.wsdata = JSON.stringify(data)
       //console.log(this.wsdata)
+      const time_now_sec = data['entity']['vehicle']['trip']['time_now_sec']
+      const start_time_secs = data['entity']['vehicle']['trip']['start_time_secs']
+      const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs']
       const tripEntity = data['entity']['id']
       const vehicle = data['entity']['vehicle']
       const latitude = data['entity']['vehicle']['position']['latitude']
       const longitude = data['entity']['vehicle']['position']['longitude']
       const trainLatLng = new L.LatLng(latitude, longitude);
-
 
       if ( ActiveTrain.hasOwnProperty(tripEntity) ) {
         // new trip
@@ -89,9 +91,26 @@ export class GtfsrtComponent implements OnInit {
         trainLocationMarkers[tripEntity] = marker
       }
 
-      console.log(trainLocationMarkers)
+
+      for ( let key in ActiveTrain) {
+        if ( time_now_sec > ActiveTrain[key]['trip']['end_time_secs']) {
+          //console.log(`over due delete .. ${ActiveTrain[key]}`)
+          delete ActiveTrain[key]
+        } else {
+          //console.log("not over due")
+        }
+      }
+
+      for ( let key in trainLocationMarkers ) {
+        if ( ActiveTrain.hasOwnProperty(key) ) {
+          //console.log(`${key} still on tracks`)
+        } else {
+          const marker = trainLocationMarkers[key]
+          this.map.removeLayer(marker)
+          //console.log(`${key} remove marker`)
+          delete trainLocationMarkers[key]
+        }
+      }
     })
-
   }
-
 }
