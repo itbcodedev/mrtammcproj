@@ -158,10 +158,11 @@ exports.TrainSimulator = class {
       //console.log('routeinfos_now...', routeinfos_now.length)
       //console.log(routeinfos_loc)
       const trip_gtfs  = transformFormat(routeinfos_loc)
+
       return trip_gtfs
 
     } catch (err) {
-      //sconsole.log(err)
+      //console.log(err)
       return 0
     }
   }
