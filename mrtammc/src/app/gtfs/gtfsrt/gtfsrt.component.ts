@@ -87,6 +87,10 @@ export class GtfsrtComponent implements OnInit {
       if (ActiveTrain.hasOwnProperty(tripEntity)) {
         // new trip
         trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
+        // const oldLatLng = trainLocationMarkers[tripEntity].getLatLng()
+        // const newLatLng = trainLatLng
+        // trainLocationMarkers[tripEntity].movingMarker(oldLatLng,newLatLng).start()
+
       } else {
         // exist trip
         ActiveTrain[tripEntity] = vehicle
@@ -174,7 +178,7 @@ export class GtfsrtComponent implements OnInit {
     this.stops.forEach(stop => {
       //icon
       let icon = new L.icon({
-        iconSize: [18, 18],
+        iconSize: [18, 15],
         iconAnchor: [0,0],
         iconUrl: environment.iconbase + stop.icon,
       })

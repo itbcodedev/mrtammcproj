@@ -11,8 +11,8 @@ const simulate = async (io) => {
 
   train00011.trip_gtfs.map(trip => {
     request({
-        //url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
-        url: "http://localhost:3000/api/v2/simulate",
+        url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
+        //url: "http://localhost:3000/api/v2/simulate",
         method: "POST",
         json: true,
         body: trip

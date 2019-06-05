@@ -44,6 +44,7 @@
               "src/assets/leaflet/Leaflet.MakiMarkers.js",
               "src/assets/leafleticon/leaflet.awesome-markers.js",
               "src/assets/leaflet/leaflet.ajax.js",
+              "src/assets/leaflet/MovingMarker.js",
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/jstree/dist/jstree.min.js",
               "./node_modules/jquery-ui-dist/jquery-ui.min.js"
