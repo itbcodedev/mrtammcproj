@@ -78,6 +78,7 @@ exports.TrainSimulator = class {
 
     function transformFormat(trips) {
       const trip_gtfs = trips.map(trip => {
+        const route_name = trip.route_name
         const time_now= trip.time_now
         const tripEntity = `${trip.route_name}-${trip.trip_id}`
         const tripId = trip.trip_id
@@ -94,7 +95,8 @@ exports.TrainSimulator = class {
           "header": {
             "gtfs_realtime_version": "2.0",
             "incrementality": "FULL_DATASET",
-            "timestamp": "${time_now}"
+            "timestamp": "${time_now}",
+            "route_name": "${route_name}"
           },
           "entity": {
             "id": "${tripEntity}",

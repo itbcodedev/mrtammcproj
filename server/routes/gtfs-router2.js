@@ -22,9 +22,12 @@ module.exports = function(io) {
   });
 
   router.get('/stops', async (req, res) => {
-    gtfs.getStops((err, stops) => {
-      return res.json(stops);
-    });
+    const {agency_key} = req.params
+    const query = {agency_key: agency_key}
+
+    gtfs.getStops(query).then(stops => {
+      res.json(stops)
+    })
 
   });
 
@@ -40,7 +43,7 @@ module.exports = function(io) {
     });
   });
 
-  router.get('/stop_times', async (req, res) => {
+  router.get('/stop_times/:agency_key', async (req, res) => {
     gtfs.getStopTimes((err, stop_times) => {
       return res.json(stop_times);
     });
