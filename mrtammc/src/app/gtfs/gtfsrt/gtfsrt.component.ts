@@ -47,14 +47,14 @@ export class GtfsrtComponent implements OnInit {
     };
 
 
-    const geojsonLayer = new L.GeoJSON.AJAX("/assets/dist/kml/simulate_blueline.geojson", {
-      pointToLayer: style
-    });
-    geojsonLayer.addTo(this.map);
+
+    this.loadGeojson()
+
 
     L.control.layers(baseLayers).addTo(this.map);
     this.map.on('click', (e) => { console.log(e.latlng); });
     // let marker = new L.Marker();
+
     let icon = new L.icon({
       iconSize: [25, 41],
       iconAnchor: [13, 41],
@@ -112,5 +112,49 @@ export class GtfsrtComponent implements OnInit {
         }
       }
     })
+  }
+
+  loadGeojson() {
+
+    // load geojson with new L.GeoJSON()
+    const purple_line = new L.GeoJSON.AJAX("/assets/dist/kml/purple.geojson", {
+      style: function(feature) {
+          return {
+            color: "purple"
+          };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const blue_line = new L.GeoJSON.AJAX("/assets/dist/kml/blue.geojson", {
+      style: function(feature) {
+          return {
+            color: "#214374"
+          };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const blue_chalearm_line = new L.GeoJSON.AJAX("/assets/dist/kml/blue_chalearm.geojson", {
+      style: function(feature) {
+          return {
+            color: "#2a5491"
+          };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const blue_extend_line = new L.GeoJSON.AJAX("/assets/dist/kml/blue_extend.geojson", {
+      style: function(feature) {
+          return {
+            color: "#7f98bd"
+          };
+      }
+    });
+
+    blue_line.addTo(this.map);
+    purple_line.addTo(this.map);
+    blue_chalearm_line.addTo(this.map);
+    blue_extend_line.addTo(this.map);
   }
 }

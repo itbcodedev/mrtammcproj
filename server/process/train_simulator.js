@@ -46,7 +46,8 @@ exports.TrainSimulator = class {
 
     function checktime(trip, start_time, endtime_time) {
       const format = 'hh:mm:ss'
-      const CurrentDate = moment().subtract('hours',5);
+      //const CurrentDate = moment().subtract('hours',5);
+      const CurrentDate = moment()
       //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
       let timenow = CurrentDate.format("HH:mm:ss")
       //let timenow = "10:10:10"

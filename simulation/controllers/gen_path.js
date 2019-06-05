@@ -86,3 +86,6 @@ generate_paths('purpleline_path.kml','out')
 
 generate_paths('blue_chalearm_path.kml','in')
 generate_paths('blue_chalearm_path.kml','out')
+
+generate_paths('blue_path.kml','in')
+generate_paths('blue_path.kml','out')
