@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { LdapuserComponent } from  './dashboard/ldapuser/ldapuser.component';
 import { MrtalineComponent } from './mrtaline/mrtaline.component';
+import { GtfsmapComponent } from './gtfsmap/gtfsmap.component'
 const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'upload', component: UploadfileComponent},
   {path: 'ldapuser', component: LdapuserComponent},
   {path: 'mrtaline', component: MrtalineComponent},
+  {path: 'gtfsmap', component: GtfsmapComponent}
 ];
 
 @NgModule({

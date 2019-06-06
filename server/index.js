@@ -1,5 +1,9 @@
 // config data
 const PORT = process.env.PORT || 3000;
+const NODE_ENV =  process.env.NODE_ENV;
+
+console.log('NODE_ENV......', NODE_ENV)
+
 const BASE_API_ENDPOINT = '/api/v1';
 const BASE_API_ENDPOINT2 = '/api/v2';
 const path = require('path');
@@ -59,8 +63,6 @@ app.use('/ldap',ldap);
 app.use('/kml',kmlRouter);
 app.use('/gtfsdb',gtfsdbRouter);
 
-
-console.log("process.env.NODE_ENV :" + process.env.NODE_ENV)
 
 if (process.env.NODE_ENV === 'production') {
   console.log("process.env.NODE_ENV :" + process.env.NODE_ENV)

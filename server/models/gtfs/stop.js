@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const StopSchema = new mongoose.Schema({
-  
+
   agency_key: {
     type: String,
     required: true,
@@ -49,6 +49,9 @@ const StopSchema = new mongoose.Schema({
   platform_code: {
     type: String
   },
+  icon: {
+    type: String
+  }
 })
 
 

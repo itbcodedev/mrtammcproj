@@ -16,7 +16,6 @@ function isNumeric(value) {
 
 const isNumericField = field => (numericFields[field] ? true : false);
 
-
 function loadGTFSDataFromFile(filepath, agency_key) {
   return new Promise((resolve, reject) => {
     let lineCount = 0;

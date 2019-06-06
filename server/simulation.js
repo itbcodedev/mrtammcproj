@@ -3,16 +3,22 @@ const train_config = require('../simulation/train_config')
 const path_config = require('../simulation/path_config.json')
 const gtfs = require('../server/controllers/gtfs')
 const request = require('request');
-
 const simulate = async (io) => {
 
   const train00011 = new TrainSimulator(gtfs,"00011",path_config)
   await train00011.main()
 
+
+
+  //sconst simulate_url = "http://mmc_app1.mrta.co.th/api/v2/simulate"
+  const simulate_url = "http://localhost:3000/api/v2/simulate"
+
+
+  console.log('Simulate URL endpoint .....', simulate_url)
+
   train00011.trip_gtfs.map(trip => {
     request({
-        url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
-        //url: "http://localhost:3000/api/v2/simulate",
+        url: simulate_url,
         method: "POST",
         json: true,
         body: trip
@@ -26,10 +32,10 @@ const simulate = async (io) => {
   const train00012 = new TrainSimulator(gtfs,"00012",path_config)
   await train00012.main()
 
+
   train00012.trip_gtfs.map(trip => {
     request({
-        //url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
-        url: "http://localhost:3000/api/v2/simulate",
+        url: simulate_url,
         method: "POST",
         json: true,
         body: trip
@@ -46,8 +52,7 @@ const simulate = async (io) => {
 
   train00013.trip_gtfs.map(trip => {
     request({
-        //url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
-        url: "http://localhost:3000/api/v2/simulate",
+        url: simulate_url,
         method: "POST",
         json: true,
         body: trip
@@ -63,8 +68,7 @@ const simulate = async (io) => {
   await train00014.main()
   train00014.trip_gtfs.map(trip => {
     request({
-        //url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
-        url: "http://localhost:3000/api/v2/simulate",
+        url: simulate_url,
         method: "POST",
         json: true,
         body: trip

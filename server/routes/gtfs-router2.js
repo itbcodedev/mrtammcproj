@@ -22,6 +22,24 @@ module.exports = function(io) {
   });
 
   router.get('/stops', async (req, res) => {
+    const query = {}
+
+    gtfs.getStops(query).then(stops => {
+      res.json(stops)
+    })
+
+  });
+
+  router.post('/stops',  (req,res,next) => {
+    //console.log(req.body)
+    gtfs.updateStops(req.body).then(stops => {
+      res.json({message: "update success"})
+    })
+
+  })
+
+
+  router.get('/stops', async (req, res) => {
     const {agency_key} = req.params
     const query = {agency_key: agency_key}
 

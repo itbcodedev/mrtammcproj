@@ -127,8 +127,9 @@ exports.TrainSimulator = class {
         const delta_t = trip.time_now_sec - trip.start_time_secs
         const runtime_secs = trip.runtime_secs
         const filemodule = getPathfile(trip)
-        console.log('127 this.route_name ', trip.route_name)
-        console.log('128 filemodule..........',filemodule )
+        //Debug
+        //console.log('127 this.route_name ', trip.route_name)
+        //console.log('128 filemodule..........',filemodule )
         const loc_length = path[`${filemodule}`].points.length
 
         const loc_order = Math.round((delta_t/runtime_secs)*loc_length)

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GtfsrtwsService } from '../../services/gtfsrtws.service'
-import { GtfsService } from '../../services/gtfs.service';
+import { GtfsService } from '../../services/gtfs2.service';
 import { environment } from '../../../environments/environment';
 declare let L;
 
@@ -13,32 +13,15 @@ export class GtfsrtComponent implements OnInit {
   map: any
   wsdata
   stops
+  baseLayers
   //todo: change to v2
   constructor(private _gtfsws: GtfsrtwsService,
               private gtfsService: GtfsService
   ) { }
 
   ngOnInit() {
-    const osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    const osmAttrib = '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-    const landUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
-    const thunAttrib = '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
-
-    const osmMap = new L.tileLayer(osmUrl, { attribution: osmAttrib });
-    const lightMap = new L.tileLayer(landUrl, { attribution: thunAttrib });
-
-    this.map = new L.map('map').setView([13.773125, 100.542462], 10);
-
-    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
-    this.map.attributionControl.setPrefix('');
-
-    var baseLayers = {
-      "OSM Map": osmMap,
-      "Light Map": lightMap
-    };
-
+    this.loadbaselayers()
+    
     function style(feature, latlng) {
       return L.circleMarker(latlng, {
         radius: 2,
@@ -55,7 +38,7 @@ export class GtfsrtComponent implements OnInit {
     this.loadGeojson()
     this.loadStation()
 
-    L.control.layers(baseLayers).addTo(this.map);
+    L.control.layers(this.baseLayers).addTo(this.map);
     this.map.on('click', (e) => { console.log(e.latlng); });
     // let marker = new L.Marker();
 
@@ -126,6 +109,51 @@ export class GtfsrtComponent implements OnInit {
       }
     })
   }
+  loadbaselayers() {
+    const osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const osmAttrib = '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+    const landUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
+    const thunAttrib = '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+    const osmMap = new L.tileLayer(osmUrl, { attribution: osmAttrib });
+    const lightMap = new L.tileLayer(landUrl, { attribution: thunAttrib });
+
+    const googleStreets = new L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+    });
+
+    const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+    });
+
+    const googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+    })
+
+    const googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3']
+    })
+
+    this.map = new L.map('map').setView([13.76346247154659, 100.53527228372589], 12);
+
+    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(this.map);
+    this.map.attributionControl.setPrefix('');
+
+    this.baseLayers = {
+      "OSM Map": osmMap,
+      "Light Map": lightMap,
+      "googleStreets": googleStreets,
+      "googleHybrid" : googleHybrid,
+      "googleSat": googleSat,
+      "googleTerrain": googleTerrain
+    };
+  }
 
   loadGeojson() {
 
@@ -184,11 +212,11 @@ export class GtfsrtComponent implements OnInit {
       })
 
       //location
-      const stationLatLng = new L.LatLng(stop.stopLat, stop.stopLon);
+      const stationLatLng = new L.LatLng(stop.stop_lat, stop.stop_lon);
       let marker = new L.Marker();
       marker.setIcon(icon);
       marker.setLatLng(stationLatLng)
-      marker.addTo(this.map).bindPopup(`${stop.stopId}-${stop.stopName}`)
+      marker.addTo(this.map).bindPopup(`${stop.stop_id}-${stop.stop_name}`)
       //marker.addTo(this.map)
 
     })

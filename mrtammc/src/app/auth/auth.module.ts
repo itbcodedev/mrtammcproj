@@ -16,10 +16,11 @@ import { GtfsspecComponent } from './gtfsspec/gtfsspec.component';
 import { ValidateSpecComponent } from './validate-spec/validate-spec.component';
 import { LdapuserComponent } from './dashboard/ldapuser/ldapuser.component';
 import { MrtalineComponent } from './mrtaline/mrtaline.component';
+import { GtfsmapComponent } from './gtfsmap/gtfsmap.component';
 @NgModule({
   declarations: [LoginComponent, RegistrationComponent,AdminComponent,
                   UserComponent, UserListComponent, DashboardComponent,
-                  UploadfileComponent, ConfigfileComponent, GtfsspecComponent, ValidateSpecComponent, LdapuserComponent, MrtalineComponent],
+                  UploadfileComponent, ConfigfileComponent, GtfsspecComponent, ValidateSpecComponent, LdapuserComponent, MrtalineComponent, GtfsmapComponent],
   imports: [
     CommonModule,
     FormsModule,

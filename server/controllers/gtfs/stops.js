@@ -144,3 +144,14 @@ exports.getStopsAsGeoJSON = async (query = {}) => {
   const stops = await exports.getStops(query);
   return stopsToGeoJSON(stops);
 };
+
+exports.updateStops =  async (data) => {
+  stop = await Stop.findOneAndUpdate({stop_id: data.stop_id},data)
+  
+  console.log('exports.updateStops data')
+  console.log(data)
+
+  console.log('exports.updateStops')
+  console.log(stop)
+  return stop
+}

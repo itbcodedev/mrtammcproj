@@ -1,0 +1,60 @@
+<div class="content-wrapper">
+  <section class="content">
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="fullbox">
+          <h6> Marker </h6>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Key </th>
+                <th>Value</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>stop_id</td>
+                <td>{{selectedStop.stop_id}}</td>
+
+              </tr>
+              <tr>
+                <td>stop_name</td>
+                <td>{{selectedStop.stop_name}}</td>
+
+              </tr>
+              <tr>
+                <td>stop_lat</td>
+                <td>{{selectedStop.stop_lat}}</td>
+
+              </tr>
+              <tr>
+                <td>stop_lon</td>
+                <td>{{selectedStop.stop_lon}}</td>
+
+              </tr>
+              <tr>
+                <td>stop_url</td>
+                <td>{{selectedStop.stop_url}}</td>
+              </tr>
+
+              <tr>
+                <td>icon</td>
+                <td>{{selectedStop.icon}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="fullbox">
+          <h6> MAP </h6>
+          <div id="map">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
