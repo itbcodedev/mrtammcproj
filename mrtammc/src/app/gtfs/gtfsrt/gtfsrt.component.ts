@@ -21,7 +21,7 @@ export class GtfsrtComponent implements OnInit {
 
   ngOnInit() {
     this.loadbaselayers()
-    
+
     function style(feature, latlng) {
       return L.circleMarker(latlng, {
         radius: 2,
@@ -109,6 +109,7 @@ export class GtfsrtComponent implements OnInit {
       }
     })
   }
+
   loadbaselayers() {
     const osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const osmAttrib = '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
@@ -216,9 +217,32 @@ export class GtfsrtComponent implements OnInit {
       let marker = new L.Marker();
       marker.setIcon(icon);
       marker.setLatLng(stationLatLng)
-      marker.addTo(this.map).bindPopup(`${stop.stop_id}-${stop.stop_name}`)
-      //marker.addTo(this.map)
+      const html = `
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>${stop.stop_id}-${stop.stop_name} </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NEXT TRIP</td>
 
+
+          </tr>
+          </tbody>
+        </table>
+      `
+      marker.addTo(this.map).bindPopup(html)
+      // marker.addTo(this.map)
+      // click event on station
+
+      marker.on('click', (event) => {
+        const marker = event.target
+        console.log(marker)
+        //var html='Test content';
+        //smarker.bindPopup(html).openPopup();
+      })
     })
   }
 
