@@ -78,7 +78,7 @@ export class GtfsrtComponent implements OnInit {
       const trainLatLng = new L.LatLng(latitude, longitude);
 
       const stoptime: any = await this.getTripsAtStop(trip_id)
-      //// DEBUG: 
+      //// DEBUG:
       //console.log(trip_id)
       //console.log(stoptime)
 
@@ -223,6 +223,7 @@ export class GtfsrtComponent implements OnInit {
 
     this.stops = await this.gtfsService.getStops();
     console.log(this.stops)
+
     this.stops.forEach(stop => {
       //icon
       let icon = new L.icon({
@@ -230,7 +231,7 @@ export class GtfsrtComponent implements OnInit {
         iconAnchor: [0,0],
         iconUrl: environment.iconbase + stop.icon,
       })
-
+      console.log(`${environment.iconbase}/${stop.icon}`)
       //location
       const stationLatLng = new L.LatLng(stop.stop_lat, stop.stop_lon);
       let marker = new L.Marker();
