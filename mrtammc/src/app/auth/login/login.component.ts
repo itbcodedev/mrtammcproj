@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
             console.log(data.body);
             this._toastr.success(`login  success`)
             localStorage.setItem('token', data.body.toString());
-            this._router.navigate(['/googlemap']);
+            this._router.navigate(['/gtfsrt']);
           },
           error => {
             this._toastr.error(`User not found`)
