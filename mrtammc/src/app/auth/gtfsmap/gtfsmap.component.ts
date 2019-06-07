@@ -13,7 +13,7 @@ export class GtfsmapComponent implements OnInit {
   map
   stops
   baseLayers
-  selectedStop = {}
+  selectedStop
   allStops = {}
   constructor(private gtfsService: GtfsService) { }
 
