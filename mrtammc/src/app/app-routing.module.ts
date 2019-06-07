@@ -17,10 +17,10 @@ import { KmlslayerComponent } from './mapapp/kmlslayer/kmlslayer.component';
 import { GtfsrtComponent } from './gtfs/gtfsrt/gtfsrt.component';
 
 const routes: Routes = [
-  {
-    path: 'googlemap',
-    component: GooglemapComponent
-  },
+  // {
+  //   path: 'googlemap',
+  //   component: GooglemapComponent
+  // },
   {
     path: 'kmlslayer',
     component: KmlslayerComponent
@@ -77,7 +77,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'googlemap',
+    redirectTo: 'gtfsrt',
     pathMatch: 'full'
   }
 

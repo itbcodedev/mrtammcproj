@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { GtfsrtwsService } from '../../services/gtfsrtws.service'
 import { GtfsService } from '../../services/gtfs2.service';
 import { environment } from '../../../environments/environment';
+import * as moment from 'moment';
+import * as _ from 'lodash';
+
 declare let L;
 
 @Component({
@@ -14,12 +17,13 @@ export class GtfsrtComponent implements OnInit {
   wsdata
   stops
   baseLayers
+  stoptimes
   //todo: change to v2
   constructor(private _gtfsws: GtfsrtwsService,
               private gtfsService: GtfsService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.loadbaselayers()
 
     function style(feature, latlng) {
@@ -36,10 +40,14 @@ export class GtfsrtComponent implements OnInit {
 
 
     this.loadGeojson()
-    this.loadStation()
+    await this.loadStoptimes()
+    await this.loadStation()
+    //await this.getTripsAtStop("PP01")
+
+
 
     L.control.layers(this.baseLayers).addTo(this.map);
-    this.map.on('click', (e) => { console.log(e.latlng); });
+    // this.map.on('click', (e) => { console.log(e.latlng); });
     // let marker = new L.Marker();
 
     let icon = new L.icon({
@@ -53,19 +61,26 @@ export class GtfsrtComponent implements OnInit {
     const ActiveTrain = {}
     const trainLocationMarkers = {}
 
-    this._gtfsws.listen('gtfsrt').subscribe(data => {
-      this.wsdata = JSON.stringify(data)
+    this._gtfsws.listen('gtfsrt').subscribe(async data => {
+      this.wsdata = JSON.stringify(data,null,2)
       //Debug: output data set
       //console.log(this.wsdata)
+
       const route_name = data['header']['route_name']
       const time_now_sec = data['entity']['vehicle']['trip']['time_now_sec']
       const start_time_secs = data['entity']['vehicle']['trip']['start_time_secs']
       const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs']
+      const trip_id = data['entity']['vehicle']['trip']['trip_id']
       const tripEntity = data['entity']['id']
       const vehicle = data['entity']['vehicle']
       const latitude = data['entity']['vehicle']['position']['latitude']
       const longitude = data['entity']['vehicle']['position']['longitude']
       const trainLatLng = new L.LatLng(latitude, longitude);
+
+      const stoptime: any = await this.getTripsAtStop(trip_id)
+      //// DEBUG: 
+      //console.log(trip_id)
+      //console.log(stoptime)
 
       if (ActiveTrain.hasOwnProperty(tripEntity)) {
         // new trip
@@ -83,7 +98,7 @@ export class GtfsrtComponent implements OnInit {
         // marker.addTo(this.map).bindPopup(tripEntity)
         // trainLocationMarkers[tripEntity] = marker
         let marker = this.createMarker(trainLatLng, route_name)
-        marker.addTo(this.map).bindPopup(tripEntity)
+        marker.addTo(this.map).bindPopup(`${tripEntity}`)
         trainLocationMarkers[tripEntity] = marker
       }
 
@@ -107,8 +122,11 @@ export class GtfsrtComponent implements OnInit {
           delete trainLocationMarkers[key]
         }
       }
-    })
-  }
+
+
+
+    })  // end web service
+  }  //init
 
   loadbaselayers() {
     const osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -200,6 +218,7 @@ export class GtfsrtComponent implements OnInit {
     blue_extend_line.addTo(this.map);
   }
 
+
   async loadStation() {
 
     this.stops = await this.gtfsService.getStops();
@@ -217,35 +236,85 @@ export class GtfsrtComponent implements OnInit {
       let marker = new L.Marker();
       marker.setIcon(icon);
       marker.setLatLng(stationLatLng)
-      const html = `
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>${stop.stop_id}-${stop.stop_name} </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>NEXT TRIP</td>
-
-
-          </tr>
-          </tbody>
-        </table>
-      `
-      marker.addTo(this.map).bindPopup(html)
+      //// TODO: click marker
+      marker.addTo(this.map)
+      marker.bindPopup("upload...")
       // marker.addTo(this.map)
       // click event on station
 
-      marker.on('click', (event) => {
-        const marker = event.target
-        console.log(marker)
-        //var html='Test content';
-        //smarker.bindPopup(html).openPopup();
-      })
+      marker.stop_id = stop.stop_id
+      function onMarkerClick(e) {
+
+        const html = `
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>สถานี ${stop.stop_id}-${stop.stop_name} </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> <button type="button" class="btn btn-primary btn-sm">ขบวนขาเข้า</button> </td>
+            </tr>
+            <tr>
+              <td> <button type="button" class="btn btn-primary btn-sm">ขบวนขาออก</button> </td>
+            </tr>
+            </tbody>
+          </table>
+        `
+
+        const popup = e.target.getPopup();
+        popup.setContent(html);
+        popup.update();
+      }
+
+      marker.on('click', onMarkerClick);
+
+      // marker.on('click', (event) => {
+      //   const marker = event.target
+      //   console.log(marker)
+      //
+      //   var html='Test content';
+      //   marker.bindPopup(html).openPopup();
+      // })
     })
   }
 
+  async loadStoptimes() {
+    const agency_key = "MRTA_Transit"
+    const route_id = "00011"
+    this.stoptimes = await this.gtfsService.getStopTimes(agency_key,route_id);
+    //console.log(this.stoptimes)
+
+  }
+
+  async getTripsAtStop(trip_id) {
+
+    const selectedStoptimes = await  this.stoptimes.filter(stoptime => {
+      return stoptime.trip_id === trip_id
+    })
+
+    if (selectedStoptimes.length > 0){
+      // const intime = selectedStoptimes.filter(stoptime => {
+      //   //return this.checktime(stoptime.arrival_time, stoptime.departure_time)
+      //   return this.findNextTrip(stoptime.arrival_time)
+      // })
+      // // lastest
+      // //return _.last(intime)
+      return selectedStoptimes
+    }
+  }
+
+  findNextTrip(arrival_time: any): any {
+    const format = 'hh:mm:ss'
+    //const CurrentDate = moment().subtract('hours',5);
+    //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
+    const CurrentDate = moment()
+    let timenow = CurrentDate.format("HH:mm:ss")
+    if (arrival_time < timenow){
+      return true
+    }
+  }
 
   getColor(color) {
     switch (color) {
@@ -264,6 +333,11 @@ export class GtfsrtComponent implements OnInit {
     }
   }
 
+  getsecond(time) {
+    const seconds = moment(time, 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds');
+    return seconds
+  }
+
   createMarker(latlng, color) {
     return new L.CircleMarker(latlng, {
       radius: 8,
@@ -272,5 +346,25 @@ export class GtfsrtComponent implements OnInit {
       fillColor: this.getColor(color),
       weight: 2
     });
+  }
+
+  checktime(start_time, endtime_time) {
+    const format = 'hh:mm:ss'
+    const CurrentDate = moment().subtract('hours',5);
+    //const CurrentDate = moment()
+    console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
+    // console.log('start_time',start_time)
+    // console.log('endtime_time',endtime_time)
+    let timenow = CurrentDate.format("HH:mm:ss")
+
+    const time = moment(timenow, format)
+    const at = moment(start_time, format)
+    const dt = moment(endtime_time, format)
+
+    if (time.isBetween(at, dt)) {
+      return true
+    } else {
+      return false
+    }
   }
 }

@@ -10,8 +10,8 @@ const simulate = async (io) => {
 
 
 
-  //sconst simulate_url = "http://mmc_app1.mrta.co.th/api/v2/simulate"
-  const simulate_url = "http://localhost:3000/api/v2/simulate"
+  const simulate_url = "http://mmc_app1.mrta.co.th/api/v2/simulate"
+  //const simulate_url = "http://localhost:3000/api/v2/simulate"
 
 
   console.log('Simulate URL endpoint .....', simulate_url)

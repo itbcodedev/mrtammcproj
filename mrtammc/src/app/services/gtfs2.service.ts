@@ -47,9 +47,13 @@ export class GtfsService {
     return this.http.get<Trip[]>(`${BASE_API_ENDPOINT}/trips`).toPromise();
   }
 
-  public getStopTimes(): Promise<StopTime[]> {
-    return this.http.get<StopTime[]>(`${BASE_API_ENDPOINT}/stoptimes`).toPromise();
+  public getStopTimes(agency_key,route_id) {
+    return this.http.get(`${BASE_API_ENDPOINT}/stoptimes/${agency_key}/${route_id}`).toPromise();
   }
+
+  // public getStopTimes(agency_key,route_id): Promise<StopTime[]> {
+  //   return this.http.get<StopTime[]>(`${BASE_API_ENDPOINT}/stoptimes`).toPromise();
+  // }
 
   public getStopTimesByTrip(tripId: any): Promise<StopTime[]> {
     return this.http.get
