@@ -51,6 +51,10 @@ export class GtfsService {
     return this.http.get(`${BASE_API_ENDPOINT}/stoptimes/${agency_key}/${route_id}`).toPromise();
   }
 
+  public getStopTimesBasic(agency_key,trip_id) {
+    return this.http.get(`${BASE_API_ENDPOINT}/stoptimes_basic/${agency_key}/${trip_id}`).toPromise();
+  }
+
   // public getStopTimes(agency_key,route_id): Promise<StopTime[]> {
   //   return this.http.get<StopTime[]>(`${BASE_API_ENDPOINT}/stoptimes`).toPromise();
   // }
@@ -113,6 +117,14 @@ export class GtfsService {
 
   public updateActiveTrains(trains: any) {
     return this.http.post(`${BASE_API_ENDPOINT}/updateactivetrains`, trains, {observe: 'response' } );
+  }
+
+  // localhost:3000/api/v2/routeinfowithtrip/052646
+  public getrouteinfowithtrip(tripId: any): Promise<any> {
+    console.log("+++++++++++++++++++++++++++++", tripId)
+    return this.http
+      .get<any>(`${BASE_API_ENDPOINT}/routeinfowithtrip/${tripId}`)
+      .toPromise();
   }
 
 }

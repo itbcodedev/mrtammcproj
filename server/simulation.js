@@ -5,16 +5,19 @@ const gtfs = require('../server/controllers/gtfs')
 const request = require('request');
 const simulate = async (io) => {
 
+  //const simulate_url = "http://mmc_app1.mrta.co.th/api/v2/simulate"
+  //gtfs-route2.js
+  const simulate_url = "http://localhost:3000/api/v2/simulate"
+  console.log('Simulate URL endpoint .....', simulate_url)
+
   const train00011 = new TrainSimulator(gtfs,"00011",path_config)
   await train00011.main()
 
 
 
-  const simulate_url = "http://mmc_app1.mrta.co.th/api/v2/simulate"
-  //const simulate_url = "http://localhost:3000/api/v2/simulate"
 
 
-  console.log('Simulate URL endpoint .....', simulate_url)
+
 
   train00011.trip_gtfs.map(trip => {
     request({

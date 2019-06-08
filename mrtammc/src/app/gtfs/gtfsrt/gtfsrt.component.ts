@@ -18,6 +18,7 @@ export class GtfsrtComponent implements OnInit {
   stops
   baseLayers
   stoptimes
+  stoptimesbasic
   //todo: change to v2
   constructor(private _gtfsws: GtfsrtwsService,
               private gtfsService: GtfsService
@@ -62,11 +63,13 @@ export class GtfsrtComponent implements OnInit {
     const trainLocationMarkers = {}
 
     this._gtfsws.listen('gtfsrt').subscribe(async data => {
+
       this.wsdata = JSON.stringify(data,null,2)
-      //Debug: output data set
-      //console.log(this.wsdata)
+      // // DEBUG: data from webservice
+      console.log(this.wsdata)
 
       const route_name = data['header']['route_name']
+      const direction = data['header']['direction']
       const time_now_sec = data['entity']['vehicle']['trip']['time_now_sec']
       const start_time_secs = data['entity']['vehicle']['trip']['start_time_secs']
       const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs']
@@ -77,26 +80,23 @@ export class GtfsrtComponent implements OnInit {
       const longitude = data['entity']['vehicle']['position']['longitude']
       const trainLatLng = new L.LatLng(latitude, longitude);
 
-      const stoptime: any = await this.getTripsAtStop(trip_id)
-      //// DEBUG:
-      //console.log(trip_id)
-      //console.log(stoptime)
+      // const incomingtrip: any = await this.getTripsAtStop(trip_id)
+      // if (incomingtrip['stop_id'] == "PP01")  {
+      //   console.log("PP01",  incomingtrip['stop_id'],incomingtrip['trip_id'])
+      // }
+      //
+      // if (incomingtrip['stop_id'] == "PP12")  {
+      //   console.log("PP01",  incomingtrip['stop_id'],incomingtrip['trip_id'])
+      // }
 
       if (ActiveTrain.hasOwnProperty(tripEntity)) {
         // new trip
         trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
-        // const oldLatLng = trainLocationMarkers[tripEntity].getLatLng()
-        // const newLatLng = trainLatLng
-        // trainLocationMarkers[tripEntity].movingMarker(oldLatLng,newLatLng).start()
 
       } else {
         // exist trip
         ActiveTrain[tripEntity] = vehicle
-        // let marker = new L.Marker();
-        // marker.setIcon(icon);
-        // marker.setLatLng(trainLatLng)
-        // marker.addTo(this.map).bindPopup(tripEntity)
-        // trainLocationMarkers[tripEntity] = marker
+
         let marker = this.createMarker(trainLatLng, route_name)
         marker.addTo(this.map).bindPopup(`${tripEntity}`)
         trainLocationMarkers[tripEntity] = marker
@@ -222,7 +222,8 @@ export class GtfsrtComponent implements OnInit {
   async loadStation() {
 
     this.stops = await this.gtfsService.getStops();
-    console.log(this.stops)
+    // // DEBUG:
+
 
     this.stops.forEach(stop => {
       //icon
@@ -239,8 +240,6 @@ export class GtfsrtComponent implements OnInit {
       //// TODO: click marker
       marker.addTo(this.map)
       marker.bindPopup("upload...")
-      // marker.addTo(this.map)
-      // click event on station
 
       marker.stop_id = stop.stop_id
       function onMarkerClick(e) {
@@ -270,13 +269,6 @@ export class GtfsrtComponent implements OnInit {
 
       marker.on('click', onMarkerClick);
 
-      // marker.on('click', (event) => {
-      //   const marker = event.target
-      //   console.log(marker)
-      //
-      //   var html='Test content';
-      //   marker.bindPopup(html).openPopup();
-      // })
     })
   }
 
@@ -289,21 +281,25 @@ export class GtfsrtComponent implements OnInit {
   }
 
   async getTripsAtStop(trip_id) {
+    const agency_key = "MRTA_Transit"
+    this.stoptimesbasic = await this.gtfsService.getStopTimesBasic(agency_key,trip_id);
 
-    const selectedStoptimes = await  this.stoptimes.filter(stoptime => {
+    const selectedStoptimes = await  this.stoptimesbasic.filter(stoptime => {
       return stoptime.trip_id === trip_id
     })
 
     if (selectedStoptimes.length > 0){
-      // const intime = selectedStoptimes.filter(stoptime => {
-      //   //return this.checktime(stoptime.arrival_time, stoptime.departure_time)
-      //   return this.findNextTrip(stoptime.arrival_time)
-      // })
-      // // lastest
-      // //return _.last(intime)
-      return selectedStoptimes
+      const intime = selectedStoptimes.filter(stoptime => {
+        //return this.checktime(stoptime.arrival_time, stoptime.departure_time)
+        return this.findNextTrip(stoptime.arrival_time)
+      })
+      // lastest
+      // console.log(trip_id)
+      const incomingtrip  = _.last(intime)
+      return incomingtrip
     }
   }
+
 
   findNextTrip(arrival_time: any): any {
     const format = 'hh:mm:ss'
@@ -311,8 +307,17 @@ export class GtfsrtComponent implements OnInit {
     //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
     const CurrentDate = moment()
     let timenow = CurrentDate.format("HH:mm:ss")
-    if (arrival_time < timenow){
+    // // TODO: convert to sec
+    const arrival_time_secs = this.getsecond(arrival_time)
+    const timenow_secs = this.getsecond(timenow)
+
+    //console.log('timenow_secs,arrival_time_secs',timenow_secs,arrival_time_secs)
+    if (arrival_time_secs < timenow_secs){
+      //console.log('true')
       return true
+    } else {
+      //console.log('false')
+      return false
     }
   }
 
@@ -352,7 +357,7 @@ export class GtfsrtComponent implements OnInit {
     const format = 'hh:mm:ss'
     const CurrentDate = moment().subtract('hours',5);
     //const CurrentDate = moment()
-    console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
+    //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
     // console.log('start_time',start_time)
     // console.log('endtime_time',endtime_time)
     let timenow = CurrentDate.format("HH:mm:ss")

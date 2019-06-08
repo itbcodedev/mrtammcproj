@@ -12,10 +12,10 @@ const {getFrequencies} = require('./gtfs/frequencies');
 const {getRoutes} = require('./gtfs/routes');
 const {getShapes, getShapesAsGeoJSON} = require('./gtfs/shapes');
 const {getStops, getStopsAsGeoJSON, updateStops} = require('./gtfs/stops');
-const {getStoptimes} = require('./gtfs/stop-times');
+const {getStoptimes, getStoptimesBasic} = require('./gtfs/stop-times');
 const {getTransfers} = require('./gtfs/transfers');
 const {getTrips, getDirectionsByRoute} = require('./gtfs/trips');
-const { getRouteInfo} = require('./gtfs/route-info')
+const { getRouteInfo, getRouteInfoWithTrip} = require('./gtfs/route-info')
 // Non-standard GTFS Filenames
 const {getStopAttributes} = require('./non-standard/stop-attributes');
 const {getTimetables} = require('./non-standard/timetables');
@@ -44,6 +44,7 @@ exports.getShapes = getShapes;
 exports.getShapesAsGeoJSON = getShapesAsGeoJSON;
 
 exports.getStops = getStops;
+exports.getStoptimesBasic =  getStoptimesBasic;
 exports.updateStops = updateStops
 
 exports.getStopsAsGeoJSON = getStopsAsGeoJSON;
@@ -64,3 +65,4 @@ exports.getTimetableStopOrders = getTimetableStopOrders;
 exports.getTimetablePages = getTimetablePages;
 
 exports.getRouteInfo = getRouteInfo
+exports.getRouteInfoWithTrip = getRouteInfoWithTrip
