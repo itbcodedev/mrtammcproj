@@ -96,6 +96,35 @@ export class GtfsrtComponent implements OnInit {
       // trainLocationMarkers
 
       // check train in ActiveTrain
+
+
+      // marker function
+      function onTrainClick(e) {
+        const html = `
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ขบวน  </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> <button type="button" class="btn btn-primary btn-sm">ขบวนรถ</button> </td>
+            </tr>
+            <tr>
+              <td> <button type="button" class="btn btn-primary btn-sm">สถานีถัดไป</button> </td>
+            </tr>
+            </tbody>
+          </table>
+        `
+        const popup = e.target.getPopup();
+        popup.setContent(html);
+        popup.update();
+      }  // end function onMarkerClick
+      // cb to onMarkerClick
+
+
+
       if (ActiveTrain.hasOwnProperty(tripEntity)) {
         // new trip
         trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
@@ -107,6 +136,9 @@ export class GtfsrtComponent implements OnInit {
         //// TODO: 1 create marker
         let marker = this.createMarker(trainLatLng, route_name)
         marker.addTo(this.map).bindPopup(`${tripEntity}`)
+        // marker function
+
+        marker.on('click', onTrainClick);
         trainLocationMarkers[tripEntity] = marker
 
       }
