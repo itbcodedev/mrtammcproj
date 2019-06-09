@@ -56,8 +56,6 @@ exports.TrainSimulator = class {
   // }
   // class method as async
   async trainAdvance(now) {
-    await this.addStoptime("052646")
-
 
     function getsecond(time) {
       const seconds = moment(time, 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds');
@@ -164,18 +162,54 @@ exports.TrainSimulator = class {
       return trip_loc
     }
 
+
+
+
     // step 3
-    function addStoptime(trips){
-      const trip_stoptime = trips.map(async trip => {
-        const query = {}
-        query.trip_id = trip.trip_id
-        const stoptimes = this.gtfs.getRouteInfoWithTrip(query).then( results => {
-          return results
-        })
-        return stoptimes
-      })
-      console.log('176 trip_stoptime',trip_stoptime)
-      return trip_stoptime
+    // pattern use async/await  in map
+    function addStoptime(gtfs,trips){
+      return Promise.all(trips.map( async trip => {
+        try {
+          const query = {}
+          query.trip_id = trip.trip_id
+          const result = await gtfs.getRouteInfoWithTrip(query)
+
+          const format = 'hh:mm:ss'
+          const start_time = result[0].start_time
+          const end_time = result[0].end_time
+          const stoptimes = result[0].stoptimes
+
+          // console.log('start_time',start_time)
+          // console.log('end_time',end_time)
+
+
+          const select_stoptimes = stoptimes.filter( stoptime => {
+            // console.log('stoptime.departure_time',stoptime.departure_time)
+            // console.log('start_time',start_time)
+            // console.log('end_time',end_time)
+
+            const time = moment(stoptime.departure_time, format)
+            const at = moment(start_time, format)
+            const dt = moment(end_time, format)
+
+            if (time.isBetween(at, dt)) {
+              //console.log('true')
+              return true
+            } else {
+              //console.log('false')
+              return false
+            }
+
+          })
+
+          trip.stoptimes = select_stoptimes
+
+
+          return trip
+        } catch (err) {
+          return err.toString()
+        }
+      }))
     }
 
 
@@ -199,15 +233,13 @@ exports.TrainSimulator = class {
       const routeinfos_loc = addlocation(routeinfos_now)
 
       // step 3
-      const routeinfos_stoptime = addStoptime(routeinfos_loc)
+      const routeinfos_stoptime = await addStoptime(this.gtfs,routeinfos_loc)
+      // console.log(routeinfos_stoptime)
 
-      // const addStopTimeTotrip = routeinfos_loc.map( trip => {
-      //     // get trip_id
-      //     this.addStoptime(trip.trip_id)
-      //     return trip
-      // })
 
-      const trip_gtfs = transformFormat(routeinfos_loc)
+      const trip_gtfs = transformFormat(routeinfos_stoptime)
+      //console.log(trip_gtfs)
+
       return trip_gtfs
     } catch (err) {
       //console.log(err)

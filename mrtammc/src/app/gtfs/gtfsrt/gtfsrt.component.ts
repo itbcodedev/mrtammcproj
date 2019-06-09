@@ -62,6 +62,7 @@ export class GtfsrtComponent implements OnInit {
     const ActiveTrain = {}
     const trainLocationMarkers = {}
 
+    // get data from web socket
     this._gtfsws.listen('gtfsrt').subscribe(async data => {
 
       this.wsdata = JSON.stringify(data,null,2)
@@ -74,10 +75,12 @@ export class GtfsrtComponent implements OnInit {
       const start_time_secs = data['entity']['vehicle']['trip']['start_time_secs']
       const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs']
       const trip_id = data['entity']['vehicle']['trip']['trip_id']
+      // // TODO: display info on marker
       const tripEntity = data['entity']['id']
       const vehicle = data['entity']['vehicle']
       const latitude = data['entity']['vehicle']['position']['latitude']
       const longitude = data['entity']['vehicle']['position']['longitude']
+      const stoptimes =  data['entity']['vehicle']['stoptimes']
       const trainLatLng = new L.LatLng(latitude, longitude);
 
       // const incomingtrip: any = await this.getTripsAtStop(trip_id)
@@ -89,6 +92,10 @@ export class GtfsrtComponent implements OnInit {
       //   console.log("PP01",  incomingtrip['stop_id'],incomingtrip['trip_id'])
       // }
 
+      // ActiveTrain
+      // trainLocationMarkers
+
+      // check train in ActiveTrain
       if (ActiveTrain.hasOwnProperty(tripEntity)) {
         // new trip
         trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
@@ -97,12 +104,14 @@ export class GtfsrtComponent implements OnInit {
         // exist trip
         ActiveTrain[tripEntity] = vehicle
 
+        //// TODO: 1 create marker
         let marker = this.createMarker(trainLatLng, route_name)
         marker.addTo(this.map).bindPopup(`${tripEntity}`)
         trainLocationMarkers[tripEntity] = marker
+
       }
 
-
+      // check train over due
       for (let key in ActiveTrain) {
         if (time_now_sec > ActiveTrain[key]['trip']['end_time_secs']) {
           //console.log(`over due delete .. ${ActiveTrain[key]}`)
@@ -112,6 +121,7 @@ export class GtfsrtComponent implements OnInit {
         }
       }
 
+      // delete marker of overdue
       for (let key in trainLocationMarkers) {
         if (ActiveTrain.hasOwnProperty(key)) {
           //console.log(`${key} still on tracks`)
@@ -220,11 +230,10 @@ export class GtfsrtComponent implements OnInit {
 
 
   async loadStation() {
-
     this.stops = await this.gtfsService.getStops();
     // // DEBUG:
 
-
+    // // TODO: add marker property
     this.stops.forEach(stop => {
       //icon
       let icon = new L.icon({
@@ -237,13 +246,13 @@ export class GtfsrtComponent implements OnInit {
       let marker = new L.Marker();
       marker.setIcon(icon);
       marker.setLatLng(stationLatLng)
-      //// TODO: click marker
+      //// TODO: click marker  update content
+      // add bind popup after addTo map
       marker.addTo(this.map)
       marker.bindPopup("upload...")
-
       marker.stop_id = stop.stop_id
+      // marker function
       function onMarkerClick(e) {
-
         const html = `
         <table class="table table-bordered">
           <thead>
@@ -261,12 +270,11 @@ export class GtfsrtComponent implements OnInit {
             </tbody>
           </table>
         `
-
         const popup = e.target.getPopup();
         popup.setContent(html);
         popup.update();
-      }
-
+      }  // end function onMarkerClick
+      // cb to onMarkerClick
       marker.on('click', onMarkerClick);
 
     })
@@ -373,3 +381,32 @@ export class GtfsrtComponent implements OnInit {
     }
   }
 }
+
+
+// {
+//   "header": {
+//     "gtfs_realtime_version": "2.0",
+//     "incrementality": "FULL_DATASET",
+//     "timestamp": "09:51:26",
+//     "route_name": "blue",
+//     "direction": "1"
+//   },
+//   "entity": {
+//     "id": "blue-020846",
+//     "vehicle": {
+//       "trip": {
+//         "trip_id": "020846",
+//         "start_time_secs": "35085",
+//         "end_time_secs": "37141",
+//         "time_now_sec": "35486",
+//         "start_time": "09:44:45",
+//         "end_time": "10:19:01"
+//       },
+//       "position": {
+//         "latitude": "13.7232308298072",
+//         "longitude": "100.55162341576"
+//       },
+//       "stoptimes": "[[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]]"
+//     }
+//   }
+// }
