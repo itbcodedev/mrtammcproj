@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewChild, ElementRef } from '@angular/core';
 import { GtfsrtwsService } from '../../services/gtfsrtws.service'
 import { GtfsService } from '../../services/gtfs2.service';
 import { environment } from '../../../environments/environment';
@@ -13,6 +13,9 @@ declare let L;
   styleUrls: ['./gtfsrt.component.scss']
 })
 export class GtfsrtComponent implements OnInit {
+
+  @ViewChild('dataContainer') dataContainer: ElementRef;
+
   map: any
   wsdata
   stops
@@ -20,11 +23,31 @@ export class GtfsrtComponent implements OnInit {
   stoptimes
   stoptimesbasic
   //todo: change to v2
+
+  // data lable in card
+  card
+  isDark
+  cardHeight
+  color
+  direction
+  headsign
+  leaving_in_label
+  leaving_in
+  bodyHeight
+  stopTimes
+  stopGuide
+  stopNames
+  next_in_label
+  next_in
+
   constructor(private _gtfsws: GtfsrtwsService,
               private gtfsService: GtfsService
   ) { }
 
+
+
   async ngOnInit() {
+    this.dataContainer.nativeElement.innerHTML =  this.getRender()
     this.loadbaselayers()
 
     function style(feature, latlng) {
@@ -48,7 +71,7 @@ export class GtfsrtComponent implements OnInit {
 
 
     L.control.layers(this.baseLayers).addTo(this.map);
-    // this.map.on('click', (e) => { console.log(e.latlng); });
+    this.map.on('click', (e) => { console.log(e.latlng); });
     // let marker = new L.Marker();
 
     let icon = new L.icon({
@@ -67,7 +90,7 @@ export class GtfsrtComponent implements OnInit {
 
       this.wsdata = JSON.stringify(data,null,2)
       // // DEBUG: data from webservice
-      console.log(this.wsdata)
+      //console.log(this.wsdata)
 
       const route_name = data['header']['route_name']
       const direction = data['header']['direction']
@@ -83,22 +106,6 @@ export class GtfsrtComponent implements OnInit {
       const stoptimes =  data['entity']['vehicle']['stoptimes']
       const trainLatLng = new L.LatLng(latitude, longitude);
 
-      // const incomingtrip: any = await this.getTripsAtStop(trip_id)
-      // if (incomingtrip['stop_id'] == "PP01")  {
-      //   console.log("PP01",  incomingtrip['stop_id'],incomingtrip['trip_id'])
-      // }
-      //
-      // if (incomingtrip['stop_id'] == "PP12")  {
-      //   console.log("PP01",  incomingtrip['stop_id'],incomingtrip['trip_id'])
-      // }
-
-      // ActiveTrain
-      // trainLocationMarkers
-
-      // check train in ActiveTrain
-
-
-      // marker function
       function onTrainClick(e) {
         const html = `
         <table class="table table-bordered">
@@ -199,7 +206,8 @@ export class GtfsrtComponent implements OnInit {
         subdomains:['mt0','mt1','mt2','mt3']
     })
 
-    this.map = new L.map('map').setView([13.76346247154659, 100.53527228372589], 12);
+    const latLon = L.latLng(13.788593154063312,100.44842125132114);
+    this.map = L.map('map').setView(latLon, 12);
 
     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -411,6 +419,59 @@ export class GtfsrtComponent implements OnInit {
     } else {
       return false
     }
+  }
+
+  getRender() {
+    this.isDark = true
+    this.cardHeight = "40"
+    this.color = "#ff0000"
+    this.direction = "North"
+    this.headsign = "Taoboon"
+    this.leaving_in_label = "leaving_in_label"
+    this.leaving_in = "leaving_i"
+    this.bodyHeight = "100"
+    this.stopTimes = "07:00:00"
+    this.stopGuide = "stopGuide"
+    this.stopNames = "stopNames"
+    this.next_in_label = "next_in_label"
+    this.next_in = "next_in"
+
+    return `
+    <div
+      class="card ${this.isDark ? 'dark' : 'light'}"
+      style="height: ${this.cardHeight}px"
+    >
+  <div class="header" style="background-color: ${this.color}; width: 320px">
+    <div class="bus_logo">
+      <svg width="50px" height="50px" viewBox="-10 -10 80 80">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <circle fill="#FFFFFF" cx="32" cy="32" r="32"></circle>
+          <path
+            d="M20.7894737,31.0526316 L43.5263158,31.0526316 L43.5263158,21.5789474 L20.7894737,21.5789474 L20.7894737,31.0526316 Z M40.6842105,42.4210526 C39.1115789,42.4210526 37.8421053,41.1515789 37.8421053,39.5789474 C37.8421053,38.0063158 39.1115789,36.7368421 40.6842105,36.7368421 C42.2568421,36.7368421 43.5263158,38.0063158 43.5263158,39.5789474 C43.5263158,41.1515789 42.2568421,42.4210526 40.6842105,42.4210526 L40.6842105,42.4210526 Z M23.6315789,42.4210526 C22.0589474,42.4210526 20.7894737,41.1515789 20.7894737,39.5789474 C20.7894737,38.0063158 22.0589474,36.7368421 23.6315789,36.7368421 C25.2042105,36.7368421 26.4736842,38.0063158 26.4736842,39.5789474 C26.4736842,41.1515789 25.2042105,42.4210526 23.6315789,42.4210526 L23.6315789,42.4210526 Z M17,40.5263158 C17,42.2025263 17.7389474,43.6905263 18.8947368,44.7326316 L18.8947368,48.1052632 C18.8947368,49.1473684 19.7473684,50 20.7894737,50 L22.6842105,50 C23.7364211,50 24.5789474,49.1473684 24.5789474,48.1052632 L24.5789474,46.2105263 L39.7368421,46.2105263 L39.7368421,48.1052632 C39.7368421,49.1473684 40.5793684,50 41.6315789,50 L43.5263158,50 C44.5684211,50 45.4210526,49.1473684 45.4210526,48.1052632 L45.4210526,44.7326316 C46.5768421,43.6905263 47.3157895,42.2025263 47.3157895,40.5263158 L47.3157895,21.5789474 C47.3157895,14.9473684 40.5326316,14 32.1578947,14 C23.7831579,14 17,14.9473684 17,21.5789474 L17,40.5263158 Z"
+            fill="${this.color}"></path>
+        </g>
+      </svg>
+    </div>
+    <div class="direction">${this.direction}</div>
+    <div class="headsign">${this.headsign}</div>
+    <div class="leaving-in-label">${this.leaving_in_label}</div>
+    <div class="leaving-in">${this.leaving_in}</div>
+  </div>
+  <div class="body" style="height: ${this.bodyHeight}px">
+    <div class="stop-times">
+      ${this.stopTimes}
+    </div>
+    ${this.stopGuide}
+    <div class="stop-names">
+      ${this.stopNames}
+    </div>
+    <div class="next-in-box">
+      <div class="next-in-label">${this.next_in_label}</div>
+      <div class="next-in">${this.next_in}</div>
+    </div>
+  </div>
+</div>
+    `
   }
 }
 

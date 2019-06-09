@@ -3,6 +3,16 @@
     width: 100%;
 }
 
+
+
+#overlay {
+  position: absolute;
+  top: 55px;
+  left: 80px;
+  width: 500px;
+
+  z-index: 100;
+}
 .content-wrapper > .content {
     padding: 0 0rem;
 }
@@ -14,4 +24,118 @@
     border-width: 1px;
     height: 90vh;
     overflow-y: scroll;
+}
+
+.header {
+  height: 104px;
+  position: relative;
+}
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.bus_logo {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  top: 24px;
+  left: 16px;
+}
+.direction {
+  font-size: 16px;
+  position: absolute;
+  left: 96px;
+  top: 19px;
+}
+.dark .direction {
+  color: rgba(255, 255, 255, 0.7);
+}
+.light .direction {
+  color: rgba(0, 0, 0, 0.5);
+}
+.headsign {
+  font-size: 28px;
+  font-weight: 500;
+  position: absolute;
+  left: 96px;
+  top: 42px;
+}
+.dark .headsign {
+  color: rgba(255, 255, 255, 0.97);
+}
+.light .headsign {
+  color: rgba(0, 0, 0, 0.9);
+}
+.leaving-in-label {
+  font-size: 16px;
+  position: absolute;
+  left: 384px;
+  top: 19px;
+}
+.dark .leaving-in-label {
+  color: rgba(255, 255, 255, 0.7);
+}
+.light .leaving-in-label {
+  color: rgba(0, 0, 0, 0.5);
+}
+.leaving-in {
+  font-size: 28px;
+  font-weight: 500;
+  position: absolute;
+  left: 384px;
+  top: 42px;
+}
+.dark .leaving-in {
+  color: rgba(255, 255, 255, 0.97);
+}
+.light .leaving-in {
+  color: rgba(0, 0, 0, 0.9);
+}
+.body .next-in-label {
+  font-size: 16px;
+  position: absolute;
+  left: 384px;
+  bottom: 64px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.body .next-in {
+  font-size: 28px;
+  font-weight: 400;
+  position: absolute;
+  left: 384px;
+  bottom: 24px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.stop-times {
+  width: 80px;
+  margin-right: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.stop-time {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.stop-guide {
+  width: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.stop-names {
+  margin-left: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.stop-name {
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.9);
 }
