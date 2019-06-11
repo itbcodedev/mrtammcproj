@@ -13,12 +13,6 @@ const simulate = async (io) => {
   const train00011 = new TrainSimulator(gtfs,"00011",path_config)
   await train00011.main()
 
-
-
-
-
-
-
   train00011.trip_gtfs.map(trip => {
     request({
         url: simulate_url,
@@ -30,7 +24,7 @@ const simulate = async (io) => {
     });
   })
 
-  //console.log('train11.trip_gtfs.....', train00011.trip_gtfs.length)
+
 
   const train00012 = new TrainSimulator(gtfs,"00012",path_config)
   await train00012.main()
@@ -47,8 +41,7 @@ const simulate = async (io) => {
     });
   })
 
-  //io.sockets.emit('gtfsrt', train00012.trip_gtfs);
-  //console.log('train12.trip_gtfs.....', train00012.trip_gtfs.length)
+
 
   const train00013 = new TrainSimulator(gtfs,"00013",path_config)
   await train00013.main()
@@ -64,8 +57,7 @@ const simulate = async (io) => {
     });
   })
 
-  //io.sockets.emit('gtfsrt', train00013.trip_gtfs);
-  //console.log('train13.trip_gtfs.....', train00013.trip_gtfs.length)
+
 
   const train00014 = new TrainSimulator(gtfs,"00014",path_config)
   await train00014.main()
@@ -80,8 +72,6 @@ const simulate = async (io) => {
     });
   })
 
-  //io.sockets.emit('gtfsrt', train00014.trip_gtfs);
-  //console.log('train14.trip_gtfs.....', train00014.trip_gtfs.length)
 
 }
 

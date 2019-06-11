@@ -121,7 +121,7 @@ export class GtfsService {
 
   // localhost:3000/api/v2/routeinfowithtrip/052646
   public getrouteinfowithtrip(tripId: any): Promise<any> {
-    console.log("+++++++++++++++++++++++++++++", tripId)
+    //console.log("+++++++++++++++++++++++++++++", tripId)
     return this.http
       .get<any>(`${BASE_API_ENDPOINT}/routeinfowithtrip/${tripId}`)
       .toPromise();

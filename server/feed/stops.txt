@@ -15,15 +15,15 @@ PP13,สถานีแยกติวานนท์,Yaek Tiwanon,13.839409,100
 PP14,สถานีวงศ์สว่าง,Wong Sawang,13.829947,100.526629,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp14.jpg,18600,purple_station.png
 PP15,สถานีบางซ่อน,Bang Son,13.820201,100.532592,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp15.jpg,20000,purple_station.png
 PP16,สถานีเตาปูน,Tao Poon,13.806205,100.530836,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp16.jpg,21600,purple_station.png
-BL01,สถานีท่าพระ,Tha Phra,13.72966,100.47417,,,,
-BL02,สถานีจรัญฯ 13,Charan 13,13.74011,100.47084,,,,
-BL03,สถานีไฟฉาย,Fai Chai,13.75569,100.46937,,,,
-BL04,สถานีบางขุนนนท์,Bang Khun Non,13.76328,100.47334,,,,
-BL05,สถานีบางยี่ขัน,Bang Yi Khan,13.77726,100.4852,,,,
-BL06,สถานีสิรินธร,Sirindhorn,13.78389,100.49345,,,,
-BL07,สถานีบางพลัด,Bang Phlat,13.79247,100.50499,,,,
-BL08,สถานีบางอ้อ,Bang O,13.79891,100.50986,,,,
-BL09,สถานีบางโพ,Bang Pho,13.8064,100.52097,,,,
+BL01,สถานีท่าพระ,Tha Phra,13.72966,100.47417,,,,blue_station.png
+BL02,สถานีจรัญฯ 13,Charan 13,13.74011,100.47084,,,,blue_station.png
+BL03,สถานีไฟฉาย,Fai Chai,13.75569,100.46937,,,,blue_station.png
+BL04,สถานีบางขุนนนท์,Bang Khun Non,13.76328,100.47334,,,,blue_station.png
+BL05,สถานีบางยี่ขัน,Bang Yi Khan,13.77726,100.4852,,,,blue_station.png
+BL06,สถานีสิรินธร,Sirindhorn,13.78389,100.49345,,,,blue_station.png
+BL07,สถานีบางพลัด,Bang Phlat,13.79247,100.50499,,,,blue_station.png
+BL08,สถานีบางอ้อ,Bang O,13.79891,100.50986,,,,blue_station.png
+BL09,สถานีบางโพ,Bang Pho,13.8064,100.52097,,,,blue_station.png
 BL10,สถานีเตาปูน,Tao Poon,13.8062237,100.5308543,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp16.jpg,,blue_station.png
 BL11,สถานีบางซื่อ,Bang Sue,13.8029397,100.5398691,,http://www.bangkokmetro.co.th/web/imgcontent/Image/18reban.jpg,,blue_station.png
 BL12,สถานีกำแพงเพชร,Kamphaeng Phet,13.7976359,100.5476904,,http://www.bangkokmetro.co.th/web/imgcontent/Image/17rekam.jpg,,blue_station.png
@@ -43,18 +43,106 @@ BL25,สถานีลุมพินี,Lumphini,13.7261281,100.5449008,,http:
 BL26,สถานีสีลม,Si Lom,13.7295154,100.536704,,http://www.bangkokmetro.co.th/web/imgcontent/Image/3resil.jpg,,blue_station.png
 BL27,สถานีสามย่าน,Sam Yan,13.7327828,100.5287433,,http://www.bangkokmetro.co.th/web/imgcontent/Image/2resam.jpg,,blue_station.png
 BL28,สถานีหัวลำโพง,Hua Lamphong,13.7376342,100.5168852,,http://www.bangkokmetro.co.th/web/imgcontent/Image/1rehuafix.jpg,,blue_station.png
-BL29,สถานีวัดมังกร,Wat Mangkon,13.74182,100.51049,,,,
-BL30,สถานีสามยอด,Sam Yot,13.74701,100.50317,,,,
-BL31,สถานีสนามไชย,Sanam Chai,13.74741,100.49419,,,,
-BL32,สถานีอิสรภาพ,Itsaraphap,13.7404,100.48392,,,,
-BL01,สถานีท่าพระ,Tha Phra,13.72966,100.47417,,,,
-BL33,สถานีบางไผ่,Bang Phai,13.72464,100.4653,,,,
-BL34,สถานีบางหว้า,Bang Wa,13.72024,100.45717,,,,
-BL35,สถานีเพชรเกษม 48,Phetkasem 48,13.71566,100.44582,,,,
-BL36,สถานีภาษีเจริญ,Phasi Charoen,13.71293,100.43435,,,,
-BL37,สถานีบางแค,Bang Khae,13.71192,100.42236,,,,
-BL38,สถานีหลักสอง,Lak Song,13.71084,100.4095,,,,
-BL39,สถานีพุทธมณฑลสาย 2,Phutthamonthon Sai 2,13.70966,100.39461,,,,
-BL49,สถานีทวีวัฒนา,Thawi Watthana,13.70803,100.37508,,,,
-BL41,สถานีพุทธมณฑลสาย 3,Phutthamonthon Sai 3,13.70699,100.36306,,,,
-BL42,สถานีพุทธมณฑลสาย 4,Phutthamonthon Sai 4,13.70436,100.33186,,,,
+BL29,สถานีวัดมังกร,Wat Mangkon,13.74182,100.51049,,,,blue_station.png
+BL30,สถานีสามยอด,Sam Yot,13.74701,100.50317,,,,blue_station.png
+BL31,สถานีสนามไชย,Sanam Chai,13.74741,100.49419,,,,blue_station.png
+BL32,สถานีอิสรภาพ,Itsaraphap,13.7404,100.48392,,,,blue_station.png
+BL01,สถานีท่าพระ,Tha Phra,13.72966,100.47417,,,,blue_station.png
+BL33,สถานีบางไผ่,Bang Phai,13.72464,100.4653,,,,blue_station.png
+BL34,สถานีบางหว้า,Bang Wa,13.72024,100.45717,,,,blue_station.png
+BL35,สถานีเพชรเกษม 48,Phetkasem 48,13.71566,100.44582,,,,blue_station.png
+BL36,สถานีภาษีเจริญ,Phasi Charoen,13.71293,100.43435,,,,blue_station.png
+BL37,สถานีบางแค,Bang Khae,13.71192,100.42236,,,,blue_station.png
+BL38,สถานีหลักสอง,Lak Song,13.71084,100.4095,,,,blue_station.png
+BL39,สถานีพุทธมณฑลสาย 2,Phutthamonthon Sai 2,13.70966,100.39461,,,,blue_station.png
+BL49,สถานีทวีวัฒนา,Thawi Watthana,13.70803,100.37508,,,,blue_station.png
+BL41,สถานีพุทธมณฑลสาย 3,Phutthamonthon Sai 3,13.70699,100.36306,,,,blue_station.png
+BL42,สถานีพุทธมณฑลสาย 4,Phutthamonthon Sai 4,13.70436,100.33186,,,,blue_station.png
+OR0,สถานีตลิ่งชัน,Taling Chan,13.78888,100.44003,,,,orange_station.png
+OR1,สถานีบางขุนนนท์,Bang Khun Non,13.76272,100.47281,,,,orange_station.png
+OR2,ศิริราช ,Siriraj,13.7597,100.48269,,,,orange_station.png
+OR3,สนามหลวง ,Sanam Luang ,13.75897,100.49288,,,,orange_station.png
+OR4,อนุสาวรีย์ประชาธิปไตย ,Democracy Monument,13.75598,100.50533,,,,orange_station.png
+OR5,หลานหลวง ,Lan Luang,13.75645,100.50964,,,,orange_station.png
+OR6,ยมราช ,Yommarat,13.75729,100.52065,,,,orange_station.png
+OR7,ราชเทวี,Ratchathewi,13.75314,100.53176,,,,orange_station.png
+OR8,ประตูน้ำ,Pratunam,13.75124,100.53724,,,,orange_station.png
+OR9,ราชปรารภ ,Ratchaprarop,13.75437,100.54206,,,,orange_station.png
+OR10,รางน้ำ,Rang Nam ,13.7588,100.54241,,,,orange_station.png
+OR11,ดินแดง ,Din Daeng,13.77131,100.56016,,,,orange_station.png
+OR12,ประชาสงเคราะห์ ,Pracha Songkhro,13.77131,100.56016,,,,orange_station.png
+OR13,ศูนย์วัฒนธรรมแห่งประเทศไทย,Thailand Cultural Centre,13.76649,100.57051,,,,orange_station.png
+OR14 ,รฟม. ,MRTA,13.75532,100.57833,,,,orange_station.png
+OR15 ,ประดิษฐ์มนูธรรม ,Pradit Manutham,13.75198,100.5919,,,,orange_station.png
+OR16,รามคำแหง 12 ,Ramkhamhaeng 12 ,13.75198,100.61014,,,,orange_station.png
+OR17,รามคำแหง ,Ramkhamhaeng ,13.75952,100.61837,,,,orange_station.png
+OR18,ราชมังคลา ,Rajamangala,13.7604,100.62537,,,,orange_station.png
+OR19,หัวหมาก,Hua Mak ,13.7619,100.63822,,,,orange_station.png
+OR20 ,ลำสาลี ,Lam Sali,13.76281,100.64671,,,,orange_station.png
+OR21,ศรีบูรพา ,Sri Burapha  ,13.76795,100.65818,,,,orange_station.png
+OR22 ,คลองบ้านม้า ,Khlong Ban Ma,13.77399,100.66792,,,,orange_station.png
+OR23,สัมมากร ,Sammakon ,13.77832,100.67596,,,,orange_station.png
+OR24 ,น้อมเกล้า,Nom Klao ,13.78673,100.69117,,,,orange_station.png
+OR25 ,ราษฎร์พัฒนา,Rat Phatthana ,13.7929,100.70257,,,,orange_station.png
+OR26,มีนพัฒนา,Min Phatthana ,13.79911,100.71478,,,,orange_station.png
+OR27 ,เคหะรามคำแหง ,Keha Ramkhamhaeng,13.80372,100.72375,,,,orange_station.png
+OR28,มีนบุรี ,Min Buri ,13.81238,100.73676,,,,orange_station.png
+N24,คูคต ,Khu khot,13.93328,100.64225,,,,green_station.png
+N23,สถานี กม 25,Km 25,13.92625,100.6265,,,,green_station.png
+N22,พิพิธภัณฑ์กองทัพอากาศ ,Royal Thai Air Force Museum ,13.91961,100.62257,,,,green_station.png
+N21,โรงพยาบาลภูมิพลอดุลยเดช ,Bhumibol Adulyadej Hospital ,13.90932,100.61653,,,,green_station.png
+N20,สะพานใหม่ ,Saphan Mai ,13.89462,100.60791,,,,green_station.png
+N19,สายหยุด,Sai Yut ,13.88659,100.60325,,,,green_station.png
+N18,สถานีอนุสาวรีย์หลักสี่,Lak Si Monument ,13.87989,100.59924,,,,green_station.png
+N17,วัดพระศรีมหาธาตุ,Wat Phra Sri Mahathat ,13.8744,100.59604,,,,green_station.png
+N16,กรมทหารราบที่ 11 ,11th Infantry Regiment ,13.86288,100.58934,,,,green_station.png
+N15,บางบัว ,Bang Bua ,13.85706,100.58585,,,,green_station.png
+N14,กรมป่าไม้,Royal Forest Department ,13.84875,100.58093,,,,green_station.png
+N13,มหาวิทยาลัยเกษตรศาสตร์,Kasetsart University ,13.84195,100.57684,,,,green_station.png
+N12,เสนานิคม,Sena Nikhom ,13.83399,100.57215,,,,green_station.png
+N11,รัชโยธิน ,Ratchayothin ,13.82703,100.5681,,,,green_station.png
+N10,พหลโยธิน 24 ,Phahonyothin 24,13.82295,100.5658,,,,green_station.png
+N9,ห้าแยกลาดพร้าว ,Ha Yaek Lat Phrao ,13.81352,100.56029,,,,green_station.png
+N8,หมอชิต ,Mo Chit,13.80243,100.55373,,,,green_station.png
+N7,สะพานควาย,Saphan Khwai,13.79384,100.5497,,,,green_station.png
+N5,อารีย์ ,Ari,13.77975,100.54461,,,,green_station.png
+N4,สนามเป้า ,Sanam Pao,13.77262,100.54209,,,,green_station.png
+N3,อนุสาวรีย์ชัยสมรภูมิ ,Victory Monument,13.76285,100.5371,,,,green_station.png
+N2 ,พญาไท,Phaya Thai,13.75696,100.53388,,,,green_station.png
+N1 ,ราชเทวี ,Ratchathewi,13.75194,100.5316,,,,green_station.png
+CEN,สยาม ,Siam ,13.74558,100.5343,,,,green_station.png
+E1,ชิดลม ,Chit Lom,13.74405,100.5431,,,,green_station.png
+E2,เพลินจิต ,Phloen Chit,13.74292,100.5487,,,,green_station.png
+E3,นานา ,Nana,13.74056,100.55546,,,,green_station.png
+E4,อโศก ,Asok,13.73707,100.56038,,,,green_station.png
+E5,สถานีพร้อมพงษ์,Phrom Phong,13.73042,100.56977,,,,green_station.png
+E6,สถานีทองหล่อ,Thong Lo,13.72421,100.57854,,,,green_station.png
+E7,สถานีเอกมัย,Ekkamai,13.71961,100.58501,,,,green_station.png
+E8,สถานีพระโขนง,Phra Khanong,13.71519,100.59123,,,,green_station.png
+E9,สถานีอ่อนนุช,On Nut,13.70566,100.60101,,,,green_station.png
+E10,สถานีบางจาก,Bang Chak,13.69683,100.60532,,,,green_station.png
+E11,สถานีปุณณวิถี,Punnawithi,13.68934,100.60899,,,,green_station.png
+E12,สถานีอุดมสุข,Udom Suk,13.67991,100.60948,,,,green_station.png
+E13,สถานีบางนา,Bang Na,13.6682,100.60465,,,,green_station.png
+E14,สถานีแบริ่ง,Bearing,13.66126,100.60185,,,,green_station.png
+E15,สถานีสำโรง,Samrong,13.64543,100.59549,,,,green_station.png
+E16,สถานีปู่เจ้าสมิงพราย,Pu Chao,13.63725,100.592,,,,green_station.png
+E17,สถานีเอราวัณ,Chang Erawan,13.62146,100.59015,,,,green_station.png
+E18,สถานีโรงเรียนนายเรือ,Royal Thai Naval Academy,13.60841,100.59485,,,,green_station.png
+E19,สถานีสมุทรปราการ,Samutprakarn,13.60218,100.59708,,,,green_station.png
+E20,สถานีศรีนครินทร์,Srinagarindra,13.59329,100.60827,,,,green_station.png
+E21,สถานีแพรกษา,Phraek Sa,13.58428,100.60804,,,,green_station.png
+E22,สถานีสายลวด,Sai Luat,13.57777,100.60541,,,,green_station.png
+E23,สถานีเคหะสมุทรปราการ,Kheha,13.56763,100.60771,,,,green_station.png
+E-,สถานีไบเทค,BITEC,13.67221,100.61343,,,,green_station.png
+E-,สถานีภาวรนิเวศน์,,13.66975,13.66975,,,,green_station.png
+E-,สถานีเซ็นทรัลซิตี้,,13.66775,100.63519,,,,green_station.png
+E-,สถานีศรีเอี่ยม,,13.66581,100.64431,,,,green_station.png
+E-,สถานีปลัดเปรียง,,13.66183,100.66077,,,,green_station.png
+E-,สถานีบางแก้ว,,13.65441,100.67407,,,,green_station.png
+E-,สถานีวัดสกุล,,13.64565,100.69072,,,,green_station.png
+E-,สถานีบางพลี,,13.6347,100.70965,,,,green_station.png
+E-,สถานีธนาซิตี้,,13.62482,100.72883,,,,green_station.png
+E-,สถานีมหาวิทยาลัยเกริก,,13.63417,100.74023,,,,green_station.png
+E-,สถานีบางโฉลง,,13.61704,100.74664,,,,green_station.png
+E-,วัดศรีวารีน้อย,,13.61087,100.76028,,,,green_station.png

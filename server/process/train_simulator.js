@@ -64,7 +64,7 @@ exports.TrainSimulator = class {
 
     function checktime(trip, start_time, endtime_time) {
       const format = 'hh:mm:ss'
-      //const CurrentDate = moment().subtract('hours',5);
+      //const CurrentDate = moment().subtract('hours',2);
       const CurrentDate = moment()
       //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
       let timenow = CurrentDate.format("HH:mm:ss")
@@ -99,6 +99,7 @@ exports.TrainSimulator = class {
         const route_name = trip.route_name
         const time_now = trip.time_now
         const tripEntity = `${trip.route_name}-${trip.trip_id}`
+        const headsign = `${trip.start_point} to ${trip.end_point}`
         const tripId = trip.trip_id
         const latitude = trip.location.latitude
         const longitude = trip.location.longitude
@@ -108,7 +109,8 @@ exports.TrainSimulator = class {
         const start_time = trip.start_time
         const end_time = trip.end_time
         const direction = trip.direction
-        const stoptimes = trip.stoptimes
+        const runtime = trip.runtime
+
         const gtfsrt = `
         {
           "header": {
@@ -116,7 +118,9 @@ exports.TrainSimulator = class {
             "incrementality": "FULL_DATASET",
             "timestamp": "${time_now}",
             "route_name": "${route_name}",
-            "direction": "${direction}"
+            "direction": "${direction}",
+            "headsign": "${headsign}",
+            "runtime": "${runtime}"
           },
           "entity": {
             "id": "${tripEntity}",
@@ -132,8 +136,7 @@ exports.TrainSimulator = class {
               "position": {
                 "latitude": "${latitude}",
                 "longitude": "${longitude}"
-              },
-              "stoptimes": "[${stoptimes}]"
+              }
             }
           }
         }
@@ -148,7 +151,7 @@ exports.TrainSimulator = class {
         const delta_t = trip.time_now_sec - trip.start_time_secs
         const runtime_secs = trip.runtime_secs
         const filemodule = getPathfile(trip)
-
+        // access json file 
         const loc_length = path[`${filemodule}`].points.length
         // calculate latitude, longitude; latlng
         //
@@ -163,7 +166,24 @@ exports.TrainSimulator = class {
     }
 
 
+    function addposition(trips) {
+      const trip_position = trips.map(trip => {
+        const delta_t = trip.time_now_sec - trip.start_time_secs
+        const runtime_secs = trip.runtime_secs
+        const filemodule = getPathfile(trip)
 
+        const loc_length = path[`${filemodule}`].points.length
+        // calculate latitude, longitude; latlng
+        //
+        const loc_order = Math.round((delta_t / runtime_secs) * loc_length)
+        const location = path[`${filemodule}`].points[loc_order]
+        trip.file = filemodule
+        trip.location = location
+        return trip
+      })
+
+      return trip_position
+    }
 
     // step 3
     // pattern use async/await  in map
@@ -178,7 +198,6 @@ exports.TrainSimulator = class {
           const start_time = result[0].start_time
           const end_time = result[0].end_time
           const stoptimes = result[0].stoptimes
-
           // console.log('start_time',start_time)
           // console.log('end_time',end_time)
 
@@ -202,6 +221,8 @@ exports.TrainSimulator = class {
 
           })
 
+          //console.log('204.......',typeof select_stoptimes)
+          //console.log('204.......',select_stoptimes)
           trip.stoptimes = select_stoptimes
 
 
@@ -210,7 +231,7 @@ exports.TrainSimulator = class {
           return err.toString()
         }
       }))
-    }
+    } //end addstoptime
 
 
     let routeinfos = []
@@ -224,6 +245,7 @@ exports.TrainSimulator = class {
         trip.start_time_secs = getsecond(trip.start_time)
         trip.end_time_secs = getsecond(trip.end_time)
         trip.runtime_secs = trip.end_time_secs - trip.start_time_secs
+        trip.runtime = Math.round(trip.runtime_secs/60)
         return trip
       })
       const routeinfos_now = routeinfos_addsec.filter(trip => {
@@ -234,11 +256,11 @@ exports.TrainSimulator = class {
 
       // step 3
       const routeinfos_stoptime = await addStoptime(this.gtfs,routeinfos_loc)
-      // console.log(routeinfos_stoptime)
+      //console.log('237....',routeinfos_stoptime)
 
 
       const trip_gtfs = transformFormat(routeinfos_stoptime)
-      //console.log(trip_gtfs)
+      //console.log("241...",trip_gtfs)
 
       return trip_gtfs
     } catch (err) {
