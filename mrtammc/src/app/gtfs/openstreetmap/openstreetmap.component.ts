@@ -271,20 +271,20 @@ export class OpenstreetmapComponent implements OnInit {
       // // TODO: filter with time select next station
 
       const delta_t = time_now_sec - start_time_secs
-      console.log('delta_t',delta_t)
+      //console.log('delta_t',delta_t)
 
       const runtime_secs = runtime * 60
-      console.log('runtime_secs',runtime_secs)
+      //console.log('runtime_secs',runtime_secs)
 
       const line = this.getPathfile(route_name,direction)
       //console.log('276 .    line.......',line)
       const loc_length = line.length
-      console.log('loc_length',loc_length)
+      //console.log('loc_length',loc_length)
 
       const loc_order = Math.round((delta_t / runtime_secs) * loc_length)
-      console.log('loc_order,loc_length ', loc_order,loc_length)
+      //console.log('loc_order,loc_length ', loc_order,loc_length)
       const marker = line[loc_order]
-
+      console.log('287 marker....', marker._latlng)
 
       //const trainLatLng = marker.getLatLng()
       // // calculatelocation
@@ -351,7 +351,7 @@ export class OpenstreetmapComponent implements OnInit {
         // exist only update location
         if (trainLocationMarkers[tripEntity] !== undefined) {
 
-          //trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
+          trainLocationMarkers[tripEntity].setLatLng(marker._latlng)
         }
 
 
