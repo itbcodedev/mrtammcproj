@@ -44,8 +44,24 @@ io.on('connection', (socket) => {
   socket.emit('message', 'here is simulate data aaa')
 });
 
+
+var originsWhitelist = [
+  'http://localhost:4200',      //this is my front-end url for development
+  'http://localhost:3000',
+   'http://mmc_app1.mrta.co.th',
+   'http://122.155.204.80/mrta/api/mrta/mrta/Pushnotification'
+];
+
+var corsOptions = {
+  origin: function(origin, callback){
+        var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+        callback(null, isWhitelisted);
+  },
+  credentials:true
+}
+
 // manage middle ware
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
