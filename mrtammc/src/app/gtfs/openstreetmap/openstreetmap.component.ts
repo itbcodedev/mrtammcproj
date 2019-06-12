@@ -174,14 +174,24 @@ export class OpenstreetmapComponent implements OnInit {
 
     // set all point of purple
     this.getPosition(purple).forEach(position => {
-      console.log('167 position data',position)
-      const marker = L.marker([position[1], position[0]], { icon: lefttrain });
+      console.log('167 position data', position)
+      const marker = L.circle([position[1], position[0]],{
+          color: "#000000",
+          fillColor: "#f400ff",
+          fillOpacity: 1,
+          radius: 4
+      });
       this.purple_points.push(marker);
 
     });
     // set all point of blue_points
     this.getPosition(blue).forEach(position => {
-      this.blue_points.push(L.circle([position[1], position[0]], { color: 'green', radius: 3 }));
+      this.blue_points.push(L.circle([position[1], position[0]], {
+          color: "#000000",
+          fillColor: "#0000ff",
+          fillOpacity: 1,
+          radius: 4
+      }));
     });
 
     this.path = [
@@ -189,36 +199,22 @@ export class OpenstreetmapComponent implements OnInit {
         route_name: "blue", direction: "0", file: this.blue_points
       },
       {
-        route_name: "blue", direction: "1", file: this.blue_points.reverse()
+        route_name: "blue", direction: "1", file: this.blue_points
       },
       {
         route_name: "purple", direction: "0", file: this.purple_points
       },
       {
-        route_name: "purple", direction: "1", file: this.purple_points.reverse()
+        route_name: "purple", direction: "1", file: this.purple_points
       },
     ]
     // get location in crs system
-   //console.log('178 purple_points data',this.purple_points)
-   //console.log('178 blue_points data',this.blue_points)
+    //console.log('178 purple_points data',this.purple_points)
+    //console.log('178 blue_points data',this.blue_points)
 
     this.group1 = L.featureGroup();
     this.group1.addTo(this.map);
 
-    // setInterval(async () => {
-    //   // find  active train
-    //   this.activeTrains = await this.promise_getTrain(this.timeToMidnight());
-    //
-    //   // select view
-    //   if (this.notfollow == true) {
-    //     this.myTrains = await this.moveTrain(this.timeToMidnight());
-    //     // console.log(this.myTrains);
-    //   } else {
-    //     //await this.singletrip(this.timeToMidnight())
-    //   }
-    //
-    //
-    // }, 5000);
     const ActiveTrain = {}
     const trainLocationMarkers = {}
 
@@ -227,12 +223,12 @@ export class OpenstreetmapComponent implements OnInit {
 
       this.wsdata = JSON.stringify(data, null, 2)
       // // DEBUG: data from webservice
-      //console.log('218..........', this.wsdata)
+      console.log('230..........', this.wsdata)
 
       const route_name = data['header']['route_name']
       const direction = data['header']['direction']
       const headsign = data['header']['headsign']
-      const runtime =  data['header']['runtime']
+      const runtime = data['header']['runtime']
       const time_now_sec = data['entity']['vehicle']['trip']['time_now_sec']
       const start_time_secs = data['entity']['vehicle']['trip']['start_time_secs']
       const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs']
@@ -256,18 +252,18 @@ export class OpenstreetmapComponent implements OnInit {
       //console.log('117....',trip_id,filter)
       const nextstation = routetrips.map(obj => {
 
-          const selectStoptimes = obj.stoptimes.filter(st_obj =>{
-            // filter next time check depature_time less than timenow [0]
-            return this.findNextTrip(st_obj.arrival_time)
-          })
-          obj.selectStoptimes = _.first(selectStoptimes)
+        const selectStoptimes = obj.stoptimes.filter(st_obj => {
+          // filter next time check depature_time less than timenow [0]
+          return this.findNextTrip(st_obj.arrival_time)
+        })
+        obj.selectStoptimes = _.first(selectStoptimes)
 
         return obj
       })
 
       // // DEBUG: success ? filter next station
 
-      const   nexttrip = nextstation[0].selectStoptimes
+      // const nexttrip = nextstation[0].selectStoptimes
 
       //console.log('130....',nexttrip)
       // // TODO: filter with time select next station
@@ -278,35 +274,22 @@ export class OpenstreetmapComponent implements OnInit {
       const runtime_secs = runtime * 60
       //console.log('runtime_secs',runtime_secs)
 
-      const line = this.getPathfile(route_name,direction)
-      //console.log('276 .    line.......',line)
+      const getline: [] = this.getPathfile(route_name, direction)
+
+      let line
+      if (direction) {
+          line = getline.reverse()
+      } else {
+          line = getline
+      }
+      console.log(line)
       const loc_length = line.length
-      //console.log('loc_length',loc_length)
 
       const loc_order = Math.round((delta_t / runtime_secs) * loc_length)
-      //console.log('loc_order,loc_length ', loc_order,loc_length)
+      console.log(loc_order)
       const marker = line[loc_order]
-      console.log('287 marker....', marker._latlng)
 
-      //const trainLatLng = marker.getLatLng()
-      // // calculatelocation
-      // function addposition() {
-      //   let position
-      //
-      //   const delta_t = time_now_sec - start_time_secs
-      //   const runtime_secs = runtime
-      //
-      //   const line = this.getPathfile(route_name,route_name)
-      //   const loc_length = line.length
-      //
-      //   const loc_order = Math.round((delta_t / runtime_secs) * loc_length)
-      //
-      //
-      //   return loc_order
-      // }
-      //
-      //
-      // const num_locorder = addposition();
+
 
       function onTrainClick(e) {
 
@@ -373,9 +356,9 @@ export class OpenstreetmapComponent implements OnInit {
         marker.headsign = headsign
         marker.runtime = runtime
 
-          marker.nextstop = nexttrip.stop_id
-          marker.arrival_time = nexttrip.arrival_time
-          marker.departure_time = nexttrip.departure_time
+        // marker.nextstop = nexttrip.stop_id
+        // marker.arrival_time = nexttrip.arrival_time
+        // marker.departure_time = nexttrip.departure_time
 
 
         marker.on('click', onTrainClick);
@@ -418,90 +401,7 @@ export class OpenstreetmapComponent implements OnInit {
     return secs;
   }
 
-  // async promise_getTrain(secs: number) {
-  //   return new Promise(async (resolve, reject) => {
-  //     const stopslists = await this.gtfsService.getstopwithroutes();
-  //
-  //     let stationA: any;
-  //     let stationB: any;
-  //     for (let i = 0; i < stopslists.length; i++) {
-  //       //console.log(`${stopslists[i].route}  routename ${stopslists[i].routename} `);
-  //       const stops = stopslists[i].stops;
-  //       if (stops.length > 0) {
-  //         stationA = stops[0].stopid;      //first station
-  //         stationB = stops[stops.length - 1].stopid; // last station
-  //       }
-  //
-  //     }
-  //     const activeTrains = [];
-  //     // get data from api
-  //     const trips = await this.gtfsService.getTrips().then((trip) => trip);
-  //     const stop_times = await this.gtfsService.getStopTimes().then((stop_time => stop_time));
-  //     //console.log('560 -----', stop_times.length)
-  //     const grouped = this.groupBy(stop_times, stop => stop.tripId);
-  //
-  //     grouped.forEach((values, key) => {
-  //       //console.log('565--------',key, values.length, values);
-  //       const selectedTrain = [];
-  //       const selectTrips = [];
-  //       const trains = [];
-  //
-  //       for (const trip of values) {
-  //         //if (trip.stopId === stationA || trip.stopId === stationB) {
-  //         selectTrips.push(trip);
-  //         //}
-  //       }
-  //
-  //       //console.log('575--------',key, selectTrips.length, selectTrips);
-  //       // create train info object
-  //       if (selectTrips !== undefined) {
-  //         for (let i = 0; i < selectTrips.length; i += 2) {
-  //           if ((selectTrips[i + 1])) {
-  //             const trip_tripid = trips.find(trip => trip.tripId === selectTrips[i].tripId);
-  //
-  //             if (trip_tripid !== undefined) {
-  //
-  //               const shape = trip_tripid.shapeId;
-  //               const object = Object.assign({}, {
-  //                 stop_idA: `${selectTrips[i].stopId}`,
-  //                 stop_idB: `${selectTrips[i + 1].stopId}`,
-  //                 trip_id: `${selectTrips[i].tripId}`,
-  //                 shape_id: `${shape}`,
-  //                 direction_id: `${trip_tripid.directionId}`,
-  //                 arrival_secs: `${selectTrips[i].arrivalSecs}`,
-  //                 departure_secs: `${selectTrips[i + 1].departureSecs}`,
-  //                 arrival_time: `${selectTrips[i].arrivalTime}`,
-  //                 departure_time: `${selectTrips[i + 1].departureTime}`
-  //               });
-  //               trains.push(object);  // get train
-  //             } else {
-  //
-  //             }
-  //           }
-  //         }
-  //       } else {
-  //         console.log("")
-  //       }
-  //
-  //       const isActiveTrain = (t: any) => {    // test train
-  //         if ((secs >= t.arrival_secs) && (secs < t.departure_secs)) {
-  //           return true;
-  //         } else {
-  //           return false;
-  //         }
-  //       };
-  //       //console.log('611 ---- trains.length', trains.length)
-  //       for (let i = 0; i < trains.length; i++) {
-  //         if (isActiveTrain(trains[i])) {
-  //           if (trains[i]) {
-  //             activeTrains.push(trains[i]);
-  //           }
-  //         }
-  //       }
-  //       resolve(activeTrains);
-  //     });
-  //   });
-  // }
+
 
   // getposition function
   getPosition(arr) {
@@ -739,7 +639,7 @@ export class OpenstreetmapComponent implements OnInit {
     }
   }
 
-  getPathfile(route_name,direction) {
+  getPathfile(route_name, direction) {
     const index = this.path.findIndex(c => {
       return (c.route_name == route_name && c.direction == direction)
     })

@@ -10,15 +10,13 @@ import { environment } from '../../environments/environment';
 export class AlertmobileService {
   httpOptions = { headers: new HttpHeaders(
                 {
-                    'Content-Type':  'application/x-www-form-urlencoded',
-                    'Access-Control-Allow-Origin': '*'
+                    'Content-Type':  'application/json',
                 })};
 
   baseUrl = environment.baseUrl;
   constructor(private _http: HttpClient) { }
 
   sendalerts(formData: any) {
-    let url = "http://122.155.204.80/mrta/api/mrta/mrta/Pushnotification"
-    return this._http.post(url,JSON.stringify(formData),this.httpOptions)
+    return this._http.post("/mrta/api/mrta/Pushnotification",JSON.stringify(formData),this.httpOptions)
   }
 }

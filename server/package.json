@@ -7,8 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node index.js",
     "server": "NODE_ENV=production nodemon index.js",
-    "start_stage": "NODE_ENV=stage node index.js",
-    "server_stage": "NODE_ENV=stage nodemon index.js",
     "mrtammc": "npm run start --prefix ../mrtammc",
     "dev": "concurrently \"npm run server\" \"npm run mrtammc\"",
     "stage": "concurrently \"npm run server_stage\" \"npm run mrtammc_stage\""
@@ -30,6 +28,8 @@
     "csvtojson": "^2.0.8",
     "encoding": "^0.1.12",
     "express": "^4.16.3",
+    "express-http-proxy": "^1.5.1",
+    "http-proxy-middleware": "^0.19.1",
     "json2csv": "^4.3.2",
     "jsonwebtoken": "^8.4.0",
     "ldapjs": "^1.0.2",

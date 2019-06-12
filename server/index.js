@@ -6,6 +6,7 @@ console.log('NODE_ENV......', NODE_ENV)
 
 const BASE_API_ENDPOINT = '/api/v1';
 const BASE_API_ENDPOINT2 = '/api/v2';
+const proxy = require('http-proxy-middleware');
 const path = require('path');
 const bodyParser = require('body-parser');
 
@@ -13,8 +14,6 @@ const express = require('express');
 const cors = require('cors');
 const database = require('./database');
 
-
-// instance app express
 const app = express();
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
@@ -45,23 +44,28 @@ io.on('connection', (socket) => {
 });
 
 
-var originsWhitelist = [
-  'http://localhost:4200',      //this is my front-end url for development
-  'http://localhost:3000',
-   'http://mmc_app1.mrta.co.th',
-   'http://122.155.204.80/mrta/api/mrta/mrta/Pushnotification'
-];
-
-var corsOptions = {
-  origin: function(origin, callback){
-        var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
-        callback(null, isWhitelisted);
-  },
-  credentials:true
-}
+// var originsWhitelist = [
+//   'http://localhost:4200',      //this is my front-end url for development
+//   'http://localhost:3000',
+//    'http://mmc_app1.mrta.co.th',
+//    'http://122.155.204.80/mrta/api/mrta/mrta/Pushnotification'
+// ];
+//
+// var corsOptions = {
+//   origin: function(origin, callback){
+//         var isWhitelisted = originsWhitelist.indexOf(origin) !== -1;
+//         callback(null, isWhitelisted);
+//   },
+//   credentials:true
+// }
 
 // manage middle ware
-app.use(cors(corsOptions));
+app.use(
+  '/mrta',
+  proxy({ target: 'http://122.155.204.80', changeOrigin: true })
+);
+
+// app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));

@@ -22,6 +22,7 @@ exports.TrainSimulator = class {
     const index = config.findIndex((path, index) => {
       return path.route_id === route_id
     })
+    console.log('index of ',route_id,index)
     return index
   }
 
@@ -33,8 +34,9 @@ exports.TrainSimulator = class {
     //console.log('route_id',this.route_id)
     //console.log('path_config',this.path_config)
     const fileindex = this.getfileFromConfig(this.route_id, this.path_config)
+    console.log('fileindex...', fileindex)
     this.file = this.path_config[fileindex].filepath;
-    //console.log('file', this.file)
+    console.log('file', this.file)
     const routeinfo = await this.trainAdvance(diffSeconds)
     this.routeinfo = routeinfo
   }
@@ -43,18 +45,6 @@ exports.TrainSimulator = class {
     return this.routeinfo
   }
 
-
-  // async addStoptime_test(trip_id) {
-  //   // localhost:3000/api/v2/routeinfowithtrip/092021
-  //   const query = {}
-  //   query.trip_id = trip_id
-  //   const tripresult = await this.gtfs.getRouteInfoWithTrip(query)
-  //   console.log("-------------- addStoptime", trip_id)
-  //   console.log("-------------- tripresult[0].trip_id",tripresult[0].trip_id)
-  //   console.log("-------------- tripresult[0].trip_id",tripresult[0]._id)
-  //
-  // }
-  // class method as async
   async trainAdvance(now) {
 
     function getsecond(time) {
@@ -65,8 +55,8 @@ exports.TrainSimulator = class {
     function checktime(trip, start_time, endtime_time) {
       const format = 'hh:mm:ss'
       //const CurrentDate = moment().subtract('hours',2);
-      //const CurrentDate = moment().subtract(5,'hours');
-      const CurrentDate = moment()
+      const CurrentDate = moment().subtract(3,'hours');
+      //const CurrentDate = moment()
       //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
       let timenow = CurrentDate.format("HH:mm:ss")
       //let timenow = "10:10:10"
@@ -168,7 +158,6 @@ exports.TrainSimulator = class {
 
       return trip_loc
     }
-
 
     function addposition(trips) {
       const trip_position = trips.map(trip => {

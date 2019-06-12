@@ -41,7 +41,8 @@ export class GtfsrtComponent implements OnInit {
   stopNames
   next_in_label
   next_in
-  ActiveTrain  = {}
+  ActiveTrain = {}
+  StationMarkers = {}
   SelectedTrain = []
   routesinfo
   activeRoutes
@@ -70,7 +71,7 @@ export class GtfsrtComponent implements OnInit {
     };
 
 
-this.routes = await this.gtfsService.getRoutesBasic()
+    this.routes = await this.gtfsService.getRoutesBasic()
 
 
     this.loadGeojson()
@@ -102,13 +103,13 @@ this.routes = await this.gtfsService.getRoutesBasic()
 
       this.wsdata = JSON.stringify(data, null, 2)
       // // DEBUG: data from webservice
-      //console.log('93..........', this.wsdata)
+      console.log('93..........', this.wsdata)
 
       const route_name = data['header']['route_name']
       const route_id = data['header']['route_id']
       const direction = data['header']['direction']
       const headsign = data['header']['headsign']
-      const runtime =  data['header']['runtime']
+      const runtime = data['header']['runtime']
       const time_now_sec = data['entity']['vehicle']['trip']['time_now_sec']
       const start_time_secs = data['entity']['vehicle']['trip']['start_time_secs']
       const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs']
@@ -139,18 +140,18 @@ this.routes = await this.gtfsService.getRoutesBasic()
       //console.log('117....',trip_id,filter)
       const nextstation = routetrips.map(obj => {
 
-          const selectStoptimes = obj.stoptimes.filter(st_obj =>{
-            // filter next time check depature_time less than timenow [0]
-            return this.findNextTrip(st_obj.arrival_time)
-          })
-          obj.selectStoptimes = _.first(selectStoptimes)
+        const selectStoptimes = obj.stoptimes.filter(st_obj => {
+          // filter next time check depature_time less than timenow [0]
+          return this.findNextTrip(st_obj.arrival_time)
+        })
+        obj.selectStoptimes = _.first(selectStoptimes)
 
         return obj
       })
 
       // // DEBUG: success ? filter next station
 
-      const nexttrip = nextstation[0].selectStoptimes
+      //const nexttrip = nextstation[0].selectStoptimes
 
 
       //console.log('130....',nexttrip)
@@ -195,16 +196,11 @@ this.routes = await this.gtfsService.getRoutesBasic()
         popup.update();
       }  // end function onMarkerClick
 
-
-
-
       if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
         // new trip
         if (trainLocationMarkers[tripEntity] !== undefined) {
           trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
         }
-
-
       } else {
         // exist trip
         this.ActiveTrain[tripEntity] = vehicle
@@ -222,33 +218,37 @@ this.routes = await this.gtfsService.getRoutesBasic()
         marker.headsign = headsign
         marker.runtime = runtime
 
-        marker.nextstop = nexttrip.stop_id
-        marker.arrival_time = nexttrip.arrival_time
-        marker.departure_time = nexttrip.departure_time
-
-        //construct object
-        const obj = {
-          stop_id: nexttrip.stop_id
-        }
-        //assign variable
-        let tripin
-        let tripout
-        // direction
-        if (direction) {
-
-          tripout = {trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction}
-          obj['tripout'] = tripout
-
-        } else {
-          tripin = {trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction}
-          obj['tripin'] = tripin
-        }
 
 
-        this.incomingTrain.push(obj)
+        // marker.nextstop = nexttrip.stop_id
+        // marker.arrival_time = nexttrip.arrival_time
+        // marker.departure_time = nexttrip.departure_time
+        //
+        // //construct object
+        // const obj = {
+        //   stop_id: nexttrip.stop_id
+        // }
+        // //assign variable
+        // let tripin
+        // let tripout
+        // // direction
+        // if (+direction) {
+        //
+        //   tripout = { trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction }
+        //   obj['tripout'] = tripout
+        //
+        // } else {
+        //   tripin = { trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction }
+        //   obj['tripin'] = tripin
+        // }
+        //
+        //
+        // this.incomingTrain.push(obj)
 
-        //console.log('281......', this.incomingTrain)
-
+        console.log('246......', this.incomingTrain)
+        console.log('247......',this.StationMarkers)
+        //// TODO: update station marker
+        // get station marker
 
         marker.on('click', onTrainClick);
         trainLocationMarkers[tripEntity] = marker
@@ -417,7 +417,6 @@ this.routes = await this.gtfsService.getRoutesBasic()
   async loadStation() {
     this.stops = await this.gtfsService.getStops();
     // // DEBUG:
-
     // // TODO: add marker property
     this.stops.forEach(stop => {
       //console.log('423......', stop)
@@ -437,17 +436,8 @@ this.routes = await this.gtfsService.getRoutesBasic()
       marker.addTo(this.map)
       marker.bindPopup("upload...")
       marker.stop_id = stop.stop_id
-      console.log('439.....', stop.stop_id)
-      console.log('440 .... ',this.incomingTrain)
 
-      const train_onstops = this.incomingTrain.filter(obj => {
-        console.log('444....', obj)
-        return true
-      })
-
-
-      console.log('446 .stopid, train on stop... ',stop.stop_id,train_onstops.length)
-
+      this.StationMarkers[stop.stop_id] = marker
 
       // marker function
       function onMarkerClick(e) {
@@ -463,7 +453,7 @@ this.routes = await this.gtfsService.getRoutesBasic()
 
             </tr>
             <tr>
-              
+
             </tr>
             </tbody>
           </table>
@@ -575,7 +565,7 @@ this.routes = await this.gtfsService.getRoutesBasic()
     // console.log('start_time',start_time)
     // console.log('endtime_time',endtime_time)
     let timenow = CurrentDate.format("HH:mm:ss")
-    console.log('timenow', timenow)
+    //console.log('timenow', timenow)
     const time = moment(timenow, format)
     const at = moment(start_time, format)
     const dt = moment(endtime_time, format)
@@ -643,12 +633,12 @@ this.routes = await this.gtfsService.getRoutesBasic()
   }
 
 
-  loadRoute (data: NgForm) {
+  loadRoute(data: NgForm) {
     const keys = Object.keys(data.value);
-    const route_id = keys.filter( (key) => data.value[key]).join();
+    const route_id = keys.filter((key) => data.value[key]).join();
     console.log(route_id)
     this.activeRoutes = this.routesinfo.filter(obj => {
-      return (this.checktime(obj.start_time,obj.end_time) && obj.route_id == route_id)
+      return (this.checktime(obj.start_time, obj.end_time) && obj.route_id == route_id)
     })
 
   }
