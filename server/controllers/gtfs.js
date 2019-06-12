@@ -9,7 +9,7 @@ const {getFareAttributes} = require('./gtfs/fare-attributes');
 const {getFareRules} = require('./gtfs/fare-rules');
 const {getFeedInfo} = require('./gtfs/feed-info');
 const {getFrequencies} = require('./gtfs/frequencies');
-const {getRoutes} = require('./gtfs/routes');
+const {getRoutes, getRoutesBasic} = require('./gtfs/routes');
 const {getShapes, getShapesAsGeoJSON} = require('./gtfs/shapes');
 const {getStops, getStopsAsGeoJSON, updateStops} = require('./gtfs/stops');
 const {getStoptimes, getStoptimesBasic} = require('./gtfs/stop-times');
@@ -39,7 +39,7 @@ exports.getFeedInfo = getFeedInfo;
 exports.getFrequencies = getFrequencies;
 
 exports.getRoutes = getRoutes;
-
+exports.getRoutesBasic = getRoutesBasic;
 exports.getShapes = getShapes;
 exports.getShapesAsGeoJSON = getShapesAsGeoJSON;
 

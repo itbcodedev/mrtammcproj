@@ -54,6 +54,13 @@ module.exports = function(io) {
       return res.json(routes);
     });
   });
+  router.get('/routesbasic', async (req, res) => {
+    console.log('xxxx')
+    gtfs.getRoutesBasic((err, routes) => {
+      return res.json(routes);
+    });
+  });
+
 
   router.get('/trips', async (req, res) => {
     gtfs.getTrips((err, trips) => {

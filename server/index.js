@@ -93,7 +93,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const {simulate} = require('./simulation')
 //simulate()
-setInterval(simulate, 1500);
+setInterval(simulate, 5000);
 
 server.listen(PORT, () => {
   console.log(`Server start port ${PORT}`)

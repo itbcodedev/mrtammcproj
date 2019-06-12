@@ -80,3 +80,8 @@ exports.getRoutes = async (query = {}, projection = '-_id', options = {lean: tru
 
   return Route.find(routeQuery, projection, options);
 };
+
+exports.getRoutesBasic = (query = {}, projection = '-_id', options = {lean: true, timeout: true}) => {
+
+  return Route.find(query, projection, options);
+};

@@ -6,12 +6,13 @@ import { EditorComponent } from './editor/editor.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { OpenstreetmapComponent } from './openstreetmap/openstreetmap.component';
 import { GtfsrtComponent } from './gtfsrt/gtfsrt.component';
-
+import { FormsModule }   from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
     UiModule,
-    AgGridModule.withComponents(null)
+    AgGridModule.withComponents(null),
+    FormsModule
   ],
   declarations: [GooglemapComponent, EditorComponent, OpenstreetmapComponent, GtfsrtComponent]
 })

@@ -65,6 +65,7 @@ exports.TrainSimulator = class {
     function checktime(trip, start_time, endtime_time) {
       const format = 'hh:mm:ss'
       //const CurrentDate = moment().subtract('hours',2);
+      //const CurrentDate = moment().subtract(5,'hours');
       const CurrentDate = moment()
       //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
       let timenow = CurrentDate.format("HH:mm:ss")
@@ -96,11 +97,13 @@ exports.TrainSimulator = class {
 
     function transformFormat(trips) {
       const trip_gtfs = trips.map(trip => {
+
         const route_name = trip.route_name
         const time_now = trip.time_now
         const tripEntity = `${trip.route_name}-${trip.trip_id}`
         const headsign = `${trip.start_point} to ${trip.end_point}`
         const tripId = trip.trip_id
+        const route_id = trip.route_id
         const latitude = trip.location.latitude
         const longitude = trip.location.longitude
         const start_time_secs = trip.start_time_secs
@@ -118,6 +121,7 @@ exports.TrainSimulator = class {
             "incrementality": "FULL_DATASET",
             "timestamp": "${time_now}",
             "route_name": "${route_name}",
+            "route_id": "${route_id}",
             "direction": "${direction}",
             "headsign": "${headsign}",
             "runtime": "${runtime}"
@@ -151,7 +155,7 @@ exports.TrainSimulator = class {
         const delta_t = trip.time_now_sec - trip.start_time_secs
         const runtime_secs = trip.runtime_secs
         const filemodule = getPathfile(trip)
-        // access json file 
+        // access json file
         const loc_length = path[`${filemodule}`].points.length
         // calculate latitude, longitude; latlng
         //
@@ -192,6 +196,7 @@ exports.TrainSimulator = class {
         try {
           const query = {}
           query.trip_id = trip.trip_id
+          //get data
           const result = await gtfs.getRouteInfoWithTrip(query)
 
           const format = 'hh:mm:ss'
