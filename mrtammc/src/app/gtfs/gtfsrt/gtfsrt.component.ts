@@ -4,6 +4,7 @@ import { GtfsService } from '../../services/gtfs2.service';
 import { environment } from '../../../environments/environment';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import { NgForm } from '@angular/forms';
 
 declare let L;
 
@@ -17,6 +18,7 @@ export class GtfsrtComponent implements OnInit {
   @ViewChild('dataContainer') dataContainer: ElementRef;
 
   map: any
+  routes
   wsdata
   stops
   baseLayers
@@ -39,8 +41,13 @@ export class GtfsrtComponent implements OnInit {
   stopNames
   next_in_label
   next_in
+  ActiveTrain  = {}
+  SelectedTrain = []
+  routesinfo
+  activeRoutes
+  incomingTrain = []
 
-
+  // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
     private gtfsService: GtfsService
   ) { }
@@ -63,6 +70,8 @@ export class GtfsrtComponent implements OnInit {
     };
 
 
+this.routes = await this.gtfsService.getRoutesBasic()
+
 
     this.loadGeojson()
     await this.loadStoptimes()
@@ -83,8 +92,10 @@ export class GtfsrtComponent implements OnInit {
     })
 
 
-    const ActiveTrain = {}
+
     const trainLocationMarkers = {}
+
+
 
     // get data from web socket
     this._gtfsws.listen('gtfsrt').subscribe(async data => {
@@ -94,6 +105,7 @@ export class GtfsrtComponent implements OnInit {
       //console.log('93..........', this.wsdata)
 
       const route_name = data['header']['route_name']
+      const route_id = data['header']['route_id']
       const direction = data['header']['direction']
       const headsign = data['header']['headsign']
       const runtime =  data['header']['runtime']
@@ -110,12 +122,19 @@ export class GtfsrtComponent implements OnInit {
       const longitude = data['entity']['vehicle']['position']['longitude']
       const stoptimes = data['entity']['vehicle']['stoptimes']
       const trainLatLng = new L.LatLng(latitude, longitude);
+
+
+      // get data
+      this.routesinfo = await this.gtfsService.getRouteInfo()
+
       // getdata
       const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(trip_id);
+
       //filter again
       const routetrips = routeinfowithtrips.filter(obj => {
         return this.checktime(obj.start_time, obj.end_time)
       })
+
       //debug
       //console.log('117....',trip_id,filter)
       const nextstation = routetrips.map(obj => {
@@ -130,7 +149,10 @@ export class GtfsrtComponent implements OnInit {
       })
 
       // // DEBUG: success ? filter next station
+
       const nexttrip = nextstation[0].selectStoptimes
+
+
       //console.log('130....',nexttrip)
       // // TODO: filter with time select next station
 
@@ -176,7 +198,7 @@ export class GtfsrtComponent implements OnInit {
 
 
 
-      if (ActiveTrain.hasOwnProperty(tripEntity)) {
+      if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
         // new trip
         if (trainLocationMarkers[tripEntity] !== undefined) {
           trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
@@ -185,7 +207,7 @@ export class GtfsrtComponent implements OnInit {
 
       } else {
         // exist trip
-        ActiveTrain[tripEntity] = vehicle
+        this.ActiveTrain[tripEntity] = vehicle
 
         //// TODO: 1 create marker
         let marker = this.createMarker(trainLatLng, route_name)
@@ -199,9 +221,34 @@ export class GtfsrtComponent implements OnInit {
         marker.color = this.getColor(route_name)
         marker.headsign = headsign
         marker.runtime = runtime
+
         marker.nextstop = nexttrip.stop_id
         marker.arrival_time = nexttrip.arrival_time
         marker.departure_time = nexttrip.departure_time
+
+        //construct object
+        const obj = {
+          stop_id: nexttrip.stop_id
+        }
+        //assign variable
+        let tripin
+        let tripout
+        // direction
+        if (direction) {
+
+          tripout = {trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction}
+          obj['tripout'] = tripout
+
+        } else {
+          tripin = {trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction}
+          obj['tripin'] = tripin
+        }
+
+
+        this.incomingTrain.push(obj)
+
+        //console.log('281......', this.incomingTrain)
+
 
         marker.on('click', onTrainClick);
         trainLocationMarkers[tripEntity] = marker
@@ -209,10 +256,10 @@ export class GtfsrtComponent implements OnInit {
       }
 
       // check train over due
-      for (let key in ActiveTrain) {
-        if (time_now_sec > ActiveTrain[key]['trip']['end_time_secs']) {
+      for (let key in this.ActiveTrain) {
+        if (time_now_sec > this.ActiveTrain[key]['trip']['end_time_secs']) {
           //console.log(`over due delete .. ${ActiveTrain[key]}`)
-          delete ActiveTrain[key]
+          delete this.ActiveTrain[key]
         } else {
           //console.log("not over due")
         }
@@ -220,7 +267,7 @@ export class GtfsrtComponent implements OnInit {
 
       // delete marker of overdue
       for (let key in trainLocationMarkers) {
-        if (ActiveTrain.hasOwnProperty(key)) {
+        if (this.ActiveTrain.hasOwnProperty(key)) {
           //console.log(`${key} still on tracks`)
         } else {
           const marker = trainLocationMarkers[key]
@@ -373,6 +420,7 @@ export class GtfsrtComponent implements OnInit {
 
     // // TODO: add marker property
     this.stops.forEach(stop => {
+      //console.log('423......', stop)
       //icon
       let icon = new L.icon({
         iconSize: [18, 15],
@@ -389,6 +437,18 @@ export class GtfsrtComponent implements OnInit {
       marker.addTo(this.map)
       marker.bindPopup("upload...")
       marker.stop_id = stop.stop_id
+      console.log('439.....', stop.stop_id)
+      console.log('440 .... ',this.incomingTrain)
+
+      const train_onstops = this.incomingTrain.filter(obj => {
+        console.log('444....', obj)
+        return true
+      })
+
+
+      console.log('446 .stopid, train on stop... ',stop.stop_id,train_onstops.length)
+
+
       // marker function
       function onMarkerClick(e) {
         const html = `
@@ -400,10 +460,10 @@ export class GtfsrtComponent implements OnInit {
           </thead>
           <tbody>
             <tr>
-              <td> <button type="button" class="btn btn-primary btn-sm">ขบวนขาเข้า</button> </td>
+
             </tr>
             <tr>
-              <td> <button type="button" class="btn btn-primary btn-sm">ขบวนขาออก</button> </td>
+              
             </tr>
             </tbody>
           </table>
@@ -452,6 +512,7 @@ export class GtfsrtComponent implements OnInit {
     const format = 'hh:mm:ss'
     //const CurrentDate = moment().subtract('hours',5);
     //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
+    //const CurrentDate = moment().subtract(5,'hours');
     const CurrentDate = moment()
     let timenow = CurrentDate.format("HH:mm:ss")
 
@@ -508,12 +569,13 @@ export class GtfsrtComponent implements OnInit {
     const format = 'hh:mm:ss'
     //Adjust time
     //const CurrentDate = moment().subtract('hours',5);
+    //const CurrentDate = moment().subtract(5,'hours');
     const CurrentDate = moment()
     //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
     // console.log('start_time',start_time)
     // console.log('endtime_time',endtime_time)
     let timenow = CurrentDate.format("HH:mm:ss")
-
+    console.log('timenow', timenow)
     const time = moment(timenow, format)
     const at = moment(start_time, format)
     const dt = moment(endtime_time, format)
@@ -579,33 +641,48 @@ export class GtfsrtComponent implements OnInit {
 </div>
     `
   }
+
+
+  loadRoute (data: NgForm) {
+    const keys = Object.keys(data.value);
+    const route_id = keys.filter( (key) => data.value[key]).join();
+    console.log(route_id)
+    this.activeRoutes = this.routesinfo.filter(obj => {
+      return (this.checktime(obj.start_time,obj.end_time) && obj.route_id == route_id)
+    })
+
+  }
+
+
 }
 
-
-// {
+//
+// 93.......... {
 //   "header": {
 //     "gtfs_realtime_version": "2.0",
 //     "incrementality": "FULL_DATASET",
-//     "timestamp": "09:51:26",
+//     "timestamp": "06:56:52",
 //     "route_name": "blue",
-//     "direction": "1"
+//     "route_id": "00014",
+//     "direction": "1",
+//     "headsign": "HUA to TAO",
+//     "runtime": "34"
 //   },
 //   "entity": {
-//     "id": "blue-020846",
+//     "id": "blue-070346",
 //     "vehicle": {
 //       "trip": {
-//         "trip_id": "020846",
-//         "start_time_secs": "35085",
-//         "end_time_secs": "37141",
-//         "time_now_sec": "35486",
-//         "start_time": "09:44:45",
-//         "end_time": "10:19:01"
+//         "trip_id": "070346",
+//         "start_time_secs": "24210",
+//         "end_time_secs": "26266",
+//         "time_now_sec": "25012",
+//         "start_time": "06:43:30",
+//         "end_time": "07:17:46"
 //       },
 //       "position": {
-//         "latitude": "13.7232308298072",
-//         "longitude": "100.55162341576"
-//       },
-//       "stoptimes": "[[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]]"
+//         "latitude": "13.74945882773",
+//         "longitude": "100.563533787612"
+//       }
 //     }
 //   }
 // }

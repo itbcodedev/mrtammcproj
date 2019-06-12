@@ -16,13 +16,13 @@ export class HeaderComponent implements OnInit {
   constructor(private _userservice: UserServiceService,
     private _toastr: ToastrService,
     private _router: Router) {
-    this._userservice.getUserName().subscribe(
-      data => {
-        this.username = data.toString();
-        this.isLogin = true;
-      },
-      error => this._router.navigate(['/auth/login'])
-    )
+    // this._userservice.getUserName().subscribe(
+    //   data => {
+    //     this.username = data.toString();
+    //     this.isLogin = true;
+    //   },
+    //   error => this._router.navigate(['/auth/login'])
+    // )
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timezone: 'Asia/Bangkok' };
     const currentDate = new Date();
     this.today = currentDate.toLocaleDateString('th-TH', options) + ' ' + currentDate.toLocaleTimeString();

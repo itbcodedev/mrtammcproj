@@ -35,6 +35,10 @@ export class GtfsService {
     return this.http.get<Route[]>(`${BASE_API_ENDPOINT}/routes`).toPromise();
   }
 
+  public getRoutesBasic(): Promise<Route[]> {
+    return this.http.get<Route[]>(`${BASE_API_ENDPOINT}/routesbasic`).toPromise();
+  }
+
   public getShapeDetail(): Promise<ShapeDetail[]> {
     return this.http.get<ShapeDetail[]>(`${BASE_API_ENDPOINT}/shape_details`).toPromise();
   }
@@ -112,6 +116,12 @@ export class GtfsService {
   public getstopwithroutes(): Promise<any> {
     return this.http
       .get<any>(`${BASE_API_ENDPOINT}/stopwithroutes`)
+      .toPromise();
+  }
+
+  public getRouteInfo(): Promise<any> {
+    return this.http
+      .get<any>(`${BASE_API_ENDPOINT}/routeinfos`)
       .toPromise();
   }
 

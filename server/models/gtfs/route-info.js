@@ -12,6 +12,10 @@ const RouteInfoSchema = new mongoose.Schema({
     required: true,
     index: true
   },
+  route_id: {
+    type: String,
+    index: true
+  },
   trip_id: {
     type: String,
     required: true

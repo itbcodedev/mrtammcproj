@@ -5,10 +5,19 @@
 
 #overlay {
   position: absolute;
-  top: 55px;
+  top: 10px;
   left: 80px;
-  width: 500px;
+  width: 350px;
   z-index: 100;
+  padding: 0px;
+  margin: 0px;
+}
+
+#overlay > div {
+  background-color: #FAFAFA;
+  border: 1px solid #717D7D;
+  margin-bottom: 5px;
+  padding: 10px 15px;
 }
 
 .content-wrapper > .content {
@@ -58,4 +67,16 @@
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
   border-top: 15px solid #2c3e50;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 0rem;
 }

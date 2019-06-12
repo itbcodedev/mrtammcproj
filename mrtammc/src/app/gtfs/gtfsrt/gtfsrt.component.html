@@ -14,13 +14,36 @@
           <div class="custom-popup" id="map" style="z-index: 1;">
           </div>
 
-
           <div id="overlay" class="row">
-          <div #dataContainer></div>
+
+            <div class="card" style="width: 18rem;">
+              <div class="card-header">
+                MRTA LINE NETWORK
+              </div>
+              <form #dataForm="ngForm">
+                <div class="input-group mb-1" *ngFor="let route of routes">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" name="{{ route.route_id }}" ngModel (change)=loadRoute(dataForm)>
+                    </div>
+                  </div>
+                   <input type="text" class="form-control"  placeholder="{{route.route_short_name}}" readonly>
+                </div>
+              </form>
+            </div>
+
+              <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                  ขบวนรถที่ให้บริการ
+                </div>
+                  <ul class="list-group list-group-flush">
+                    <li *ngFor="let item of activeRoutes; let i = index">
+                      Trip Id {{item.trip_id}} Start {{item.start_time}}  End {{ item.end_time}}
+                    </li>
+                  </ul>
+              </div>
+
           </div>
-
-
-
         </div>
 
       </div>
