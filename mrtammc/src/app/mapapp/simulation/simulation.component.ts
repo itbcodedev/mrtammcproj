@@ -69,7 +69,7 @@ export class SimulationComponent implements OnInit {
     })
     marker.setIcon(icon);
     // connect to listen to event
-    this._websocket.listen('gtfsrt').subscribe(data => {
+    this._websocket.listen('gtfsrt_test').subscribe(data => {
       // console.log(data)
 
       this.wsdata = JSON.stringify(data)
