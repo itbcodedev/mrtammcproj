@@ -151,7 +151,7 @@ export class GtfsrtComponent implements OnInit {
 
       // // DEBUG: success ? filter next station
 
-      //const nexttrip = nextstation[0].selectStoptimes
+      const nexttrip = nextstation[0].selectStoptimes
 
 
       //console.log('130....',nexttrip)
@@ -220,30 +220,30 @@ export class GtfsrtComponent implements OnInit {
 
 
 
-        // marker.nextstop = nexttrip.stop_id
-        // marker.arrival_time = nexttrip.arrival_time
-        // marker.departure_time = nexttrip.departure_time
-        //
-        // //construct object
-        // const obj = {
-        //   stop_id: nexttrip.stop_id
-        // }
-        // //assign variable
-        // let tripin
-        // let tripout
-        // // direction
-        // if (+direction) {
-        //
-        //   tripout = { trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction }
-        //   obj['tripout'] = tripout
-        //
-        // } else {
-        //   tripin = { trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction }
-        //   obj['tripin'] = tripin
-        // }
-        //
-        //
-        // this.incomingTrain.push(obj)
+        marker.nextstop = nexttrip.stop_id
+        marker.arrival_time = nexttrip.arrival_time
+        marker.departure_time = nexttrip.departure_time
+
+        //construct object
+        const obj = {
+          stop_id: nexttrip.stop_id
+        }
+        //assign variable
+        let tripin
+        let tripout
+        // direction
+        if (+direction) {
+
+          tripout = { trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction }
+          obj['tripout'] = tripout
+
+        } else {
+          tripin = { trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction }
+          obj['tripin'] = tripin
+        }
+
+
+        this.incomingTrain.push(obj)
 
         console.log('246......', this.incomingTrain)
         console.log('247......',this.StationMarkers)

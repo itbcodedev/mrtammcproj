@@ -263,7 +263,7 @@ export class OpenstreetmapComponent implements OnInit {
 
       // // DEBUG: success ? filter next station
 
-      // const nexttrip = nextstation[0].selectStoptimes
+      const nexttrip = nextstation[0].selectStoptimes
 
       //console.log('130....',nexttrip)
       // // TODO: filter with time select next station
@@ -356,9 +356,9 @@ export class OpenstreetmapComponent implements OnInit {
         marker.headsign = headsign
         marker.runtime = runtime
 
-        // marker.nextstop = nexttrip.stop_id
-        // marker.arrival_time = nexttrip.arrival_time
-        // marker.departure_time = nexttrip.departure_time
+        marker.nextstop = nexttrip.stop_id
+        marker.arrival_time = nexttrip.arrival_time
+        marker.departure_time = nexttrip.departure_time
 
 
         marker.on('click', onTrainClick);
