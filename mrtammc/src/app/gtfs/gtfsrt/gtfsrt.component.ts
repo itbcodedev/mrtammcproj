@@ -49,6 +49,7 @@ export class GtfsrtComponent implements OnInit {
   incomingTrain = []
   totalTrips
   selectrouteid
+  controllerLayer
 
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
@@ -87,7 +88,9 @@ export class GtfsrtComponent implements OnInit {
 
 
 
-    L.control.layers(this.baseLayers).addTo(this.map);
+    this.controllerLayer = L.control.layers(this.baseLayers)
+    this.controllerLayer.addTo(this.map);
+
     this.map.on('click', (e) => { console.log(e.latlng); });
     // let marker = new L.Marker();
 
@@ -163,6 +166,8 @@ export class GtfsrtComponent implements OnInit {
       // // TODO: filter with time select next station
 
       function onTrainClick(e) {
+        // get marker
+
         const marker = e.target
         const html = `
         <div class="card" style="width: 16rem;">
@@ -202,14 +207,11 @@ export class GtfsrtComponent implements OnInit {
         popup.setContent(html);
         popup.update();
 
-        const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-          maxZoom: 20,
-          subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-        });
+
         const buttonSubmit = L.DomUtil.get('button-submit');
         L.DomEvent.addListener(buttonSubmit, 'click', function (e) {
-          this.map.setZoom(7)
-          this.map.addLayer(googleHybrid);
+
+
           marker.closePopup();
 
         });
@@ -239,6 +241,8 @@ export class GtfsrtComponent implements OnInit {
         marker.headsign = headsign
         marker.runtime = runtime
 
+        marker.map = this.map
+        marker.controllerLayer = this.controllerLayer
 
 
         marker.nextstop = nexttrip.stop_id
@@ -272,6 +276,7 @@ export class GtfsrtComponent implements OnInit {
         // get station marker
 
         marker.on('click', onTrainClick);
+
         trainLocationMarkers[tripEntity] = marker
 
       }
@@ -339,6 +344,7 @@ export class GtfsrtComponent implements OnInit {
     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+
     this.map.attributionControl.setPrefix('');
 
     this.baseLayers = {
@@ -617,6 +623,10 @@ export class GtfsrtComponent implements OnInit {
 
   followtrip(e) {
     console.log(e)
+  }
+
+  singleTrip(trip) {
+
   }
 }
 

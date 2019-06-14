@@ -49,7 +49,9 @@
                       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
                         trip {{selectrouteid}}
                         <span class="badge badge-danger">
-                         {{activeRoutes.length}}
+                          <div  *ngIf="activeRoutes?.length > 0">
+                             {{activeRoutes.length}}
+                          </div>
                        </span>
                       </a>
                     </li>
