@@ -167,7 +167,6 @@ export class GtfsrtComponent implements OnInit {
 
       function onTrainClick(e) {
         // get marker
-
         const marker = e.target
         const html = `
         <div class="card" style="width: 16rem;">
@@ -206,14 +205,12 @@ export class GtfsrtComponent implements OnInit {
         const popup = e.target.getPopup();
         popup.setContent(html);
         popup.update();
-
+        marker.openPopup();
 
         const buttonSubmit = L.DomUtil.get('button-submit');
         L.DomEvent.addListener(buttonSubmit, 'click', function (e) {
-
-
+          console.log(e)
           marker.closePopup();
-
         });
 
 
@@ -274,8 +271,30 @@ export class GtfsrtComponent implements OnInit {
         console.log('247......',this.StationMarkers)
         //// TODO: update station marker
         // get station marker
+        // show the popup for a marker you can use markers bindPopup methods
+        marker.bindPopup("Trip info");
+        // marker.on('mouseover', function (e) {
+        //     this.openPopup();
+        // });
+        // marker.on('mouseout', function (e) {
+        //     this.closePopup();
+        // });
 
-        marker.on('click', onTrainClick);
+        marker.on('mouseover', onTrainClick);
+        marker.on('mouseout', onTrainClick );
+
+
+
+
+
+        //marker.on('mouseover', onTrainClick, marker);
+        marker.on("click", function(event) {
+            this.map.setView(marker.getLatLng(), 16);
+            L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+             maxZoom: 10,
+             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+           }).addTo(this.map)
+        }, marker);
 
         trainLocationMarkers[tripEntity] = marker
 
