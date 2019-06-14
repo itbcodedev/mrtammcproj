@@ -9,39 +9,85 @@
 
       </div> -->
       <div class="col-sm-12">
-        <div class="fullbox" >
+        <div class="fullbox">
 
           <div class="custom-popup" id="map" style="z-index: 1;">
           </div>
 
           <div id="overlay" class="row">
-
-            <div class="card" style="width: 18rem;">
-              <div class="card-header">
-                MRTA LINE NETWORK
-              </div>
-              <form #dataForm="ngForm">
-                <div class="input-group mb-1" *ngFor="let route of routes">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <input type="checkbox" name="{{ route.route_id }}" ngModel (change)=loadRoute(dataForm)>
-                    </div>
-                  </div>
-                   <input type="text" class="form-control"  placeholder="{{route.route_short_name}}" readonly>
+            <div style="width: 18rem; padding: 2px;">
+              <nav class="navbar navbar-light bg-light">
+                <div >
+                  MRTA LINE NETWORK จำนวนรถ
+                  <span class="badge badge-info">
+                    {{totalTrips.length}}
+                  </span>
                 </div>
-              </form>
+                <button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+              </nav>
+
+              <div class="collapse" style="width: 17rem;" id="navbarToggleExternalContent">
+                <div class="bg-light p-1">
+                  <form #dataForm="ngForm">
+                    <div class="input-group mb-1" *ngFor="let route of routes">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <input type="checkbox" name="{{ route.route_id }}" ngModel (change)=loadRoute(dataForm)>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="{{route.route_short_name}}" readonly>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="bg-light p-1">
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                        trip {{selectrouteid}}
+                        <span class="badge badge-danger">
+                         {{activeRoutes.length}}
+                       </span>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                        All trip
+                         <span class="badge badge-info">
+                            {{totalTrips.length}}
+                        </span>
+                      </a>
+                    </li>
+
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                      <ul class="list-group list-group-flush">
+                        <li *ngFor="let item of activeRoutes; let i = index">
+                          {{item.trip_id}} <i class="fa fa-clock-o" aria-hidden="true"></i> start {{item.start_time}} to {{ item.end_time}}
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <ul class="list-group list-group-flush">
+                        <li *ngFor="let item of totalTrips; let i = index">
+                          {{item.trip_id}} <i class="fa fa-clock-o" aria-hidden="true"></i> start {{item.start_time}} to {{ item.end_time}}
+                        </li>
+                      </ul>
+                    </div>
+
+                  </div>
+
+
+
+                </div>
+
+              </div>
             </div>
 
-              <div class="card" style="width: 18rem;">
-                <div class="card-header">
-                  ขบวนรถที่ให้บริการ
-                </div>
-                  <ul class="list-group list-group-flush">
-                    <li *ngFor="let item of activeRoutes; let i = index">
-                      Trip Id {{item.trip_id}} Start {{item.start_time}}  End {{ item.end_time}}
-                    </li>
-                  </ul>
-              </div>
 
           </div>
         </div>

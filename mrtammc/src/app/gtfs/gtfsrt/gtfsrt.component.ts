@@ -47,6 +47,8 @@ export class GtfsrtComponent implements OnInit {
   routesinfo
   activeRoutes
   incomingTrain = []
+  totalTrips
+  selectrouteid
 
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
@@ -56,7 +58,7 @@ export class GtfsrtComponent implements OnInit {
 
 
   async ngOnInit() {
-    //this.dataContainer.nativeElement.innerHTML =  this.getRender()
+
     this.loadbaselayers()
 
     function style(feature, latlng) {
@@ -70,9 +72,13 @@ export class GtfsrtComponent implements OnInit {
       });
     };
 
-
+    // get data
+    this.routesinfo = await this.gtfsService.getRouteInfo()
     this.routes = await this.gtfsService.getRoutesBasic()
 
+    this.totalTrips = this.routesinfo.filter(obj => {
+      return (this.checktime(obj.start_time, obj.end_time))
+    })
 
     this.loadGeojson()
     await this.loadStoptimes()
@@ -125,8 +131,7 @@ export class GtfsrtComponent implements OnInit {
       const trainLatLng = new L.LatLng(latitude, longitude);
 
 
-      // get data
-      this.routesinfo = await this.gtfsService.getRouteInfo()
+
 
       // getdata
       const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(trip_id);
@@ -158,12 +163,12 @@ export class GtfsrtComponent implements OnInit {
       // // TODO: filter with time select next station
 
       function onTrainClick(e) {
-
+        const marker = e.target
         const html = `
         <div class="card" style="width: 16rem;">
           <div class="card-header" style="background-color:${e.target.color}; padding: 0.5rem 0.15rem !important;">
            <div class="row">
-             <div class="col-md-3">
+             <div class="col-md-3 text-center">
              <svg width="50px" height="50px" viewBox="-10 -10 80 80">
                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                  <circle fill="#FFFFFF" cx="32" cy="32" r="32"></circle>
@@ -172,6 +177,8 @@ export class GtfsrtComponent implements OnInit {
                    fill="${e.target.color}"></path>
                </g>
              </svg>
+
+             <button id="button-submit" class="badge badge-danger " type="button">Follow</button>
              </div>
              <div class="col-md-5">
                <p style="color: #ffffff; margin: 2px 0;">เส้นทาง</p>
@@ -194,6 +201,20 @@ export class GtfsrtComponent implements OnInit {
         const popup = e.target.getPopup();
         popup.setContent(html);
         popup.update();
+
+        const googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+          maxZoom: 20,
+          subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        });
+        const buttonSubmit = L.DomUtil.get('button-submit');
+        L.DomEvent.addListener(buttonSubmit, 'click', function (e) {
+          this.map.setZoom(7)
+          this.map.addLayer(googleHybrid);
+          marker.closePopup();
+
+        });
+
+
       }  // end function onMarkerClick
 
       if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
@@ -579,64 +600,14 @@ export class GtfsrtComponent implements OnInit {
 
 
 
-  getRender() {
-    this.isDark = true
-    this.cardHeight = "40"
-    this.color = "#ff0000"
-    this.direction = "North"
-    this.headsign = "Taoboon"
-    this.leaving_in_label = "leaving_in_label"
-    this.leaving_in = "leaving_i"
-    this.bodyHeight = "100"
-    this.stopTimes = "07:00:00"
-    this.stopGuide = "stopGuide"
-    this.stopNames = "stopNames"
-    this.next_in_label = "next_in_label"
-    this.next_in = "next_in"
 
-    return `
-    <div
-      class="card ${this.isDark ? 'dark' : 'light'}"
-      style="height: ${this.cardHeight}px"
-    >
-  <div class="header" style="background-color: ${this.color}; width: 290px">
-    <div class="bus_logo">
-      <svg width="50px" height="50px" viewBox="-10 -10 80 80">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <circle fill="#FFFFFF" cx="32" cy="32" r="32"></circle>
-          <path
-            d="M20.7894737,31.0526316 L43.5263158,31.0526316 L43.5263158,21.5789474 L20.7894737,21.5789474 L20.7894737,31.0526316 Z M40.6842105,42.4210526 C39.1115789,42.4210526 37.8421053,41.1515789 37.8421053,39.5789474 C37.8421053,38.0063158 39.1115789,36.7368421 40.6842105,36.7368421 C42.2568421,36.7368421 43.5263158,38.0063158 43.5263158,39.5789474 C43.5263158,41.1515789 42.2568421,42.4210526 40.6842105,42.4210526 L40.6842105,42.4210526 Z M23.6315789,42.4210526 C22.0589474,42.4210526 20.7894737,41.1515789 20.7894737,39.5789474 C20.7894737,38.0063158 22.0589474,36.7368421 23.6315789,36.7368421 C25.2042105,36.7368421 26.4736842,38.0063158 26.4736842,39.5789474 C26.4736842,41.1515789 25.2042105,42.4210526 23.6315789,42.4210526 L23.6315789,42.4210526 Z M17,40.5263158 C17,42.2025263 17.7389474,43.6905263 18.8947368,44.7326316 L18.8947368,48.1052632 C18.8947368,49.1473684 19.7473684,50 20.7894737,50 L22.6842105,50 C23.7364211,50 24.5789474,49.1473684 24.5789474,48.1052632 L24.5789474,46.2105263 L39.7368421,46.2105263 L39.7368421,48.1052632 C39.7368421,49.1473684 40.5793684,50 41.6315789,50 L43.5263158,50 C44.5684211,50 45.4210526,49.1473684 45.4210526,48.1052632 L45.4210526,44.7326316 C46.5768421,43.6905263 47.3157895,42.2025263 47.3157895,40.5263158 L47.3157895,21.5789474 C47.3157895,14.9473684 40.5326316,14 32.1578947,14 C23.7831579,14 17,14.9473684 17,21.5789474 L17,40.5263158 Z"
-            fill="${this.color}"></path>
-        </g>
-      </svg>
-    </div>
-    <div class="direction">${this.direction}</div>
-    <div class="headsign">${this.headsign}</div>
-    <div class="leaving-in-label">${this.leaving_in_label}</div>
-    <div class="leaving-in">${this.leaving_in}</div>
-  </div>
-  <div class="body" style="height: ${this.bodyHeight}px">
-    <div class="stop-times">
-      ${this.stopTimes}
-    </div>
-    ${this.stopGuide}
-    <div class="stop-names">
-      ${this.stopNames}
-    </div>
-    <div class="next-in-box">
-      <div class="next-in-label">${this.next_in_label}</div>
-      <div class="next-in">${this.next_in}</div>
-    </div>
-  </div>
-</div>
-    `
-  }
 
 
   loadRoute(data: NgForm) {
     const keys = Object.keys(data.value);
     const route_id = keys.filter((key) => data.value[key]).join();
-    console.log(route_id)
+    //console.log(route_id)
+    this.selectrouteid = route_id
     this.activeRoutes = this.routesinfo.filter(obj => {
       return (this.checktime(obj.start_time, obj.end_time) && obj.route_id == route_id)
     })
@@ -644,6 +615,9 @@ export class GtfsrtComponent implements OnInit {
   }
 
 
+  followtrip(e) {
+    console.log(e)
+  }
 }
 
 //

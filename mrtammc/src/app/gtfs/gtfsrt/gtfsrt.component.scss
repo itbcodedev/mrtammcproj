@@ -80,3 +80,27 @@
     border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 0rem;
 }
+
+.navbar-toggler {
+    padding: 0.2rem 0.5rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  padding-left: 1.3em;
+}
+
+.tab-pane > ul >li {
+  list-style: none;
+  background-image: url("../../../assets/dist/icons/Train.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+}
