@@ -50,6 +50,7 @@ export class GtfsrtComponent implements OnInit {
   totalTrips
   selectrouteid
   controllerLayer
+  selectTripId
 
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
@@ -92,6 +93,7 @@ export class GtfsrtComponent implements OnInit {
     this.controllerLayer.addTo(this.map);
 
     this.map.on('click', (e) => { console.log(e.latlng); });
+    this.map.on('click', (e) => { console.log('e.latlng'); });
     // let marker = new L.Marker();
 
     let icon = new L.icon({
@@ -132,8 +134,6 @@ export class GtfsrtComponent implements OnInit {
       const longitude = data['entity']['vehicle']['position']['longitude']
       const stoptimes = data['entity']['vehicle']['stoptimes']
       const trainLatLng = new L.LatLng(latitude, longitude);
-
-
 
 
       // getdata
@@ -209,26 +209,36 @@ export class GtfsrtComponent implements OnInit {
 
         const buttonSubmit = L.DomUtil.get('button-submit');
         L.DomEvent.addListener(buttonSubmit, 'click', function (e) {
-          console.log(e)
-          marker.closePopup();
-        });
+
+          this.map.setView(marker.getLatLng(), 18);
+          L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+          }).addTo(this.map);
+
+          this.selectTripId = marker.tripEntity
+          //marker.closePopup();
+        },this);  // point to this context
+      }  // end function onMarkerClick display popup with button
 
 
-      }  // end function onMarkerClick
 
       if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
-        // new trip
+        // exist
         if (trainLocationMarkers[tripEntity] !== undefined) {
           trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
         }
+
+
       } else {
-        // exist trip
+        // new
         this.ActiveTrain[tripEntity] = vehicle
 
         //// TODO: 1 create marker
         let marker = this.createMarker(trainLatLng, route_name)
         marker.addTo(this.map).bindPopup(`${tripEntity}`)
         // marker function
+        marker.tripEntity = tripEntity
         marker.trip_id = trip_id
         marker.start_time = start_time
         marker.end_time = end_time
@@ -283,22 +293,25 @@ export class GtfsrtComponent implements OnInit {
         marker.on('mouseover', onTrainClick);
         marker.on('mouseout', onTrainClick );
 
-
-
-
-
         //marker.on('mouseover', onTrainClick, marker);
         marker.on("click", function(event) {
-            this.map.setView(marker.getLatLng(), 16);
+            //this.map.flyTo(marker.getLatLng())
+            this.map.setView(marker.getLatLng(), 18);
+
             L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-             maxZoom: 10,
-             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-           }).addTo(this.map)
-        }, marker);
+              maxZoom: 20,
+              subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            }).addTo(this.map);
+
+            this.selectTripId = marker.tripEntity
+            //this.map.panTo(marker.getLatLng())
+
+        }, this);
 
         trainLocationMarkers[tripEntity] = marker
 
       }
+
 
       // check train over due
       for (let key in this.ActiveTrain) {
@@ -324,8 +337,18 @@ export class GtfsrtComponent implements OnInit {
 
 
 
+
+
     })  // end web service
 
+
+    // updated latlng follow trip
+    if (this.ActiveTrain.hasOwnProperty(this.selectTripId)) {
+      console.log('select Tripid',this.selectTripId)
+      const updateCenter = this.ActiveTrain[this.selectTripId].getLatLng()
+      this.map.panTo(updateCenter, 18);
+      // this.map.setView(updateCenter, 18);
+    }
   }  //init
 
   loadbaselayers() {
@@ -363,6 +386,9 @@ export class GtfsrtComponent implements OnInit {
     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+
+
+
 
     this.map.attributionControl.setPrefix('');
 
@@ -623,11 +649,6 @@ export class GtfsrtComponent implements OnInit {
     }
   }
 
-
-
-
-
-
   loadRoute(data: NgForm) {
     const keys = Object.keys(data.value);
     const route_id = keys.filter((key) => data.value[key]).join();
@@ -638,7 +659,6 @@ export class GtfsrtComponent implements OnInit {
     })
 
   }
-
 
   followtrip(e) {
     console.log(e)
