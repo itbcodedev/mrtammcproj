@@ -209,14 +209,14 @@ export class GtfsrtComponent implements OnInit {
 
         const buttonSubmit = L.DomUtil.get('button-submit');
         L.DomEvent.addListener(buttonSubmit, 'click', function (e) {
-
-          this.map.setView(marker.getLatLng(), 18);
+          this.map.setView(marker.getLatLng(), 16);
           L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
             subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
           }).addTo(this.map);
 
           this.selectTripId = marker.tripEntity
+          console.log(this.selectTripId)
           //marker.closePopup();
         },this);  // point to this context
       }  // end function onMarkerClick display popup with button
@@ -290,13 +290,13 @@ export class GtfsrtComponent implements OnInit {
         //     this.closePopup();
         // });
 
-        marker.on('mouseover', onTrainClick);
-        marker.on('mouseout', onTrainClick );
+        marker.on('mouseover', onTrainClick,this);
+        marker.on('mouseout', onTrainClick,this );
 
         //marker.on('mouseover', onTrainClick, marker);
         marker.on("click", function(event) {
             //this.map.flyTo(marker.getLatLng())
-            this.map.setView(marker.getLatLng(), 18);
+            this.map.setView(marker.getLatLng(), 16);
 
             L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
               maxZoom: 20,
@@ -336,19 +336,24 @@ export class GtfsrtComponent implements OnInit {
       }
 
 
-
-
+      if (this.ActiveTrain.hasOwnProperty(this.selectTripId)) {
+        console.log('select Tripid',this.selectTripId)
+        const Center = trainLocationMarkers[this.selectTripId]
+        // console.log(Center)
+        // const latitude = Center['position']['latitude']
+        // const longitude = Center['position']['longitude']
+        // const centerLatLng = new L.LatLng(latitude, longitude)
+        // console.log(centerLatLng)
+        this.map.setView(Center.getLatLng(), 16);
+      }
 
     })  // end web service
 
 
-    // updated latlng follow trip
-    if (this.ActiveTrain.hasOwnProperty(this.selectTripId)) {
-      console.log('select Tripid',this.selectTripId)
-      const updateCenter = this.ActiveTrain[this.selectTripId].getLatLng()
-      this.map.panTo(updateCenter, 18);
-      // this.map.setView(updateCenter, 18);
-    }
+    // updated latlng follow trip()
+
+
+
   }  //init
 
   loadbaselayers() {
