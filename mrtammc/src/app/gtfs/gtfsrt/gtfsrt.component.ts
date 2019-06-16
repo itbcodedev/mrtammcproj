@@ -87,8 +87,6 @@ export class GtfsrtComponent implements OnInit {
     await this.loadStation()
     //await this.getTripsAtStop("PP01")
 
-
-
     this.controllerLayer = L.control.layers(this.baseLayers)
     this.controllerLayer.addTo(this.map);
 
@@ -103,10 +101,7 @@ export class GtfsrtComponent implements OnInit {
       shadowUrl: 'assets/leaflet/images/leaflet/marker-shadow.png'
     })
 
-
-
     const trainLocationMarkers = {}
-
 
 
     // get data from web socket
