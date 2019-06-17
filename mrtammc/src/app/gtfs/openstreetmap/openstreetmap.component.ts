@@ -267,9 +267,9 @@ export class OpenstreetmapComponent implements OnInit {
 
       //console.log('130....',nexttrip)
       // // TODO: filter with time select next station
-
+      console.log('time_now_sec - start_time_secs',time_now_sec,start_time_secs)
       const delta_t = time_now_sec - start_time_secs
-      //console.log('delta_t',delta_t)
+      console.log('trip_id,delta_t',trip_id,delta_t)
 
       const runtime_secs = runtime * 60
       //console.log('runtime_secs',runtime_secs)
@@ -287,9 +287,8 @@ export class OpenstreetmapComponent implements OnInit {
 
       const loc_order = Math.round((delta_t / runtime_secs) * loc_length)
       console.log(loc_order)
+
       const marker = line[loc_order]
-
-
 
       function onTrainClick(e) {
 
@@ -330,16 +329,11 @@ export class OpenstreetmapComponent implements OnInit {
         popup.update();
       }  // end function onMarkerClick
 
-
-
       if (ActiveTrain.hasOwnProperty(tripEntity)) {
         // exist only update location
         if (trainLocationMarkers[tripEntity] !== undefined) {
-
           trainLocationMarkers[tripEntity].setLatLng(marker._latlng)
         }
-
-
       } else {
         // add new
         ActiveTrain[tripEntity] = vehicle
@@ -460,108 +454,6 @@ export class OpenstreetmapComponent implements OnInit {
     return result;
   }
 
-  // async moveTrain(secs: number) {
-  //   this.group1.clearLayers();
-  //   const trains = this.activeTrains;
-  //   console.log(trains);
-  //   const markers = [];
-  //   for (let i = 0; i < trains.length; i++) {
-  //     trains[i].density = Math.floor((Math.random() * 10) + 1);
-  //     const totallength = this.purple_points.length;
-  //     console.log(`totallength  ${totallength}`);
-  //     const total_diff_time = trains[i].departure_secs - trains[i].arrival_secs;
-  //
-  //     // 0 = inbound  diff from station A, 1 = outbound diff from station B
-  //     const direction = trains[i].direction_id;
-  //     let diff_time = 0;
-  //     let diff_distance = 0;
-  //     if (direction == true) {  // outbound
-  //       diff_time = trains[i].departure_secs - secs;
-  //       console.log(`diff_time ${diff_time}`);
-  //       console.log(`total_diff_time ${total_diff_time}`);
-  //       diff_distance = (totallength * diff_time) / total_diff_time;
-  //     }
-  //     if (direction == false) { // inbound
-  //       diff_time = secs - trains[i].arrival_secs;
-  //       console.log(`diff_time ${diff_time}`);
-  //       console.log(`total_diff_time ${total_diff_time}`);
-  //       diff_distance = (totallength * diff_time) / total_diff_time;
-  //     }
-  //     console.log(`diff_distance ${diff_distance}`);
-  //     const start_x = Math.round(diff_distance);
-  //     console.log(`start_x ${start_x}`);
-  //     let trip_direction = direction ? 'ขบวนขาออก' : 'ขบวนขาเข้า';
-  //     let density = "";
-  //     for (let j = 0; j < trains[i].density; j++) {
-  //       density += '<span ><img src="assets/dist/icons/man.png" /></span>';
-  //     }
-  //     let markerLabel = trains[i].trip_id;
-  //
-  //     if (direction == true) {
-  //       trains[i].heading = 'left';
-  //     }
-  //     if (direction == false) {
-  //       trains[i].heading = 'right';
-  //     }
-  //     const contentmarker = `
-  //      <div class="info-window">
-  //         <span class="fa-stack fa-lg">
-  //           <i class="fa fa-circle fa-stack-2x"></i>
-  //           <i class="fa fa-train fa-stack-1x fa-inverse"></i>
-  //         </span>
-  //         <span class="badge badge-danger"> ${markerLabel}</span><span> ทิศทาง ${trip_direction}</span>
-  //         <p> เส้นทาง ${trains[i].stop_idA} - ${trains[i].stop_idB} </p>
-  //         <div class="alert alert-light">
-  //             <p> <b> ความหนาแน่น ${trains[i].density * 10} % </b> </p>
-  //             ${density}
-  //         </div>
-  //
-  //       </div>
-  //      `;
-  //     const lefttrain = L.icon({
-  //       iconUrl: './assets/leaflet/images/left-train.png',
-  //       iconSize: [28, 25],
-  //       iconAnchor: [14, 14],
-  //       popupAnchor: [-3, -10]
-  //     });
-  //     const righttrain = L.icon({
-  //       iconUrl: './assets/leaflet/images/right-train.png',
-  //       iconSize: [28, 25],
-  //       iconAnchor: [14, 14],
-  //       popupAnchor: [-3, -10]
-  //     });
-  //     if (direction == true) {
-  //       this.purple_points[start_x].setIcon(lefttrain);
-  //     }
-  //     if (direction == false) {
-  //       this.purple_points[start_x].setIcon(righttrain);
-  //     }
-  //
-  //     this.purple_points[start_x].addTo(this.group1)
-  //       .bindPopup(contentmarker)
-  //       .bindTooltip(markerLabel, {
-  //         permanent: true,
-  //         direction: 'top',
-  //         className: 'tooltipclass'
-  //       });
-  //
-  //   }
-  //
-  // }
-
-  // groupBy(list, keyGetter) {
-  //   const shapemap = new Map();
-  //   list.forEach((item) => {
-  //     const key = keyGetter(item);
-  //     const collection = shapemap.get(key);
-  //     if (!collection) {
-  //       shapemap.set(key, [item]);
-  //     } else {
-  //       collection.push(item);
-  //     }
-  //   });
-  //   return shapemap;
-  // }
 
   checktime(start_time, endtime_time) {
     const format = 'hh:mm:ss'
