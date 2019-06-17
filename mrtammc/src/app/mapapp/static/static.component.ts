@@ -6,6 +6,7 @@ import { IParkingData, Data } from './Data'
 import { ParkingserviceService } from '../../services/parkingservice.service';
 import { AlertService} from '../../services/alert.service';
 import { AlertmobileService } from '../../services/alertmobile.service';
+import { PassengerService } from '../../services/passenger.service'
 import { Alert } from './alert.model';
 import {FormGroup, FormArray, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from "ngx-toastr";
@@ -23,18 +24,22 @@ export class StaticComponent implements OnInit {
   alerts: any
 
   alertForm: FormGroup;
-  passengers=[]
+  passengers
   average
+  allpassengers
+
   constructor(private _http: HttpClient,
               public _parking: ParkingserviceService,
               public _alert: AlertService,
               public _mobile: AlertmobileService,
+              public _passenger: PassengerService,
               private _toastr: ToastrService,
               private _websocket: WebsocketService,
               private fb: FormBuilder) { }
 
 
   pushToArray(arr, obj) {
+    //// TODO: Fix 
     const existIds = arr.map( obj => obj.station)
     if ( ! existIds.includes(obj.station)) {
       arr.push(obj)
@@ -49,6 +54,12 @@ export class StaticComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.getdata()
+    this.getalerts()
+    this.getPassenger()
+
+
     this._websocket.listen('passenger').subscribe(data => {
         console.log(data)
         this.pushToArray(this.passengers, data)
@@ -60,9 +71,6 @@ export class StaticComponent implements OnInit {
       message: ['', Validators.required]
     })
 
-  this.getdata()
-  this.getalerts()
-
 
 
   }
@@ -71,6 +79,14 @@ export class StaticComponent implements OnInit {
     this._alert.getalerts().subscribe( (res) => {
       this.alerts = res
     });
+  }
+
+  getPassenger () {
+    this._passenger.getPassengers().subscribe( (res) => {
+      this.passengers = res
+    });
+
+    this.average = this.passengers.reduce((sum, { density }) => sum + parseInt(density), 0)/this.passengers.length
   }
 
   getdata () {

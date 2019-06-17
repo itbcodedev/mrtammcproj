@@ -22,7 +22,7 @@ router.post('/',  (req,res,next) => {
       return next(err);
     }
     const message = {
-      message: "Alerts create success fully",
+      message: "Alerts create successfully",
       data: alert
     }
     res.status(201).json(message)

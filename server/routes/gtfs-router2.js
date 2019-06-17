@@ -111,7 +111,7 @@ module.exports = function(io) {
     return res.status(200).json(req.body);
 
   })
-  router.post('/passenger',  (req,res,next) => {
+  router.post('/passenger_backup',  (req,res,next) => {
     console.log(req.body)
     io.sockets.emit('passenger', req.body);
     return res.status(200).json(req.body);

@@ -64,6 +64,38 @@
     </div>
     <div class="row">
       <section class="col-lg-6">
+
+       <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">ความหนาแน่นผู้โดยสาร</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <tbody><tr>
+                    <th style="width: 100px">#</th>
+                    <th>สถานี</th>
+                    <th>ความหนาแน่นผู้โดยสาร</th>
+                    <th style="width: 200px">จำนวน ผู้โดยสาร</th>
+                  </tr>
+                  <tr *ngFor="let passenger of passengers">
+                    <td>{{passenger.create_on |  date :'hh:mm:ss a '}}</td>
+                    <td>{{passenger.station}}</td>
+                    <td>
+                      <div class="progress progress-xs">
+                        <div class="progress-bar progress-bar-danger" [ngStyle]="{'width': passenger.density + '%'}"></div>
+                      </div>
+                    </td>
+                    <td><span class="badge bg-danger text-center">{{passenger.density}}</span></td>
+                  </tr>
+
+                </tbody></table>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+
+              </div>
+        </div>
         <div class="card">
           <div class="card-header d-flex p-0 ui-sortable-handle" style="cursor: move;">
             <h3 class="card-title p-3">
@@ -78,37 +110,6 @@
             </div>
           </div><!-- /.card-body -->
         </div>
-       <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">ความหนาแน่นผู้โดยสาร</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <table class="table table-bordered">
-                  <tbody><tr>
-                    <th style="width: 10px">#</th>
-                    <th>สถานี</th>
-                    <th>ความหนาแน่นผู้โดยสาร</th>
-                    <th style="width: 40px">เปอร์เซนต์</th>
-                  </tr>
-                  <tr *ngFor="let passenger of passengers">
-                    <td>{{passenger.time}}</td>
-                    <td>{{passenger.station}}</td>
-                    <td>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar progress-bar-danger" [ngStyle]="{'width': passenger.density + '%'}"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-danger">{{passenger.density}}</span></td>
-                  </tr>
-
-                </tbody></table>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-
-              </div>
-            </div>
       </section>
       <section class="col-lg-6">
         <div class="card">
