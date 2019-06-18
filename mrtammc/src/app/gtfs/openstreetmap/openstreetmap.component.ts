@@ -283,6 +283,7 @@ export class OpenstreetmapComponent implements OnInit {
           line = getline
       }
       console.log(line)
+      line = getline
       const loc_length = line.length
 
       const loc_order = Math.round((delta_t / runtime_secs) * loc_length)
