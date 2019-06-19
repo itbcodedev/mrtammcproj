@@ -34,10 +34,10 @@ xmlReader.readXML(fs.readFileSync(FILE), function(err, data) {
         //             }
         const date = new Date()
         const time = date.getDate()
-        const tripEntity = "0013"
+        const tripEntity = "003"
         const latitude =  coordinates[1]
         const longitude = coordinates[0].replace(/\r?\n?/g, '').trim()
-        const tripId = "0013"
+        const tripId = "003"
         const gtfsrt = `
       {
         "header": {

@@ -37,7 +37,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function(err, data) {
         const tripEntity = "001"
         const latitude =  coordinates[1]
         const longitude = coordinates[0].replace(/\r?\n?/g, '').trim()
-        const tripId = "00011"
+        const tripId = "0001"
         const gtfsrt = `
       {
         "header": {

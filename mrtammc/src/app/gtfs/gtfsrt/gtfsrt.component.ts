@@ -164,7 +164,7 @@ export class GtfsrtComponent implements OnInit {
         // get marker
         const marker = e.target
         const html = `
-        <div class="card" style="width: 16rem;">
+        <div class="card" style="width: 18rem;">
           <div class="card-header" style="background-color:${e.target.color}; padding: 0.5rem 0.15rem !important;">
            <div class="row">
              <div class="col-md-3 text-center">
@@ -179,15 +179,17 @@ export class GtfsrtComponent implements OnInit {
 
              <button id="button-submit" class="badge badge-danger " type="button">Follow</button>
              </div>
-             <div class="col-md-5">
-               <p style="color: #ffffff; margin: 2px 0;">เส้นทาง</p>
-               <p style="color: #ffffff; margin: 2px 0;">${e.target.headsign}</p>
-               <p style="color: #ffffff; margin: 2px 0;">ขบวนรถ</p>
-               <p style="color: #ffffff; margin: 2px 0;">${e.target.trip_id}</p>
-             </div>
              <div class="col-md-3">
+               <p style="color: #ffffff; margin: 2px 0;">เส้นทาง</p>
                <p style="color: #ffffff; margin: 2px 0;">เวลาที่ใช้</p>
+               <p style="color: #ffffff; margin: 2px 0;">ขบวนรถ</p>
+               <p style="color: #ffffff; margin: 2px 0;">จำนวนผู้โดยสาร</p>
+             </div>
+             <div class="col-md-6">
+               <p style="color: #ffffff; margin: 2px 0;">${e.target.headsign}</p>
                <p style="color: #ffffff; margin: 2px 0;">${e.target.runtime} m.</p>
+               <p style="color: #ffffff; margin: 2px 0;">${e.target.trip_id}</p>
+               <p style="color: #ffffff; margin: 2px 0;"> คน.</p>
              </div>
           </div>
         </div>
