@@ -328,15 +328,18 @@ export class OpenstreetmapComponent implements OnInit {
           loc_order = Math.round((delta_t / runtime_secs) * loc_length)
           //console.log('trip_id,delta_t,loc_order,loc_length',trip_id,delta_t,loc_order,loc_length)
 
-
           if (+direction) {
-            console.log(+direction)
-            position = this.blue_csvData[loc_length - loc_order]
-            trainLocation = new L.LatLng(position[2], position[1])
-          } else {
             console.log(+direction)
             position = this.blue_csvData[loc_order]
             trainLocation = new L.LatLng(position[2], position[1])
+
+          } else {
+
+            console.log(+direction)
+            position = this.blue_csvData[loc_length - loc_order]
+            trainLocation = new L.LatLng(position[2], position[1])
+
+
           }
           break;
       }
@@ -407,7 +410,7 @@ export class OpenstreetmapComponent implements OnInit {
           radius: 3
         });
 
-
+        marker.bindPopup("Trip info");
         marker.addTo(this.map).bindPopup(`${tripEntity}`)
         // marker function
         marker.trip_id = trip_id

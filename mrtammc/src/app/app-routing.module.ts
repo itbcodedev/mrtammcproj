@@ -26,7 +26,7 @@ const routes: Routes = [
     component: KmlslayerComponent
   },
   {
-    path: 'osm',
+    path: 'tubemap',
     component: OpenstreetmapComponent
   },
   {
