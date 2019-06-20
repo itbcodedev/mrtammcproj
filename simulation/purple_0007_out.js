@@ -79,8 +79,8 @@ function makeRequest() {
         //console.log(obj)
         setTimeout(function () {
             request({
-                //url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
-                url: "http://localhost:3000/api/v2/simulate_realtime",
+                url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
+                //url: "http://localhost:3000/api/v2/simulate_realtime",
                 method: "POST",
                 json: true,
                 body: obj
