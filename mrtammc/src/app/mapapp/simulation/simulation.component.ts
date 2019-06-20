@@ -2,6 +2,7 @@ import { Component, OnInit ,Inject } from '@angular/core';
 import { environment } from "../../../environments/environment";
 import { WebsocketService} from '../../services/websocket.service'
 import { DOCUMENT } from '@angular/common';
+
 declare let L;
 
 
@@ -15,6 +16,7 @@ export class SimulationComponent implements OnInit {
   apikey = 'OFCE5UCISN.A6u3fH6hKP.uhcTNtKFfk==';
   map: any;
   wsdata;
+  wsDataArray = []
   constructor(@Inject(DOCUMENT) private document,
     private _websocket: WebsocketService) { }
 
@@ -42,7 +44,7 @@ export class SimulationComponent implements OnInit {
 
     function style (feature, latlng) {
         return L.circleMarker(latlng, {
-                     radius: 6,
+                     radius: 2,
                      fillColor: "#ff7800",
                      color: "#ff0000",
                      weight: 1,
@@ -51,12 +53,38 @@ export class SimulationComponent implements OnInit {
                  });
     };
 
+    function blue_style (feature, latlng) {
+        return L.circleMarker(latlng, {
+                     radius: 2,
+                     fillColor: "#ff7800",
+                     color: "#0000ff",
+                     weight: 1,
+                     opacity: 1,
+                     fillOpacity: 0.8
+                 });
+    };
+
+    function purple_style (feature, latlng) {
+        return L.circleMarker(latlng, {
+                     radius: 2,
+                     fillColor: "#ff7800",
+                     color: "#800080",
+                     weight: 1,
+                     opacity: 1,
+                     fillOpacity: 0.8
+                 });
+    };
 
 
-    const geojsonLayer = new L.GeoJSON.AJAX("/assets/dist/kml/simulate_blueline.geojson",{
-      pointToLayer: style
+    const blue_geojsonLayer = new L.GeoJSON.AJAX("/assets/dist/kml/simulate_blueline.geojson",{
+      pointToLayer: blue_style
     });
-    geojsonLayer.addTo(this.map);
+    blue_geojsonLayer.addTo(this.map);
+
+    const purple_geojsonLayer = new L.GeoJSON.AJAX("/assets/dist/kml/simulate_purpleline.geojson",{
+      pointToLayer: purple_style
+    });
+    purple_geojsonLayer.addTo(this.map);
 
     L.control.layers(baseLayers).addTo(this.map);
     this.map.on('click', (e) => { console.log(e.latlng); });
@@ -73,7 +101,7 @@ export class SimulationComponent implements OnInit {
     const   StationMarkers = {}
     const   trainLocationMarkers = {}
 
-    this._websocket.listen('gtfsrt_test').subscribe(data => {
+    this._websocket.listen('gtfsrt_realtime').subscribe(data => {
       // tracking object
       this.handleData(ActiveTrain, StationMarkers, trainLocationMarkers, data)
 
@@ -81,7 +109,13 @@ export class SimulationComponent implements OnInit {
   }
 
   handleData(ActiveTrain, StationMarkers, trainLocationMarkers, data) {
-    this.wsdata = JSON.stringify(data)
+    data.timestamp = new Date();
+    data.route_name = data['header']['route_name']
+    data.headsign = data['header']['headsign']
+    data.tripEntity = data['header']['tripEntity']
+    //this.wsdata = JSON.stringify(data)
+    this.wsDataArray.push(data)
+    //console.log(this.wsDataArray)
     // 1 set data realtime
     const route_name = data['header']['route_name']
     const route_id = data['header']['route_id']

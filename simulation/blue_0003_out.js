@@ -17,7 +17,7 @@ xmlReader.readXML(fs.readFileSync(FILE), function(err, data) {
     var xml = data.content;
     var result = JSON.parse(convert.xml2json(xml, {compact: true, spaces: 4}));
 
-    const Placemark = result.kml.Document.Folder.Placemark
+    const Placemark = result.kml.Document.Folder.Placemark.reverse()
 
     Placemark.forEach( p => {
         //console.log(p)
@@ -34,16 +34,19 @@ xmlReader.readXML(fs.readFileSync(FILE), function(err, data) {
         //             }
         const date = new Date()
         const time = date.getDate()
-        const tripEntity = "003"
+        const tripEntity = "0003-out"
         const latitude =  coordinates[1]
         const longitude = coordinates[0].replace(/\r?\n?/g, '').trim()
-        const tripId = "003"
+        const tripId = "0003-out"
         const gtfsrt = `
       {
         "header": {
             "gtfs_realtime_version": "2.0",
             "incrementality": "FULL_DATASET",
-            "timestamp": "${time}"
+            "timestamp": "${time}",
+            "route_name": "blue",
+            "headsign": "BL10-เตาปูน to BL28-หัวลำโพง",
+            "tripEntity": "${tripEntity}"
         },
         "entity": {
             "id": "${tripEntity}",
@@ -76,8 +79,8 @@ function makeRequest() {
         //console.log(obj)
         setTimeout(function () {
             request({
-                //url: "http://mmc_app1.mrta.co.th/api/v2/simulate",
-                url: "http://localhost:3000/api/v2/simulate_test",
+                //url: "http://mmc_app1.mrta.co.th/api/v2/simulate_realtime",
+                url: "http://localhost:3000/api/v2/simulate_realtime",
                 method: "POST",
                 json: true,
                 body: obj

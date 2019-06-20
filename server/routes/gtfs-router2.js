@@ -105,9 +105,9 @@ module.exports = function(io) {
 
   })
 
-  router.post('/simulate_test',  (req,res,next) => {
+  router.post('/simulate_realtime',  (req,res,next) => {
     //console.log(req.body)
-    io.sockets.emit('gtfsrt_test', req.body);
+    io.sockets.emit('gtfsrt_realtime', req.body);
     return res.status(200).json(req.body);
 
   })
