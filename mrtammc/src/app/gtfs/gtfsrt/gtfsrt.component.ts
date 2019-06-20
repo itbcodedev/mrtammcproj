@@ -51,11 +51,15 @@ export class GtfsrtComponent implements OnInit {
   selectrouteid
   controllerLayer
   selectTripId
-
+  CurrentDate
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
     private gtfsService: GtfsService
-  ) { }
+  ) {
+
+    this.CurrentDate = moment().subtract(3, 'hours');
+    //this.CurrentDate = moment()
+  }
 
 
 
@@ -106,7 +110,7 @@ export class GtfsrtComponent implements OnInit {
 
     // get data from web socket
     this._gtfsws.listen('gtfsrt').subscribe(async data => {
-
+      this.CurrentDate = moment().subtract(3, 'hours');
       this.wsdata = JSON.stringify(data, null, 2)
       // // DEBUG: data from webservice
       console.log('93..........', this.wsdata)
@@ -134,7 +138,7 @@ export class GtfsrtComponent implements OnInit {
       // getdata
       const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(trip_id);
 
-      //filter again
+      //filter again filter only active trip
       const routetrips = routeinfowithtrips.filter(obj => {
         return this.checktime(obj.start_time, obj.end_time)
       })
@@ -153,8 +157,9 @@ export class GtfsrtComponent implements OnInit {
       })
 
       // // DEBUG: success ? filter next station
-
-      const nexttrip = nextstation[0].selectStoptimes
+      console.log(this.CurrentDate.format("HH:mm:ss"))
+      console.log(nextstation)
+      const nextstop = nextstation[0].selectStoptimes
 
 
       //console.log('130....',nexttrip)
@@ -205,7 +210,7 @@ export class GtfsrtComponent implements OnInit {
         marker.openPopup();
 
         const buttonSubmit = L.DomUtil.get('button-submit');
-        L.DomEvent.addListener(buttonSubmit, 'click', function (e) {
+        L.DomEvent.addListener(buttonSubmit, 'click', function(e) {
           this.map.setView(marker.getLatLng(), 16);
           L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             maxZoom: 20,
@@ -215,18 +220,19 @@ export class GtfsrtComponent implements OnInit {
           this.selectTripId = marker.tripEntity
           console.log(this.selectTripId)
           //marker.closePopup();
-        },this);  // point to this context
+        }, this);  // point to this context
       }  // end function onMarkerClick display popup with button
-
 
 
       if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
         // exist
         if (trainLocationMarkers[tripEntity] !== undefined) {
           trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
+          console.log(nextstop.stop_id,nextstop.arrival_time,nextstop.departure_time)
+          trainLocationMarkers[tripEntity].nextstop = nextstop.stop_id
+          trainLocationMarkers[tripEntity].arrival_time = nextstop.arrival_time
+          trainLocationMarkers[tripEntity].departure_time = nextstop.departure_time
         }
-
-
       } else {
         // new
         this.ActiveTrain[tripEntity] = vehicle
@@ -249,13 +255,13 @@ export class GtfsrtComponent implements OnInit {
         marker.controllerLayer = this.controllerLayer
 
 
-        marker.nextstop = nexttrip.stop_id
-        marker.arrival_time = nexttrip.arrival_time
-        marker.departure_time = nexttrip.departure_time
+        marker.nextstop = nextstop.stop_id
+        marker.arrival_time = nextstop.arrival_time
+        marker.departure_time = nextstop.departure_time
 
         //construct object
         const obj = {
-          stop_id: nexttrip.stop_id
+          stop_id: nextstop.stop_id
         }
         //assign variable
         let tripin
@@ -275,7 +281,7 @@ export class GtfsrtComponent implements OnInit {
         this.incomingTrain.push(obj)
 
         console.log('246......', this.incomingTrain)
-        console.log('247......',this.StationMarkers)
+        console.log('247......', this.StationMarkers)
         //// TODO: update station marker
         // get station marker
         // show the popup for a marker you can use markers bindPopup methods
@@ -287,21 +293,21 @@ export class GtfsrtComponent implements OnInit {
         //     this.closePopup();
         // });
 
-        marker.on('mouseover', onTrainClick,this);
-        marker.on('mouseout', onTrainClick,this );
+        marker.on('mouseover', onTrainClick, this);
+        marker.on('mouseout', onTrainClick, this);
 
         //marker.on('mouseover', onTrainClick, marker);
         marker.on("click", function(event) {
-            //this.map.flyTo(marker.getLatLng())
-            this.map.setView(marker.getLatLng(), 16);
+          //this.map.flyTo(marker.getLatLng())
+          this.map.setView(marker.getLatLng(), 16);
 
-            L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-              maxZoom: 20,
-              subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-            }).addTo(this.map);
+          L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+          }).addTo(this.map);
 
-            this.selectTripId = marker.tripEntity
-            //this.map.panTo(marker.getLatLng())
+          this.selectTripId = marker.tripEntity
+          //this.map.panTo(marker.getLatLng())
 
         }, this);
 
@@ -334,7 +340,7 @@ export class GtfsrtComponent implements OnInit {
 
 
       if (this.ActiveTrain.hasOwnProperty(this.selectTripId)) {
-        console.log('select Tripid',this.selectTripId)
+        console.log('select Tripid', this.selectTripId)
         const Center = trainLocationMarkers[this.selectTripId]
         // console.log(Center)
         // const latitude = Center['position']['latitude']
@@ -573,19 +579,10 @@ export class GtfsrtComponent implements OnInit {
 
   findNextTrip(arrival_time: any): any {
 
-    const format = 'hh:mm:ss'
-    //const CurrentDate = moment().subtract('hours',5);
-    //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
-    //const CurrentDate = moment().subtract(5,'hours');
-    const CurrentDate = moment()
-    let timenow = CurrentDate.format("HH:mm:ss")
+    let timenow = this.CurrentDate.format("HH:mm:ss")
 
-    //console.log('448........arrival_time < timenow',arrival_time,timenow )
-    // // TODO: convert to sec
     const arrival_time_secs = this.getsecond(arrival_time)
     const timenow_secs = this.getsecond(timenow)
-
-    //console.log('timenow_secs,arrival_time_secs',timenow_secs,arrival_time_secs)
     if (arrival_time_secs > timenow_secs) {
       //console.log('true')
       return true
@@ -594,8 +591,6 @@ export class GtfsrtComponent implements OnInit {
       return false
     }
   }
-
-
 
   getColor(color) {
     switch (color) {
@@ -631,14 +626,7 @@ export class GtfsrtComponent implements OnInit {
 
   checktime(start_time, endtime_time) {
     const format = 'hh:mm:ss'
-    //Adjust time
-    //const CurrentDate = moment().subtract('hours',5);
-    //const CurrentDate = moment().subtract(5,'hours');
-    const CurrentDate = moment()
-    //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
-    // console.log('start_time',start_time)
-    // console.log('endtime_time',endtime_time)
-    let timenow = CurrentDate.format("HH:mm:ss")
+    let timenow = this.CurrentDate.format("HH:mm:ss")
     //console.log('timenow', timenow)
     const time = moment(timenow, format)
     const at = moment(start_time, format)
