@@ -1,20 +1,20 @@
 stop_id,stop_name,stop_name_en,stop_lat,stop_lon,zone_id,stop_url,stop,icon
-PP01,สถานีคลองบางไผ่,Khlong Bang Phai,13.892337,100.408416,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp01.jpg,1,purple_station.png
-PP02,สถานีตลาดบางใหญ่,Talad Bang Yai,13.881034,100.409401,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp02.jpg,1250,purple_station.png
-PP03,สถานีสามแยกบางใหญ่,Sam Yaek Bang Yai,13.874785,100.419486,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp03.jpg,3000,purple_station.png
-PP04,สถานีบางพลู,Bang Phlu,13.875704,100.433925,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp04.jpg,4520,purple_station.png
-PP05,สถานีบางรักใหญ่,Bang Rak Yai,13.8766,100.444578,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp05.jpg,5680,purple_station.png
-PP06,สถานีบางรักน้อยท่าอิฐ,Bang Rak Noi Tha It,13.874939,100.456102,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp06.jpg,7000,purple_station.png
-PP07,สถานีไทรม้า,Sai Ma,13.870599,100.466664,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp07.jpg,8200,purple_station.png
-PP08,สถานีสะพานพระนั่งเกล้า,Phra Nangklao Bridge,13.870349,100.480489,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp08.jpg,9700,purple_station.png
-PP09,สถานีแยกนนทบุรี 1,Yaek Nonthaburi 1,13.866058,100.494289,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp09.jpg,11300,purple_station.png
-PP10,สถานีบางกระสอ,Bang Krasor,13.86162,100.504773,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp10.jpg,12600,purple_station.png
-PP11,สถานีศูนย์ราชการนนทบุรี,Nonthaburi Civic Center,13.860215,100.513384,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp11.jpg,13500,purple_station.png
-PP12,สถานีกระทรวงสาธารณสุข,Ministry of Public Health,13.848626,100.514893,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp12.jpg,15700,purple_station.png
-PP13,สถานีแยกติวานนท์,Yaek Tiwanon,13.839409,100.515188,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp13.jpg,17000,purple_station.png
-PP14,สถานีวงศ์สว่าง,Wong Sawang,13.829947,100.526629,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp14.jpg,18600,purple_station.png
-PP15,สถานีบางซ่อน,Bang Son,13.820201,100.532592,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp15.jpg,20000,purple_station.png
-PP16,สถานีเตาปูน,Tao Poon,13.806205,100.530836,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp16.jpg,21600,purple_station.png
+PP01,สถานีคลองบางไผ่,Khlong Bang Phai,13.892337,100.408416,,/assets/dist/img/stationimage/purple_pp01.png,1,purple_station.png
+PP02,สถานีตลาดบางใหญ่,Talad Bang Yai,13.881034,100.409401,,/assets/dist/img/stationimage/purple_pp02.png,1250,purple_station.png
+PP03,สถานีสามแยกบางใหญ่,Sam Yaek Bang Yai,13.874785,100.419486,,/assets/dist/img/stationimage/purple_pp03.png,3000,purple_station.png
+PP04,สถานีบางพลู,Bang Phlu,13.875704,100.433925,,/assets/dist/img/stationimage/purple_pp04.png,4520,purple_station.png
+PP05,สถานีบางรักใหญ่,Bang Rak Yai,13.8766,100.444578,,/assets/dist/img/stationimage/purple_pp05.png,5680,purple_station.png
+PP06,สถานีบางรักน้อยท่าอิฐ,Bang Rak Noi Tha It,13.874939,100.456102,,/assets/dist/img/stationimage/purple_pp06.png,7000,purple_station.png
+PP07,สถานีไทรม้า,Sai Ma,13.870599,100.466664,,/assets/dist/img/stationimage/purple_pp07.png,8200,purple_station.png
+PP08,สถานีสะพานพระนั่งเกล้า,Phra Nangklao Bridge,13.870349,100.480489,,/assets/dist/img/stationimage/purple_pp08.png,9700,purple_station.png
+PP09,สถานีแยกนนทบุรี 1,Yaek Nonthaburi 1,13.866058,100.494289,,/assets/dist/img/stationimage/purple_pp09.png,11300,purple_station.png
+PP10,สถานีบางกระสอ,Bang Krasor,13.86162,100.504773,,/assets/dist/img/stationimage/purple_pp10.png,12600,purple_station.png
+PP11,สถานีศูนย์ราชการนนทบุรี,Nonthaburi Civic Center,13.860215,100.513384,,/assets/dist/img/stationimage/purple_pp11.png,13500,purple_station.png
+PP12,สถานีกระทรวงสาธารณสุข,Ministry of Public Health,13.848626,100.514893,,/assets/dist/img/stationimage/purple_pp12.png,15700,purple_station.png
+PP13,สถานีแยกติวานนท์,Yaek Tiwanon,13.839409,100.515188,,/assets/dist/img/stationimage/purple_pp13.png,17000,purple_station.png
+PP14,สถานีวงศ์สว่าง,Wong Sawang,13.829947,100.526629,,/assets/dist/img/stationimage/purple_pp14.png,18600,purple_station.png
+PP15,สถานีบางซ่อน,Bang Son,13.820201,100.532592,,/assets/dist/img/stationimage/purple_pp15.png,20000,purple_station.png
+PP16,สถานีเตาปูน,Tao Poon,13.806205,100.530836,,/assets/dist/img/stationimage/purple_pp16.png,21600,purple_station.png
 BL01,สถานีท่าพระ,Tha Phra,13.72966,100.47417,,,,blue_station.png
 BL02,สถานีจรัญฯ 13,Charan 13,13.74011,100.47084,,,,blue_station.png
 BL03,สถานีไฟฉาย,Fai Chai,13.75569,100.46937,,,,blue_station.png
@@ -24,25 +24,25 @@ BL06,สถานีสิรินธร,Sirindhorn,13.78389,100.49345,,,,blue_
 BL07,สถานีบางพลัด,Bang Phlat,13.79247,100.50499,,,,blue_station.png
 BL08,สถานีบางอ้อ,Bang O,13.79891,100.50986,,,,blue_station.png
 BL09,สถานีบางโพ,Bang Pho,13.8064,100.52097,,,,blue_station.png
-BL10,สถานีเตาปูน,Tao Poon,13.8062237,100.5308543,,https://www.bangkokmetro.co.th/web/imgcontent/Image/map_pp16.jpg,,blue_station.png
-BL11,สถานีบางซื่อ,Bang Sue,13.8029397,100.5398691,,http://www.bangkokmetro.co.th/web/imgcontent/Image/18reban.jpg,,blue_station.png
-BL12,สถานีกำแพงเพชร,Kamphaeng Phet,13.7976359,100.5476904,,http://www.bangkokmetro.co.th/web/imgcontent/Image/17rekam.jpg,,blue_station.png
-BL13,สถานีสวนจตุจักร,Chatuchak Park,13.8026007,100.5538058,,http://www.bangkokmetro.co.th/web/imgcontent/Image/16recha.jpg,,blue_station.png
-BL14,สถานีพหลโยธิน,Phahon Yothin,13.8129049,100.5613803,,http://www.bangkokmetro.co.th/web/imgcontent/Image/15repha.jpg,,blue_station.png
-BL15,สถานีลาดพร้าว,Lat Phrao,13.806664,100.5725598,,http://www.bangkokmetro.co.th/web/imgcontent/Image/14relat.jpg,,blue_station.png
-BL16,สถานีรัชดาภิเษก,Ratchadaphisek,13.799105,100.5746841,,http://www.bangkokmetro.co.th/web/imgcontent/Image/13reratfix.jpg,,blue_station.png
-BL17,สถานีสุทธิสาร,Sutthisan,13.7890191,100.5741477,,http://www.bangkokmetro.co.th/web/imgcontent/Image/12resutfix.jpg,,blue_station.png
-BL18,สถานีห้วยขวาง,Huai Khwang,13.7790056,100.5736864,,http://www.bangkokmetro.co.th/web/imgcontent/Image/11rehui.jpg,,blue_station.png
-BL19,สถานีศูนย์วัฒนธรรม,Thailand Cultural Centre,13.7673921,100.5711436,,http://www.bangkokmetro.co.th/web/imgcontent/Image/mo10recul2.jpg,,blue_station.png
-BL20,สถานีพระราม 9,Phra Ram 9,13.7577477,100.565334,,http://www.bangkokmetro.co.th/web/imgcontent/Image/9reram.jpg,,blue_station.png
-BL21,สถานีเพชรบุรี,Phetchaburi,13.7484936,100.5633169,,http://www.bangkokmetro.co.th/web/imgcontent/Image/8repet.jpg,,blue_station.png
-BL22,สถานีสุขุมวิท,Sukhumvit,13.7367666,100.5613777,,http://www.bangkokmetro.co.th/web/imgcontent/Image/7resuk.jpg,,blue_station.png
-BL23,สถานีศูนย์ประชุมแห่งชาติสิริกิตติ์,Queen Sirikit NCC,13.7237049,100.5602539,,http://www.bangkokmetro.co.th/web/imgcontent/Image/6resir.jpg,,blue_station.png
-BL24,สถานีคลองเตย,Khlong Toei,13.7224177,100.5537146,,https://www.bangkokmetro.co.th/web/imgcontent/Image/5rekho.jpg,,blue_station.png
-BL25,สถานีลุมพินี,Lumphini,13.7261281,100.5449008,,http://www.bangkokmetro.co.th/web/imgcontent/Image/4relum.jpg,,blue_station.png
-BL26,สถานีสีลม,Si Lom,13.7295154,100.536704,,http://www.bangkokmetro.co.th/web/imgcontent/Image/3resil.jpg,,blue_station.png
-BL27,สถานีสามย่าน,Sam Yan,13.7327828,100.5287433,,http://www.bangkokmetro.co.th/web/imgcontent/Image/2resam.jpg,,blue_station.png
-BL28,สถานีหัวลำโพง,Hua Lamphong,13.7376342,100.5168852,,http://www.bangkokmetro.co.th/web/imgcontent/Image/1rehuafix.jpg,,blue_station.png
+BL10,สถานีเตาปูน,Tao Poon,13.8062237,100.5308543,,/assets/dist/img/stationimage/purple_pp16.png,,blue_station.png
+BL11,สถานีบางซื่อ,Bang Sue,13.8029397,100.5398691,,/assets/dist/img/stationimage/blue_bl11.png,,blue_station.png
+BL12,สถานีกำแพงเพชร,Kamphaeng Phet,13.7976359,100.5476904,,/assets/dist/img/stationimage/blue_bl12.png,,blue_station.png
+BL13,สถานีสวนจตุจักร,Chatuchak Park,13.8026007,100.5538058,,/assets/dist/img/stationimage/blue_bl13.png,,blue_station.png
+BL14,สถานีพหลโยธิน,Phahon Yothin,13.8129049,100.5613803,,/assets/dist/img/stationimage/blue_bl14.png,,blue_station.png
+BL15,สถานีลาดพร้าว,Lat Phrao,13.806664,100.5725598,,/assets/dist/img/stationimage/blue_bl15.png,,blue_station.png
+BL16,สถานีรัชดาภิเษก,Ratchadaphisek,13.799105,100.5746841,,/assets/dist/img/stationimage/blue_bl16.png,,blue_station.png
+BL17,สถานีสุทธิสาร,Sutthisan,13.7890191,100.5741477,,/assets/dist/img/stationimage/blue_bl17.png,,blue_station.png
+BL18,สถานีห้วยขวาง,Huai Khwang,13.7790056,100.5736864,,/assets/dist/img/stationimage/blue_bl18.png,,blue_station.png
+BL19,สถานีศูนย์วัฒนธรรม,Thailand Cultural Centre,13.7673921,100.5711436,,/assets/dist/img/stationimage/blue_bl19.png,,blue_station.png
+BL20,สถานีพระราม 9,Phra Ram 9,13.7577477,100.565334,,/assets/dist/img/stationimage/blue_bl20.png,,blue_station.png
+BL21,สถานีเพชรบุรี,Phetchaburi,13.7484936,100.5633169,,/assets/dist/img/stationimage/blue_bl21.png,,blue_station.png
+BL22,สถานีสุขุมวิท,Sukhumvit,13.7367666,100.5613777,,/assets/dist/img/stationimage/blue_bl22.png,,blue_station.png
+BL23,สถานีศูนย์ประชุมแห่งชาติสิริกิตติ์,Queen Sirikit NCC,13.7237049,100.5602539,,/assets/dist/img/stationimage/blue_bl23.png,,blue_station.png
+BL24,สถานีคลองเตย,Khlong Toei,13.7224177,100.5537146,,/assets/dist/img/stationimage/blue_bl24.png,,blue_station.png
+BL25,สถานีลุมพินี,Lumphini,13.7261281,100.5449008,,/assets/dist/img/stationimage/blue_bl25.png,,blue_station.png
+BL26,สถานีสีลม,Si Lom,13.7295154,100.536704,,/assets/dist/img/stationimage/blue_bl26.png,,blue_station.png
+BL27,สถานีสามย่าน,Sam Yan,13.7327828,100.5287433,,/assets/dist/img/stationimage/blue_bl27.png,,blue_station.png
+BL28,สถานีหัวลำโพง,Hua Lamphong,13.7376342,100.5168852,,/assets/dist/img/stationimage/blue_bl28.png,,blue_station.png
 BL29,สถานีวัดมังกร,Wat Mangkon,13.74182,100.51049,,,,blue_station.png
 BL30,สถานีสามยอด,Sam Yot,13.74701,100.50317,,,,blue_station.png
 BL31,สถานีสนามไชย,Sanam Chai,13.74741,100.49419,,,,blue_station.png

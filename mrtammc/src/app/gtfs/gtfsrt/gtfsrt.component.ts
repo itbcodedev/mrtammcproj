@@ -57,8 +57,8 @@ export class GtfsrtComponent implements OnInit {
     private gtfsService: GtfsService
   ) {
 
-    this.CurrentDate = moment().subtract(3, 'hours');
-    //this.CurrentDate = moment()
+    //this.CurrentDate = moment().subtract(3, 'hours');
+    this.CurrentDate = moment()
   }
 
 
@@ -110,10 +110,12 @@ export class GtfsrtComponent implements OnInit {
 
     // get data from web socket
     this._gtfsws.listen('gtfsrt').subscribe(async data => {
-      this.CurrentDate = moment().subtract(3, 'hours');
+      // get time
+      //this.CurrentDate = moment().subtract(3, 'hours');
+      this.CurrentDate = moment()
       this.wsdata = JSON.stringify(data, null, 2)
       // // DEBUG: data from webservice
-      console.log('93..........', this.wsdata)
+      //console.log('93..........', this.wsdata)
 
       const route_name = data['header']['route_name']
       const route_id = data['header']['route_id']
@@ -133,16 +135,12 @@ export class GtfsrtComponent implements OnInit {
       const longitude = data['entity']['vehicle']['position']['longitude']
       const stoptimes = data['entity']['vehicle']['stoptimes']
       const trainLatLng = new L.LatLng(latitude, longitude);
-
-
       // getdata
       const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(trip_id);
-
       //filter again filter only active trip
       const routetrips = routeinfowithtrips.filter(obj => {
         return this.checktime(obj.start_time, obj.end_time)
       })
-
       //debug
       //console.log('117....',trip_id,filter)
       const nextstation = routetrips.map(obj => {
@@ -153,6 +151,7 @@ export class GtfsrtComponent implements OnInit {
         })
         obj.selectStoptimes = _.first(selectStoptimes)
 
+
         return obj
       })
 
@@ -160,10 +159,34 @@ export class GtfsrtComponent implements OnInit {
       console.log(this.CurrentDate.format("HH:mm:ss"))
       console.log(nextstation)
       const nextstop = nextstation[0].selectStoptimes
+      let timenow = this.CurrentDate.format("HH:mm:ss")
+      // find difftime to station
+      const arr_time = this.getsecond(nextstop.arrival_time)
+      const arr_now = this.getsecond(timenow)
+      nextstop.difftime = ((arr_time - arr_now) / 60).toFixed(2);
 
+      function setStationInfo() {
+        console.log("setStationInfo")
+        // update marker popup
+        const stationhtml = `
+                <div class="card" style="width: 18rem;">
+                  <img class="card-img-top"  style="width: 100%; height: 13vw; object-fit: cover;"
+                  src="${this.StationMarkers[nextstop.stop_id].stop_url}" alt="Card image cap">
+                  <div class="card-body" style="padding: 4px;">
+                    <p style="margin: 2px">สถานี ${this.StationMarkers[nextstop.stop_id].stop_id}-${this.StationMarkers[nextstop.stop_id].stop_name}</p>
+                    <p style="margin: 2px">latitude ${this.StationMarkers[nextstop.stop_id].stop_lat} long ${this.StationMarkers[nextstop.stop_id].stop_lon}</p>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ขบวนขาเข้า</li>
+                    <li class="list-group-item">ขบวนขาออก</li>
 
-      //console.log('130....',nexttrip)
-      // // TODO: filter with time select next station
+                  </ul>
+                </div>
+              `
+        const stoppopup = this.StationMarkers[nextstop.stop_id].getPopup();
+        stoppopup.setContent(stationhtml);
+        stoppopup.update();
+      }
 
       function onTrainClick(e) {
         // get marker
@@ -199,8 +222,13 @@ export class GtfsrtComponent implements OnInit {
           </div>
         </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">สถานีถัดไป ${e.target.nextstop}</li>
-            <li class="list-group-item">arrival: ${e.target.arrival_time} departure: ${e.target.departure_time}</li>
+            <li class="list-group-item">
+              <span>สถานีถัดไป <b>${e.target.nextstop}</b> ใช้เวลาเวลา ${e.target.difftime} นาที</span>
+              <span>arrival: ${e.target.arrival_time} departure: ${e.target.departure_time}</span>
+            </li>
+            <li class="list-group-item">
+
+            </li>
           </ul>
      </div>
         `
@@ -227,14 +255,21 @@ export class GtfsrtComponent implements OnInit {
       if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
         // exist
         if (trainLocationMarkers[tripEntity] !== undefined) {
-          trainLocationMarkers[tripEntity].setLatLng(trainLatLng)
-          console.log(nextstop.stop_id,nextstop.arrival_time,nextstop.departure_time)
-          trainLocationMarkers[tripEntity].nextstop = nextstop.stop_id
-          trainLocationMarkers[tripEntity].arrival_time = nextstop.arrival_time
-          trainLocationMarkers[tripEntity].departure_time = nextstop.departure_time
+          // update marker
+          const marker_trip = trainLocationMarkers[tripEntity]
+          marker_trip.setLatLng(trainLatLng)
+          console.log("nextstop.stop_id, marker_trip.trip_id, nextstop.arrival_time, nextstop.departure_time, marker_trip.direction")
+          console.log(nextstop.stop_id, marker_trip.trip_id, nextstop.arrival_time, nextstop.departure_time,marker_trip.direction)
+          marker_trip.nextstop = nextstop.stop_id
+          marker_trip.arrival_time = nextstop.arrival_time
+          marker_trip.departure_time = nextstop.departure_time
+          marker_trip.difftime = nextstop.difftime
+
+          //update station
+          setStationInfo()
         }
       } else {
-        // new
+        // new marker
         this.ActiveTrain[tripEntity] = vehicle
 
         //// TODO: 1 create marker
@@ -254,45 +289,12 @@ export class GtfsrtComponent implements OnInit {
         marker.map = this.map
         marker.controllerLayer = this.controllerLayer
 
-
         marker.nextstop = nextstop.stop_id
         marker.arrival_time = nextstop.arrival_time
         marker.departure_time = nextstop.departure_time
+        marker.difftime = nextstop.difftime
 
-        //construct object
-        const obj = {
-          stop_id: nextstop.stop_id
-        }
-        //assign variable
-        let tripin
-        let tripout
-        // direction
-        if (+direction) {
-
-          tripout = { trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction }
-          obj['tripout'] = tripout
-
-        } else {
-          tripin = { trip_id: trip_id, start_time: start_time, end_time: end_time, direction: direction }
-          obj['tripin'] = tripin
-        }
-
-
-        this.incomingTrain.push(obj)
-
-        console.log('246......', this.incomingTrain)
-        console.log('247......', this.StationMarkers)
-        //// TODO: update station marker
-        // get station marker
-        // show the popup for a marker you can use markers bindPopup methods
         marker.bindPopup("Trip info");
-        // marker.on('mouseover', function (e) {
-        //     this.openPopup();
-        // });
-        // marker.on('mouseout', function (e) {
-        //     this.closePopup();
-        // });
-
         marker.on('mouseover', onTrainClick, this);
         marker.on('mouseout', onTrainClick, this);
 
@@ -313,9 +315,11 @@ export class GtfsrtComponent implements OnInit {
 
         trainLocationMarkers[tripEntity] = marker
 
+        setStationInfo()
+
       }
 
-
+      // Clear marker from array
       // check train over due
       for (let key in this.ActiveTrain) {
         if (time_now_sec > this.ActiveTrain[key]['trip']['end_time_secs']) {
@@ -516,27 +520,27 @@ export class GtfsrtComponent implements OnInit {
       marker.addTo(this.map)
       marker.bindPopup("upload...")
       marker.stop_id = stop.stop_id
-
+      marker.stop_url = stop.stop_url
+      marker.stop_name = stop.stop_name
       this.StationMarkers[stop.stop_id] = marker
 
       // marker function
       function onMarkerClick(e) {
         const html = `
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>สถานี ${stop.stop_id}-${stop.stop_name} </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top"  style="width: 100%; height: 13vw; object-fit: cover;"
+            src="${stop.stop_url}" alt="Card image cap">
+            <div class="card-body"  style="padding: 4px;">
+              <p style="margin: 2px" >สถานี ${stop.stop_id}-${stop.stop_name}</p>
+              <p style="margin: 2px" >latitude ${stop.stop_lat} long ${stop.stop_lon}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">ขบวนขาเข้า</li>
+              <li class="list-group-item">ขบวนขาออก</li>
 
-            </tr>
-            <tr>
+            </ul>
+          </div>
 
-            </tr>
-            </tbody>
-          </table>
         `
         const popup = e.target.getPopup();
         popup.setContent(html);
@@ -580,7 +584,6 @@ export class GtfsrtComponent implements OnInit {
   findNextTrip(arrival_time: any): any {
 
     let timenow = this.CurrentDate.format("HH:mm:ss")
-
     const arrival_time_secs = this.getsecond(arrival_time)
     const timenow_secs = this.getsecond(timenow)
     if (arrival_time_secs > timenow_secs) {
