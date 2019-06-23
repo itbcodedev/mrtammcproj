@@ -132,6 +132,12 @@ module.exports = function(io) {
     })
   })
 
+  router.get('/allstoptimes', (req, res, next) => {
+    const query = {}
+    gtfs.getallstoptimes(query).then(stoptimes => {
+      res.json(stoptimes)
+    })
+  });
   // localhost:3000/api/v2/stoptimes_basic/MRTA_Transit/00316
   router.get('/stoptimes_basic/:agency_key/:trip_id', async (req, res) => {
     const {agency_key,trip_id} = req.params

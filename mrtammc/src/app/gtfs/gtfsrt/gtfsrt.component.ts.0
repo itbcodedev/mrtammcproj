@@ -24,8 +24,6 @@ export class GtfsrtComponent implements OnInit {
   baseLayers
   stoptimes
   stoptimesbasic
-  allStopTimes
-  trips
   //todo: change to v2
 
   // data lable in card
@@ -45,6 +43,7 @@ export class GtfsrtComponent implements OnInit {
   next_in
   ActiveTrain = {}
   StationMarkers = {}
+  StationTrips = {}
   SelectedTrain = []
   routesinfo
   activeRoutes
@@ -54,7 +53,7 @@ export class GtfsrtComponent implements OnInit {
   controllerLayer
   selectTripId
   CurrentDate
-  StationTrips
+
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
     private gtfsService: GtfsService
@@ -90,11 +89,8 @@ export class GtfsrtComponent implements OnInit {
     })
 
     this.loadGeojson()
-
     await this.loadStoptimes()
     await this.loadStation()
-    await this.loadTrips()
-    console.log(this.trips.length)
     //await this.getTripsAtStop("PP01")
 
     this.controllerLayer = L.control.layers(this.baseLayers)
@@ -172,6 +168,8 @@ export class GtfsrtComponent implements OnInit {
       nextstop.difftime = ((arr_time - arr_now) / 60).toFixed(2);
 
 
+
+
       function onTrainClick(e) {
         // get marker
         const marker = e.target
@@ -201,9 +199,7 @@ export class GtfsrtComponent implements OnInit {
                <p style="color: #ffffff; margin: 2px 0;">${e.target.headsign}</p>
                <p style="color: #ffffff; margin: 2px 0;">${e.target.runtime} m.</p>
                <p style="color: #ffffff; margin: 2px 0;">${e.target.trip_id}</p>
-               <p style="color: #ffffff; margin: 2px 0;">
-                  N/A <img src="/assets/dist/icons/man.png">
-               </p>
+               <p style="color: #ffffff; margin: 2px 0;"> คน.</p>
              </div>
           </div>
         </div>
@@ -237,20 +233,21 @@ export class GtfsrtComponent implements OnInit {
         }, this);  // point to this context
       }  // end function onMarkerClick display popup with button
 
+
       if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
         // exist
         if (trainLocationMarkers[tripEntity] !== undefined) {
           // update marker
           const marker_trip = trainLocationMarkers[tripEntity]
           marker_trip.setLatLng(trainLatLng)
-
+          console.log("nextstop.stop_id, marker_trip.trip_id, nextstop.arrival_time, nextstop.departure_time, marker_trip.direction")
+          console.log(nextstop.stop_id, marker_trip.trip_id, nextstop.arrival_time, nextstop.departure_time,marker_trip.direction)
           marker_trip.nextstop = nextstop.stop_id
           marker_trip.arrival_time = nextstop.arrival_time
           marker_trip.departure_time = nextstop.departure_time
-          marker_trip.difftime = nextstop.
-          console.log(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
-         this.setStationInfo(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
-          //update station
+          marker_trip.difftime = nextstop.difftime
+          this.setStationInfo(nextstop.stop_id,marker_trip.trip_id,nextstop.arrival_time,marker_trip.direction)
+
 
         }
       } else {
@@ -299,8 +296,9 @@ export class GtfsrtComponent implements OnInit {
         }, this);
 
         trainLocationMarkers[tripEntity] = marker
-        console.log(marker.stop_id,marker.trip_id,marker.arrival_time, marker.direction)
         this.setStationInfo(marker.stop_id,marker.trip_id,marker.arrival_time, marker.direction)
+
+
       }
 
       // Clear marker from array
@@ -330,10 +328,19 @@ export class GtfsrtComponent implements OnInit {
       if (this.ActiveTrain.hasOwnProperty(this.selectTripId)) {
         console.log('select Tripid', this.selectTripId)
         const Center = trainLocationMarkers[this.selectTripId]
+        // console.log(Center)
+        // const latitude = Center['position']['latitude']
+        // const longitude = Center['position']['longitude']
+        // const centerLatLng = new L.LatLng(latitude, longitude)
+        // console.log(centerLatLng)
         this.map.setView(Center.getLatLng(), 16);
       }
 
+
+      //console.log(this.StationTrips)
+      //console.log("end......")
     })  // end web service
+
 
     // updated latlng follow trip()
 
@@ -475,17 +482,6 @@ export class GtfsrtComponent implements OnInit {
     light_green_extend_line.addTo(this.map);
   }
 
-  async loadTrips() {
-    this.trips = await this.gtfsService.getTrips();
-  }
-
-  getdirection(trip_id) {
-    const trip = this.trips.find(t => {
-      return t.trip_id == trip_id
-    })
-    console.log(trip)
-    return trip.direction_id
-  }
 
   async loadStation() {
     this.stops = await this.gtfsService.getStops();
@@ -507,64 +503,25 @@ export class GtfsrtComponent implements OnInit {
       //// TODO: click marker  update content
       // add bind popup after addTo map
       marker.addTo(this.map)
-      marker.bindPopup("<img width='45' src='" + "/assets/dist/img/loading.gif" + "'/>")
+      marker.bindPopup("upload...")
       marker.stop_id = stop.stop_id
       marker.stop_url = stop.stop_url
       marker.stop_name = stop.stop_name
       this.StationMarkers[stop.stop_id] = marker
 
       // marker function
-      async function onMarkerClick(e) {
-        const stoptimes_next = await this.loadallstoptimes(e.target.stop_id)
-        //console.log(stoptimes_next)
-
-        let li = ""
-        stoptimes_next.forEach(st =>{
-          // console.log(st.trip_id)
-          const direction = this.getdirection(st.trip_id)
-          // console.log(direction)
-          let name
-          if (direction == 1) {
-             name = "ขาออก"
-             li += "<li class='list-group-item'>"+
-                    "<i class='fa fa-arrow-circle-left' style='color:blue'></i>"+
-                    "  "+name+" trip: " + st.trip_id+" " +
-                    "arrival_time: " + st.arrival_time+
-                   "</li>"
-          }
-
-          if (direction == 0) {
-            name = "ขาเข้า"
-            li += "<li class='list-group-item'>"+
-                  "<i class='fa fa-arrow-circle-right' style='color:red'></i>"+
-                   name+" trip: " + st.trip_id+" " +
-                   "arrival_time: " + st.arrival_time+
-                  "</li>"
-          }
-
-
-        })
-
+      function onMarkerClick(e) {
         const html = `
-          <div class="card trip" style="width: 18rem;">
+          <div class="card" style="width: 18rem;">
             <img class="card-img-top"  style="width: 100%; height: 13vw; object-fit: cover;"
             src="${stop.stop_url}" alt="Card image cap">
-            <div class="card-body"  style="padding: 0px 8px;">
-              <div class="row border" style="background-color: #f5f5f5;">
-                <div class="col-md-8">
-                  <p style="margin: 2px" >${stop.stop_id}-${stop.stop_name}</p>
-                  <p style="margin: 2px" >lat ${stop.stop_lat} long ${stop.stop_lon}</p>
-                </div>
-              <div class="col-md-4">
-                <p style="margin: 2px" >ความหนาแน่น</p>
-                <p style="margin: 2px" >
-                  N/A <img src="/assets/dist/icons/man.png">
-                </p>
-              </div>
-              </div>
+            <div class="card-body"  style="padding: 4px;">
+              <p style="margin: 2px" >สถานี ${stop.stop_id}-${stop.stop_name}</p>
+              <p style="margin: 2px" >latitude ${stop.stop_lat} long ${stop.stop_lon}</p>
             </div>
             <ul class="list-group list-group-flush">
-              ${li}
+              <li class="list-group-item">ขบวนขาเข้า</li>
+              <li class="list-group-item">ขบวนขาออก</li>
             </ul>
           </div>
 
@@ -574,17 +531,8 @@ export class GtfsrtComponent implements OnInit {
         popup.update();
       }  // end function onMarkerClick
       // cb to onMarkerClick
-      marker.on('click', onMarkerClick,this);
+      marker.on('click', onMarkerClick);
 
-    })
-  }
-
-  async loadallstoptimes(stop_id) {
-    // return next coming stoptimes filter by time now
-    this.allStopTimes = await this.gtfsService.allStopTimes()
-    return this.allStopTimes.filter(stoptime => {
-      //console.log("stoptime.arrival_time",stoptime.arrival_time)
-      return this.findNextTrip30min(stoptime.arrival_time) && (stoptime.stop_id == stop_id)
     })
   }
 
@@ -623,20 +571,6 @@ export class GtfsrtComponent implements OnInit {
     const arrival_time_secs = this.getsecond(arrival_time)
     const timenow_secs = this.getsecond(timenow)
     if (arrival_time_secs > timenow_secs) {
-      //console.log('true')
-      return true
-    } else {
-      //console.log('false')
-      return false
-    }
-  }
-
-  findNextTrip30min(arrival_time: any): any {
-
-    let timenow = this.CurrentDate.format("HH:mm:ss")
-    const arrival_time_secs = this.getsecond(arrival_time)
-    const timenow_secs = this.getsecond(timenow)
-    if (arrival_time_secs > timenow_secs && arrival_time_secs < (timenow_secs + 1800)) {
       //console.log('true')
       return true
     } else {
@@ -724,9 +658,29 @@ export class GtfsrtComponent implements OnInit {
         obj[0] =  {"trip_id": trip_id, "arrival_time": arrival_time, "direction":  direction}
         this.StationTrips[stop_id] = obj
       }
-    }
-  }
 
+    }
+    
+    console.log(this.StationTrips)
+    // update marker popup
+    const stationhtml = `
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top"  style="width: 100%; height: 13vw; object-fit: cover;"
+              src="${this.StationMarkers[stop_id].stop_url}" alt="Card image cap">
+              <div class="card-body" style="padding: 4px;">
+                <p style="margin: 2px">สถานี ${this.StationMarkers[stop_id].stop_id}-${this.StationMarkers[stop_id].stop_name}</p>
+                <p style="margin: 2px">latitude ${this.StationMarkers[stop_id].stop_lat} long ${this.StationMarkers[stop_id].stop_lon}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">ขาเข้า ${this.StationTrips[stop_id][0].trip_id} -  ${this.StationTrips[stop_id][0].arrival_time}</li>
+                <li class="list-group-item">ขาออก ${this.StationTrips[stop_id][1].trip_id} - ${this.StationTrips[stop_id][1].arrival_time}</li>
+              </ul>
+            </div>
+          `
+    const stoppopup = this.StationMarkers[stop_id].getPopup();
+    stoppopup.setContent(stationhtml);
+    stoppopup.update();
+  }
 }
 
 //

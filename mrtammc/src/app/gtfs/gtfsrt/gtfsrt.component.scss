@@ -105,6 +105,13 @@ li {
   background-position: left center;
 }
 
+.trip > ul >li {
+  list-style: none;
+  background-image: url("../../../assets/dist/icons/Train.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+}
+
 .card-img-top {
     width: 100%;
     height: 15vw;

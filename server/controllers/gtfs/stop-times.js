@@ -118,3 +118,10 @@ exports.getStoptimes = async (query = {}, projection = '-_id', options = {
     }
   ])
 }
+
+
+exports.getallstoptimes = async (query = {}) => {
+  return StopTime.aggregate([
+    {$match: {}}
+  ])
+}

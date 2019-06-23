@@ -59,6 +59,9 @@ export class GtfsService {
     return this.http.get(`${BASE_API_ENDPOINT}/stoptimes_basic/${agency_key}/${trip_id}`).toPromise();
   }
 
+  public allStopTimes() {
+    return this.http.get(`${BASE_API_ENDPOINT}/allstoptimes`).toPromise();
+  }
   // public getStopTimes(agency_key,route_id): Promise<StopTime[]> {
   //   return this.http.get<StopTime[]>(`${BASE_API_ENDPOINT}/stoptimes`).toPromise();
   // }
