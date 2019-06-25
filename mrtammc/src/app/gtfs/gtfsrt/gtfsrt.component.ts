@@ -45,6 +45,7 @@ export class GtfsrtComponent implements OnInit {
   next_in
   ActiveTrain = {}
   StationMarkers = {}
+  layerRouteGroup = {}
   SelectedTrain = []
   routesinfo
   activeRoutes
@@ -84,13 +85,15 @@ export class GtfsrtComponent implements OnInit {
     // get data
     this.routesinfo = await this.gtfsService.getRouteInfo()
     this.routes = await this.gtfsService.getRoutesBasic()
+    // Create layerRouteGroup
+    this.showAllMapLayer()
+    //this.removeAllRouteLayer()
 
     this.totalTrips = this.routesinfo.filter(obj => {
       return (this.checktime(obj.start_time, obj.end_time))
     })
 
     this.loadGeojson()
-
     await this.loadStoptimes()
     await this.loadStation()
     await this.loadTrips()
@@ -162,15 +165,15 @@ export class GtfsrtComponent implements OnInit {
       })
 
       // // DEBUG: success ? filter next station
-      console.log(this.CurrentDate.format("HH:mm:ss"))
-      console.log(nextstation)
+      //console.log(this.CurrentDate.format("HH:mm:ss"))
+      //console.log(nextstation)
       const nextstop = nextstation[0].selectStoptimes
       let timenow = this.CurrentDate.format("HH:mm:ss")
       // find difftime to station
       const arr_time = this.getsecond(nextstop.arrival_time)
       const arr_now = this.getsecond(timenow)
       nextstop.difftime = ((arr_time - arr_now) / 60).toFixed(2);
-
+      const number = this.getRandom()
 
       function onTrainClick(e) {
         // get marker
@@ -195,14 +198,14 @@ export class GtfsrtComponent implements OnInit {
                <p style="color: #ffffff; margin: 2px 0;">เส้นทาง</p>
                <p style="color: #ffffff; margin: 2px 0;">เวลาที่ใช้</p>
                <p style="color: #ffffff; margin: 2px 0;">ขบวนรถ</p>
-               <p style="color: #ffffff; margin: 2px 0;">จำนวนผู้โดยสาร</p>
+               <p style="color: #ffffff; margin: 2px 0;">ผู้โดยสาร</p>
              </div>
              <div class="col-md-6">
                <p style="color: #ffffff; margin: 2px 0;">${e.target.headsign}</p>
                <p style="color: #ffffff; margin: 2px 0;">${e.target.runtime} m.</p>
                <p style="color: #ffffff; margin: 2px 0;">${e.target.trip_id}</p>
                <p style="color: #ffffff; margin: 2px 0;">
-                  N/A <img src="/assets/dist/icons/man.png">
+                  <img src="/assets/dist/icons/man.png"> ${number} คน
                </p>
              </div>
           </div>
@@ -243,7 +246,6 @@ export class GtfsrtComponent implements OnInit {
           // update marker
           const marker_trip = trainLocationMarkers[tripEntity]
           marker_trip.setLatLng(trainLatLng)
-
           marker_trip.nextstop = nextstop.stop_id
           marker_trip.arrival_time = nextstop.arrival_time
           marker_trip.departure_time = nextstop.departure_time
@@ -251,15 +253,16 @@ export class GtfsrtComponent implements OnInit {
           console.log(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
          this.setStationInfo(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
           //update station
-
         }
       } else {
         // new marker
         this.ActiveTrain[tripEntity] = vehicle
-
         //// TODO: 1 create marker
         let marker = this.createMarker(trainLatLng, route_name)
-        marker.addTo(this.map).bindPopup(`${tripEntity}`)
+        marker.setForceZIndex = 999
+        //add marker
+        //marker.addTo(this.map).bindPopup(`${tripEntity}`)
+        this.layerRouteGroup[route_id].addLayer(marker)
         // marker function
         marker.tripEntity = tripEntity
         marker.trip_id = trip_id
@@ -340,6 +343,51 @@ export class GtfsrtComponent implements OnInit {
 
 
   }  //init
+  showAllMapLayer(): any {
+    
+    this.routes.forEach(obj => {
+      const obj_route_id  = obj.route_id
+      //const layerGroup[obj_route_id] = new L.layerGroup()
+
+      this.layerRouteGroup[obj_route_id] = L.layerGroup()
+      this.layerRouteGroup[obj_route_id].addTo(this.map)
+
+    })
+
+  }
+
+  removeAllRouteLayer() {
+    // this.map.eachLayer((layer) => {
+    //   this.map.removeLayer(layer)
+    // });
+    this.routes.forEach(obj => {
+      const obj_route_id  = obj.route_id
+      const layer = this.layerRouteGroup[obj_route_id]
+      this.map.removeLayer(layer)
+    })
+  }
+
+
+  removeRoutelayer(route_id): any {
+    console.log(route_id)
+    const layer = this.layerRouteGroup[route_id]
+    this.map.removeLayer(layer)
+    this.map.remove("purple_line")
+  }
+
+    // blue_line.addTo(this.map);
+    // purple_line.addTo(this.map);
+    // blue_chalearm_line.addTo(this.map);
+    // blue_extend_line.addTo(this.map);
+    // orange_line.addTo(this.map);
+    // dark_green_line.addTo(this.map);
+    // light_green_line.addTo(this.map);
+    // light_green_extend_line.addTo(this.map);
+
+  showRouteLayer(route_id) {
+    this.removeAllRouteLayer()
+    this.layerRouteGroup[route_id].addTo(this.map)
+  }
 
   loadbaselayers() {
     const osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -393,7 +441,6 @@ export class GtfsrtComponent implements OnInit {
   }
 
   loadGeojson() {
-
     // load geojson with new L.GeoJSON()
     const purple_line = new L.GeoJSON.AJAX("/assets/dist/kml/purple.geojson", {
       style: function(feature) {
@@ -465,6 +512,7 @@ export class GtfsrtComponent implements OnInit {
         };
       }
     });
+
     blue_line.addTo(this.map);
     purple_line.addTo(this.map);
     blue_chalearm_line.addTo(this.map);
@@ -487,6 +535,37 @@ export class GtfsrtComponent implements OnInit {
     return trip.direction_id
   }
 
+  getRandom() {
+    let number
+    const d = new Date();
+    const hour = d.getHours();
+    // Math.floor(Math.random() * (max - min + 1)) + min;
+
+    switch (true) {
+      case (hour < 7):
+        number = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
+        break;
+      case (hour < 9):
+        number = Math.floor(Math.random() * (500 - 300 + 1)) + 300;
+        break;
+      case (hour < 12):
+        number = Math.floor(Math.random() * (800 - 500 + 1)) + 400;
+        break;
+      case (hour < 16):
+        number = Math.floor(Math.random() * (600 - 200 + 1)) + 200;
+        break;
+      case (hour < 20):
+        number = Math.floor(Math.random() * (800 - 500 + 1)) + 500;
+        break;
+      case (hour < 21):
+        number = Math.floor(Math.random() * (500 - 100 + 1)) + 300;
+        break;
+      default:
+        number = Math.floor(Math.random() * (300 - 100 + 1)) + 100;
+    }
+
+    return number
+  }
   async loadStation() {
     this.stops = await this.gtfsService.getStops();
     // // DEBUG:
@@ -504,6 +583,7 @@ export class GtfsrtComponent implements OnInit {
       let marker = new L.Marker();
       marker.setIcon(icon);
       marker.setLatLng(stationLatLng)
+      //marker.setZindex(900)
       //// TODO: click marker  update content
       // add bind popup after addTo map
       marker.addTo(this.map)
@@ -545,6 +625,7 @@ export class GtfsrtComponent implements OnInit {
 
         })
 
+        const number = this.getRandom()
         const html = `
           <div class="card trip" style="width: 18rem;">
             <img class="card-img-top"  style="width: 100%; height: 13vw; object-fit: cover;"
@@ -558,7 +639,7 @@ export class GtfsrtComponent implements OnInit {
               <div class="col-md-4">
                 <p style="margin: 2px" >ความหนาแน่น</p>
                 <p style="margin: 2px" >
-                  N/A <img src="/assets/dist/icons/man.png">
+                  <img src="/assets/dist/icons/man.png"> ${number} คน
                 </p>
               </div>
               </div>
@@ -669,8 +750,8 @@ export class GtfsrtComponent implements OnInit {
 
   createMarker(latlng, color) {
     return new L.CircleMarker(latlng, {
-      radius: 8,
-      fillOpacity: 0.8,
+      radius: 10,
+      fillOpacity: 1,
       color: 'black',
       fillColor: this.getColor(color),
       weight: 2
@@ -693,15 +774,18 @@ export class GtfsrtComponent implements OnInit {
   }
 
   loadRoute(data: NgForm) {
+    //console.log(data.value)  // {trip: "00011"}
     const keys = Object.keys(data.value);
-    const route_id = keys.filter((key) => data.value[key]).join();
-    //console.log(route_id)
-    this.selectrouteid = route_id
+    // console.log(keys)
+    // const route_id = keys.filter((key) => data.value[key]).join();
+    // console.log(route_id)
+    this.selectrouteid = data.value.trip
     this.activeRoutes = this.routesinfo.filter(obj => {
-      return (this.checktime(obj.start_time, obj.end_time) && obj.route_id == route_id)
+      return (this.checktime(obj.start_time, obj.end_time) && obj.route_id == this.selectrouteid)
     })
-
+    this.showRouteLayer(this.selectrouteid)
   }
+
 
   followtrip(e) {
     console.log(e)

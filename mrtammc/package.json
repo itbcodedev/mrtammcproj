@@ -27,6 +27,7 @@
     "ag-grid": "^18.1.2",
     "ag-grid-angular": "^20.0.0",
     "ag-grid-community": "^20.0.0",
+    "angular5-csv": "^0.2.11",
     "bootstrap": "^4.2.1",
     "chart.js": "^2.8.0",
     "core-js": "^2.6.3",

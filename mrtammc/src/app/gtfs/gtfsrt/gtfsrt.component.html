@@ -18,10 +18,8 @@
             <div style="width: 18rem; padding: 2px;">
               <nav class="navbar navbar-light bg-light">
                 <div >
-                  MRTA LINE NETWORK จำนวนรถ
-                  <span class="badge badge-info">
-                    {{totalTrips.length}}
-                  </span>
+                  MRTA LINE NETWORK
+                  <button class="btn btn-primary btn-sm">  จำนวนรถ {{totalTrips.length}}</button>
                 </div>
                 <button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -34,11 +32,11 @@
                   <form #dataForm="ngForm">
                     <div class="input-group mb-1" *ngFor="let route of routes">
                       <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <input type="checkbox" name="{{ route.route_id }}" ngModel (change)=loadRoute(dataForm)>
+                        <div class="input-group-text" style="padding: 0.1rem">
+                          <input type="radio" name="trip" value="{{ route.route_id }}" ngModel (change)=loadRoute(dataForm)>
                         </div>
                       </div>
-                      <input type="text" class="form-control" placeholder="{{route.route_short_name}}" readonly>
+                      <input type="text" class="form-control" style="padding: 0.1rem" placeholder="{{route.route_short_name}}" readonly>
                     </div>
                   </form>
                 </div>
