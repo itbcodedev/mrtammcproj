@@ -56,6 +56,7 @@ export class GtfsrtComponent implements OnInit {
   selectTripId
   CurrentDate
   StationTrips
+  geojson_route
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
     private gtfsService: GtfsService
@@ -85,6 +86,7 @@ export class GtfsrtComponent implements OnInit {
     // get data
     this.routesinfo = await this.gtfsService.getRouteInfo()
     this.routes = await this.gtfsService.getRoutesBasic()
+    this.allStopTimes = await this.gtfsService.allStopTimes()
     // Create layerRouteGroup
     this.showAllMapLayer()
     //this.removeAllRouteLayer()
@@ -94,9 +96,18 @@ export class GtfsrtComponent implements OnInit {
     })
 
     this.loadGeojson()
+    this.showAllgeojson()
+    //this.removeAllgeojson()
+    //this.showgeojson("00011")
+
+
+
     await this.loadStoptimes()
     await this.loadStation()
     await this.loadTrips()
+
+    //this.getRoutebyStop("PP01")
+
     console.log(this.trips.length)
     //await this.getTripsAtStop("PP01")
 
@@ -250,7 +261,7 @@ export class GtfsrtComponent implements OnInit {
           marker_trip.arrival_time = nextstop.arrival_time
           marker_trip.departure_time = nextstop.departure_time
           marker_trip.difftime = nextstop.
-          console.log(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
+          //console.log(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
          this.setStationInfo(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
           //update station
         }
@@ -344,11 +355,10 @@ export class GtfsrtComponent implements OnInit {
 
   }  //init
   showAllMapLayer(): any {
-    
+
     this.routes.forEach(obj => {
       const obj_route_id  = obj.route_id
       //const layerGroup[obj_route_id] = new L.layerGroup()
-
       this.layerRouteGroup[obj_route_id] = L.layerGroup()
       this.layerRouteGroup[obj_route_id].addTo(this.map)
 
@@ -367,14 +377,6 @@ export class GtfsrtComponent implements OnInit {
     })
   }
 
-
-  removeRoutelayer(route_id): any {
-    console.log(route_id)
-    const layer = this.layerRouteGroup[route_id]
-    this.map.removeLayer(layer)
-    this.map.remove("purple_line")
-  }
-
     // blue_line.addTo(this.map);
     // purple_line.addTo(this.map);
     // blue_chalearm_line.addTo(this.map);
@@ -387,6 +389,8 @@ export class GtfsrtComponent implements OnInit {
   showRouteLayer(route_id) {
     this.removeAllRouteLayer()
     this.layerRouteGroup[route_id].addTo(this.map)
+    //show route geojson
+    this.showgeojson(route_id)
   }
 
   loadbaselayers() {
@@ -513,16 +517,84 @@ export class GtfsrtComponent implements OnInit {
       }
     });
 
-    blue_line.addTo(this.map);
-    purple_line.addTo(this.map);
-    blue_chalearm_line.addTo(this.map);
-    blue_extend_line.addTo(this.map);
-    orange_line.addTo(this.map);
-    dark_green_line.addTo(this.map);
-    light_green_line.addTo(this.map);
-    light_green_extend_line.addTo(this.map);
+    // blue_line.addTo(this.map);
+    // purple_line.addTo(this.map);
+    // blue_chalearm_line.addTo(this.map);
+    // blue_extend_line.addTo(this.map);
+    // orange_line.addTo(this.map);
+    // dark_green_line.addTo(this.map);
+    // light_green_line.addTo(this.map);
+    // light_green_extend_line.addTo(this.map);
+
+
+
+    this.geojson_route = {
+      purple_line: {
+        geojson: purple_line,
+        routes: ["00011","00012"]
+      },
+      blue_line: {
+        geojson: blue_line,
+        routes: []
+      },
+      blue_chalearm_line: {
+        geojson: blue_chalearm_line,
+        routes: ["00013","00014"]
+      },
+      blue_extend_line: {
+        geojson: blue_extend_line,
+        routes: []
+      },
+      orange_line: {
+        geojson: orange_line,
+        routes: []
+      },
+      dark_green_line: {
+        geojson: dark_green_line,
+        routes: []
+      },
+      light_green_line:{
+        geojson: light_green_line,
+        routes: []
+      },
+      light_green_extend_line: {
+        geojson: light_green_extend_line,
+        routes: []
+      }
+    }
+
+
   }
 
+  showAllgeojson() {
+    const allgeojson = this.geojson_route
+    const keys = Object.keys(allgeojson)
+    //console.log(keys)
+    keys.forEach(obj => {
+      allgeojson[obj].geojson.addTo(this.map)
+    })
+  }
+
+  removeAllgeojson() {
+    const allgeojson = this.geojson_route
+    const keys = Object.keys(allgeojson)
+    //console.log(keys)
+    keys.forEach(obj => {
+      this.map.removeLayer(allgeojson[obj].geojson)
+    })
+  }
+
+  showgeojson(route_id) {
+    this.removeAllgeojson();
+    const allgeojson = this.geojson_route
+    const keys = Object.keys(allgeojson)
+    keys.forEach(obj => {
+      //console.log(obj,allgeojson[obj].routes.includes(route_id))
+      if (allgeojson[obj].routes.includes(route_id)) {
+        allgeojson[obj].geojson.addTo(this.map)
+      }
+    })
+  }
   async loadTrips() {
     this.trips = await this.gtfsService.getTrips();
   }
@@ -566,7 +638,11 @@ export class GtfsrtComponent implements OnInit {
 
     return number
   }
+
+
+
   async loadStation() {
+
     this.stops = await this.gtfsService.getStops();
     // // DEBUG:
     // // TODO: add marker property
@@ -592,6 +668,11 @@ export class GtfsrtComponent implements OnInit {
       marker.stop_url = stop.stop_url
       marker.stop_name = stop.stop_name
       this.StationMarkers[stop.stop_id] = marker
+      //const route_id = this.getRoutebyStop(stop.stop_id)
+      // add marker to layerRouteGroup
+      const route_id = this.getRoutebyStop(stop.stop_id)
+      console.log(route_id)
+      //this.layerRouteGroup[route_id].addLayer(marker)
 
       // marker function
       async function onMarkerClick(e) {
@@ -667,6 +748,27 @@ export class GtfsrtComponent implements OnInit {
       //console.log("stoptime.arrival_time",stoptime.arrival_time)
       return this.findNextTrip30min(stoptime.arrival_time) && (stoptime.stop_id == stop_id)
     })
+  }
+
+  async getRoutebyStop(stop_id) {
+    console.log(stop_id)
+    this.allStopTimes = await this.gtfsService.allStopTimes()
+
+    const stoptimes = this.allStopTimes.filter(stoptime => {
+      return stoptime.stop_id == stop_id
+    })
+    const trip_id = _.first(stoptimes)["trip_id"]
+    console.log(trip_id)
+
+    this.trips = await this.gtfsService.getTrips();
+
+    const trips = this.trips.filter(trip => {
+      return trip.trip_id == trip_id
+    })
+
+    console.log(trip_id,trips)
+    //console.log(stop_id,_.first(trips)["route_id"])
+    return _.first(trips)["route_id"]
   }
 
   async loadStoptimes() {
@@ -794,7 +896,6 @@ export class GtfsrtComponent implements OnInit {
   singleTrip(trip) {
 
   }
-
 
   setStationInfo(stop_id, trip_id, arrival_time, direction) {
     //console.log("setStationInfo")
