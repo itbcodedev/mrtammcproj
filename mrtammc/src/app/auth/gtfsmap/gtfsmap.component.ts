@@ -169,7 +169,7 @@ export class GtfsmapComponent implements OnInit {
       this.allStops[stop.stop_id] = stop
       //icon
       let icon = new L.icon({
-        iconSize: [18, 15],
+        iconSize: [22, 22],
         iconAnchor: [0, 0],
         iconUrl: environment.iconbase + stop.icon,
       })

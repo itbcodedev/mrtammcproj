@@ -87,6 +87,8 @@ export class GtfsrtComponent implements OnInit {
     this.routesinfo = await this.gtfsService.getRouteInfo()
     this.routes = await this.gtfsService.getRoutesBasic()
     this.allStopTimes = await this.gtfsService.allStopTimes()
+    this.stops = await this.gtfsService.getStops();
+    this.trips = await this.gtfsService.getTrips();
     // Create layerRouteGroup
     this.showAllMapLayer()
     //this.removeAllRouteLayer()
@@ -100,13 +102,9 @@ export class GtfsrtComponent implements OnInit {
     //this.removeAllgeojson()
     //this.showgeojson("00011")
 
-
-
     await this.loadStoptimes()
     await this.loadStation()
     await this.loadTrips()
-
-    //this.getRoutebyStop("PP01")
 
     console.log(this.trips.length)
     //await this.getTripsAtStop("PP01")
@@ -364,6 +362,10 @@ export class GtfsrtComponent implements OnInit {
 
     })
 
+    //untrip layer
+    this.layerRouteGroup["notrip"] =  L.layerGroup()
+    this.layerRouteGroup["notrip"].addTo(this.map)
+
   }
 
   removeAllRouteLayer() {
@@ -375,6 +377,9 @@ export class GtfsrtComponent implements OnInit {
       const layer = this.layerRouteGroup[obj_route_id]
       this.map.removeLayer(layer)
     })
+
+    //remove untrip layer
+    this.map.removeLayer(this.layerRouteGroup["notrip"])
   }
 
     // blue_line.addTo(this.map);
@@ -643,14 +648,14 @@ export class GtfsrtComponent implements OnInit {
 
   async loadStation() {
 
-    this.stops = await this.gtfsService.getStops();
+
     // // DEBUG:
     // // TODO: add marker property
-    this.stops.forEach(stop => {
+    this.stops.forEach(async stop => {
       //console.log('423......', stop)
       //icon
       let icon = new L.icon({
-        iconSize: [18, 15],
+        iconSize: [22, 22],
         iconAnchor: [0, 0],
         iconUrl: environment.iconbase + stop.icon,
       })
@@ -659,22 +664,21 @@ export class GtfsrtComponent implements OnInit {
       let marker = new L.Marker();
       marker.setIcon(icon);
       marker.setLatLng(stationLatLng)
-      //marker.setZindex(900)
-      //// TODO: click marker  update content
-      // add bind popup after addTo map
-      marker.addTo(this.map)
       marker.bindPopup("<img width='45' src='" + "/assets/dist/img/loading.gif" + "'/>")
       marker.stop_id = stop.stop_id
       marker.stop_url = stop.stop_url
       marker.stop_name = stop.stop_name
       this.StationMarkers[stop.stop_id] = marker
-      //const route_id = this.getRoutebyStop(stop.stop_id)
-      // add marker to layerRouteGroup
-      const route_id = this.getRoutebyStop(stop.stop_id)
-      console.log(route_id)
-      //this.layerRouteGroup[route_id].addLayer(marker)
+      const unique_route_ids = await this.getRoutebyStop(stop.stop_id)
+      console.log (unique_route_ids)
+      if (unique_route_ids.length > 0) {
+        unique_route_ids.forEach(route_id => {
+          this.layerRouteGroup[`${route_id}`].addLayer(marker)
+        })
+      } else {
+        this.layerRouteGroup["notrip"].addLayer(marker)
+      }
 
-      // marker function
       async function onMarkerClick(e) {
         const stoptimes_next = await this.loadallstoptimes(e.target.stop_id)
         //console.log(stoptimes_next)
@@ -751,24 +755,38 @@ export class GtfsrtComponent implements OnInit {
   }
 
   async getRoutebyStop(stop_id) {
-    console.log(stop_id)
-    this.allStopTimes = await this.gtfsService.allStopTimes()
+
+    // fetch data
 
     const stoptimes = this.allStopTimes.filter(stoptime => {
       return stoptime.stop_id == stop_id
     })
-    const trip_id = _.first(stoptimes)["trip_id"]
-    console.log(trip_id)
 
-    this.trips = await this.gtfsService.getTrips();
+    //console.log(stoptimes)
 
-    const trips = this.trips.filter(trip => {
-      return trip.trip_id == trip_id
+    const unique_trip_ids = Array.from(new Set(stoptimes.map(item => item.trip_id)))
+
+    //console.log(unique_trip_ids)
+    //console.log(this.trips)
+
+    const unique_trips = this.trips.filter(trip => {
+      return unique_trip_ids.includes(trip.trip_id)
     })
 
-    console.log(trip_id,trips)
-    //console.log(stop_id,_.first(trips)["route_id"])
-    return _.first(trips)["route_id"]
+    //console.log(unique_trips)
+
+    const unique_route_ids = Array.from(new Set(unique_trips.map(item => item.route_id)))
+
+    //console.log(unique_route_ids)
+    // this.trips = await this.gtfsService.getTrips();
+    //
+    // const trips = this.trips.filter(trip => {
+    //   return trip.trip_id == trip_id
+    // })
+    //
+    // console.log(trip_id,trips)
+    // //console.log(stop_id,_.first(trips)["route_id"])
+    return unique_route_ids
   }
 
   async loadStoptimes() {
