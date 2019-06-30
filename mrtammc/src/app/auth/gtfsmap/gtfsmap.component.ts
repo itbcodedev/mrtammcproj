@@ -17,9 +17,11 @@ export class GtfsmapComponent implements OnInit {
   baseLayers
   selectedStop
   allStops = {}
+  isLogin
   constructor(private gtfsService: GtfsService) { }
 
   ngOnInit() {
+    this.isLogin = true
     this.loadbaselayers()
 
     L.control.layers(this.baseLayers).addTo(this.map);
@@ -170,7 +172,7 @@ export class GtfsmapComponent implements OnInit {
       //icon
       let icon = new L.icon({
         iconSize: [22, 22],
-        iconAnchor: [0, 0],
+        //iconAnchor: [0, 0],
         iconUrl: environment.iconbase + stop.icon,
       })
 

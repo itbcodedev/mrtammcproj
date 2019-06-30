@@ -647,8 +647,6 @@ export class GtfsrtComponent implements OnInit {
 
 
   async loadStation() {
-
-
     // // DEBUG:
     // // TODO: add marker property
     this.stops.forEach(async stop => {
@@ -656,7 +654,7 @@ export class GtfsrtComponent implements OnInit {
       //icon
       let icon = new L.icon({
         iconSize: [22, 22],
-        iconAnchor: [0, 0],
+        //iconAnchor: [0, 0],
         iconUrl: environment.iconbase + stop.icon,
       })
       //location

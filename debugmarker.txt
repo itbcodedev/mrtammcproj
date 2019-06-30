@@ -16,14 +16,15 @@ ng update --all --force
 
 
 yum install python2-devel
-
+sudo dnf group install "C Development Tools and Libraries" -y
+sudo dnf install gcc-c++
 
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 source ~/.bashrc
 
 nvm install node
-npm install node-gpy -g
+npm install node-gyp -g
 npm install node-sass -g
 npm install node-sass --only=dev
 
