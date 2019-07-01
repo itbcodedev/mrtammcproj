@@ -391,7 +391,15 @@
               <p>
                 แสดงผลไฟล์ {{agfile}}
               </p>
-              <ag-grid-angular style="height: 580px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" (cellValueChanged)="onCellValueChanged(agfile,$event)">
+              <ag-grid-angular
+                #agGrid
+                style="height: 600px;"
+                class="ag-theme-balham"
+                [rowData]="rowData"
+                [columnDefs]="columnDefs"
+                [defaultColDef]="defaultColDef"
+                (gridReady)="onGridReady($event)"
+                (cellValueChanged)="onCellValueChanged(agfile,$event)">
               </ag-grid-angular>
             </div>
             <div class="tab-pane" id="messages1" role="tabpanel">
