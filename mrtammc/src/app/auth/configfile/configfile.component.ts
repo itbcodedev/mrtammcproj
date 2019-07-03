@@ -49,6 +49,9 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   formid;
   @ViewChild("map_popup") map_popupRef: ElementRef;
   @ViewChild("input_file") input_fileRef: ElementRef;
+  defaultColDef: { resizable: boolean; };
+  gridApi: any;
+  gridColumnApi: any;
 
   constructor(
     private _uploadservice: ConfigfileService,
@@ -62,7 +65,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
       url: ['', Validators.required ],
       status: ['', Validators.required ]
     });
-
+    this.defaultColDef = { resizable: true };
   }
 
   ngAfterViewInit(): void {
@@ -265,6 +268,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
     const filekey = file.split(".")[0];
     this.agfile = file;
     this.columnDefs = new GtfsEditor().GTFS_COLUMNDEFS[filekey];
+    this.defaultColDef = { resizable: true };
     console.log(this.columnDefs);
     this._uploadservice.getconfigfile(fileobj.filename).subscribe(res => {
       this.rowData = res;
@@ -280,6 +284,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
     console.log("file");
     console.log(file);
     this.columnDefs = new GtfsEditor().GTFS_COLUMNDEFS[filekey];
+    this.defaultColDef = { resizable: true };
     console.log("this.columnDefs")
     console.log(this.columnDefs);
     // let stopIdfield = this.columnDefs.filter(e => e.field === "stopId");
@@ -491,5 +496,17 @@ async uploadkml() {
       console.log(data);
     });
     console.log(this.kmlForm);
+  }
+
+  onGridReady(params) {
+    console.log(params)
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.sizeColumnsToFit()
+    const allColumnIds = [];
+    this.gridColumnApi.getAllColumns().forEach(function(column) {
+      allColumnIds.push(column.colId);
+    });
+    this.gridColumnApi.autoSizeColumns(allColumnIds);
   }
 }

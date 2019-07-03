@@ -178,3 +178,12 @@ p {
     line-height: 1.2;
     border-radius: 0.2rem;
 }
+
+.ag-row-hover {
+    /* putting in !important so it overrides the theme's styling as it hovers the row also */
+    background-color: #dfdfff !important;
+}
+
+.ag-column-hover {
+    background-color: #dfffdf;
+}
