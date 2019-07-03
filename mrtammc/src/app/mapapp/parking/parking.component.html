@@ -10,7 +10,7 @@
       </div>
       <div class="col-md-6" *ngFor="let parking of parkings; index as i"  (click)="getparkcode(parking)">
         <div class="card-counter">
-          <div class="count-desc">รหัส {{ parking.name }}</div>
+          <div class="count-desc">{{ parking.name }}</div>
 
           <div class="success-bar">
             <ul class="parking-list">
@@ -21,7 +21,7 @@
               </li>
             </ul>
           </div>
-          <div class="count-code" >{{ parking.code }}</div>
+          <!-- <div class="count-code" >{{ parking.code }}</div> -->
           <span class="count-numbers">{{parking.ncarrem }}</span>
         </div>
       </div>
