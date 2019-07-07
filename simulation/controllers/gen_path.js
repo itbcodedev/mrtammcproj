@@ -81,6 +81,7 @@ function logProgress(str) {
   process.stdout.write(str);
 }
 
+//convert kml --> json file
 generate_paths('purpleline_path.kml','in')
 generate_paths('purpleline_path.kml','out')
 
@@ -89,3 +90,8 @@ generate_paths('blue_chalearm_path.kml','out')
 
 generate_paths('blue_path.kml','in')
 generate_paths('blue_path.kml','out')
+
+generate_paths('simulate-blueline-parted.kml','in')
+generate_paths('simulate-blueline-parted.kml','out')
+generate_paths('simulate-purpleline-parted.kml','in')
+generate_paths('simulate-purpleline-parted.kml','out')

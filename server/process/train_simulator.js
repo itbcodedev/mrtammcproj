@@ -3,6 +3,17 @@ const moment = require('moment');
 
 const path = require('../path/path')
 
+//  const train00011 = new TrainSimulator(gtfs,"00011",path_config)
+
+// path_config
+// [
+//   {"route_id": "00011", "filepath": "purpleline_path-in.json"},
+//   {"route_id": "00012", "filepath": "purpleline_path-out.json"},
+//   {"route_id": "00013", "filepath": "blue_chalearm_path-in.json"},
+//   {"route_id": "00014", "filepath": "blue_chalearm_path-out.json"}
+// ]
+
+
 exports.TrainSimulator = class {
 
   constructor(gtfs, route_id, path_config) {
@@ -13,12 +24,7 @@ exports.TrainSimulator = class {
   }
 
   getfileFromConfig(route_id, config) {
-    // [
-    //   {"route_id": "00011", "filepath": "purpleline_path-in.json"},
-    //   {"route_id": "00012", "filepath": "purpleline_path-out.json"},
-    //   {"route_id": "00013", "filepath": "blue_chalearm_path-in.json"},
-    //   {"route_id": "00014", "filepath": "blue_chalearm_path-out.json"}
-    // ]
+
     const index = config.findIndex((path, index) => {
       return path.route_id === route_id
     })
