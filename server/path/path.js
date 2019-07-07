@@ -2,11 +2,10 @@
 // const blue_chalearm_path_out = require('./blue_chalearm_path_out.json')
 // const purpleline_path_in = require('./purpleline_path_in.json')
 // const purpleline_path_out = require('./purpleline_path_out.json')
-
-const blue_chalearm_path_in = require('./simulate_blueline_parted_in.json')
-const blue_chalearm_path_out = require('./simulate_blueline_parted_out.json')
-const purpleline_path_in = require('./simulate_purpleline_parted_in.json')
-const purpleline_path_out = require('./simulate_purpleline_parted_out.json')
+const blue_chalearm_path_in = require('./parted_blue_chalearm_in.json')
+const blue_chalearm_path_out = require('./parted_blue_chalearm_out.json')
+const purpleline_path_in = require('./parted_purpleline_in.json')
+const purpleline_path_out = require('./parted_purpleline_out.json')
 
 exports.blue_chalearm_path_in  = blue_chalearm_path_in
 exports.blue_chalearm_path_out = blue_chalearm_path_out

@@ -91,7 +91,9 @@ generate_paths('blue_chalearm_path.kml','out')
 generate_paths('blue_path.kml','in')
 generate_paths('blue_path.kml','out')
 
-generate_paths('simulate-blueline-parted.kml','in')
-generate_paths('simulate-blueline-parted.kml','out')
-generate_paths('simulate-purpleline-parted.kml','in')
-generate_paths('simulate-purpleline-parted.kml','out')
+generate_paths('parted_purpleline.kml','in')
+generate_paths('parted_purpleline.kml','out')
+
+
+generate_paths('parted_blue_chalearm.kml','in')
+generate_paths('parted_blue_chalearm.kml','out')
