@@ -26,6 +26,7 @@ export class GtfsrtComponent implements OnInit {
   stoptimesbasic
   allStopTimes
   trips
+  time
   //todo: change to v2
 
   // data lable in card
@@ -69,6 +70,10 @@ export class GtfsrtComponent implements OnInit {
 
 
   async ngOnInit() {
+    
+    setInterval(() => {
+      this.updatetime()
+    }, 1000);
 
     this.loadbaselayers()
 
@@ -128,13 +133,13 @@ export class GtfsrtComponent implements OnInit {
 
     // get data from web socket
     this._gtfsws.listen('gtfsrt').subscribe(async data => {
+      
       // get time
       //this.CurrentDate = moment().subtract(3, 'hours');
       this.CurrentDate = moment()
       this.wsdata = JSON.stringify(data, null, 2)
       // // DEBUG: data from webservice
       //console.log('93..........', this.wsdata)
-
       const route_name = data['header']['route_name']
       const route_id = data['header']['route_id']
       const direction = data['header']['direction']
@@ -162,14 +167,11 @@ export class GtfsrtComponent implements OnInit {
       //debug
       //console.log('117....',trip_id,filter)
       const nextstation = routetrips.map(obj => {
-
         const selectStoptimes = obj.stoptimes.filter(st_obj => {
           // filter next time check depature_time less than timenow [0]
           return this.findNextTrip(st_obj.arrival_time)
         })
         obj.selectStoptimes = _.first(selectStoptimes)
-
-
         return obj
       })
 
@@ -181,9 +183,10 @@ export class GtfsrtComponent implements OnInit {
       // find difftime to station
       const arr_time = this.getsecond(nextstop.arrival_time)
       const arr_now = this.getsecond(timenow)
+      console.log("arr_time,arr_now",arr_time,arr_now)
       nextstop.difftime = ((arr_time - arr_now) / 60).toFixed(2);
+      //cal random number
       const number = this.getRandom()
-
       function onTrainClick(e) {
         // get marker
         const marker = e.target
@@ -341,20 +344,25 @@ export class GtfsrtComponent implements OnInit {
         }
       }
 
-
       if (this.ActiveTrain.hasOwnProperty(this.selectTripId)) {
         console.log('select Tripid', this.selectTripId)
         const Center = trainLocationMarkers[this.selectTripId]
         this.map.setView(Center.getLatLng(), 16);
       }
 
+      //update active trip
+      this.refreshloadRoute()
+
     })  // end web service
 
     // updated latlng follow trip()
 
-
-
   }  //init
+
+  updatetime() {
+    const currentDate = new Date();
+    this.time = currentDate.toLocaleTimeString('th-TH', { timeZone: 'Asia/Bangkok' });
+  }
   showAllMapLayer(): any {
 
     this.routes.forEach(obj => {
@@ -907,6 +915,13 @@ export class GtfsrtComponent implements OnInit {
     this.showRouteLayer(this.selectrouteid)
   }
 
+  refreshloadRoute() {
+    if (this.selectrouteid != undefined) {
+      this.activeRoutes = this.routesinfo.filter(obj => {
+        return (this.checktime(obj.start_time, obj.end_time) && obj.route_id == this.selectrouteid)
+      })
+    }
+  }
 
   followtrip(e) {
     console.log(e)

@@ -25,7 +25,8 @@ export class HeaderComponent implements OnInit {
     )
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timezone: 'Asia/Bangkok' };
     const currentDate = new Date();
-    this.today = currentDate.toLocaleDateString('th-TH', options) + ' ' + currentDate.toLocaleTimeString();
+    //this.today = currentDate.toLocaleDateString('th-TH', options) + ' ' + currentDate.toLocaleTimeString();
+    this.today = currentDate.toLocaleDateString('th-TH', options);
   }
 
   ngOnInit() {
