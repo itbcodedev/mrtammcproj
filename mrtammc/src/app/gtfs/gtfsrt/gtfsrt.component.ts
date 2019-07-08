@@ -58,6 +58,7 @@ export class GtfsrtComponent implements OnInit {
   CurrentDate
   StationTrips
   geojson_route
+  endtrip
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
     private gtfsService: GtfsService
@@ -66,8 +67,6 @@ export class GtfsrtComponent implements OnInit {
     //this.CurrentDate = moment().subtract(3, 'hours');
     this.CurrentDate = moment()
   }
-
-
 
   async ngOnInit() {
     
@@ -325,17 +324,18 @@ export class GtfsrtComponent implements OnInit {
       // check train over due
       for (let key in this.ActiveTrain) {
         if (time_now_sec > this.ActiveTrain[key]['trip']['end_time_secs']) {
-          //console.log(`over due delete .. ${ActiveTrain[key]}`)
+          console.log('remove key',key,this.ActiveTrain[key]['trip']['trip_id'])
+          this.endtrip = this.ActiveTrain[key]['trip']['trip_id']
           delete this.ActiveTrain[key]
+          //this.endtrip = this.ActiveTrain[key]['trip']
         } else {
           //console.log("not over due")
         }
       }
-
       // delete marker of overdue
       for (let key in trainLocationMarkers) {
         if (this.ActiveTrain.hasOwnProperty(key)) {
-          //console.log(`${key} still on tracks`)
+          console.log(`${key} still on tracks`)
         } else {
           const marker = trainLocationMarkers[key]
           this.map.removeLayer(marker)
@@ -343,13 +343,11 @@ export class GtfsrtComponent implements OnInit {
           delete trainLocationMarkers[key]
         }
       }
-
       if (this.ActiveTrain.hasOwnProperty(this.selectTripId)) {
         console.log('select Tripid', this.selectTripId)
         const Center = trainLocationMarkers[this.selectTripId]
         this.map.setView(Center.getLatLng(), 16);
       }
-
       //update active trip
       this.refreshloadRoute()
 

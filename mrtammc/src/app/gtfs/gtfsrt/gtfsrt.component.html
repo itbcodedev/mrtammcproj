@@ -15,18 +15,17 @@
           </div>
 
           <div id="overlay" class="row">
-            <div style="width:   18rem; padding: 2px;">
+            <div style="width: 18rem; padding: 2px;">
               <nav class="navbar navbar-light bg-light">
                 <div >
-                  <h4>
-                     {{time}}
-                     <button class="btn btn-danger">  จำนวนรถ {{totalTrips.length}}</button>
-                  </h4>
+                  <h5>
+                     {{time}}&nbsp;
+                     <button class="btn btn-danger">  จำนวน{{totalTrips.length}} Trip</button>
+                  </h5>
                 </div>
                 <button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
-
               </nav>
 
               <div class="collapse" style="width: 17rem;" id="navbarToggleExternalContent">
@@ -41,6 +40,9 @@
                       <input type="text" class="form-control" style="padding: 0.1rem" placeholder="{{route.route_short_name}}" readonly>
                     </div>
                   </form>
+                  <div class="alert alert-danger" role="alert" style="padding: 8px 8px;">
+                       ขบวนรถหมดระยะ  {{this.endtrip}} 
+                  </div>
                 </div>
 
                 <div class="bg-light p-1">
