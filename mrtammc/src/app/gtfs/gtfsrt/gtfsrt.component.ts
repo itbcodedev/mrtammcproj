@@ -255,13 +255,16 @@ export class GtfsrtComponent implements OnInit {
           // update marker
           const marker_trip = trainLocationMarkers[tripEntity]
           marker_trip.setLatLng(trainLatLng)
+          //markerinfo
           marker_trip.nextstop = nextstop.stop_id
           marker_trip.arrival_time = nextstop.arrival_time
           marker_trip.departure_time = nextstop.departure_time
-          marker_trip.difftime = nextstop.
+          marker_trip.difftime = nextstop.difftime
           //console.log(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
          this.setStationInfo(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
-          //update station
+          //update station]
+          marker_trip.on('mouseover', onTrainClick, this);
+          marker_trip.on('mouseout', onTrainClick, this);
         }
       } else {
         // new marker
@@ -285,7 +288,7 @@ export class GtfsrtComponent implements OnInit {
 
         marker.map = this.map
         marker.controllerLayer = this.controllerLayer
-
+        //markerinfo
         marker.nextstop = nextstop.stop_id
         marker.arrival_time = nextstop.arrival_time
         marker.departure_time = nextstop.departure_time
