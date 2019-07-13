@@ -92,6 +92,7 @@ exports.TrainSimulator = class {
     }
 
     function transformFormat(trips) {
+      //each trip 
       const trip_gtfs = trips.map(trip => {
 
         const route_name = trip.route_name
@@ -100,8 +101,10 @@ exports.TrainSimulator = class {
         const headsign = `${trip.start_point} to ${trip.end_point}`
         const tripId = trip.trip_id
         const route_id = trip.route_id
+
         const latitude = trip.location.latitude
         const longitude = trip.location.longitude
+
         const start_time_secs = trip.start_time_secs
         const end_time_secs = trip.end_time_secs
         const time_now_sec = trip.time_now_sec
@@ -165,17 +168,22 @@ exports.TrainSimulator = class {
       return trip_loc
     }
 
+    // set loction to trip
     function addposition(trips) {
       const trip_position = trips.map(trip => {
         const delta_t = trip.time_now_sec - trip.start_time_secs
         const runtime_secs = trip.runtime_secs
+        // get path of trip
         const filemodule = getPathfile(trip)
-
+        // get total number of path length
         const loc_length = path[`${filemodule}`].points.length
         // calculate latitude, longitude; latlng
-        //
+        // get location at runtime_sec
         const loc_order = Math.round((delta_t / runtime_secs) * loc_length)
+
+        // use same location if runtime_secs in arrival - depature
         const location = path[`${filemodule}`].points[loc_order]
+
         trip.file = filemodule
         trip.location = location
         return trip

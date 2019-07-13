@@ -183,7 +183,8 @@ export class GtfsrtComponent implements OnInit {
       const arr_time = this.getsecond(nextstop.arrival_time)
       const arr_now = this.getsecond(timenow)
       console.log("arr_time,arr_now",arr_time,arr_now)
-      nextstop.difftime = ((arr_time - arr_now) / 60).toFixed(2);
+      // 1 sec = 0.0166666667 min
+      nextstop.difftime = ((arr_time - arr_now) * 0.0166666667).toFixed(2);
       //cal random number
       const number = this.getRandom()
       function onTrainClick(e) {
@@ -256,6 +257,7 @@ export class GtfsrtComponent implements OnInit {
         if (trainLocationMarkers[tripEntity] !== undefined) {
           // update marker
           const marker_trip = trainLocationMarkers[tripEntity]
+          // trainLatLng
           marker_trip.setLatLng(trainLatLng)
           //markerinfo
           marker_trip.nextstop = nextstop.stop_id

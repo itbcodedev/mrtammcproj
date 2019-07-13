@@ -97,3 +97,10 @@ generate_paths('parted_purpleline.kml','out')
 
 generate_paths('parted_blue_chalearm.kml','in')
 generate_paths('parted_blue_chalearm.kml','out')
+
+generate_paths('purple_600.kml','in')
+generate_paths('purple_600.kml','out')
+
+
+generate_paths('purple_930.kml','in')
+generate_paths('purple_930.kml','out')
