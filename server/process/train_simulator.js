@@ -3,24 +3,10 @@ const moment = require('moment');
 
 const path = require('../path/path')
 
-//  const train00011 = new TrainSimulator(gtfs,"00011",path_config)
-
-// path_config
-// [
-//   {"route_id": "00011", "filepath": "purpleline_path-in.json"},
-//   {"route_id": "00012", "filepath": "purpleline_path-out.json"},
-//   {"route_id": "00013", "filepath": "blue_chalearm_path-in.json"},
-//   {"route_id": "00014", "filepath": "blue_chalearm_path-out.json"}
-// ]
-
-
 exports.TrainSimulator = class {
 
-  constructor(gtfs, route_id, path_config) {
+  constructor(gtfs) {
     this.gtfs = gtfs
-    this.route_id = route_id
-    this.path_config = path_config
-
   }
 
   getfileFromConfig(route_id, config) {
@@ -28,7 +14,7 @@ exports.TrainSimulator = class {
     const index = config.findIndex((path, index) => {
       return path.route_id === route_id
     })
-    console.log('index of ',route_id,index)
+    //console.log('index of ',route_id,index)
     return index
   }
 
@@ -37,12 +23,7 @@ exports.TrainSimulator = class {
     const mmt = moment();
     const mmtMidnight = mmt.clone().startOf('day');
     const diffSeconds = mmt.diff(mmtMidnight, 'seconds');
-    //console.log('route_id',this.route_id)
-    //console.log('path_config',this.path_config)
-    const fileindex = this.getfileFromConfig(this.route_id, this.path_config)
-    console.log('fileindex...', fileindex)
-    this.file = this.path_config[fileindex].filepath;
-    console.log('file', this.file)
+
     const routeinfo = await this.trainAdvance(diffSeconds)
     this.routeinfo = routeinfo
   }
@@ -151,15 +132,16 @@ exports.TrainSimulator = class {
     //step2
     function addlocation(trips) {
       const trip_loc = trips.map(trip => {
-        const delta_t = trip.time_now_sec - trip.start_time_secs
+        const delta_t = trip.time_now_sec - trip.start_time_secs 
         const runtime_secs = trip.runtime_secs
+        
         const filemodule = getPathfile(trip)
-        // access json file
+
         const loc_length = path[`${filemodule}`].points.length
-        // calculate latitude, longitude; latlng
-        //
-        const loc_order = Math.round((delta_t / runtime_secs) * loc_length)
+     
+        const loc_order = Math.round((delta_t / runtime_secs) * loc_length) 
         const location = path[`${filemodule}`].points[loc_order]
+        console.log(trip.trip_id,runtime_secs,loc_order,loc_length)
         trip.file = filemodule
         trip.location = location
         return trip
@@ -167,31 +149,6 @@ exports.TrainSimulator = class {
 
       return trip_loc
     }
-
-    // set loction to trip
-    function addposition(trips) {
-      const trip_position = trips.map(trip => {
-        const delta_t = trip.time_now_sec - trip.start_time_secs
-        const runtime_secs = trip.runtime_secs
-        // get path of trip
-        const filemodule = getPathfile(trip)
-        // get total number of path length
-        const loc_length = path[`${filemodule}`].points.length
-        // calculate latitude, longitude; latlng
-        // get location at runtime_sec
-        const loc_order = Math.round((delta_t / runtime_secs) * loc_length)
-
-        // use same location if runtime_secs in arrival - depature
-        const location = path[`${filemodule}`].points[loc_order]
-
-        trip.file = filemodule
-        trip.location = location
-        return trip
-      })
-
-      return trip_position
-    }
-
     // step 3
     // pattern use async/await  in map
     function addStoptime(gtfs,trips){
@@ -206,9 +163,6 @@ exports.TrainSimulator = class {
           const start_time = result[0].start_time
           const end_time = result[0].end_time
           const stoptimes = result[0].stoptimes
-          // console.log('start_time',start_time)
-          // console.log('end_time',end_time)
-
 
           const select_stoptimes = stoptimes.filter( stoptime => {
             // console.log('stoptime.departure_time',stoptime.departure_time)
@@ -228,9 +182,6 @@ exports.TrainSimulator = class {
             }
 
           })
-
-          //console.log('204.......',typeof select_stoptimes)
-          //console.log('204.......',select_stoptimes)
           trip.stoptimes = select_stoptimes
 
 
