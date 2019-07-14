@@ -176,7 +176,7 @@ export class GtfsrtComponent implements OnInit {
 
       // // DEBUG: success ? filter next station
       // console.log(this.CurrentDate.format("HH:mm:ss"))
-      // console.log(nextstation)
+      console.log(nextstation)
       const nextstop = nextstation[0].selectStoptimes;
       let timenow = this.CurrentDate.format('HH:mm:ss');
       // find difftime to station
@@ -184,13 +184,12 @@ export class GtfsrtComponent implements OnInit {
       const arr_now = this.getsecond(timenow);
       console.log('arr_time,arr_now', arr_time, arr_now);
       // 1 sec = 0.0166666667 min
-      nextstop.difftime = ((arr_time - arr_now) * 0.0166666667).toFixed(2);
+      nextstop.difftime = (arr_time - arr_now).toFixed(2);
       // cal random number
       const number = this.getRandom();
       function onTrainClick(e) {
         // get marker
         const marker = e.target;
-
         const html = `
         <div class="card" style="width: 18rem;">
           <div class="card-header" style="background-color:${e.target.color}; padding: 0.5rem 0.15rem !important;">
@@ -225,7 +224,9 @@ export class GtfsrtComponent implements OnInit {
         </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-              <span>สถานีถัดไป <b>${e.target.nextstop}</b> ใช้เวลาเวลา ${e.target.difftime} นาที</span>
+              <span>สถานีถัดไป <b>${e.target.nextstop}</b>
+              ใช้เวลา ${Math.floor(e.target.difftime / 60)} นาที  ${e.target.difftime % 60} วินาที
+              </span>
               <span>arrival: ${e.target.arrival_time} departure: ${e.target.departure_time}</span>
             </li>
             <li class="list-group-item">
@@ -249,10 +250,9 @@ export class GtfsrtComponent implements OnInit {
 
           this.selectTripId = marker.tripEntity;
           console.log(this.selectTripId);
-          marker.fire('mouseover');
           // marker.closePopup();
         }, this);  // point to this context
-      }  // end function onMarkerClick
+      }  // end function onMarkerClick display popup with button
 
       if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
         // exist
@@ -261,7 +261,7 @@ export class GtfsrtComponent implements OnInit {
           const marker_trip = trainLocationMarkers[tripEntity];
           // trainLatLng
           marker_trip.setLatLng(trainLatLng);
-          //marker_trip.fire('mouseover');
+          // marker_trip.fire('click');
           // markerinfo
           marker_trip.nextstop = nextstop.stop_id;
           marker_trip.arrival_time = nextstop.arrival_time;
@@ -321,7 +321,7 @@ export class GtfsrtComponent implements OnInit {
 
         }, this);
 
-        //marker.fire('mouseover');
+        //marker.fire('click');
 
         trainLocationMarkers[tripEntity] = marker;
         console.log(marker.stop_id, marker.trip_id, marker.arrival_time, marker.direction);
@@ -343,7 +343,7 @@ export class GtfsrtComponent implements OnInit {
       // delete marker of overdue
       for (let key in trainLocationMarkers) {
         if (this.ActiveTrain.hasOwnProperty(key)) {
-          console.log(`${key} still on tracks`);
+          //console.log(`${key} still on tracks`);
         } else {
           const marker = trainLocationMarkers[key];
           this.map.removeLayer(marker);
