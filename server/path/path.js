@@ -38,8 +38,14 @@ const purple =  purple_schdule.filter(e => {
 
 
 console.log(purple)
-const purpleline_path_in = require(`./${purple[0].path_in}`)
-const purpleline_path_out = require(`./${purple[0].path_out}`)
+if (purple[0] != undefined) {
+  const purpleline_path_in = require(`./${purple[0].path_in}`)
+  const purpleline_path_out = require(`./${purple[0].path_out}`)
+} else {
+  const purpleline_path_in = require('./purple_930_in.json')
+  const purpleline_path_out = require('./purple_930_out.json')
+}
+
 
 exports.blue_chalearm_path_in  = blue_chalearm_path_in
 exports.blue_chalearm_path_out = blue_chalearm_path_out
