@@ -43,7 +43,7 @@ function generate_paths(filename, direction) {
         object['points'] = array
         // console.log(_.first(object.points))
         // console.log(_.last(object.points))
-        fs.writeFileSync(`../path/${name._text}_${direction}.json`, JSON.stringify(object, null, 2));
+        fs.writeFileSync(`../output/${name._text}_${direction}.json`, JSON.stringify(object, null, 2));
         logProgress(`sPaths written successfully to ${name._text}-${direction}.json`);
 
       }
@@ -65,7 +65,7 @@ function generate_paths(filename, direction) {
         object['points'] = array
         // console.log(_.first(object.points))
         // console.log(_.last(object.points))
-        fs.writeFileSync(`../path/${name._text}_${direction}.json`, JSON.stringify(object, null, 2));
+        fs.writeFileSync(`../output/${name._text}_${direction}.json`, JSON.stringify(object, null, 2));
         logProgress(`sPaths written successfully to ${name._text}-${direction}.json`);
 
       }

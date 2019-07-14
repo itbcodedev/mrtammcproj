@@ -6,7 +6,7 @@ const request = require('request');
 const simulate = async (io) => {
 
   const simulate_url = "http://localhost:3000/api/v2/simulate"
-  console.log('Simulate URL endpoint .....', simulate_url)
+  //console.log('Simulate URL endpoint .....', simulate_url)
 
   const train = new TrainSimulator(gtfs)
 

@@ -1,4 +1,5 @@
 const moment = require('moment');
+const _ = require('lodash');
 //const fetch = require('node-fetch');
 
 const path = require('../path/path')
@@ -134,14 +135,11 @@ exports.TrainSimulator = class {
       const trip_loc = trips.map(trip => {
         const delta_t = trip.time_now_sec - trip.start_time_secs 
         const runtime_secs = trip.runtime_secs
-        
         const filemodule = getPathfile(trip)
-
         const loc_length = path[`${filemodule}`].points.length
-     
-        const loc_order = Math.round((delta_t / runtime_secs) * loc_length) 
+        const loc_order = Math.round((delta_t/ runtime_secs) * loc_length) 
         const location = path[`${filemodule}`].points[loc_order]
-        console.log(trip.trip_id,runtime_secs,loc_order,loc_length)
+        //console.log(trip.trip_id,runtime_secs,loc_order,loc_length)
         trip.file = filemodule
         trip.location = location
         return trip
@@ -158,17 +156,12 @@ exports.TrainSimulator = class {
           query.trip_id = trip.trip_id
           //get data
           const result = await gtfs.getRouteInfoWithTrip(query)
-
           const format = 'hh:mm:ss'
           const start_time = result[0].start_time
           const end_time = result[0].end_time
           const stoptimes = result[0].stoptimes
 
           const select_stoptimes = stoptimes.filter( stoptime => {
-            // console.log('stoptime.departure_time',stoptime.departure_time)
-            // console.log('start_time',start_time)
-            // console.log('end_time',end_time)
-
             const time = moment(stoptime.departure_time, format)
             const at = moment(start_time, format)
             const dt = moment(end_time, format)
@@ -182,8 +175,10 @@ exports.TrainSimulator = class {
             }
 
           })
+          // calulate location
+          // moment(time, 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds');
           trip.stoptimes = select_stoptimes
-
+          
 
           return trip
         } catch (err) {
@@ -200,6 +195,9 @@ exports.TrainSimulator = class {
 
       // step 1
       const routeinfos = await this.gtfs.getRouteInfo(query)
+      // const routeexclude = routeinfos.filter( trip => {
+      //   return ! (trip.trip_id == "PT4" || trip.trip_id == "DEP-PL")
+      // })
       const routeinfos_addsec = routeinfos.map(trip => {
         trip.start_time_secs = getsecond(trip.start_time)
         trip.end_time_secs = getsecond(trip.end_time)
