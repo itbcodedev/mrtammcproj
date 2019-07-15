@@ -15,7 +15,8 @@ const blue_chalearm_path_out = require('./parted_blue_chalearm_out.json')
 //const purpleline_path_in = require('./purple_930_in.json')
 //const purpleline_path_out = require('./purple_930_out.json')
 
-
+let purpleline_path_out
+let purpleline_path_in
 
 const moment = require('moment');
 
@@ -39,11 +40,14 @@ const purple =  purple_schdule.filter(e => {
 
 console.log(purple)
 if (purple[0] != undefined) {
-  const purpleline_path_in = require(`./${purple[0].path_in}`)
-  const purpleline_path_out = require(`./${purple[0].path_out}`)
+
+  purpleline_path_in = require(`./${purple[0].path_in}`)
+  purpleline_path_out = require(`./${purple[0].path_out}`)
+
 } else {
-  const purpleline_path_in = require('./purple_930_in.json')
-  const purpleline_path_out = require('./purple_930_out.json')
+  
+  purpleline_path_in = require('./purple_600_in.json')
+  purpleline_path_out = require('./purple_600_out.json')
 }
 
 
