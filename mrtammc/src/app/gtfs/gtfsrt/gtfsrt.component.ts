@@ -155,9 +155,10 @@ export class GtfsrtComponent implements OnInit {
       const vehicle = data['entity']['vehicle'];
       const latitude = data['entity']['vehicle']['position']['latitude'];
       const longitude = data['entity']['vehicle']['position']['longitude'];
-      const stoptimes = data['entity']['vehicle']['stoptimes'];
+
       const trainLatLng = new L.LatLng(latitude, longitude);
-      // getdata
+
+      // getdata from api
       const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(trip_id);
       // filter again filter only active trip
       const routetrips = routeinfowithtrips.filter(obj => {
@@ -166,8 +167,21 @@ export class GtfsrtComponent implements OnInit {
       // debug
       // console.log('117....',trip_id,filter)
       const nextstation = routetrips.map(obj => {
+        // purple 00118 224
+        console.log(obj.route_name, obj.trip_id, obj.stoptimes.length)
+        // filter stoptime
         const selectStoptimes = obj.stoptimes.filter(st_obj => {
-          // filter next time check depature_time less than timenow [0]
+        // filter next time check depature_time less than timenow [0]
+        //   {
+        //     "_id": "5d2a8f3f1473da58b879e4f8",
+        //     "agency_key": "MRTA_Transit",
+        //     "trip_id": "041921",
+        //     "arrival_time": "16:44:31",
+        //     "departure_time": "16:44:31",
+        //     "stop_id": "BL13",
+        //     "stop_sequence": 4,
+        //     "__v": 0
+        // },
           return this.findNextTrip(st_obj.arrival_time);
         });
         obj.selectStoptimes = _.first(selectStoptimes);
@@ -222,7 +236,7 @@ export class GtfsrtComponent implements OnInit {
             marker.start_time = start_time;
             marker.end_time = end_time;
             marker.direction = direction;
-            marker.stoptimes = stoptimes;
+
             marker.color = this.getColor(route_name);
             marker.headsign = headsign;
             marker.runtime = runtime;
