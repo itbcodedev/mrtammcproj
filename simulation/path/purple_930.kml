@@ -16,723 +16,870 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000001078000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000000898000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.40821077049,13.8925136243071</coordinates></Point>
+      <Point><coordinates>100.40821075872,13.8925138039219</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000002156000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000001796000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408210840979,13.8925125486142</coordinates></Point>
+      <Point><coordinates>100.408210817439,13.8925129078438</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000003234000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000002694000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408210911469,13.8925114729213</coordinates></Point>
+      <Point><coordinates>100.408210876159,13.8925120117656</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000004312000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000003592000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408210981959,13.8925103972284</coordinates></Point>
+      <Point><coordinates>100.408210934879,13.8925111156875</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000005390000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004490000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211052449,13.8925093215355</coordinates></Point>
+      <Point><coordinates>100.408210993598,13.8925102196094</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000006468000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000005388000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211122938,13.8925082458427</coordinates></Point>
+      <Point><coordinates>100.408211052318,13.8925093235313</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000007546000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000006286000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211193428,13.8925071701498</coordinates></Point>
+      <Point><coordinates>100.408211111038,13.8925084274531</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008624000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000007184000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211263918,13.8925060944569</coordinates></Point>
+      <Point><coordinates>100.408211169757,13.892507531375</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000009702000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008082000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211334408,13.892505018764</coordinates></Point>
+      <Point><coordinates>100.408211228477,13.8925066352969</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000010780000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008980000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211404898,13.8925039430711</coordinates></Point>
+      <Point><coordinates>100.408211287197,13.8925057392188</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000011858000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000009878000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211475387,13.8925028673782</coordinates></Point>
+      <Point><coordinates>100.408211345916,13.8925048431407</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000012936000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000010776000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211545877,13.8925017916853</coordinates></Point>
+      <Point><coordinates>100.408211404636,13.8925039470625</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000014014000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000011674000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211616367,13.8925007159924</coordinates></Point>
+      <Point><coordinates>100.408211463356,13.8925030509844</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000015092000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000012572000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211686856,13.8924996402995</coordinates></Point>
+      <Point><coordinates>100.408211522075,13.8925021549063</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000016170000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013470000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211757346,13.8924985646066</coordinates></Point>
+      <Point><coordinates>100.408211580795,13.8925012588282</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017248000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000014368000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211827836,13.8924974889137</coordinates></Point>
+      <Point><coordinates>100.408211639515,13.89250036275</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000018326000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000015266000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211898326,13.8924964132209</coordinates></Point>
+      <Point><coordinates>100.408211698234,13.8924994666719</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000019404000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000016164000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408211968815,13.892495337528</coordinates></Point>
+      <Point><coordinates>100.408211756954,13.8924985705938</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000020482000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017062000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212039305,13.8924942618351</coordinates></Point>
+      <Point><coordinates>100.408211815674,13.8924976745157</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000021560000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017960000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212109795,13.8924931861422</coordinates></Point>
+      <Point><coordinates>100.408211874393,13.8924967784376</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000022638000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000018858000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212180285,13.8924921104493</coordinates></Point>
+      <Point><coordinates>100.408211933113,13.8924958823594</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000023716000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000019756000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212250774,13.8924910347564</coordinates></Point>
+      <Point><coordinates>100.408211991833,13.8924949862813</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000024794000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000020654000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212321264,13.8924899590635</coordinates></Point>
+      <Point><coordinates>100.408212050552,13.8924940902032</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000025872000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000021552000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212391754,13.8924888833706</coordinates></Point>
+      <Point><coordinates>100.408212109272,13.8924931941251</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026950000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022450000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212462244,13.8924878076777</coordinates></Point>
+      <Point><coordinates>100.408212167992,13.8924922980469</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000028028000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000023348000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212532733,13.8924867319848</coordinates></Point>
+      <Point><coordinates>100.408212226711,13.8924914019688</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000029106000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000024246000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212603223,13.8924856562919</coordinates></Point>
+      <Point><coordinates>100.408212285431,13.8924905058907</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000030184000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000025144000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212673713,13.8924845805991</coordinates></Point>
+      <Point><coordinates>100.408212344151,13.8924896098126</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000031262000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026042000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212744203,13.8924835049062</coordinates></Point>
+      <Point><coordinates>100.40821240287,13.8924887137345</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000032340000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026940000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212814692,13.8924824292133</coordinates></Point>
+      <Point><coordinates>100.40821246159,13.8924878176563</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000033418000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000027838000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212885182,13.8924813535204</coordinates></Point>
+      <Point><coordinates>100.40821252031,13.8924869215782</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000034496000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000028736000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408212955672,13.8924802778275</coordinates></Point>
+      <Point><coordinates>100.408212579029,13.8924860255001</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035574000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000029634000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213026162,13.8924792021346</coordinates></Point>
+      <Point><coordinates>100.408212637749,13.892485129422</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000036652000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000030532000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213096651,13.8924781264417</coordinates></Point>
+      <Point><coordinates>100.408212696468,13.8924842333438</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000037730000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031430000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213167141,13.8924770507488</coordinates></Point>
+      <Point><coordinates>100.408212755188,13.8924833372657</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000038808000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000032328000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213237631,13.8924759750559</coordinates></Point>
+      <Point><coordinates>100.408212813908,13.8924824411876</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000039886000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000033226000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213308121,13.892474899363</coordinates></Point>
+      <Point><coordinates>100.408212872627,13.8924815451095</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000040964000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000034124000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.40821337861,13.8924738236702</coordinates></Point>
+      <Point><coordinates>100.408212931347,13.8924806490314</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000042042000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035022000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.4082134491,13.8924727479773</coordinates></Point>
+      <Point><coordinates>100.408212990067,13.8924797529532</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000043120000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.40821351959,13.8924716722844</coordinates></Point>
+      <Point><coordinates>100.408213048786,13.8924788568751</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044198000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000036818000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.40821359008,13.8924705965915</coordinates></Point>
+      <Point><coordinates>100.408213107506,13.892477960797</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000045276000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000037716000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213660569,13.8924695208986</coordinates></Point>
+      <Point><coordinates>100.408213166226,13.8924770647189</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000046354000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000038614000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213731059,13.8924684452057</coordinates></Point>
+      <Point><coordinates>100.408213224945,13.8924761686407</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000047432000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000039512000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213801549,13.8924673695128</coordinates></Point>
+      <Point><coordinates>100.408213283665,13.8924752725626</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000048510000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040410000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213872039,13.8924662938199</coordinates></Point>
+      <Point><coordinates>100.408213342385,13.8924743764845</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000049588000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000041308000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408213942528,13.892465218127</coordinates></Point>
+      <Point><coordinates>100.408213401104,13.8924734804064</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000050666000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000042206000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214013018,13.8924641424341</coordinates></Point>
+      <Point><coordinates>100.408213459824,13.8924725843282</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000051744000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000043104000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214083508,13.8924630667412</coordinates></Point>
+      <Point><coordinates>100.408213518544,13.8924716882501</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000052822000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044002000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214153998,13.8924619910484</coordinates></Point>
+      <Point><coordinates>100.408213577263,13.892470792172</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053900000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044900000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214224487,13.8924609153555</coordinates></Point>
+      <Point><coordinates>100.408213635983,13.8924698960939</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000054978000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000045798000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214294977,13.8924598396626</coordinates></Point>
+      <Point><coordinates>100.408213694703,13.8924690000158</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000056056000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000046696000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214365467,13.8924587639697</coordinates></Point>
+      <Point><coordinates>100.408213753422,13.8924681039376</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000057134000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000047594000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214435957,13.8924576882768</coordinates></Point>
+      <Point><coordinates>100.408213812142,13.8924672078595</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000058212000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000048492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214506446,13.8924566125839</coordinates></Point>
+      <Point><coordinates>100.408213870862,13.8924663117814</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000059290000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000049390000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214576936,13.892455536891</coordinates></Point>
+      <Point><coordinates>100.408213929581,13.8924654157033</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000060368000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000050288000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214647426,13.8924544611981</coordinates></Point>
+      <Point><coordinates>100.408213988301,13.8924645196251</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000061446000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000051186000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214717916,13.8924533855052</coordinates></Point>
+      <Point><coordinates>100.408214047021,13.892463623547</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062524000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000052084000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214788405,13.8924523098123</coordinates></Point>
+      <Point><coordinates>100.40821410574,13.8924627274689</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000063602000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000052982000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214858895,13.8924512341194</coordinates></Point>
+      <Point><coordinates>100.40821416446,13.8924618313908</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000064680000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000053880000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214929385,13.8924501584266</coordinates></Point>
+      <Point><coordinates>100.40821422318,13.8924609353127</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000065758000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000054778000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408214999875,13.8924490827337</coordinates></Point>
+      <Point><coordinates>100.408214281899,13.8924600392345</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000066836000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000055676000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215070364,13.8924480070408</coordinates></Point>
+      <Point><coordinates>100.408214340619,13.8924591431564</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000067914000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000056574000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215140854,13.8924469313479</coordinates></Point>
+      <Point><coordinates>100.408214399339,13.8924582470783</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000068992000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000057472000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215211344,13.892445855655</coordinates></Point>
+      <Point><coordinates>100.408214458058,13.8924573510002</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000070070000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000058370000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215281834,13.8924447799621</coordinates></Point>
+      <Point><coordinates>100.408214516778,13.892456454922</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071148000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000059268000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215352323,13.8924437042692</coordinates></Point>
+      <Point><coordinates>100.408214575498,13.8924555588439</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000072226000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000060166000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215422813,13.8924426285763</coordinates></Point>
+      <Point><coordinates>100.408214634217,13.8924546627658</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000073304000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000061064000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215493303,13.8924415528834</coordinates></Point>
+      <Point><coordinates>100.408214692937,13.8924537666877</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000074382000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000061962000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215563793,13.8924404771905</coordinates></Point>
+      <Point><coordinates>100.408214751657,13.8924528706096</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000075460000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000062860000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215634282,13.8924394014976</coordinates></Point>
+      <Point><coordinates>100.408214810376,13.8924519745314</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000076538000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000063758000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215704772,13.8924383258048</coordinates></Point>
+      <Point><coordinates>100.408214869096,13.8924510784533</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000077616000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000064656000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215775262,13.8924372501119</coordinates></Point>
+      <Point><coordinates>100.408214927816,13.8924501823752</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000078694000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000065554000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215845752,13.892436174419</coordinates></Point>
+      <Point><coordinates>100.408214986535,13.8924492862971</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000079772000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000066452000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215916241,13.8924350987261</coordinates></Point>
+      <Point><coordinates>100.408215045255,13.8924483902189</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080850000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000067350000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408215986731,13.8924340230332</coordinates></Point>
+      <Point><coordinates>100.408215103975,13.8924474941408</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000081928000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000068248000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216057221,13.8924329473403</coordinates></Point>
+      <Point><coordinates>100.408215162694,13.8924465980627</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000083006000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000069146000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216127711,13.8924318716474</coordinates></Point>
+      <Point><coordinates>100.408215221414,13.8924457019846</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000084084000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000070044000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.4082161982,13.8924307959545</coordinates></Point>
+      <Point><coordinates>100.408215280134,13.8924448059065</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000085162000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000070942000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.40821626869,13.8924297202616</coordinates></Point>
+      <Point><coordinates>100.408215338853,13.8924439098283</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000086240000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000071840000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.40821633918,13.8924286445687</coordinates></Point>
+      <Point><coordinates>100.408215397573,13.8924430137502</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000087318000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000072738000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.40821640967,13.8924275688758</coordinates></Point>
+      <Point><coordinates>100.408215456293,13.8924421176721</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000088396000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000073636000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216480159,13.892426493183</coordinates></Point>
+      <Point><coordinates>100.408215515012,13.892441221594</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089474000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000074534000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216550649,13.8924254174901</coordinates></Point>
+      <Point><coordinates>100.408215573732,13.8924403255158</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000090552000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000075432000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216621139,13.8924243417972</coordinates></Point>
+      <Point><coordinates>100.408215632452,13.8924394294377</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000091630000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000076330000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216691629,13.8924232661043</coordinates></Point>
+      <Point><coordinates>100.408215691171,13.8924385333596</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000092708000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000077228000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216762118,13.8924221904114</coordinates></Point>
+      <Point><coordinates>100.408215749891,13.8924376372815</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000093786000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000078126000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216832608,13.8924211147185</coordinates></Point>
+      <Point><coordinates>100.408215808611,13.8924367412034</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000094864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000079024000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216903098,13.8924200390256</coordinates></Point>
+      <Point><coordinates>100.40821586733,13.8924358451252</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000095942000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000079922000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408216973588,13.8924189633327</coordinates></Point>
+      <Point><coordinates>100.40821592605,13.8924349490471</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000097020000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000080820000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217044077,13.8924178876398</coordinates></Point>
+      <Point><coordinates>100.40821598477,13.892434052969</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000098098000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000081718000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217114567,13.8924168119469</coordinates></Point>
+      <Point><coordinates>100.408216043489,13.8924331568909</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000099176000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000082616000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217185057,13.8924157362541</coordinates></Point>
+      <Point><coordinates>100.408216102209,13.8924322608127</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000100254000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000083514000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217255547,13.8924146605612</coordinates></Point>
+      <Point><coordinates>100.408216160929,13.8924313647346</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000101332000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000084412000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217326036,13.8924135848683</coordinates></Point>
+      <Point><coordinates>100.408216219648,13.8924304686565</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000102410000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000085310000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217396526,13.8924125091754</coordinates></Point>
+      <Point><coordinates>100.408216278368,13.8924295725784</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000103488000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000086208000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217467016,13.8924114334825</coordinates></Point>
+      <Point><coordinates>100.408216337088,13.8924286765003</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000104566000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000087106000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217537506,13.8924103577896</coordinates></Point>
+      <Point><coordinates>100.408216395807,13.8924277804221</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000105644000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000088004000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217607995,13.8924092820967</coordinates></Point>
+      <Point><coordinates>100.408216454527,13.892426884344</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000106722000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000088902000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217678485,13.8924082064038</coordinates></Point>
+      <Point><coordinates>100.408216513247,13.8924259882659</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000107800000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000089800000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217748975,13.8924071307109</coordinates></Point>
+      <Point><coordinates>100.408216571966,13.8924250921878</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000108878000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000090698000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217819465,13.892406055018</coordinates></Point>
+      <Point><coordinates>100.408216630686,13.8924241961096</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000109956000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000091596000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217889954,13.8924049793251</coordinates></Point>
+      <Point><coordinates>100.408216689405,13.8924233000315</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000111034000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000092494000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408217960444,13.8924039036323</coordinates></Point>
+      <Point><coordinates>100.408216748125,13.8924224039534</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000093392000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408216806845,13.8924215078753</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000094290000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408216865564,13.8924206117972</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000095188000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408216924284,13.892419715719</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000096086000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408216983004,13.8924188196409</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000096984000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217041723,13.8924179235628</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000097882000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217100443,13.8924170274847</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000098780000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217159163,13.8924161314065</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000099678000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217217882,13.8924152353284</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000100576000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217276602,13.8924143392503</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000101474000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217335322,13.8924134431722</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000102372000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217394041,13.8924125470941</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000103270000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217452761,13.8924116510159</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000104168000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217511481,13.8924107549378</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000105066000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.4082175702,13.8924098588597</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000105964000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.40821762892,13.8924089627816</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000106862000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.40821768764,13.8924080667034</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000107760000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217746359,13.8924071706253</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000108658000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217805079,13.8924062745472</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000109556000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217863799,13.8924053784691</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000110454000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217922518,13.892404482391</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000111352000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408217981238,13.8924035863128</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -744,72 +891,142 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408218791861,13.8923943519698</coordinates></Point>
+      <Point><coordinates>100.408218395975,13.8923988254868</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408219583722,13.8923854039395</coordinates></Point>
+      <Point><coordinates>100.408218791949,13.8923943509737</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408220375583,13.8923764559093</coordinates></Point>
+      <Point><coordinates>100.408219187924,13.8923898764605</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408221167444,13.8923675078791</coordinates></Point>
+      <Point><coordinates>100.408219583898,13.8923854019473</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408221959305,13.8923585598488</coordinates></Point>
+      <Point><coordinates>100.408219979873,13.8923809274342</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408222751166,13.8923496118186</coordinates></Point>
+      <Point><coordinates>100.408220375848,13.892376452921</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408223543028,13.8923406637884</coordinates></Point>
+      <Point><coordinates>100.408220771822,13.8923719784078</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408224334889,13.8923317157581</coordinates></Point>
+      <Point><coordinates>100.408221167797,13.8923675038946</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.40822512675,13.8923227677279</coordinates></Point>
+      <Point><coordinates>100.408221563772,13.8923630293815</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.408225918611,13.8923138196977</coordinates></Point>
+      <Point><coordinates>100.408221959746,13.8923585548683</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408222355721,13.8923540803551</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408222751695,13.892349605842</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.40822314767,13.8923451313288</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408223543645,13.8923406568156</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408223939619,13.8923361823025</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408224335594,13.8923317077893</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408224731568,13.8923272332761</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408225127543,13.892322758763</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408225523518,13.8923182842498</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.408225919492,13.8923138097366</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -1766,65 +1983,135 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.409088543517,13.8811506566914</coordinates></Point>
+      <Point><coordinates>100.409088121805,13.8811551278479</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.409089387033,13.8811417133828</coordinates></Point>
+      <Point><coordinates>100.409088543611,13.8811506556958</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.40909023055,13.8811327700742</coordinates></Point>
+      <Point><coordinates>100.409088965416,13.8811461835437</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.409091074066,13.8811238267656</coordinates></Point>
+      <Point><coordinates>100.409089387221,13.8811417113916</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.409091917583,13.881114883457</coordinates></Point>
+      <Point><coordinates>100.409089809026,13.8811372392395</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.4090927611,13.8811059401484</coordinates></Point>
+      <Point><coordinates>100.409090230832,13.8811327670875</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.409093604616,13.8810969968398</coordinates></Point>
+      <Point><coordinates>100.409090652637,13.8811282949354</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.409094448133,13.8810880535312</coordinates></Point>
+      <Point><coordinates>100.409091074442,13.8811238227833</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.409095291649,13.8810791102226</coordinates></Point>
+      <Point><coordinates>100.409091496247,13.8811193506312</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.409091918053,13.8811148784791</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.409092339858,13.881110406327</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.409092761663,13.8811059341749</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.409093183468,13.8811014620228</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.409093605274,13.8810969898707</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.409094027079,13.8810925177186</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.409094448884,13.8810880455665</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.409094870689,13.8810835734144</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.409095292495,13.8810791012624</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.4090957143,13.8810746291103</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -3061,72 +3348,142 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.419435666724,13.8747761405129</coordinates></Point>
+      <Point><coordinates>100.419431183861,13.8747758702866</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.419444633447,13.8747766810259</coordinates></Point>
+      <Point><coordinates>100.419435667722,13.8747761405731</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.419453600171,13.8747772215388</coordinates></Point>
+      <Point><coordinates>100.419440151583,13.8747764108597</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.419462566895,13.8747777620518</coordinates></Point>
+      <Point><coordinates>100.419444635444,13.8747766811462</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.419471533619,13.8747783025647</coordinates></Point>
+      <Point><coordinates>100.419449119305,13.8747769514328</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.419480500342,13.8747788430777</coordinates></Point>
+      <Point><coordinates>100.419453603166,13.8747772217194</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.419489467066,13.8747793835906</coordinates></Point>
+      <Point><coordinates>100.419458087027,13.8747774920059</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.41949843379,13.8747799241036</coordinates></Point>
+      <Point><coordinates>100.419462570888,13.8747777622925</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.419507400514,13.8747804646165</coordinates></Point>
+      <Point><coordinates>100.419467054749,13.874778032579</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.419516367237,13.8747810051295</coordinates></Point>
+      <Point><coordinates>100.41947153861,13.8747783028656</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419476022471,13.8747785731522</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419480506332,13.8747788434387</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419484990193,13.8747791137253</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419489474054,13.8747793840118</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419493957915,13.8747796542984</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419498441775,13.874779924585</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419502925636,13.8747801948715</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419507409497,13.8747804651581</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419511893358,13.8747807354446</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.419516377219,13.8747810057312</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -4251,65 +4608,135 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.433881367358,13.8757348298893</coordinates></Point>
+      <Point><coordinates>100.433876884178,13.8757345649742</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.433890334716,13.8757353597787</coordinates></Point>
+      <Point><coordinates>100.433881368356,13.8757348299483</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.433899302073,13.875735889668</coordinates></Point>
+      <Point><coordinates>100.433885852534,13.8757350949225</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.433908269431,13.8757364195573</coordinates></Point>
+      <Point><coordinates>100.433890336712,13.8757353598966</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.433917236789,13.8757369494466</coordinates></Point>
+      <Point><coordinates>100.43389482089,13.8757356248708</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.433926204147,13.875737479336</coordinates></Point>
+      <Point><coordinates>100.433899305068,13.8757358898449</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.433935171505,13.8757380092253</coordinates></Point>
+      <Point><coordinates>100.433903789246,13.8757361548191</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.433944138863,13.8757385391146</coordinates></Point>
+      <Point><coordinates>100.433908273424,13.8757364197933</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.43395310622,13.8757390690039</coordinates></Point>
+      <Point><coordinates>100.433912757602,13.8757366847674</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.43391724178,13.8757369497416</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.433921725958,13.8757372147157</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.433926210136,13.8757374796899</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.433930694315,13.875737744664</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.433935178493,13.8757380096382</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.433939662671,13.8757382746124</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.433944146849,13.8757385395865</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.433948631027,13.8757388045607</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.433953115205,13.8757390695348</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.433957599383,13.875739334509</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -5245,72 +5672,149 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444861455352,13.8764544042466</coordinates></Point>
+      <Point><coordinates>100.444856978174,13.8764540521625</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444870410704,13.8764551084932</coordinates></Point>
+      <Point><coordinates>100.444861456349,13.876454404325</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444879366055,13.8764558127397</coordinates></Point>
+      <Point><coordinates>100.444865934523,13.8764547564875</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444888321407,13.8764565169863</coordinates></Point>
+      <Point><coordinates>100.444870412697,13.87645510865</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444897276759,13.8764572212329</coordinates></Point>
+      <Point><coordinates>100.444874890872,13.8764554608124</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444906232111,13.8764579254795</coordinates></Point>
+      <Point><coordinates>100.444879369046,13.8764558129749</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444915187463,13.8764586297261</coordinates></Point>
+      <Point><coordinates>100.44488384722,13.8764561651374</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444924142814,13.8764593339726</coordinates></Point>
+      <Point><coordinates>100.444888325395,13.8764565172999</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444933098166,13.8764600382192</coordinates></Point>
+      <Point><coordinates>100.444892803569,13.8764568694624</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.444942053518,13.8764607424658</coordinates></Point>
+      <Point><coordinates>100.444897281744,13.8764572216249</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444901759918,13.8764575737874</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444906238092,13.8764579259499</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444910716267,13.8764582781124</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444915194441,13.8764586302749</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444919672615,13.8764589824373</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.44492415079,13.8764593345998</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444928628964,13.8764596867623</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444933107138,13.8764600389248</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444937585313,13.8764603910873</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444942063487,13.8764607432498</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000094332000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.444946541662,13.8764610954123</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -6253,72 +6757,142 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.456008832299,13.8749414050671</coordinates></Point>
+      <Point><coordinates>100.456004716608,13.8749432023334</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.456017064598,13.8749378101342</coordinates></Point>
+      <Point><coordinates>100.456008833215,13.8749414046669</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.456025296897,13.8749342152012</coordinates></Point>
+      <Point><coordinates>100.456012949823,13.8749396070003</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.456033529196,13.8749306202683</coordinates></Point>
+      <Point><coordinates>100.456017066431,13.8749378093338</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.456041761495,13.8749270253354</coordinates></Point>
+      <Point><coordinates>100.456021183038,13.8749360116672</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.456049993794,13.8749234304025</coordinates></Point>
+      <Point><coordinates>100.456025299646,13.8749342140007</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.456058226093,13.8749198354695</coordinates></Point>
+      <Point><coordinates>100.456029416254,13.8749324163341</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.456066458392,13.8749162405366</coordinates></Point>
+      <Point><coordinates>100.456033532862,13.8749306186675</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.456074690691,13.8749126456037</coordinates></Point>
+      <Point><coordinates>100.456037649469,13.874928821001</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.45608292299,13.8749090506708</coordinates></Point>
+      <Point><coordinates>100.456041766077,13.8749270233344</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.456045882685,13.8749252256679</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.456049999292,13.8749234280013</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.4560541159,13.8749216303348</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.456058232508,13.8749198326682</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.456062349115,13.8749180350016</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.456066465723,13.8749162373351</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.456070582331,13.8749144396685</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.456074698939,13.874912642002</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.456078815546,13.8749108443354</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.456082932154,13.8749090466689</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -7268,79 +7842,163 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466618541347,13.870599725858</coordinates></Point>
+      <Point><coordinates>100.466614421132,13.8706015127301</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466626782694,13.870596151716</coordinates></Point>
+      <Point><coordinates>100.466618542264,13.8705997254601</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466635024041,13.870592577574</coordinates></Point>
+      <Point><coordinates>100.466622663396,13.8705979381902</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466643265387,13.870589003432</coordinates></Point>
+      <Point><coordinates>100.466626784529,13.8705961509202</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466651506734,13.87058542929</coordinates></Point>
+      <Point><coordinates>100.466630905661,13.8705943636503</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466659748081,13.870581855148</coordinates></Point>
+      <Point><coordinates>100.466635026793,13.8705925763804</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466667989428,13.870578281006</coordinates></Point>
+      <Point><coordinates>100.466639147925,13.8705907891104</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466676230775,13.870574706864</coordinates></Point>
+      <Point><coordinates>100.466643269057,13.8705890018405</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466684472122,13.870571132722</coordinates></Point>
+      <Point><coordinates>100.466647390189,13.8705872145705</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466692713469,13.87056755858</coordinates></Point>
+      <Point><coordinates>100.466651511321,13.8705854273006</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000098813000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.466700954815,13.870563984438</coordinates></Point>
+      <Point><coordinates>100.466655632454,13.8705836400307</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466659753586,13.8705818527607</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466663874718,13.8705800654908</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.46666799585,13.8705782782208</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466672116982,13.8705764909509</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466676238114,13.8705747036809</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466680359246,13.870572916411</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466684480379,13.8705711291411</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466688601511,13.8705693418711</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466692722643,13.8705675546012</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000094332000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466696843775,13.8705657673312</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000098824000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466700964907,13.8705639800613</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000103316000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.466705086039,13.8705621927914</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -8444,79 +9102,156 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.48024345596,13.8706984964754</coordinates></Point>
+      <Point><coordinates>100.480238978478,13.8706981482765</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480252411919,13.8706991929508</coordinates></Point>
+      <Point><coordinates>100.480243456957,13.8706984965529</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480261367879,13.8706998894263</coordinates></Point>
+      <Point><coordinates>100.480247935435,13.8706988448294</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480270323838,13.8707005859017</coordinates></Point>
+      <Point><coordinates>100.480252413913,13.8706991931059</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480279279798,13.8707012823771</coordinates></Point>
+      <Point><coordinates>100.480256892391,13.8706995413824</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480288235757,13.8707019788525</coordinates></Point>
+      <Point><coordinates>100.48026137087,13.8706998896588</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480297191717,13.8707026753279</coordinates></Point>
+      <Point><coordinates>100.480265849348,13.8707002379353</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480306147676,13.8707033718033</coordinates></Point>
+      <Point><coordinates>100.480270327826,13.8707005862118</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480315103636,13.8707040682787</coordinates></Point>
+      <Point><coordinates>100.480274806304,13.8707009344883</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480324059595,13.8707047647542</coordinates></Point>
+      <Point><coordinates>100.480279284783,13.8707012827647</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000098813000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.480333015555,13.8707054612296</coordinates></Point>
+      <Point><coordinates>100.480283763261,13.8707016310412</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480288241739,13.8707019793177</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480292720217,13.8707023275942</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480297198696,13.8707026758706</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480301677174,13.8707030241471</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480306155652,13.8707033724236</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.48031063413,13.8707037207001</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480315112609,13.8707040689765</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480319591087,13.870704417253</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480324069565,13.8707047655295</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000094332000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480328548043,13.870705113806</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000098824000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.480333026522,13.8707054620824</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -9648,72 +10383,142 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.494265229528,13.8659783783437</coordinates></Point>
+      <Point><coordinates>100.494261165217,13.8659802889591</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.494273359057,13.8659745566874</coordinates></Point>
+      <Point><coordinates>100.494265230433,13.8659783779183</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.494281488585,13.8659707350311</coordinates></Point>
+      <Point><coordinates>100.49426929565,13.8659764668774</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.494289618114,13.8659669133748</coordinates></Point>
+      <Point><coordinates>100.494273360867,13.8659745558365</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.494297747642,13.8659630917185</coordinates></Point>
+      <Point><coordinates>100.494277426083,13.8659726447957</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.49430587717,13.8659592700622</coordinates></Point>
+      <Point><coordinates>100.4942814913,13.8659707337548</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.494314006699,13.8659554484059</coordinates></Point>
+      <Point><coordinates>100.494285556517,13.8659688227139</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.494322136227,13.8659516267496</coordinates></Point>
+      <Point><coordinates>100.494289621734,13.8659669116731</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.494330265756,13.8659478050933</coordinates></Point>
+      <Point><coordinates>100.49429368695,13.8659650006322</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.494338395284,13.865943983437</coordinates></Point>
+      <Point><coordinates>100.494297752167,13.8659630895914</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.494301817384,13.8659611785505</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.4943058826,13.8659592675096</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.494309947817,13.8659573564688</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.494314013034,13.8659554454279</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.49431807825,13.865953534387</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.494322143467,13.8659516233462</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.494326208684,13.8659497123053</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.494330273901,13.8659478012644</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.494334339117,13.8659458902236</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.494338404334,13.8659439791827</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -10747,72 +11552,149 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.504421626221,13.8617585675473</coordinates></Point>
+      <Point><coordinates>100.504417263596,13.8617596336549</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.504430352442,13.8617564350945</coordinates></Point>
+      <Point><coordinates>100.504421627192,13.8617585673099</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.504439078663,13.8617543026418</coordinates></Point>
+      <Point><coordinates>100.504425990789,13.8617575009648</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.504447804884,13.861752170189</coordinates></Point>
+      <Point><coordinates>100.504430354385,13.8617564346197</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.504456531105,13.8617500377363</coordinates></Point>
+      <Point><coordinates>100.504434717981,13.8617553682747</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.504465257326,13.8617479052836</coordinates></Point>
+      <Point><coordinates>100.504439081577,13.8617543019296</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.504473983548,13.8617457728308</coordinates></Point>
+      <Point><coordinates>100.504443445174,13.8617532355846</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.504482709769,13.8617436403781</coordinates></Point>
+      <Point><coordinates>100.50444780877,13.8617521692395</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.50449143599,13.8617415079253</coordinates></Point>
+      <Point><coordinates>100.504452172366,13.8617511028944</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.504500162211,13.8617393754726</coordinates></Point>
+      <Point><coordinates>100.504456535962,13.8617500365494</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504460899559,13.8617489702043</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504465263155,13.8617479038592</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504469626751,13.8617468375142</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504473990347,13.8617457711691</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504478353944,13.861744704824</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.50448271754,13.861743638479</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504487081136,13.8617425721339</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504491444732,13.8617415057889</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504495808329,13.8617404394438</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504500171925,13.8617393730987</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000094332000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.504504535521,13.8617383067537</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -11629,240 +12511,485 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513172621195,13.8604023480677</coordinates></Point>
+      <Point><coordinates>100.513168161094,13.8604028739753</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513181542391,13.8604012961353</coordinates></Point>
+      <Point><coordinates>100.513172622189,13.8604023479506</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513190463586,13.860400244203</coordinates></Point>
+      <Point><coordinates>100.513177083283,13.8604018219258</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513199384782,13.8603991922707</coordinates></Point>
+      <Point><coordinates>100.513181544377,13.8604012959011</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513208305977,13.8603981403383</coordinates></Point>
+      <Point><coordinates>100.513186005471,13.8604007698764</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513217227172,13.860397088406</coordinates></Point>
+      <Point><coordinates>100.513190466566,13.8604002438517</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513226148368,13.8603960364736</coordinates></Point>
+      <Point><coordinates>100.51319492766,13.860399717827</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513235069563,13.8603949845413</coordinates></Point>
+      <Point><coordinates>100.513199388754,13.8603991918022</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513243990759,13.860393932609</coordinates></Point>
+      <Point><coordinates>100.513203849848,13.8603986657775</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513252911954,13.8603928806766</coordinates></Point>
+      <Point><coordinates>100.513208310943,13.8603981397528</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000098813000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513261833149,13.8603918287443</coordinates></Point>
+      <Point><coordinates>100.513212772037,13.8603976137281</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000107796000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513270754345,13.860390776812</coordinates></Point>
+      <Point><coordinates>100.513217233131,13.8603970877034</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000116779000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.51327967554,13.8603897248796</coordinates></Point>
+      <Point><coordinates>100.513221694225,13.8603965616786</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000125762000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513288596736,13.8603886729473</coordinates></Point>
+      <Point><coordinates>100.51322615532,13.8603960356539</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000134745000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513297517931,13.8603876210149</coordinates></Point>
+      <Point><coordinates>100.513230616414,13.8603955096292</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000143728000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513306439126,13.8603865690826</coordinates></Point>
+      <Point><coordinates>100.513235077508,13.8603949836045</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000152711000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513315360322,13.8603855171503</coordinates></Point>
+      <Point><coordinates>100.513239538602,13.8603944575798</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000161694000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513324281517,13.8603844652179</coordinates></Point>
+      <Point><coordinates>100.513243999697,13.860393931555</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000170677000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513333202713,13.8603834132856</coordinates></Point>
+      <Point><coordinates>100.513248460791,13.8603934055303</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000179660000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513342123908,13.8603823613533</coordinates></Point>
+      <Point><coordinates>100.513252921885,13.8603928795056</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000188643000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000094332000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513351045103,13.8603813094209</coordinates></Point>
+      <Point><coordinates>100.513257382979,13.8603923534809</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000197626000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000098824000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513359966299,13.8603802574886</coordinates></Point>
+      <Point><coordinates>100.513261844074,13.8603918274562</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000206609000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000103316000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513368887494,13.8603792055562</coordinates></Point>
+      <Point><coordinates>100.513266305168,13.8603913014314</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000215592000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000107808000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.51337780869,13.8603781536239</coordinates></Point>
+      <Point><coordinates>100.513270766262,13.8603907754067</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000224575000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000112300000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513386729885,13.8603771016916</coordinates></Point>
+      <Point><coordinates>100.513275227357,13.860390249382</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000233558000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000116792000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.51339565108,13.8603760497592</coordinates></Point>
+      <Point><coordinates>100.513279688451,13.8603897233573</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000242541000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000121284000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513404572276,13.8603749978269</coordinates></Point>
+      <Point><coordinates>100.513284149545,13.8603891973326</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000251524000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000125776000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513413493471,13.8603739458946</coordinates></Point>
+      <Point><coordinates>100.513288610639,13.8603886713078</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000260507000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000130268000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513422414667,13.8603728939622</coordinates></Point>
+      <Point><coordinates>100.513293071734,13.8603881452831</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000269490000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000134760000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513431335862,13.8603718420299</coordinates></Point>
+      <Point><coordinates>100.513297532828,13.8603876192584</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000278473000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000139252000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513440257057,13.8603707900975</coordinates></Point>
+      <Point><coordinates>100.513301993922,13.8603870932337</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000287456000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000143744000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513449178253,13.8603697381652</coordinates></Point>
+      <Point><coordinates>100.513306455016,13.860386567209</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000296439000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000148236000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513458099448,13.8603686862329</coordinates></Point>
+      <Point><coordinates>100.513310916111,13.8603860411842</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000305422000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000152728000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.513467020644,13.8603676343005</coordinates></Point>
+      <Point><coordinates>100.513315377205,13.8603855151595</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000157220000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513319838299,13.8603849891348</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000161712000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513324299393,13.8603844631101</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000166204000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513328760488,13.8603839370854</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000170696000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513333221582,13.8603834110606</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000175188000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513337682676,13.8603828850359</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000179680000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.51334214377,13.8603823590112</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000184172000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513346604865,13.8603818329865</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000188664000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513351065959,13.8603813069618</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000193156000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513355527053,13.860380780937</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000197648000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513359988147,13.8603802549123</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000202140000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513364449242,13.8603797288876</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000206632000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513368910336,13.8603792028629</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000211124000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.51337337143,13.8603786768382</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000215616000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513377832524,13.8603781508134</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000220108000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513382293619,13.8603776247887</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000224600000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513386754713,13.860377098764</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000229092000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513391215807,13.8603765727393</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000233584000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513395676902,13.8603760467146</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000238076000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513400137996,13.8603755206898</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000242568000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.51340459909,13.8603749946651</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000247060000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513409060184,13.8603744686404</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000251552000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513413521279,13.8603739426157</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000256044000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513417982373,13.860373416591</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000260536000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513422443467,13.8603728905662</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000265028000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513426904561,13.8603723645415</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000269520000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513431365656,13.8603718385168</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000274012000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.51343582675,13.8603713124921</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000278504000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513440287844,13.8603707864674</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000282996000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513444748938,13.8603702604426</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000287488000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513449210033,13.8603697344179</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000291980000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513453671127,13.8603692083932</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000296472000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513458132221,13.8603686823685</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000300964000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513462593315,13.8603681563438</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000305456000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.51346705441,13.860367630319</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000309948000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.513471515504,13.8603671042943</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -13351,72 +14478,142 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.51476326562,13.8486306288009</coordinates></Point>
+      <Point><coordinates>100.514765682541,13.8486344139791</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514758431239,13.8486230576019</coordinates></Point>
+      <Point><coordinates>100.514763265081,13.8486306279581</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514753596859,13.8486154864028</coordinates></Point>
+      <Point><coordinates>100.514760847622,13.8486268419372</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514748762478,13.8486079152038</coordinates></Point>
+      <Point><coordinates>100.514758430163,13.8486230559162</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514743928098,13.8486003440047</coordinates></Point>
+      <Point><coordinates>100.514756012704,13.8486192698953</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514739093718,13.8485927728057</coordinates></Point>
+      <Point><coordinates>100.514753595244,13.8486154838743</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514734259337,13.8485852016066</coordinates></Point>
+      <Point><coordinates>100.514751177785,13.8486116978534</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514729424957,13.8485776304075</coordinates></Point>
+      <Point><coordinates>100.514748760326,13.8486079118324</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514724590576,13.8485700592085</coordinates></Point>
+      <Point><coordinates>100.514746342866,13.8486041258115</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514719756196,13.8485624880094</coordinates></Point>
+      <Point><coordinates>100.514743925407,13.8486003397905</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514741507948,13.8485965537696</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514739090489,13.8485927677486</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514736673029,13.8485889817277</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.51473425557,13.8485851957068</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514731838111,13.8485814096858</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514729420651,13.8485776236649</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514727003192,13.8485738376439</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514724585733,13.848570051623</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514722168274,13.848566265602</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514719750814,13.8485624795811</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -14541,72 +15738,142 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514886487239,13.8396991328314</coordinates></Point>
+      <Point><coordinates>100.514883044003,13.8397020160947</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514893374477,13.8396933656628</coordinates></Point>
+      <Point><coordinates>100.514886488005,13.8396991321894</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514900261716,13.8396875984941</coordinates></Point>
+      <Point><coordinates>100.514889932008,13.839696248284</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514907148954,13.8396818313255</coordinates></Point>
+      <Point><coordinates>100.514893376011,13.8396933643787</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514914054799,13.8396760864677</coordinates></Point>
+      <Point><coordinates>100.514896820013,13.8396904804734</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514920965184,13.8396703470545</coordinates></Point>
+      <Point><coordinates>100.514900264016,13.8396875965681</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.51492787557,13.8396646076414</coordinates></Point>
+      <Point><coordinates>100.514903708018,13.8396847126628</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514934785955,13.8396588682282</coordinates></Point>
+      <Point><coordinates>100.514907152021,13.8396818287575</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.51494169634,13.8396531288151</coordinates></Point>
+      <Point><coordinates>100.514910603068,13.8396789532991</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.514948606726,13.839647389402</coordinates></Point>
+      <Point><coordinates>100.514914058645,13.8396760832731</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514917514223,13.839673213247</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.5149209698,13.839670343221</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514924425377,13.839667473195</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514927880955,13.839664603169</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514931336532,13.8396617331429</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514934792109,13.8396588631169</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514938247687,13.8396559930909</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514941703264,13.8396531230648</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514945158841,13.8396502530388</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.514948614419,13.8396473830128</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -15738,72 +17005,149 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.526529023149,13.8299293759893</coordinates></Point>
+      <Point><coordinates>100.52652556196,13.829932237676</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.526535946298,13.8299236519785</coordinates></Point>
+      <Point><coordinates>100.52652902392,13.829929375352</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.526542869447,13.8299179279678</coordinates></Point>
+      <Point><coordinates>100.526532485879,13.8299265130281</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.526549792595,13.829912203957</coordinates></Point>
+      <Point><coordinates>100.526535947839,13.8299236507041</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.526556715744,13.8299064799463</coordinates></Point>
+      <Point><coordinates>100.526539409799,13.8299207883801</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.526563638893,13.8299007559355</coordinates></Point>
+      <Point><coordinates>100.526542871759,13.8299179260561</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.526570562042,13.8298950319247</coordinates></Point>
+      <Point><coordinates>100.526546333718,13.8299150637322</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.526577485191,13.829889307914</coordinates></Point>
+      <Point><coordinates>100.526549795678,13.8299122014082</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.52658440834,13.8298835839032</coordinates></Point>
+      <Point><coordinates>100.526553257638,13.8299093390842</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.526591331488,13.8298778598925</coordinates></Point>
+      <Point><coordinates>100.526556719598,13.8299064767602</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526560181557,13.8299036144362</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526563643517,13.8299007521123</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526567105477,13.8298978897883</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526570567437,13.8298950274643</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526574029397,13.8298921651403</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526577491356,13.8298893028164</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526580953316,13.8298864404924</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526584415276,13.8298835781684</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000085348000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526587877236,13.8298807158444</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089840000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526591339195,13.8298778535205</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000094332000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.526594801155,13.8298749911965</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -16900,65 +18244,128 @@
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000004492000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.532543883203,13.8202660866924</coordinates></Point>
+      <Point><coordinates>100.532544441539,13.8202705428501</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000008984000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.532542766405,13.8202571733848</coordinates></Point>
+      <Point><coordinates>100.532543883078,13.8202660857001</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000013476000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.532541649608,13.8202482600772</coordinates></Point>
+      <Point><coordinates>100.532543324617,13.8202616285502</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000017968000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.53254053281,13.8202393467696</coordinates></Point>
+      <Point><coordinates>100.532542766157,13.8202571714003</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000022460000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.532539416013,13.8202304334619</coordinates></Point>
+      <Point><coordinates>100.532542207696,13.8202527142504</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000026952000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.532538299216,13.8202215201543</coordinates></Point>
+      <Point><coordinates>100.532541649235,13.8202482571004</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000031444000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.532537182418,13.8202126068467</coordinates></Point>
+      <Point><coordinates>100.532541090774,13.8202437999505</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000035936000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.532536065621,13.8202036935391</coordinates></Point>
+      <Point><coordinates>100.532540532313,13.8202393428006</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
 		<SimpleData name="fid">1</SimpleData>
-		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+		<SimpleData name="cngdegrees">0.000040428000000</SimpleData>
 	</SchemaData></ExtendedData>
-      <Point><coordinates>100.532534948823,13.8201947802315</coordinates></Point>
+      <Point><coordinates>100.532539973852,13.8202348856507</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000044920000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.532539415391,13.8202304285007</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000049412000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.53253885693,13.8202259713508</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053904000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.53253829847,13.8202215142009</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000058396000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.532537740009,13.820217057051</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062888000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.532537181548,13.820212599901</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000067380000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.532536623087,13.8202081427511</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071872000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.532536064626,13.8202036856012</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000076364000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.532535506165,13.8201992284513</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080856000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.532534947704,13.8201947713013</coordinates></Point>
   </Placemark>
   <Placemark>
 	<ExtendedData><SchemaData schemaUrl="#purple_930">
@@ -17904,6 +19311,153 @@
 		<SimpleData name="cngdegrees">0.013999516000000</SimpleData>
 	</SchemaData></ExtendedData>
       <Point><coordinates>100.530760861545,13.8063036793799</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000000000000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.5307502,13.8062202</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000008983000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530749095421,13.8062112851699</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000017966000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530747990843,13.8062023703399</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000026949000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530746886264,13.8061934555098</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000035932000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530745781685,13.8061845406798</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000044915000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530744677106,13.8061756258497</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000053898000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530743572528,13.8061667110197</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000062881000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530742467949,13.8061577961896</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000071864000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.53074136337,13.8061488813596</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000080847000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530740258791,13.8061399665295</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000089830000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530739154213,13.8061310516995</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000098813000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530738049634,13.8061221368694</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000107796000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530736945055,13.8061132220394</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000116779000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530735840477,13.8061043072093</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000125762000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530734735898,13.8060953923793</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000134745000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530733631319,13.8060864775492</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000143728000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.53073252674,13.8060775627192</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000152711000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530731422162,13.8060686478891</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000161694000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530730317583,13.8060597330591</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000170677000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530729213004,13.806050818229</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#purple_930">
+		<SimpleData name="fid">1</SimpleData>
+		<SimpleData name="cngdegrees">0.000179660000000</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>100.530728108426,13.806041903399</coordinates></Point>
   </Placemark>
 </Folder>
 </Document></kml>

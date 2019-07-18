@@ -52,3 +52,7 @@ npm install --dev  @angular-devkit/build-angular
 
 
 timedatectl set-time 22:00:00
+timedatectl set-time 07:00:00
+
+sudo kill -9 $(lsof -t -i:3000)
+sudo kill -9 $(lsof -t -i:4200)
