@@ -82,17 +82,7 @@ function logProgress(str) {
 }
 
 //convert kml --> json file
-generate_paths('purpleline_path.kml','in')
-generate_paths('purpleline_path.kml','out')
 
-generate_paths('blue_chalearm_path.kml','in')
-generate_paths('blue_chalearm_path.kml','out')
-
-generate_paths('blue_path.kml','in')
-generate_paths('blue_path.kml','out')
-
-generate_paths('parted_purpleline.kml','in')
-generate_paths('parted_purpleline.kml','out')
 
 
 generate_paths('parted_blue_chalearm.kml','in')
@@ -104,3 +94,9 @@ generate_paths('purple_600.kml','out')
 
 generate_paths('purple_930.kml','in')
 generate_paths('purple_930.kml','out')
+
+generate_paths('purple_a.kml','in')
+generate_paths('purple_a.kml','out')
+
+generate_paths('purple_b.kml','in')
+generate_paths('purple_b.kml','out')

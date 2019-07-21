@@ -51,6 +51,10 @@ const RouteInfoSchema = new mongoose.Schema({
   direction: {
     type: String,
     index: true
+  },
+  speed: {
+    type: String,
+    index: true
   }
 })
 
