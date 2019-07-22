@@ -80,7 +80,7 @@ export class ParkingComponent implements OnInit {
       this.parkinglocations = result[1];
       this.parkings = result[0];
 
-      console.log(this.parkings);
+      //console.log(this.parkings);
       this.parkings.forEach(parking => {
         this.totoalncarrem += +parking.ncarrem
         parking.ncarrem = parking.ncarrem < 0 ? 0 : parking.ncarrem
@@ -88,6 +88,7 @@ export class ParkingComponent implements OnInit {
         this.parkinglocations.forEach(pl => {
           if (parking.code == pl.code) {
             parking.capacity = pl.capacity
+            parking.icon = pl.icon
             this.totalcapacity += pl.capacity
           }
         });
