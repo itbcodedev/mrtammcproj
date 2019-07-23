@@ -239,6 +239,7 @@ export class GtfsrtComponent implements OnInit {
             marker.direction = direction;
 
             marker.color = this.getColor(route_name);
+            marker.track = this.getTrack(route_name)
             marker.headsign = headsign;
             marker.runtime = runtime;
 
@@ -360,15 +361,19 @@ export class GtfsrtComponent implements OnInit {
       </div>
     </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <span>สถานีถัดไป <b>${e.target.nextstop}</b>
-          ใช้เวลา ${Math.floor(e.target.difftime / 60)} นาที  ${e.target.difftime % 60} วินาที
-          </span>
-          <span>arrival: ${e.target.arrival_time} departure: ${e.target.departure_time}</span>
-        </li>
-        <li class="list-group-item">
-
-        </li>
+      <li class="list-group-item m-0">
+      
+     <p class="m-0">
+     ${Math.floor(e.target.difftime / 60)} นาที  ${e.target.difftime % 60} วิ.
+     <img src="${e.target.track}" alt="Smiley face" height="32" width="15"> 
+     สถานีถัดไป: <b>${e.target.nextstop}</b>
+     </p>
+   </li>
+   <li class="list-group-item">
+       <p class="m-1">
+          <b> arrival: ${e.target.arrival_time} departure: ${e.target.departure_time} </b>
+       </p>
+   </li>
       </ul>
 </div>
     `;
@@ -427,14 +432,18 @@ export class GtfsrtComponent implements OnInit {
       </div>
     </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <span>สถานีถัดไป <b>${marker.nextstop}</b>
-          ใช้เวลา ${Math.floor(marker.difftime / 60)} นาที  ${marker.difftime % 60} วินาที
-          </span>
-          <span>arrival: ${marker.arrival_time} departure: ${marker.departure_time}</span>
+        <li class="list-group-item m-0">
+           
+          <p class="m-0">
+          ${Math.floor(marker.difftime / 60)} นาที  ${marker.difftime % 60} วิ.
+          <img src="${marker.track}" alt="Smiley face" height="32" width="15"> 
+          สถานีถัดไป: <b>${marker.nextstop}</b>
+          </p>
         </li>
         <li class="list-group-item">
-
+            <p class="m-1">
+              <b> arrival: ${marker.arrival_time} departure: ${marker.departure_time} </b>
+            </p>
         </li>
       </ul>
 </div>
@@ -972,6 +981,23 @@ export class GtfsrtComponent implements OnInit {
     }
   }
 
+  getTrack(color) {
+    switch (color) {
+      case 'orange':
+        return 'orange';
+      case 'green':
+        return 'green';
+      case 'blue':
+        return './assets/dist/img/blue-track.png';
+      case 'purple':
+        return './assets/dist/img/purple-track.png';
+      case 'blue':
+        return 'blue';
+      default:
+        return 'white';
+    }
+  }
+  
   getsecond(time) {
     const seconds = moment(time, 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds');
     return seconds;
