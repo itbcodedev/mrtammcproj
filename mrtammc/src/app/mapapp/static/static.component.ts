@@ -24,7 +24,7 @@ export class StaticComponent implements OnInit {
   datasets=[]
   alerts: any
   mobilemessages: any
-  private alertForm: FormGroup;
+  alertForm: FormGroup;
   passengers
   average
   allpassengers
