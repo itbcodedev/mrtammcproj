@@ -190,10 +190,10 @@ export class StaticComponent implements OnInit {
     const data = this.alertForm.value;
     data.notify_date = now
    
-    // this._mobile.sendalerts(data).subscribe(res => {
-    //   console.log(res);
-    //   this._toastr.success("Successfull send alert" + res);
-    // })
+    this._mobile.sendalerts(data).subscribe(res => {
+      console.log(res);
+      this._toastr.success("Successfull send alert" + res);
+    })
 
     this._mobile.savealerts(data).subscribe(res => {
       console.log(res)
