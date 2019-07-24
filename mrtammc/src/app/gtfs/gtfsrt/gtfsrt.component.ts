@@ -798,6 +798,7 @@ export class GtfsrtComponent implements OnInit {
       }
 
       async function onMarkerClick(e) {
+        this.selectMarker = null
         const stoptimes_next = await this.loadallstoptimes(e.target.stop_id);
         // console.log(stoptimes_next)
 

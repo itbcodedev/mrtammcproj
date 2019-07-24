@@ -38,7 +38,7 @@
                 <div class="inner">
                   <h3>150</h3>
 
-                  <p>จำนวน Alert</p>
+                  <p>จำนวนการแจ้งเตือนจากระบบ</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-alert"></i>
@@ -50,9 +50,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>00</h3>
+                <h3>10</h3>
 
-                <p></p>
+                <p>จำนวนข้อความที่ส่งไปมือถือ</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -99,7 +99,7 @@
         </div>
 
 
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-header d-flex p-0 ui-sortable-handle" style="cursor: move;">
             <h3 class="card-title p-3">
               <i class="fa fa-pie-chart mr-1"></i>
@@ -112,7 +112,7 @@
               <canvas id="canvas">{{ chart }}</canvas>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </section>
       <section class="col-lg-6">
@@ -120,8 +120,9 @@
               <div class="card-header ui-sortable-handle" style="cursor: move;">
                 <h4 class="card-title">
                   <i class="ion ion-clipboard mr-1"></i>
-                  Alerts System
-                  <button type="button" class="btn btn-info btn-sm"  data-toggle="modal" data-target="#alertModal"><i class="fa fa-plus"></i> New Alert</button>
+                  ข้อความแจ้งเตือนจากระบบเดินรถ
+                  <button type="button" class="btn btn-info btn-sm"  data-toggle="modal" data-target="#alertModal">
+                    <i class="fa fa-arrow-circle-right"></i> ส่งข้อความไปยังมือถือ</button>
                 </h4>
 
                 <div class="card-tools">
@@ -159,43 +160,126 @@
               <div class="card-footer clearfix">
 
               </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header ui-sortable-handle" style="cursor: move;">
+              <h4 class="card-title">
+                <i class="ion ion-clipboard mr-1"></i>
+                ประวัติข้อความที่ส่งไปมือถือ
+              </h4>
+
+              <div class="card-tools">
+                <ul class="pagination pagination-sm">
+                  <li class="page-item"><a href="#" class="page-link">«</a></li>
+                  <li class="page-item"><a href="#" class="page-link">1</a></li>
+                  <li class="page-item"><a href="#" class="page-link">2</a></li>
+                  <li class="page-item"><a href="#" class="page-link">3</a></li>
+                  <li class="page-item"><a href="#" class="page-link">»</a></li>
+                </ul>
+              </div>
             </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <ag-grid-angular 
+                [enableSorting]="true"
+                style="width: 100%; height: 500px;" 
+                class="ag-theme-balham"
+                [rowData]="rowData" 
+                (gridReady)="onGridReady($event)"
+                [columnDefs]="columnDefs">
+               </ag-grid-angular>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+
+            </div>
+        </div>
+
       </section>
+
     </div>
   </section>
 </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Alert Form</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="alertForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="title">Title</label>
-            <input class="form-control" id="title" formControlName="title">
-            <small  class="form-text text-muted">require</small>
+  <!-- Modal -->
+  <div #alertModel class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">ระบบส่งข้อความไปยังมือถือ</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"  #closeBtn>
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
           </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea class="form-control" id="message" formControlName="message"></textarea>
-            <small  class="form-text text-muted">require</small>
+          <div class="modal-body">
+            <form [formGroup]="alertForm" (ngSubmit)="onSubmit()">
+              <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">stop_group 
+                  <span style="color:red;font-weight:bold">***</span>
+                </label>
+                <div class="col-sm-8">
+                  <input class="form-control" id="stop_group" formControlName="stop_group">
+                  
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">stop_id  &nbsp; &nbsp;&nbsp;
+                    <span style="color:red;font-weight:bold">***</span>
+                </label>
+                <div class="col-sm-8">
+                <input class="form-control" id="stop_id" formControlName="stop_id">
+    
+                </div>
+    
+              </div>
+              <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">title_line 
+                  <span style="color:red;font-weight:bold">***</span>
+                </label>
+                <div class="col-sm-8">
+                  <input class="form-control" id="title_line" formControlName="title_line">
+                  
+                </div>
+    
+              </div>
+              <div class="form-group row">
+                <label for="title" class="col-sm-2 col-form-label">title_line_en</label>
+                <div class="col-sm-8">
+                  <input class="form-control" id="title_line_en" formControlName="title_line_en">
+                </div>
+              </div>           
+              <div class="form-group row">
+                <label for="message" class="col-sm-2 col-form-label">Message
+                    <span style="color:red;font-weight:bold">***</span>
+                </label>
+                <div class="col-sm-8">
+                  <textarea class="form-control" id="message" formControlName="message"></textarea>
+                  
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="message" class="col-sm-2 col-form-label">Message_en</label>
+                <div class="col-sm-8">
+                  <textarea class="form-control" id="message_en" formControlName="message_en"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-8">
+                  <!-- <button type="submit" class="btn btn-primary btn-sm" [disabled]="!alertForm.valid" >Create Alert</button> -->
+                  <button type="submit" class="btn btn-primary btn-sm"   [disabled]="!alertForm.valid"  >แจ้งเตือน</button>
+                </div>
+                 
+              </div>
+             
+            </form>
           </div>
-
-          <button type="submit" class="btn btn-primary btn-sm" [disabled]="!alertForm.valid" >Create Alert</button>
-
-        </form>
-      </div>
-      <div class="modal-footer">
-        <p> Message will broadcase to mobild network </p>
+          <div class="modal-footer">
+            <p></p>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    

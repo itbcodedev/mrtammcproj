@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as $ from 'jquery';
 import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
@@ -11,6 +11,7 @@ import { Alert } from './alert.model';
 import {FormGroup, FormArray, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from "ngx-toastr";
 import { WebsocketService} from '../../services/websocket.service'
+import * as moment from 'moment'; 
 
 @Component({
   selector: 'app-static',
@@ -22,11 +23,26 @@ export class StaticComponent implements OnInit {
   labels= []
   datasets=[]
   alerts: any
-
-  alertForm: FormGroup;
+  mobilemessages: any
+  private alertForm: FormGroup;
   passengers
   average
   allpassengers
+  gridApi
+  gridColumnApi
+
+  @ViewChild('closeBtn') closeBtn: ElementRef;
+
+  columnDefs = [
+    {headerName: 'stop_group', field: 'stop_group'},
+    {headerName: 'stop_id', field: 'stop_id'},
+    {headerName: 'title_line', field: 'title_line'},
+    {headerName: 'message', field: 'message'},
+    {headerName: 'notify_date', field: 'notify_date'},
+  ];
+
+  rowData: any = [];
+
 
   constructor(private _http: HttpClient,
               public _parking: ParkingserviceService,
@@ -55,26 +71,38 @@ export class StaticComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getdata()
+    this.alertForm = this.fb.group({
+      stop_group: ['', Validators.required],
+      stop_id: ['', Validators.required],
+      title_line: ['', Validators.required],
+      title_line_en: [''],
+      notify_date: [''],
+      message: ['', Validators.required],
+      message_en: [''],
+    })
+
+    this.getMobilemessage()
     this.getalerts()
     this.getPassenger()
-
-
+    
+    //this.getdata()
     this._websocket.listen('passenger').subscribe(data => {
         console.log(data)
         this.pushToArray(this.passengers, data)
         this.average = this.passengers.reduce((sum, { density }) => sum + parseInt(density), 0)/this.passengers.length
     });
 
-    this.alertForm = this.fb.group({
-      title: ['', Validators.required],
-      message: ['', Validators.required]
-    })
-
 
 
   }
 
+  getMobilemessage () {
+    this._mobile.getalerts().subscribe((res) => {
+      this.rowData = res
+      
+    })
+  }
+  
   getalerts () {
     this._alert.getalerts().subscribe( (res) => {
       this.alerts = res
@@ -158,11 +186,34 @@ export class StaticComponent implements OnInit {
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
+    let now = moment().format("YYYY-MM-DD HH:mm:ss");
     const data = this.alertForm.value;
-    this._mobile.sendalerts(data).subscribe(res => {
-      console.log(res);
-      this._toastr.success("Successfull send alert" + res);
+    data.notify_date = now
+   
+    // this._mobile.sendalerts(data).subscribe(res => {
+    //   console.log(res);
+    //   this._toastr.success("Successfull send alert" + res);
+    // })
+
+    this._mobile.savealerts(data).subscribe(res => {
+      console.log(res)
     })
+    this.closeModal();
+    return false;
   }
+  private closeModal(): void {
+    this.closeBtn.nativeElement.click();
+ }
+
+ onGridReady(params) {
+  console.log(params)
+  this.gridApi = params.api;
+  this.gridColumnApi = params.columnApi;
+  this.gridApi.sizeColumnsToFit()
+  //const allColumnIds = [];
+  // this.gridColumnApi.getAllColumns().forEach(function(column) {
+  //   allColumnIds.push(column.colId);
+  // });
+  //this.gridColumnApi.autoSizeColumns(allColumnIds);
+}
 }
