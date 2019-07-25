@@ -88,15 +88,27 @@ function logProgress(str) {
 generate_paths('parted_blue_chalearm.kml','in')
 generate_paths('parted_blue_chalearm.kml','out')
 
-generate_paths('purple_600.kml','in')
-generate_paths('purple_600.kml','out')
 
+generate_paths('purple_1.kml','in')
+generate_paths('purple_1.kml','out')
 
-generate_paths('purple_930.kml','in')
-generate_paths('purple_930.kml','out')
+generate_paths('purple_2.kml','in')
+generate_paths('purple_2.kml','out')
 
-generate_paths('purple_a.kml','in')
-generate_paths('purple_a.kml','out')
+generate_paths('purple_3.kml','in')
+generate_paths('purple_3.kml','out')
 
-generate_paths('purple_b.kml','in')
-generate_paths('purple_b.kml','out')
+generate_paths('purple_4.kml','in')
+generate_paths('purple_4.kml','out')
+
+generate_paths('purple_5.kml','in')
+generate_paths('purple_5.kml','out')
+
+generate_paths('purple_6.kml','in')
+generate_paths('purple_6.kml','out')
+
+generate_paths('purple_7.kml','in')
+generate_paths('purple_7.kml','out')
+
+generate_paths('purple_8.kml','in')
+generate_paths('purple_8.kml','out')

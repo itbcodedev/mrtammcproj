@@ -338,7 +338,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
       message: string;
       error: number;
     }
-    console.log("delete file" + file);
+    console.log("save db file" + file);
     this._uploadservice.savedbconfigfile(file).subscribe((res: RESPONSEVALUE) => {
       if (res.error) {
         this._toastr.error("error insert DB", res.message, { timeOut: 3000 })
