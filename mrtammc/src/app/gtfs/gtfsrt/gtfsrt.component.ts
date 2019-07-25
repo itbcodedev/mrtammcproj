@@ -117,8 +117,25 @@ export class GtfsrtComponent implements OnInit {
     this.controllerLayer = L.control.layers(this.baseLayers);
     this.controllerLayer.addTo(this.map);
 
-    this.map.on('click', (e) => { console.log(e.latlng); });
-    this.map.on('click', (e) => { console.log('e.latlng'); });
+    // this.map.on('click', (e) => { 
+    //   console.log(e.latlng); 
+    //   this.selectMarker = null
+    // });
+    
+    this.map.on ({
+      click: () =>{
+        this.selectMarker = null
+        // const latLon = L.latLng(13.788593154063312, 100.44842125132114);
+        // this.map.setView(latLon, 12);
+    
+        // L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        //   attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        // }).addTo(this.map);
+      },
+      popupclose: function () {
+        this.selectMarker = null
+      }
+    },this)
     // let marker = new L.Marker();
 
     const icon = new L.icon({
@@ -220,7 +237,7 @@ export class GtfsrtComponent implements OnInit {
             this.setStationInfo(marker_trip.stop_id, marker_trip.trip_id, marker_trip.arrival_time, marker_trip.direction);
               // update station]
               marker_trip.on('mouseover', this.onTrainClick, this);
-              marker_trip.on('mouseout', this.onTrainClick, this);
+              //marker_trip.on('mouseout', this.onTrainClick, this);
             }
           } else {
             // new marker
@@ -254,26 +271,16 @@ export class GtfsrtComponent implements OnInit {
             marker.bindPopup('Trip info');
 
             marker.on('mouseover', this.onTrainClick, this);
-            marker.on('mouseout', this.onTrainClick, this);
 
-
-
-            // marker.on('mouseover', onTrainClick, marker);
-            marker.on('click', function(event) {
-              // this.map.flyTo(marker.getLatLng())
+            marker.on('click', (event) => {
               this.map.setView(marker.getLatLng(), 16);
-
               L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
                 maxZoom: 20,
                 subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
               }).addTo(this.map);
-
               this.selectTripId = marker.tripEntity;
-              // this.map.panTo(marker.getLatLng())
-
             }, this);
 
-            // marker.fire('click');
 
             trainLocationMarkers[tripEntity] = marker;
             console.log(marker.stop_id, marker.trip_id, marker.arrival_time, marker.direction);
@@ -389,11 +396,9 @@ export class GtfsrtComponent implements OnInit {
         maxZoom: 20,
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
       }).addTo(this.map);
-
       this.selectTripId = marker.tripEntity;
       console.log(this.selectTripId);
-      // marker.closePopup();
-    }, this);  // point to this context
+    }, this);  
   }  // end function onMarkerClick display popup with button
 
 
