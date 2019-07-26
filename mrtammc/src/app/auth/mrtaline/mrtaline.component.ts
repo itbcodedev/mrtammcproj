@@ -44,6 +44,10 @@ export class MrtalineComponent implements OnInit, AfterViewInit {
   agency_lang;
   submitted = false;
 
+  gridApi
+  gridColumnApi
+  defaultColDef
+
   constructor(private fb: FormBuilder,
     private _toastr: ToastrService,
     private _gtfsdb: GtfsdbService,
@@ -239,6 +243,8 @@ export class MrtalineComponent implements OnInit, AfterViewInit {
 
       level_name: ['', Validators.required]
     });
+
+    this.defaultColDef = { resizable: true };
   }
 
   ngOnInit() {
@@ -316,6 +322,7 @@ export class MrtalineComponent implements OnInit, AfterViewInit {
     this.model = 'Agency'
     this.listview = !this.listview
     this.columnDefs = new GtfsEditor().GTFS_COLUMNDEFS['agency'];
+    console.log(this.columnDefs)
     this._gtfsdb.getAgencies().subscribe(res => {
       this.rowData = res;
       console.log(res)
@@ -403,6 +410,7 @@ export class MrtalineComponent implements OnInit, AfterViewInit {
     this.model = 'Stop'
     this.listview = !this.listview
     this.columnDefs = new GtfsEditor().GTFS_COLUMNDEFS['stops'];
+    console.log(this.columnDefs)
     this._gtfsdb.getStops().subscribe(res => {
       this.rowData = res;
       console.log(res)
@@ -712,5 +720,16 @@ export class MrtalineComponent implements OnInit, AfterViewInit {
       console.log(err);
       this._toastr.error("Error Submit", err, { timeOut: 2000 })
     })
+  }
+  onGridReady(params) {
+    //console.log(params)
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;   
+    params.api.sizeColumnsToFit(); 
+    const allColumnIds = [];
+    this.gridColumnApi.getAllColumns().forEach(function(column) {
+      allColumnIds.push(column.colId);
+    });
+    this.gridColumnApi.autoSizeColumns(allColumnIds);
   }
 }

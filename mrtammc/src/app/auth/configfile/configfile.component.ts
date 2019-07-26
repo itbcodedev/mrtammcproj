@@ -157,7 +157,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
       `;
         const filekey = file.split("-")[1].split(".")[0];
         let columes = new GtfsEditor().GTFS_COLUMNDEFS[filekey];
-        console.log(columes);
+        console.log("160",columes);
         console.log(Object.keys(key[0]));
         // source data
         columes.forEach(col => {
@@ -260,6 +260,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   viewfile(file: any) {
+    console.log("viewfile")
     console.log(file);
     console.log(this.ListFiles);
     const fileobj = this.ListFiles.find(obj => obj.origin === file);
@@ -269,7 +270,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
     this.agfile = file;
     this.columnDefs = new GtfsEditor().GTFS_COLUMNDEFS[filekey];
     this.defaultColDef = { resizable: true };
-    console.log(this.columnDefs);
+    console.log("273", this.columnDefs);
     this._uploadservice.getconfigfile(fileobj.filename).subscribe(res => {
       this.rowData = res;
       console.log(res);
@@ -277,6 +278,8 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   viewfileOnlists(file: any) {
+    console.log("viewfileOnlists")
+
     $('#filedetailtab')[0].click();
     const filekey = file.split("-")[1].split(".")[0];
     //console.log(filekey);
@@ -285,14 +288,14 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
     console.log(file);
     this.columnDefs = new GtfsEditor().GTFS_COLUMNDEFS[filekey];
     this.defaultColDef = { resizable: true };
-    console.log("this.columnDefs")
-    console.log(this.columnDefs);
+
+    console.log("289",this.columnDefs);
     // let stopIdfield = this.columnDefs.filter(e => e.field === "stopId");
     // console.log(stopIdfield);
 
     this._uploadservice.getconfigfile(file).subscribe(res => {
       // console.log("res");
-      // console.log(res);
+      console.log("298",res);
       this.rowData = res;
       let key = Object.keys(this.rowData[0]);
     });
@@ -431,15 +434,23 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
     console.log(event)
   }
 
+// agencyFareUrl: ""
+// agencyId: "MRTA_Transit"
+// agencyLang: "en"
+// agencyName: "MRTA Transit Rapid Transit Authority of Thailand"
+// agencyPhone: "0-2716-4044"
+// agencyTimezone: "Asia/Bangkok"
+// agencyUrl: "https://www.mrta.co.th/"
+
   onCellValueChanged(file: any, params: any) {
+    console.log("onCellValueChanged")
     this.rowData[params.rowIndex] = params.data
     const obj = this.rowData
+    console.log(obj)
     this._uploadservice.liveupdate(file, obj).subscribe((data) => {
-      console.log(data);
       this._toastr.success("Live Update", data.message, { timeOut: 2000 });
     },
       error => {
-        console.log(error)
         this._toastr.error("Live Update", "ผิดพลาด...", { timeOut: 2000 })
       });
   }
@@ -499,7 +510,7 @@ async uploadkml() {
   }
 
   onGridReady(params) {
-    console.log(params)
+    //console.log(params)
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.sizeColumnsToFit()

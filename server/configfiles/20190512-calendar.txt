@@ -1,3 +1,0 @@
-serviceId,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday,startDate,endDate
-we,0,0,0,0,0,1,1,20160101,20201231
-wd,1,1,1,1,1,0,0,20160101,20201231

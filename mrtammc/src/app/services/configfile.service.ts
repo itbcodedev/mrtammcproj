@@ -47,7 +47,6 @@ export class ConfigfileService {
   }
 
   liveupdate(file:any, data: any): any {
-    console.log('reach liveupdate')
     return this._http.post(this.upload_url + '/liveupdate/' + file, data);
   }
 

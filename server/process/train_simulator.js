@@ -63,12 +63,12 @@ exports.TrainSimulator = class {
 
     function getPathfile(trip) {
       const index = path.config.findIndex(c => {
-        console.log(trip.route_name, trip.speed)
+        //console.log(trip.route_name, trip.speed)
         return (c.route_name == trip.route_name && c.direction == trip.direction && c.speed == trip.speed)
       })
 
       if (index > -1) {
-        console.log('70 file.......', path.config[index].file)
+        //console.log('70 file.......', path.config[index].file)
         return path.config[index].file
       }
 

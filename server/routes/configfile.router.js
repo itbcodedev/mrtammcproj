@@ -7,9 +7,18 @@ const loadConfigfile = require('../configfile');
 const now = new Date();
 let filename = "";
 
-let MongoClient = require('mongodb').MongoClient;
-let url = "mongodb://localhost:27017/";
 
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/mmcmrtadb',{ useNewUrlParser: true }).catch(error => handleError(error));
+const conn = mongoose.connection;
+conn.on('connected', function() {
+    console.log("connect to database")
+})
+conn.on('error', function () {
+    console.log('Error database connection')
+})
+
+const GTFS = require('../models/gtfs')
 
 const store = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -65,6 +74,7 @@ router.get("/view/:filename", async (req, res) => {
 });
 
 router.get("/deployconfig/:filename", (req, res) => {
+  console.log("deploy move file from configfiles --> feed + backupfeed")
   let filename = req.params.filename;
   let oldfile = "configfiles/" + filename;
   let targetfile = "feed/" + filename.split('-')[1];
@@ -124,33 +134,21 @@ router.get("/delete/:filename", (req, res) => {
 });
 
 router.get("/savedb/:filename", (req, res) => {
+  console.log("save to database move file  ./configfiles/  -> database")
   let filename = req.params.filename;
   const csvFilePath = `./configfiles/${filename}`
+  
+  const name = filename.split('-')[1].split('.')[0];
   const csv = require('csvtojson');
+  // read csv
   csv()
     .fromFile(csvFilePath)
     .then((jsonObj) => {
-      console.log("jsonObj");
-      console.log(jsonObj);
-
       if (jsonObj && jsonObj.length) {
-        MongoClient.connect(url, {
-          useNewUrlParser: true
-        }, (err, db) => {
-          if (err) throw err;
-          var dbo = db.db("mmcmrtadb");
-          dbo.collection(`${filename}`).insertMany(jsonObj, (err, res) => {
-            if (err) throw err;
-            console.log("Number of documents inserted: " + res.insertedCount);
-            db.close();
-          });
-        });
-
-        res.send({
-          message: 'success insert obj db',
-          error: 0
-        });
-
+        const model = GTFS.find(o => o.filenameBase == name).model
+        model.collection.remove()
+        console.log(jsonObj)
+        model.insertMany(jsonObj)
       } else {
         console.log('blank db')
         res.send({
@@ -165,18 +163,16 @@ router.get("/savedb/:filename", (req, res) => {
 router.post("/liveupdate/:filename", (req, res) => {
   let filename = req.params.filename;
   let data = JSON.stringify(req.body,null,2);
-  // console.log(filename)
-  // console.log(data)
+  
+  console.log(data)
   const csvData = csvjson.toCSV(data, {
     headers: 'key'
   });
   fs.writeFileSync("./configfiles/" + filename, csvData, (err) => {
-    // if (err) throw err;
-    // console.log('Saved!');
     if (err) {
       throw err
     } else {
-      // console.log('Saved!');
+      console.log(`Saved! ${filename} `);
     }
   });
 

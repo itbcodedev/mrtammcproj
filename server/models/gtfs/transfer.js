@@ -4,7 +4,7 @@ const TransferSchema = new mongoose.Schema({
   
   agency_key: {
     type: String,
-    required: true,
+    required: false,
     index: true
   },
   from_stop_id: {

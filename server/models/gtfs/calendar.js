@@ -4,7 +4,7 @@ const CalendarSchema = new mongoose.Schema({
 
   agency_key: {
     type: String,
-    required: true,
+    required: false,
     index: true
   },
   service_id: {

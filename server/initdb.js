@@ -56,7 +56,7 @@ function loadGTFSDataFromFile(filepath, agency_key) {
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/mongoose_basics', function (err) {
+mongoose.connect('mongodb://localhost/mmcmrtadb', function (err) {
    if (err) throw err;
    console.log('Successfully to Database connected');
 });

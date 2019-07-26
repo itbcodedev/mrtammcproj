@@ -4,7 +4,7 @@ const ShapeSchema = new mongoose.Schema({
   
   agency_key: {
     type: String,
-    required: true,
+    required: false,
     index: true
   },
   shape_id: {

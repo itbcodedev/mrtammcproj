@@ -25,7 +25,8 @@ function loadGTFSDataFromFile(filepath) {
     fileHandler.on('line', line => {
       const cells = line.split(',');
       if (lineCount === 0) {
-        cells.forEach(c => fields.push(toJsonNamingConvention(c)));
+        //cells.forEach(c => fields.push(toJsonNamingConvention(c)));
+        cells.forEach(c => fields.push(c));
       } else {
         let resource = {};
         for (let i = 0; i < fields.length; i++) {
@@ -123,10 +124,10 @@ async function loadStopsWithStopTimes() {
   const joinedStopTimes = [];
   if (stop_times !== undefined ) {
     for (const stopTime of stop_times) {
-      const stop = stops.find(x => x.stopId == stopTime.stopId);
-      const trip = trips.find(x => x.tripId == stopTime.tripId);
-      let time = stopTime.arrivalTime;
-      let end = stopTime.departureTime;
+      const stop = stops.find(x => x.stopId == stopTime.stop_id);
+      const trip = trips.find(x => x.tripId == stopTime.trip_id);
+      let time = stopTime.arrival_time;
+      let end = stopTime.departure_time;
       tt = time.split(":");
       secs = +tt[0] * 3600 + +tt[1] * 60 + +tt[2];
       ee = end.split(":");

@@ -4,7 +4,7 @@ const FareAttributeSchema = new mongoose.Schema({
 
   agency_key: {
     type: String,
-    required: true,
+    required: false,
     index: true
   },
   agency_id: {

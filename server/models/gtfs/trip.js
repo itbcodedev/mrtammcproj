@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const TripSchema = new mongoose.Schema({
   agency_key: {
     type: String,
-    required: true,
+    required: false,
     index: true
   },
   route_id: {
