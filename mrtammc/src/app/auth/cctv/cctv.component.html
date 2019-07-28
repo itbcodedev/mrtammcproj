@@ -60,7 +60,7 @@
               <div id="cctvformdiv">
                 <!-- <p>CCTV form</p>--> 
                 
-                <form [formGroup]="cctvForm">
+                <form [formGroup]="cctvForm"  (ngSubmit)="submitCctvData()" novalidate>
                   <!-- Value: {{ cctvForm.value | json }}
                   <hr> -->
                   <div class="form-group row">
@@ -108,11 +108,23 @@
 
                   <div class="form-group row">
                       <label for="" class="col-sm-2 col-form-label">location</label>
+                      
+                      <!-- <button type="button" class="btn btn-danger btn-circle btn-sm" 
+                          (click)="ngxSmartModalService.getModal('myModal').open()">
+                          <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      </button> -->
+
                       <div class="col-sm-4">
-                          <input type="text" class="form-control form-control-sm" id="latitude" placeholder="latitude" formControlName="latitude">
+                          <input type="text" class="form-control form-control-sm" 
+                          id="latitude" placeholder="latitude" formControlName="latitude"
+                          [(ngModel)]="latitude"
+                          >
                       </div>
                       <div class="col-sm-4">
-                          <input type="text" class="form-control form-control-sm" id="longitude" placeholder="longitude" formControlName="longitude">
+                          <input type="text" class="form-control form-control-sm" 
+                          id="longitude" placeholder="longitude" formControlName="longitude"
+                          [(ngModel)]="longitude"
+                          >
                       </div>
                   </div>
 
@@ -123,7 +135,12 @@
                       </div>
                   </div>             
 
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Add CCTV</button>
+                  </div>
                 </form>
+
+
               </div>
             </div>
             <div class="tab-pane fade" id="system" role="tabpanel" aria-labelledby="profile-tab">
@@ -137,7 +154,7 @@
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
               <a id="uploadfiletab" class="nav-link active" data-toggle="tab" href="#cctvlist" role="tab" aria-controls="home">
-                  <i class="fa fa-table" aria-hidden="true"></i> CCTV List
+                  <i class="fa fa-map-o" aria-hidden="true"></i> CCTV Map
               </a>
             </li>
             <!-- <li class="nav-item">
@@ -145,19 +162,29 @@
             </li> -->
             <li class="nav-item">
               <a id="onmaptab" class="nav-link" data-toggle="tab" href="#onmap" role="tab" aria-controls="profile">
-                  <i class="fa fa-map-o" aria-hidden="true"></i> cctv on map
+                  <i class="fa fa-table" aria-hidden="true"></i> CCTV List
               </a>
             </li>
 
           </ul>
 
-          <div class="tab-content" style="padding: 10px; background-color: white; border-style: solid; border-width: 1px;  height: 80vh; overflow-y: scroll;">
-            <div class="tab-pane active" id="cctvlist" role="tabpanel">
-              <p>cctv list</p>
+          <div class="tab-content" style="padding: 0px; background-color: white; border-style: solid; border-width: 1px;  height: 80vh; overflow-y: scroll;">
+            <div #mapdiv class="tab-pane active" id="cctvlist" role="tabpanel">
+              <div #map id="map" [style.height]="height" style="width: 100%;">
 
-            </div>
+              </div>
+            </div> 
             <div class="tab-pane" id="onmap" role="tabpanel">
-                <p>cctv onmap</p>
+              <ag-grid-angular
+                #agGrid
+                style="height: 600px;"
+                class="ag-theme-balham"
+                [rowData]="rowData"
+                [columnDefs]="columnDefs"
+                [defaultColDef]="defaultColDef"
+                (gridReady)="onGridReady($event)"
+                (cellValueChanged)="onCellValueChanged(agfile,$event)">
+            </ag-grid-angular>
   
             </div>
           </div>
@@ -169,28 +196,14 @@
       </div>
     </div>
   </section>
-
-  <!-- Button trigger modal -->
-  <button id="modalbtn" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  </button>
-
-  <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{ modal_title }}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <span [innerHTML]="modal_icon"></span><span>{{ modal_body }}</span>
-        </div>
-        <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
+
+
+<!-- <ngx-smart-modal #myModal identifier="myModal">
+    <h6>Click on map</h6>
+    <div #map id="map">
+
+    </div>
+    <button class="btn btn-danger  btn-sm"  (click)="myModal.close()">Close</button>
+</ngx-smart-modal>
+   -->

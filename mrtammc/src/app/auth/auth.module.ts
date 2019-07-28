@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
 import { CommonModule } from '@angular/common';
-
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {AdminComponent} from './admin/admin.component';
+import { AdminComponent} from './admin/admin.component';
 import { UserComponent } from './dashboard/user/user.component';
 import { UserListComponent } from './dashboard/user-list/user-list.component';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -24,11 +25,14 @@ import { CctvComponent } from './cctv/cctv.component';
                   UploadfileComponent, ConfigfileComponent, GtfsspecComponent, ValidateSpecComponent, LdapuserComponent, MrtalineComponent, GtfsmapComponent, CctvComponent],
   imports: [
     CommonModule,
+    NgxSmartModalModule.forRoot(),
+    ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     AuthRoutingModule,
     AgGridModule,
   ],
+  providers: [ NgxSmartModalService ],
   exports: [LoginComponent, RegistrationComponent]
 })
 export class AuthModule { }
