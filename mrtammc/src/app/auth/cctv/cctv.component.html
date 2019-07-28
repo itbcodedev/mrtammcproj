@@ -1,0 +1,196 @@
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-1">
+        <div class="col-sm-2">
+          <h6 class="m-0 text-dark">
+            <i class="fa fa-table" aria-hidden="true"></i>
+            <a href="/auth/config">File config mgmt</a>
+          </h6>
+        </div>
+        <div class="col-sm-2">
+          <h6 class="m-0 text-dark">
+            <i class="fa fa-database" aria-hidden="true"></i>
+            <a href="/auth/mrtaline">GTFS DB config mgmt</a>
+          </h6>
+        </div>
+        <div class="col-sm-2">
+          <h6 class="m-0 text-dark">
+            <i class="fa fa-camera" aria-hidden="true"></i>
+            <a href="/auth/cctv">CCTV mgmt</a>
+          </h6>
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active " id="home-tab" data-toggle="tab" href="#cctvform" role="tab" aria-controls="home" aria-selected="true">
+                <i class="fa fa-camera" aria-hidden="true"></i> CCTV Form
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#system" role="tab" aria-controls="profile" aria-selected="false" (click)="refresh()" style="cursor: pointer">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                systems control
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent" style="padding: 10px; background-color: white; border-style: solid; border-width: 1px;  height: 80vh; overflow-y: scroll;">
+            <div class="tab-pane fade show active" id="cctvform" role="tabpanel" aria-labelledby="home-tab">
+              <div id="cctvformdiv">
+                <!-- <p>CCTV form</p>--> 
+                
+                <form [formGroup]="cctvForm">
+                  <!-- Value: {{ cctvForm.value | json }}
+                  <hr> -->
+                  <div class="form-group row">
+                      <label for="code" class="col-sm-2 col-form-label">code</label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control form-control-sm" id="code" placeholder="code" formControlName="code">
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="name" class="col-sm-2 col-form-label">name</label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control form-control-sm" id="name" placeholder="name" formControlName="name">
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="host" class="col-sm-2 col-form-label">url</label>
+                      <div class="col-sm-3">
+                          <select class="form-control form-control-sm" formControlName="protocol">
+                              <option *ngFor="let protocol of protocols" [value]="protocol">{{protocol}}</option>
+                          </select>
+                      </div>
+                      <div class="col-sm-3">
+                          <input type="text" class="form-control form-control-sm" id="host" placeholder="host" formControlName="host">
+                      </div>
+                      <div class="col-sm-3">
+                          <input type="text" class="form-control form-control-sm" id="port" placeholder="port" formControlName="port">
+                      </div>
+                  </div>
+ 
+                  <div class="form-group row">
+                      <label for="username" class="col-sm-2 col-form-label">username</label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control form-control-sm" id="username" placeholder="username" formControlName="username">
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="password" class="col-sm-2 col-form-label">password</label>
+                      <div class="col-sm-9">
+                          <input type="text" class="form-control form-control-sm" id="password" placeholder="password" formControlName="password">
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="" class="col-sm-2 col-form-label">location</label>
+                      <div class="col-sm-4">
+                          <input type="text" class="form-control form-control-sm" id="latitude" placeholder="latitude" formControlName="latitude">
+                      </div>
+                      <div class="col-sm-4">
+                          <input type="text" class="form-control form-control-sm" id="longitude" placeholder="longitude" formControlName="longitude">
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="description" class="col-sm-2 col-form-label">description</label>
+                      <div class="col-sm-9">
+                          <textarea class="form-control form-control-sm" id="description" placeholder="description" formControlName="description"rows="3"></textarea>
+                      </div>
+                  </div>             
+
+                </form>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="system" role="tabpanel" aria-labelledby="profile-tab">
+              <p>System</p>
+            </div>
+          </div>
+        </div>
+        <!-- /.col -->
+        <!-- <div class="col-7" *ngIf="showfile"> -->
+        <div class="col-9">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <a id="uploadfiletab" class="nav-link active" data-toggle="tab" href="#cctvlist" role="tab" aria-controls="home">
+                  <i class="fa fa-table" aria-hidden="true"></i> CCTV List
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#map1" role="tab" aria-controls="profile">Map Component</a>
+            </li> -->
+            <li class="nav-item">
+              <a id="onmaptab" class="nav-link" data-toggle="tab" href="#onmap" role="tab" aria-controls="profile">
+                  <i class="fa fa-map-o" aria-hidden="true"></i> cctv on map
+              </a>
+            </li>
+
+          </ul>
+
+          <div class="tab-content" style="padding: 10px; background-color: white; border-style: solid; border-width: 1px;  height: 80vh; overflow-y: scroll;">
+            <div class="tab-pane active" id="cctvlist" role="tabpanel">
+              <p>cctv list</p>
+
+            </div>
+            <div class="tab-pane" id="onmap" role="tabpanel">
+                <p>cctv onmap</p>
+  
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- /.col -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Button trigger modal -->
+  <button id="modalbtn" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  </button>
+
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ modal_title }}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <span [innerHTML]="modal_icon"></span><span>{{ modal_body }}</span>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
