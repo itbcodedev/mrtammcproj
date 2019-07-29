@@ -425,6 +425,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
       this.modal_body = "ผิดไฟล์ กรุณา upload file ชื่อ " + filename;
     }
 
+    // Button trigger modal
     $('#modalbtn')[0].click();
   }
 
