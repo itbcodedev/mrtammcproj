@@ -51,7 +51,7 @@ export class CctvComponent implements OnInit {
       longitude: ['', Validators.required ],
       description: ['', Validators.required ]
     })
-    
+
     this.height = 775 + "px";
   }
 
@@ -99,7 +99,7 @@ export class CctvComponent implements OnInit {
 
     this.controllerLayer = L.control.layers(this.baseLayers);
     this.controllerLayer.addTo(this.map);
-    
+
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -131,7 +131,7 @@ export class CctvComponent implements OnInit {
       },(error) =>{
         console.log(error)
       })
-      
+
   }
 
   ngAfterViewInit() {
@@ -161,7 +161,7 @@ export class CctvComponent implements OnInit {
     //console.log(params)
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-    this.gridApi.sizeColumnsToFit()
+    this.gridApi.sizeColumnsToFit();
     // const allColumnIds = [];
     // this.gridColumnApi.getAllColumns().forEach(function(column) {
     //   allColumnIds.push(column.colId);
@@ -169,9 +169,17 @@ export class CctvComponent implements OnInit {
     // this.gridColumnApi.autoSizeColumns(allColumnIds);
   }
 
-  onCellValueChanged(file: any, params: any) {
-    this.rowData[params.rowIndex] = params.data
-    const obj = this.rowData
-    console.log(obj)
+  onCellValueChanged(params: any) {
+    this.rowData[params.rowIndex] = params.data;
+    const obj = this.rowData;
+    console.log(obj);
+  }
+
+  refresh() {
+    this.cctvApi.getCctv().subscribe(result => {
+      this.rowData = result;
+    }, ( error ) => {
+      console.log( error );
+    });
   }
 }

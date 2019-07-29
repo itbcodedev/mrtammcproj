@@ -49,7 +49,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#system" role="tab" aria-controls="profile" aria-selected="false" (click)="refresh()" style="cursor: pointer">
+              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#system" role="tab" aria-controls="profile" aria-selected="false" style="cursor: pointer">
                 <i class="fa fa-cogs" aria-hidden="true"></i>
                 systems control
               </a>
@@ -58,8 +58,8 @@
           <div class="tab-content" id="myTabContent" style="padding: 10px; background-color: white; border-style: solid; border-width: 1px;  height: 80vh; overflow-y: scroll;">
             <div class="tab-pane fade show active" id="cctvform" role="tabpanel" aria-labelledby="home-tab">
               <div id="cctvformdiv">
-                <!-- <p>CCTV form</p>--> 
-                
+                <!-- <p>CCTV form</p>-->
+
                 <form [formGroup]="cctvForm"  (ngSubmit)="submitCctvData()" novalidate>
                   <!-- Value: {{ cctvForm.value | json }}
                   <hr> -->
@@ -91,7 +91,7 @@
                           <input type="text" class="form-control form-control-sm" id="port" placeholder="port" formControlName="port">
                       </div>
                   </div>
- 
+
                   <div class="form-group row">
                       <label for="username" class="col-sm-2 col-form-label">username</label>
                       <div class="col-sm-9">
@@ -108,20 +108,20 @@
 
                   <div class="form-group row">
                       <label for="" class="col-sm-2 col-form-label">location</label>
-                      
-                      <!-- <button type="button" class="btn btn-danger btn-circle btn-sm" 
+
+                      <!-- <button type="button" class="btn btn-danger btn-circle btn-sm"
                           (click)="ngxSmartModalService.getModal('myModal').open()">
                           <i class="fa fa-map-marker" aria-hidden="true"></i>
                       </button> -->
 
                       <div class="col-sm-4">
-                          <input type="text" class="form-control form-control-sm" 
+                          <input type="text" class="form-control form-control-sm"
                           id="latitude" placeholder="latitude" formControlName="latitude"
                           [(ngModel)]="latitude"
                           >
                       </div>
                       <div class="col-sm-4">
-                          <input type="text" class="form-control form-control-sm" 
+                          <input type="text" class="form-control form-control-sm"
                           id="longitude" placeholder="longitude" formControlName="longitude"
                           [(ngModel)]="longitude"
                           >
@@ -133,7 +133,7 @@
                       <div class="col-sm-9">
                           <textarea class="form-control form-control-sm" id="description" placeholder="description" formControlName="description"rows="3"></textarea>
                       </div>
-                  </div>             
+                  </div>
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary">Add CCTV</button>
@@ -161,7 +161,7 @@
               <a class="nav-link" data-toggle="tab" href="#map1" role="tab" aria-controls="profile">Map Component</a>
             </li> -->
             <li class="nav-item">
-              <a id="onmaptab" class="nav-link" data-toggle="tab" href="#onmap" role="tab" aria-controls="profile">
+              <a id="onmaptab" class="nav-link" data-toggle="tab" href="#onmap" role="tab" aria-controls="profile" (click)="refresh()" >
                   <i class="fa fa-table" aria-hidden="true"></i> CCTV List
               </a>
             </li>
@@ -173,7 +173,7 @@
               <div #map id="map" [style.height]="height" style="width: 100%;">
 
               </div>
-            </div> 
+            </div>
             <div class="tab-pane" id="onmap" role="tabpanel">
               <ag-grid-angular
                 #agGrid
@@ -183,9 +183,9 @@
                 [columnDefs]="columnDefs"
                 [defaultColDef]="defaultColDef"
                 (gridReady)="onGridReady($event)"
-                (cellValueChanged)="onCellValueChanged(agfile,$event)">
+                (cellValueChanged)="onCellValueChanged($event)">
             </ag-grid-angular>
-  
+
             </div>
           </div>
         </div>

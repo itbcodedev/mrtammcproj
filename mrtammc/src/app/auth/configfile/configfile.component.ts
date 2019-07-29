@@ -337,19 +337,18 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   savedbFile(file) {
-    interface RESPONSEVALUE {
-      message: string;
-      error: number;
-    }
+
     console.log("save db file" + file);
-    this._uploadservice.savedbconfigfile(file).subscribe((res: RESPONSEVALUE) => {
-      if (res.error) {
-        this._toastr.error("error insert DB", res.message, { timeOut: 3000 })
-      } else {
-        this._toastr.success("success insert db", res.message, { timeOut: 3000 });
-      }
-      console.log(res);
-    });
+
+    if (window.confirm('ท่านต้องการที่จะ บันทึกข้อมูลหรือไม่?')) {
+      this._uploadservice.savedbconfigfile(file).subscribe(result => {
+        console.log(result);
+        this._toastr.success(JSON.stringify(result))
+      }, (error) => {
+        console.log(error);
+        this._toastr.error(JSON.stringify(error))
+      });
+    }
   }
 
   browseFile(event, file, index) {
