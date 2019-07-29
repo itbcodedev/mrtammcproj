@@ -59,26 +59,26 @@
             <div class="tab-pane fade show active" id="cctvform" role="tabpanel" aria-labelledby="home-tab">
               <div id="cctvformdiv">
                 <!-- <p>CCTV form</p>-->
-
+                <p>กรุณากรอกข้อมูลกล้อง CCTV Form</p>
                 <form [formGroup]="cctvForm"  (ngSubmit)="submitCctvData()" novalidate>
                   <!-- Value: {{ cctvForm.value | json }}
                   <hr> -->
                   <div class="form-group row">
-                      <label for="code" class="col-sm-2 col-form-label">code</label>
+                      <label for="code" class="col-sm-2 col-form-label">code*</label>
                       <div class="col-sm-9">
                           <input type="text" class="form-control form-control-sm" id="code" placeholder="code" formControlName="code">
                       </div>
                   </div>
 
                   <div class="form-group row">
-                      <label for="name" class="col-sm-2 col-form-label">name</label>
+                      <label for="name" class="col-sm-2 col-form-label">name*</label>
                       <div class="col-sm-9">
                           <input type="text" class="form-control form-control-sm" id="name" placeholder="name" formControlName="name">
                       </div>
                   </div>
 
                   <div class="form-group row">
-                      <label for="host" class="col-sm-2 col-form-label">url</label>
+                      <label for="host" class="col-sm-2 col-form-label">url*</label>
                       <div class="col-sm-3">
                           <select class="form-control form-control-sm" formControlName="protocol">
                               <option *ngFor="let protocol of protocols" [value]="protocol">{{protocol}}</option>
@@ -93,21 +93,21 @@
                   </div>
 
                   <div class="form-group row">
-                      <label for="username" class="col-sm-2 col-form-label">username</label>
+                      <label for="username" class="col-sm-2 col-form-label">username*</label>
                       <div class="col-sm-9">
                           <input type="text" class="form-control form-control-sm" id="username" placeholder="username" formControlName="username">
                       </div>
                   </div>
 
                   <div class="form-group row">
-                      <label for="password" class="col-sm-2 col-form-label">password</label>
+                      <label for="password" class="col-sm-2 col-form-label">password*</label>
                       <div class="col-sm-9">
                           <input type="text" class="form-control form-control-sm" id="password" placeholder="password" formControlName="password">
                       </div>
                   </div>
 
                   <div class="form-group row">
-                      <label for="" class="col-sm-2 col-form-label">location</label>
+                      <label for="" class="col-sm-2 col-form-label">location*</label>
 
                       <!-- <button type="button" class="btn btn-danger btn-circle btn-sm"
                           (click)="ngxSmartModalService.getModal('myModal').open()">
@@ -129,14 +129,14 @@
                   </div>
 
                   <div class="form-group row">
-                      <label for="description" class="col-sm-2 col-form-label">description</label>
+                      <label for="description" class="col-sm-2 col-form-label">description*</label>
                       <div class="col-sm-9">
                           <textarea class="form-control form-control-sm" id="description" placeholder="description" formControlName="description"rows="3"></textarea>
                       </div>
                   </div>
 
                   <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Add CCTV</button>
+                    <button type="submit" class="btn btn-primary btn-sm">เพิ่ม CCTV</button>
                   </div>
                 </form>
 

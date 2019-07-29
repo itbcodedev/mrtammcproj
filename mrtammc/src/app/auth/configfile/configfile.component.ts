@@ -1,9 +1,9 @@
-import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from "@angular/core";
-import { environment } from "../../../environments/environment";
-import { ConfigfileService } from "../../services/configfile.service";
-import { HttpClient, HttpEventType } from "@angular/common/http";
-import { GtfsEditor } from "./editor.colume";
-import { ToastrService } from "ngx-toastr";
+import { Component, ViewChild, ElementRef, OnInit, AfterViewInit } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { ConfigfileService } from '../../services/configfile.service';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { GtfsEditor } from './editor.colume';
+import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // This lets me use jquery
 declare var $: any;
@@ -14,9 +14,9 @@ interface EVENTBODY {
   path: string
 }
 @Component({
-  selector: "app-configfile",
-  templateUrl: "./configfile.component.html",
-  styleUrls: ["./configfile.component.scss"]
+  selector: 'app-configfile',
+  templateUrl: './configfile.component.html',
+  styleUrls: ['./configfile.component.scss']
 })
 export class ConfigfileComponent implements OnInit, AfterViewInit {
   kmlForm: FormGroup;
@@ -30,7 +30,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   ListFiles: any = [];
   dirfiles: any;
   progress: any;
-  agency = "filename";
+  agency = 'filename';
   showfile;
   showerror;
   showspec;
@@ -47,8 +47,8 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   kmls;
   kmlaction;
   formid;
-  @ViewChild("map_popup") map_popupRef: ElementRef;
-  @ViewChild("input_file") input_fileRef: ElementRef;
+  @ViewChild('map_popup') map_popupRef: ElementRef;
+  @ViewChild('input_file') input_fileRef: ElementRef;
   defaultColDef: { resizable: boolean; };
   gridApi: any;
   gridColumnApi: any;
@@ -69,9 +69,9 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    $('#treemenu').on("select_node.jstree", function(e, data) {
+    $('#treemenu').on('select_node.jstree', function(e, data) {
       var href = data.node.a_attr.href;
-      if (href[0] == "#") {
+      if (href[0] == '#') {
         // document.location.href = href;
         $('#agency_info').hide();
         $('#calendar_dates_info').hide();
@@ -94,7 +94,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.kmlaction = "Save"
+    this.kmlaction = 'Save'
     this.getkml();
   }
 
@@ -128,7 +128,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   validateTime(strTime: string) {
-    let regex = new RegExp("([0-1]?[0-9]|[2][0-3]):([0-5][0-9])(:[0-5][0-9])");
+    let regex = new RegExp('([0-1]?[0-9]|[2][0-3]):([0-5][0-9])(:[0-5][0-9])');
     if (regex.test(strTime)) {
       return true;
     } else {
@@ -137,6 +137,8 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   testFile(file: any) {
+    this.modal_title = 'ตรวจสอบความถูกต้อง Verification';
+    this.modal_body = `File :  ${file}`;
     $('#modalbtn')[0].click();
     $('#verifytab')[0].click();
     this.setshowverify();
@@ -149,16 +151,16 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">ผลการตรวจสอบ กรณี colume ไม่ครบ (E6 Missing Colume)</th>
+            <th scope="col">ผลการตรวจสอบ กรณี column ไม่ครบ (E6 Missing Column)</th>
             <th scope="col">Result</th>
           </tr>
         </thead>
         <tbody>
       `;
-        const filekey = file.split("-")[1].split(".")[0];
+        const filekey = file.split('-')[1].split('.')[0];
         let columes = new GtfsEditor().GTFS_COLUMNDEFS[filekey];
-        console.log("160",columes);
-        console.log(Object.keys(key[0]));
+        //console.log('160',columes);
+        //console.log(Object.keys(key[0]));
         // source data
         columes.forEach(col => {
           console.log(col.headerName);
@@ -192,7 +194,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
 
         key.forEach((record, index) => {
           Object.keys(record).forEach(k => {
-            if (record[k] == "" || record[k] == null) {
+            if (record[k] == '' || record[k] == null) {
               this.E7Table += `
             <tr>
               <td>
@@ -216,7 +218,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
     </table>
     `;
 
-        let TimeField: string[] = ["arrivalTime", "departureTime"];
+        let TimeField: string[] = ['arrivalTime', 'departureTime'];
         this.E8Table = `
     <table class="table table-striped">
       <thead class="thead-dark">
@@ -230,8 +232,8 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
         key.forEach((record, index) => {
           Object.keys(record).forEach(k => {
             if (TimeField.includes(k)) {
-              if (record[k] == "" || record[k] == null) {
-                console.log("missing field");
+              if (record[k] == '' || record[k] == null) {
+                console.log('missing field');
               } else {
                 if (this.validateTime(record[k])) {
                   // console.log('valid');
@@ -260,17 +262,17 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   viewfile(file: any) {
-    console.log("viewfile")
+    console.log('viewfile')
     console.log(file);
     console.log(this.ListFiles);
     const fileobj = this.ListFiles.find(obj => obj.origin === file);
     console.log(fileobj);
 
-    const filekey = file.split(".")[0];
+    const filekey = file.split('.')[0];
     this.agfile = file;
     this.columnDefs = new GtfsEditor().GTFS_COLUMNDEFS[filekey];
     this.defaultColDef = { resizable: true };
-    console.log("273", this.columnDefs);
+    console.log('273', this.columnDefs);
     this._uploadservice.getconfigfile(fileobj.filename).subscribe(res => {
       this.rowData = res;
       console.log(res);
@@ -278,24 +280,24 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   viewfileOnlists(file: any) {
-    console.log("viewfileOnlists")
+    console.log('viewfileOnlists')
 
     $('#filedetailtab')[0].click();
-    const filekey = file.split("-")[1].split(".")[0];
+    const filekey = file.split('-')[1].split('.')[0];
     //console.log(filekey);
     this.agfile = file;
-    console.log("file");
+    console.log('file');
     console.log(file);
     this.columnDefs = new GtfsEditor().GTFS_COLUMNDEFS[filekey];
     this.defaultColDef = { resizable: true };
 
-    console.log("289",this.columnDefs);
+    console.log('289',this.columnDefs);
     // let stopIdfield = this.columnDefs.filter(e => e.field === "stopId");
     // console.log(stopIdfield);
 
     this._uploadservice.getconfigfile(file).subscribe(res => {
       // console.log("res");
-      console.log("298",res);
+      console.log('298',res);
       this.rowData = res;
       let key = Object.keys(this.rowData[0]);
     });
@@ -310,37 +312,41 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   deployconfigfile(file: any) {
-    // const filename = file.split("-")[1]
+    this.modal_title = 'ดำเนินการ Deploy file GTFS';
+    this.modal_body = `copy File :  ${file} ไปสู่ /feed`;
+    $('#modalbtn')[0].click();
+
     this._uploadservice.deployconfigfile(file).subscribe(res => {
-      console.log(res);
-      this._toastr.success("Successfull upload file" + res);
+      this._toastr.success('Success upload' + file + 'ไปสู่  /feed and backup old file ไปที่ /backupfeed');
     });
   }
 
   refresh() {
     this.setshowfile();
-    console.log("click");
+    console.log('click');
     this.getuplodfile();
   }
 
   deleteFile(file) {
-    console.log("delete file" + file);
-    this._uploadservice.deleteconfigfile(file).subscribe(res => {
-      console.log(res);
-    });
+    console.log('delete file' + file);
+    if (confirm(`ท่านต้องการที่จะ ลบไฟล์  ${file} หรือไม่?`)) {
+      this._uploadservice.deleteconfigfile(file).subscribe(res => {
+        console.log(res);
+      });
 
-    this.getuplodfile();
-    this._toastr.success(file + " already deleted");
-    this.columnDefs = [];
-    this.rowData = [];
-    this.agfile = "";
+      this.getuplodfile();
+      this._toastr.success(file + ' already deleted');
+      this.columnDefs = [];
+      this.rowData = [];
+      this.agfile = '';
+    }
   }
 
   savedbFile(file) {
 
-    console.log("save db file" + file);
+    console.log('save db file' + file);
 
-    if (window.confirm('ท่านต้องการที่จะ บันทึกข้อมูลหรือไม่?')) {
+    if (confirm(`ท่านต้องการที่จะ บันทึกไฟล์  ${file}  ลงฐานข้อมูลหรือไม่?`)) {
       this._uploadservice.savedbconfigfile(file).subscribe(result => {
         console.log(result);
         this._toastr.success(JSON.stringify(result))
@@ -352,7 +358,7 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   }
 
   browseFile(event, file, index) {
-    $('#upload1').trigger("click");
+    $('#upload1').trigger('click');
     const element = this.input_fileRef.nativeElement;
     console.log(event.target.files[0]);
     this.selectedFile[index] = event.target.files[0];
@@ -362,18 +368,18 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
       // this.successMessage = "ไฟล์ที่ต้องการ upload " + file;
       // this._toastr.success(this.successMessage);
 
-      this.modal_title = "ขั้นตอนการเลือกไฟล์"
+      this.modal_title = 'ขั้นตอนการเลือกไฟล์'
       this.modal_icon = '<i class="fa fa-check" aria-hidden="true"></i>'
-      this.modal_body = "ไฟล์ที่ต้องการ upload " + file;
+      this.modal_body = 'ไฟล์ที่ต้องการ upload ' + file;
 
     } else {
       // // console.log("you upload wrong file");
       // this.errorMessage = "Upload ผิดไฟล์ กรุณา upload file ชื่อ " + file;
       // this._toastr.error(this.errorMessage);
 
-      this.modal_title = "ขั้นตอนการเลือกไฟล์"
+      this.modal_title = 'ขั้นตอนการเลือกไฟล์'
       this.modal_icon = '<i class="fa fa-exclamation" aria-hidden="true"></i>'
-      this.modal_body = "ท่านเลือก ผิดไฟล์ กรุณา เลือก file ชื่อ " + file;
+      this.modal_body = 'ท่านเลือก ผิดไฟล์ กรุณา เลือก file ชื่อ ' + file;
 
       this.selectedFile[index] = null;
       // console.log(element);
@@ -400,29 +406,29 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
       this._uploadservice.onVerify(uploadData, filename).subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           console.log(
-            "progress" + Math.round((event.loaded / event.total) * 100)
+            'progress' + Math.round((event.loaded / event.total) * 100)
           );
         } else if (event.type === HttpEventType.Response) {
           obj = <EVENTBODY>event.body;
           this.ListFiles.push(event.body);
-          console.log("obj.filename " + obj.filename);
+          console.log('obj.filename ' + obj.filename);
           this.viewfileOnlists(obj.filename);
           $('#filedetailtab')[0].click();
         }
       });
       // this.successMessage = "Success upload file ชื่อ " + filename;
       // this._toastr.success(this.successMessage);
-      this.modal_title = "ขั้นตอนการ uploadfile"
+      this.modal_title = 'ขั้นตอนการ uploadfile'
       this.modal_icon = '<i class="fa fa-check" aria-hidden="true"></i>'
-      this.modal_body = "Success upload file ชื่อ " + filename;
+      this.modal_body = 'Success upload file ชื่อ ' + filename;
 
     } else {
       // console.log("you upload wrong file");
       // this.errorMessage = "ผิดไฟล์ กรุณา upload file ชื่อ " + filename;
       // this._toastr.error(this.errorMessage);
-      this.modal_title = "ขั้นตอนการ uploadfile"
+      this.modal_title = 'ขั้นตอนการ uploadfile'
       this.modal_icon = '<i class="fa fa-exclamation" aria-hidden="true"></i>'
-      this.modal_body = "ผิดไฟล์ กรุณา upload file ชื่อ " + filename;
+      this.modal_body = 'ผิดไฟล์ กรุณา upload file ชื่อ ' + filename;
     }
 
     // Button trigger modal
@@ -443,33 +449,33 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
 // agencyUrl: "https://www.mrta.co.th/"
 
   onCellValueChanged(file: any, params: any) {
-    console.log("onCellValueChanged")
+    console.log('onCellValueChanged')
     this.rowData[params.rowIndex] = params.data
     const obj = this.rowData
     console.log(obj)
     this._uploadservice.liveupdate(file, obj).subscribe((data) => {
-      this._toastr.success("Live Update", data.message, { timeOut: 2000 });
+      this._toastr.success('Live Update', data.message, { timeOut: 2000 });
     },
       error => {
-        this._toastr.error("Live Update", "ผิดพลาด...", { timeOut: 2000 })
+        this._toastr.error('Live Update', 'ผิดพลาด...', { timeOut: 2000 })
       });
   }
 
 async uploadkml() {
 
-  if (this.kmlaction == "Update") {
-    console.log("update.....");
+  if (this.kmlaction == 'Update') {
+    console.log('update.....');
     await this._uploadservice.updatekml(this.formid,this.kmlForm.value).subscribe((data: any) => {
-      this.modal_title = "KML update message"
+      this.modal_title = 'KML update message'
       this.modal_icon = '<i class="fa fa-exclamation" aria-hidden="true"></i>'
       this.modal_body = data.line_en;
     })
-    this.kmlaction = "Save"
+    this.kmlaction = 'Save'
     this.kmlForm.patchValue({});
   } else {
-    console.log("create......");
+    console.log('create......');
     await this._uploadservice.uploadkml(this.kmlForm.value).subscribe((data: any) => {
-      this.modal_title = "KML save message"
+      this.modal_title = 'KML save message'
       this.modal_icon = '<i class="fa fa-exclamation" aria-hidden="true"></i>'
       this.modal_body = data.line_en ;
       this.kmlForm.patchValue({});
@@ -491,7 +497,7 @@ async uploadkml() {
 
   deletekml(id: any) {
     this._uploadservice.deletekml(id).subscribe((data: any) => {
-      this.modal_title = "KML delete message"
+      this.modal_title = 'KML delete message'
       this.modal_icon = '<i class="fa fa-exclamation" aria-hidden="true"></i>'
       this.modal_body = data.message;
     })
@@ -501,7 +507,7 @@ async uploadkml() {
 
   editkml(id: any) {
     this.formid = id;
-    this.kmlaction = "Update"
+    this.kmlaction = 'Update'
     this._uploadservice.getkmlbyid(id).subscribe((data) => {
       this.kmlForm.patchValue(data);
       console.log(data);
