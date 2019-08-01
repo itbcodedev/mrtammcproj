@@ -19,7 +19,7 @@ export class CctvComponent implements OnInit {
   @ViewChild("mapdiv")
   public mapDiv: ElementRef;
 
-  protocols = ['http', 'https', 'ws', 'rmtp']
+  protocols = ['http', 'https', 'ws', 'rtsp']
   cctvForm: FormGroup;
   map
   height
