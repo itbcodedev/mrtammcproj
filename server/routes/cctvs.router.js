@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Cctv = require('../models/cctv')
+const cctv = require('../process/cctv_process')
 
 router.get('/', async (req, res) => {
     try {
@@ -66,8 +67,35 @@ router.post('/create', async (req, res, next) => {
     
 })
 
+router.get('/server/status', async (req, res) => {
+    
+    try 
+    {
+        const cctv1 = new cctv('sawangpong@192.168.3.48','cctv') 
+        const status = await cctv1.getStatus();
+        res.status(200).json(status)
+    } catch (error) {
+        res.status(500).json({message: error})
+    }
+})
 
+router.get('/server/restart', async (req, res) => {
+    
+    try 
+    {
+        const cctv1 = new cctv('sawangpong@192.168.3.48','cctv') 
+        const status = await cctv1.restart();
+        res.status(200).json(status)
+    } catch (error) {
+        res.status(500).json({message: error})
+    }
+})
 module.exports = router
+
+
+
+
+
 
 
 

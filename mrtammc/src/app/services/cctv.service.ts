@@ -20,4 +20,15 @@ export class CctvService {
     const url = this.baseUrl + '/api/v2/cctvs'
     return this._http.get(url)
   }
+
+  getserverstatus() {
+    const url = this.baseUrl + '/api/v2/cctvs/server/status'
+    return this._http.get(url)
+  }
+
+  restartserver() {
+    const url = this.baseUrl + '/api/v2/cctvs/server/restart'
+    return this._http.get(url)
+  }
+
 }

@@ -34,6 +34,8 @@ export class CctvComponent implements OnInit {
   gridApi
   gridColumnApi
 
+  cctvstatus
+
   constructor(
               public cctvApi: CctvService,
               private fb: FormBuilder,
@@ -132,6 +134,7 @@ export class CctvComponent implements OnInit {
         console.log(error)
       })
 
+      this.getSeverStatus()
   }
 
   ngAfterViewInit() {
@@ -156,6 +159,26 @@ export class CctvComponent implements OnInit {
     }
 
   }
+
+  getSeverStatus() {
+    this.cctvApi.getserverstatus().subscribe(result => {
+      this.cctvstatus = result
+    })
+  }
+
+  restartServer() {
+    this.cctvApi.restartserver().subscribe(result => {
+      console.log(result);
+      this.toastr.success(JSON.stringify(result))
+    },(error) => {
+      console.log(error);
+      this.toastr.error(JSON.stringify(error))
+    });
+
+    this.getSeverStatus()
+  }
+
+
 
   onGridReady(params) {
     //console.log(params)
