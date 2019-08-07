@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
-import { CctvserviceService } from '../../services/cctvservice.service';
+//import { CctvserviceService } from '../../services/cctvservice.service';
+import { CctvService } from '../../services/cctv.service';
 import * as jsmpeg from 'jsmpeg';
 declare let L;
 declare var $: any;
@@ -19,7 +20,7 @@ export class CctvComponent implements OnInit {
   map: any;
   cctvlocations: any;
 
-  constructor(private _cctv: CctvserviceService,
+  constructor(private _cctv: CctvService,
              @Inject(DOCUMENT) private document: Document,
              elementRef: ElementRef ) {
   }
@@ -59,9 +60,9 @@ export class CctvComponent implements OnInit {
 
 
   getCctv() {
-    let get_cctv = this._cctv.getCctvlocation()
+    let get_cctv = this._cctv.getCctv()
     get_cctv.subscribe((datas) => {
-      //console.log(result);
+      console.log(datas);
       this.cctvlocations = datas;
       this.cctvlocations.forEach(cctv => {
         //let ws = new WebSocket(`${cctv.protocol}://${cctv.host}:${cctv.port}`);
@@ -85,8 +86,12 @@ export class CctvComponent implements OnInit {
                             <td class="tg-0lax">${cctv.name}</td>
                           </tr>
                           <tr>
-                            <td class="tg-0lax">ชื่อ host<br></td>
-                            <td class="tg-0lax">${cctv.protocol}://${cctv.host}:${cctv.port}</td>
+                            <td class="tg-0lax">source host<br></td>
+                            <td class="tg-0lax">${cctv.protocol}://${cctv.host}</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-0lax">stream port<br></td>
+                            <td class="tg-0lax">ws://192.168.3.48:${cctv.port}</td>
                           </tr>
                           <tr>
                             <td colspan="2">
