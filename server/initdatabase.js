@@ -18,8 +18,13 @@ const Trip = require('./models/gtfs/trip')
 
 const main = async () => {
   const result = await init()
-
-  agencies = Agency.find({})
-  console.log(agencies);
+  if (result) {
+    console.log('Success initial database');
+    console.log('Please Press Ctrl+c, to finish');
+  } else {
+    console.log('Unexpect error');
+  }
+  
 }
 main();
+

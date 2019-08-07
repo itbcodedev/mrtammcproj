@@ -79,6 +79,7 @@ const Trip = require('./models/gtfs/trip')
 const RouteInfo = require('./models/gtfs/route-info')
 
 
+
 const DATABASE = {
   agencies: [],
   routes: [],
@@ -105,28 +106,58 @@ async function init() {
   DATABASE.stop_times = await loadGTFSDataFromFile('./feed/stop_times.txt', agency_key);
   DATABASE.route_infos = await loadGTFSDataFromFile('./feed/route_infos.txt', agency_key);
 
-  //console.log(DATABASE.stops)
-  Agency.insertMany(DATABASE.agencies)
-      //.then(success => console.log(success)).catch(err => console.log(err.code, err.errmsg))
+  console.log("Summary Report On Initialdatabase")
+  console.log("---------------------------------")
+  await Agency.deleteMany({})
+  await Agency.insertMany(DATABASE.agencies)
+  await Agency.count({}, function(err, count){
+    console.log( "Number of Agency record: ", count );
+  });
+      
+  await Stop.deleteMany({})
+  await Stop.insertMany(DATABASE.stops)
+  await Stop.count({}, function(err, count){
+    console.log( "Number of Stop record: ", count );
+  });
+          
+  await Route.deleteMany({})
+  await Route.insertMany(DATABASE.routes)
+  await Route.count({}, function(err, count){
+    console.log( "Number of Route record: ", count );
+  });
+  
+  await Shape.deleteMany({})
+  await Shape.insertMany(DATABASE.shapes)
+  await Shape.count({}, function(err, count){
+    console.log( "Number of Shape record: ", count );
+  });
+      
+  await Trip.deleteMany({})
+  await Trip.insertMany(DATABASE.trips)
+  await Trip.count({}, function(err, count){
+    console.log( "Number of Trip record: ", count );
+  });
+  
+  await Calendar.deleteMany({})
+  await Calendar.insertMany(DATABASE.calendar)
+  await Calendar.count({}, function(err, count){
+    console.log( "Number of Calendar record: ", count );
+  });
+  
+  await StopTime.deleteMany({})
+  await StopTime.insertMany(DATABASE.stop_times)
+  await StopTime.count({}, function(err, count){
+    console.log( "Number of StopTime record: ", count );
+  });
+  
+  await RouteInfo.deleteMany({})
+  await RouteInfo.insertMany(DATABASE.route_infos)
+  await RouteInfo.count({}, function(err, count){
+    console.log( "Number of RouteInfo record: ", count );
+  });
 
-  Stop.insertMany(DATABASE.stops)
-      //.then(success => console.log(success)).catch(err => console.log(err.code, err.errmsg))
 
-  Route.insertMany(DATABASE.routes)
-      //.then(success => console.log(success)).catch(err => console.log(err.code, err.errmsg))
-
-  Shape.insertMany(DATABASE.shapes)
-      //.then(success => console.log(success)).catch(err => console.log(err.code, err.errmsg))
-
-  Trip.insertMany(DATABASE.trips)
-      //.then(success => console.log(success)).catch(err => console.log(err.code, err.errmsg))
-
-  Calendar.insertMany(DATABASE.calendar)
-      //.then(success => console.log(success)).catch(err => console.log(err.code, err.errmsg))
-
-  StopTime.insertMany(DATABASE.stop_times)
-      //.then(success => console.log(success)).catch(err => console.log(err.code, err.errmsg))
-  RouteInfo.insertMany(DATABASE.route_infos)
+  return 1
 };
 
 module.exports =  {
