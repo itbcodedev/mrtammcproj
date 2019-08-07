@@ -15,7 +15,7 @@ declare let L;
 })
 export class GtfsrtComponent implements OnInit {
 
-  @ViewChild('dataContainer') dataContainer: ElementRef;
+  @ViewChild('dataContainer', { static: false }) dataContainer: ElementRef;
 
   map: any;
   routes;

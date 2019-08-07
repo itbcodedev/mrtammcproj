@@ -23,7 +23,7 @@ export class CaltripComponent implements OnInit {
   TypeTk;
   TypePs;
   TypeDt;
-  @ViewChild('myModal') myModal:ElementRef;
+  @ViewChild('myModal', { static: true }) myModal:ElementRef;
 
   constructor( private _caltripservice: CaltripserviceService) {}
 

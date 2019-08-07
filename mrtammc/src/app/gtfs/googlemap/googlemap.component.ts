@@ -24,8 +24,8 @@ import { Inject } from '@angular/core';
 
 export class GooglemapComponent implements OnInit, AfterViewInit {
   icon = environment.icon;
-  @ViewChild('gmapRef') mapRef: ElementRef;
-  @ViewChild('map_popup') map_popupRef: ElementRef;
+  @ViewChild('gmapRef', { static: false }) mapRef: ElementRef;
+  @ViewChild('map_popup', { static: false }) map_popupRef: ElementRef;
   gmapContainer: google.maps.Map;
   markers: google.maps.Marker[] = [];
   movetrains: google.maps.Marker[] = [];
@@ -902,9 +902,7 @@ export class GooglemapComponent implements OnInit, AfterViewInit {
       content: contentString
     });
 
-    marker.addListener('click', function() {
-      infowindow.open(this.gmapContainer, marker);
-    });
+    // add function
     marker.addListener('mouseover', () => {
       infowindow.open(this.gmapContainer, marker);
     });

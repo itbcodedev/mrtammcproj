@@ -47,8 +47,8 @@ export class ConfigfileComponent implements OnInit, AfterViewInit {
   kmls;
   kmlaction;
   formid;
-  @ViewChild('map_popup') map_popupRef: ElementRef;
-  @ViewChild('input_file') input_fileRef: ElementRef;
+  @ViewChild('map_popup', { static: false }) map_popupRef: ElementRef;
+  @ViewChild('input_file', { static: true }) input_fileRef: ElementRef;
   defaultColDef: { resizable: boolean; };
   gridApi: any;
   gridColumnApi: any;

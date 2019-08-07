@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 export class KmlslayerComponent implements OnInit {
 
 
-  @ViewChild('gmapRef') mapRef: ElementRef;
+  @ViewChild('gmapRef', { static: true }) mapRef: ElementRef;
   gmapContainer: google.maps.Map;
   kmls;
   kmlid;

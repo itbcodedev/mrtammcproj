@@ -41,8 +41,8 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent
   },
-  {path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
-  {path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  {path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
   {
     path: 'poi',
     component: PoiComponent

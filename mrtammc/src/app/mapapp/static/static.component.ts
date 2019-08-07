@@ -31,7 +31,7 @@ export class StaticComponent implements OnInit {
   gridApi
   gridColumnApi
 
-  @ViewChild('closeBtn') closeBtn: ElementRef;
+  @ViewChild('closeBtn', { static: true }) closeBtn: ElementRef;
 
   columnDefs = [
     {headerName: 'stop_group', field: 'stop_group'},

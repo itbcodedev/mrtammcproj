@@ -15,7 +15,7 @@ import { Inject }  from '@angular/core';
 })
 export class CctvComponent implements OnInit {
   mycasvas: any;
-  @ViewChild('canvas') canvas: ElementRef;
+  @ViewChild('canvas', { static: false }) canvas: ElementRef;
   map: any;
   cctvlocations: any;
 

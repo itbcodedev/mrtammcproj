@@ -13,10 +13,10 @@ declare let L;
 })
 export class CctvComponent implements OnInit {
 
-  @ViewChild("map")
+  @ViewChild("map", { static: true })
   public mapElement: ElementRef;
 
-  @ViewChild("mapdiv")
+  @ViewChild("mapdiv", { static: true })
   public mapDiv: ElementRef;
 
   protocols = ['http', 'https', 'ws', 'rtsp']
