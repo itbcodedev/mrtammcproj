@@ -15,15 +15,17 @@ const client = new Client({
 
 router.post("/", async (req, res) => {
   const userPrincipalName = req.body.email;
+  const cnname = req.body.cnname;
+  const loginbinddn = `CN=${cnname},OU=mmc,OU=Project,DC=mrta,DC=co,DC=th`
   const password = req.body.password
-  //console.log(req.body)
-  //console.log({userPrincipalName: userPrincipalName,password: password})
+
   try {
-    await client.bind(userPrincipalName, password);
+    // await client.bind(userPrincipalName, password);
+    await client.bind(loginbinddn, password);
     isAuthenticated = true;
     // console.log("Authentication success?" + isAuthenticated);
     let token = jwt.sign({
-      username: req.body.email
+      username: req.body.cnname
     }, 'secret', {
       expiresIn: '1d'
     });

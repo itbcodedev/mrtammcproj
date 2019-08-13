@@ -34,8 +34,8 @@ const listdir = require('./routes/listdir.router');
 const ldap = require('./routes/ldap.router');
 const kmlRouter = require('./routes/kml.router');
 const gtfsdbRouter = require('./routes/gtfsdb.router');
-const cctvRouter = require('./routes/cctvs.router')
-
+const cctvRouter = require('./routes/cctvs.router');
+const parkinLocRouter = require('./routes/parkingloc.router');
 database.init();
 
 
@@ -86,6 +86,7 @@ app.use('/ldap',ldap);
 app.use('/kml',kmlRouter);
 app.use('/gtfsdb',gtfsdbRouter);
 app.use('/api/v2/cctvs', cctvRouter)
+app.use('/api/v2/parkings', parkinLocRouter)
 
 
 if (process.env.NODE_ENV === 'production') {
