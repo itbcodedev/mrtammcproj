@@ -36,9 +36,7 @@ export class UserServiceService {
   login(body: any){
   //let url = this.baseUrl + '/users/login'
   let url = this.baseUrl + '/ldap'
-    return this._http.post(url, body, {
-      observe: 'response'
-    });
+    return this._http.post(url, body, { observe: 'response' });
   }
 
  ldaplist() {
@@ -48,7 +46,7 @@ export class UserServiceService {
    });
  }
   getUserName() {
-    let url = this.baseUrl + '/users/username'
+    let url = this.baseUrl + '/users/username';
     return this._http.get(url, {
       observe: 'body',
       params: new HttpParams().append('token', localStorage.getItem('token'))

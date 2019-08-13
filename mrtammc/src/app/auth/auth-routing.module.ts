@@ -8,7 +8,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LdapuserComponent } from  './dashboard/ldapuser/ldapuser.component';
 import { MrtalineComponent } from './mrtaline/mrtaline.component';
 import { GtfsmapComponent } from './gtfsmap/gtfsmap.component'
-import { CctvComponent} from './cctv/cctv.component'
+import { CctvComponent} from './cctv/cctv.component';
+import { ParkingComponent} from './parking/parking.component';
+
 const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
@@ -18,7 +20,8 @@ const routes: Routes = [
   {path: 'ldapuser', component: LdapuserComponent},
   {path: 'mrtaline', component: MrtalineComponent},
   {path: 'gtfsmap', component: GtfsmapComponent},
-  {path: 'cctv', component: CctvComponent}
+  {path: 'cctv', component: CctvComponent},
+  {path: 'parking', component: ParkingComponent}
 ];
 
 @NgModule({

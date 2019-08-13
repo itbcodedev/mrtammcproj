@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute) {
     this.loginForm = new FormGroup({
-      email: new FormControl(null, Validators.required),
+      cnname: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
     });
   };
@@ -39,18 +39,23 @@ export class LoginComponent implements OnInit {
       this._userservice.login(this.loginForm.value)
         .subscribe(
           (data) => {
+            console.log("--------------------------------------")
             console.log(data.body);
             this._toastr.success(`login  success`)
             localStorage.setItem('token', data.body.toString());
             this._router.navigate(['/gtfsrt']);
           },
           error => {
-            this._toastr.error(`User not found`)
+            this._toastr.error(`ขออภัยไม่พบ ชื่อของท่านใน  OU=mmc,OU=Project,DC=mrta,DC=co,DC=th`)
            }
         );
     }
   }
 
+  logout() {
+    localStorage.removeItem('token')
+    this._router.navigate(['/gtfsrt']);
+  }
   isLogged() {
     return localStorage.getItem('token') != null;
   }

@@ -19,6 +19,8 @@ export class HeaderComponent implements OnInit {
     this._userservice.getUserName().subscribe(
       data => {
         this.username = data.toString();
+        console.log("-------------------------------")
+        console.log(this.username)
         this.isLogin = true;
       },
       error => this._router.navigate(['/auth/login'])
