@@ -30,6 +30,9 @@ export class ParkingComponent implements OnInit {
   columnDefs
   rowData
 
+
+  gridApi
+  gridColumnApi
   constructor( 
     private fb: FormBuilder,
     private toastr: ToastrService,
@@ -123,6 +126,31 @@ export class ParkingComponent implements OnInit {
     })
   }
 
+  onGridReady(params) {
+    //console.log(params)
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.sizeColumnsToFit();
+    // const allColumnIds = [];
+    // this.gridColumnApi.getAllColumns().forEach(function(column) {
+    //   allColumnIds.push(column.colId);
+    // });
+    // this.gridColumnApi.autoSizeColumns(allColumnIds);
+  }
+
+  onCellValueChanged(params: any) {
+    this.rowData[params.rowIndex] = params.data;
+    const obj = this.rowData;
+    console.log(obj);
+  }
+
+  refresh() {
+    this.parking.getParking().subscribe(result => {
+      this.rowData = result;
+    }, ( error ) => {
+      console.log( error );
+    });
+  }
   submitParkingData() {
     if (!this.parkingForm) {
       this.toastr.error("กรอกข้อมูลผิดพลาด: ไม่ครบถ้วน")
