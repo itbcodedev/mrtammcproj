@@ -7,6 +7,7 @@ import { ParkingserviceService } from '../../services/parkingservice.service';
 import { AlertService} from '../../services/alert.service';
 import { AlertmobileService } from '../../services/alertmobile.service';
 import { PassengerService } from '../../services/passenger.service'
+import { UserServiceService } from '../../auth/user-service.service';
 import { Alert } from './alert.model';
 import {FormGroup, FormArray, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from "ngx-toastr";
@@ -31,6 +32,9 @@ export class StaticComponent implements OnInit {
   gridApi
   gridColumnApi
 
+  username
+  isLogin
+
   @ViewChild('closeBtn', { static: true }) closeBtn: ElementRef;
 
   columnDefs = [
@@ -38,6 +42,8 @@ export class StaticComponent implements OnInit {
     {headerName: 'stop_id', field: 'stop_id'},
     {headerName: 'title_line', field: 'title_line'},
     {headerName: 'message', field: 'message'},
+    {headerName: 'message_en', field: 'message'},
+    {headerName: 'user_name', field: 'message'},
     {headerName: 'notify_date', field: 'notify_date'},
   ];
 
@@ -51,6 +57,7 @@ export class StaticComponent implements OnInit {
               public _passenger: PassengerService,
               private _toastr: ToastrService,
               private _websocket: WebsocketService,
+              private _userservice: UserServiceService,
               private fb: FormBuilder) { }
 
 
@@ -79,12 +86,21 @@ export class StaticComponent implements OnInit {
       notify_date: [''],
       message: ['', Validators.required],
       message_en: [''],
+      user_name: ['']
     })
 
     this.getMobilemessage()
     this.getalerts()
     this.getPassenger()
     
+    this._userservice.getUserName().subscribe(
+      data => {
+        this.username = data.toString();
+        console.log("Login as:")
+        console.log(this.username)
+        this.isLogin = true;
+      }
+    )
     //this.getdata()
     this._websocket.listen('passenger').subscribe(data => {
         console.log(data)

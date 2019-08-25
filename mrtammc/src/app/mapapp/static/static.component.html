@@ -261,9 +261,17 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="message" class="col-sm-2 col-form-label">Message_en</label>
+                <label for="message_en" class="col-sm-2 col-form-label">Message_en</label>
                 <div class="col-sm-8">
                   <textarea class="form-control" id="message_en" formControlName="message_en"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="user_name" class="col-sm-2 col-form-label">user_name</label>
+                <div class="col-sm-8">
+                  <input type="text"  class="form-control" id="user_name" 
+                        placeholder={{username}} disabled 
+                        value={{username}} formControlName="user_name" >
                 </div>
               </div>
               <div class="form-group row">
