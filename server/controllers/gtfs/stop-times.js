@@ -125,3 +125,7 @@ exports.getallstoptimes = async (query = {}) => {
     {$match: {}}
   ])
 }
+
+exports.getallstops = async (query = {}) => {
+  return StopTime.distinct("stop_id")
+}

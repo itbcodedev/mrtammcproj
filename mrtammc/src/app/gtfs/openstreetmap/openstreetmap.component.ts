@@ -332,14 +332,10 @@ export class OpenstreetmapComponent implements OnInit {
             console.log(+direction)
             position = this.blue_csvData[loc_order]
             trainLocation = new L.LatLng(position[2], position[1])
-
           } else {
-
             console.log(+direction)
             position = this.blue_csvData[loc_length - loc_order]
             trainLocation = new L.LatLng(position[2], position[1])
-
-
           }
           break;
       }

@@ -237,3 +237,21 @@ router.get("/routeinfowithtrip/:trip_id", (req, res, next) => {
 })
   return router
 };
+
+const groupBy = key => array =>
+  array.reduce((objectsByKeyValue, obj) => {
+    const value = obj[key];
+    objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+    return objectsByKeyValue;
+  }, {});
+
+
+router.get("/getallstops", (req, res, next) => {
+  const query = {}
+  const groupBygroup = groupBy("group")
+  gtfs.getallstops(query).then(stoptimes => {
+    results = stoptimes.map(s =>{return {group: s.slice(0,2),station: s}}) 
+    grouped = groupBygroup(results)
+    res.json(grouped)
+  })
+});

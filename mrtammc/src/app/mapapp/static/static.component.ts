@@ -48,7 +48,7 @@ export class StaticComponent implements OnInit {
   ];
 
   rowData: any = [];
-
+  City: any = ['Florida', 'South Dakota', 'Tennessee', 'Michigan']
 
   constructor(private _http: HttpClient,
               public _parking: ParkingserviceService,
@@ -86,7 +86,8 @@ export class StaticComponent implements OnInit {
       notify_date: [''],
       message: ['', Validators.required],
       message_en: [''],
-      user_name: ['']
+      user_name: [''],
+      cityName: [''],
     })
 
     this.getMobilemessage()
@@ -231,5 +232,9 @@ export class StaticComponent implements OnInit {
   //   allColumnIds.push(column.colId);
   // });
   //this.gridColumnApi.autoSizeColumns(allColumnIds);
+}
+
+changeCity(e) {
+  console.log(e.target.value)
 }
 }
