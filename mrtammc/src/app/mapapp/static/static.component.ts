@@ -12,6 +12,7 @@ import { Alert } from './alert.model';
 import {FormGroup, FormArray, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from "ngx-toastr";
 import { WebsocketService} from '../../services/websocket.service'
+import {GtfsService} from '../../services/gtfs2.service'
 import * as moment from 'moment'; 
 
 @Component({
@@ -35,6 +36,10 @@ export class StaticComponent implements OnInit {
   username
   isLogin
 
+  routes
+  allstations
+  stations
+  station
   @ViewChild('closeBtn', { static: true }) closeBtn: ElementRef;
 
   columnDefs = [
@@ -48,7 +53,7 @@ export class StaticComponent implements OnInit {
   ];
 
   rowData: any = [];
-  City: any = ['Florida', 'South Dakota', 'Tennessee', 'Michigan']
+  
 
   constructor(private _http: HttpClient,
               public _parking: ParkingserviceService,
@@ -58,6 +63,7 @@ export class StaticComponent implements OnInit {
               private _toastr: ToastrService,
               private _websocket: WebsocketService,
               private _userservice: UserServiceService,
+              private _gtfsservice: GtfsService,
               private fb: FormBuilder) { }
 
 
@@ -78,6 +84,22 @@ export class StaticComponent implements OnInit {
 
   ngOnInit() {
 
+    this._userservice.getUserName().subscribe(
+      data => {
+        this.username = data.toString();
+        console.log("Login as: ==================================")
+        console.log(this.username)
+        this.isLogin = true;
+      }
+    )
+    
+    this._gtfsservice.getallstations().then( obj => {
+      this.allstations = obj
+      console.log(this.allstations)
+      this.routes = Object.keys(obj)
+      console.log(this.routes)
+    })
+
     this.alertForm = this.fb.group({
       stop_group: ['', Validators.required],
       stop_id: ['', Validators.required],
@@ -86,25 +108,17 @@ export class StaticComponent implements OnInit {
       notify_date: [''],
       message: ['', Validators.required],
       message_en: [''],
-      user_name: [''],
-      cityName: [''],
+      user_name: ['']
     })
 
     this.getMobilemessage()
     this.getalerts()
     this.getPassenger()
     
-    this._userservice.getUserName().subscribe(
-      data => {
-        this.username = data.toString();
-        console.log("Login as:")
-        console.log(this.username)
-        this.isLogin = true;
-      }
-    )
+   
     //this.getdata()
     this._websocket.listen('passenger').subscribe(data => {
-        console.log(data)
+        
         this.pushToArray(this.passengers, data)
         this.average = this.passengers.reduce((sum, { density }) => sum + parseInt(density), 0)/this.passengers.length
     });
@@ -234,7 +248,14 @@ export class StaticComponent implements OnInit {
   //this.gridColumnApi.autoSizeColumns(allColumnIds);
 }
 
-changeCity(e) {
-  console.log(e.target.value)
+// ngValue returning index nd value
+changeRoute(route) {
+ 
+  console.log(this.allstations)
+  console.log(route)
+  const stationsObj  = this.allstations[route]
+  this.stations = stationsObj.map( s => {
+    return s.station
+  })
 }
 }
