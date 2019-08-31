@@ -92,7 +92,7 @@ export class StaticComponent implements OnInit {
         this.isLogin = true;
       }
     )
-    
+                                                                                                              
     this._gtfsservice.getallstations().then( obj => {
       this.allstations = obj
       console.log(this.allstations)
