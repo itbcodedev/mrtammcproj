@@ -1,5 +1,4 @@
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <nav class="navbar navbar-expand-lg  primary-color">
 
         <!-- Collapse button -->
@@ -38,11 +37,11 @@
                     </h6>
                 </li>
                 <li class="nav-item mr-2">
-                        <h6 class="m-0 text-dark btn btn-light">
-                            <i class="fa fa-train" aria-hidden="true"></i>
-                            <a href="/auth/routeformat">Route Format</a>
-                        </h6>
-                    </li>
+                    <h6 class="m-0 text-dark btn btn-light">
+                        <i class="fa fa-train" aria-hidden="true"></i>
+                        <a href="/auth/routeformat">Route Format</a>
+                    </h6>
+                </li>
 
             </ul>
 
@@ -50,7 +49,7 @@
         <!-- Collapsible content -->
 
     </nav>
-    <!-- /.content-header -->
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -59,7 +58,7 @@
                         <li class="nav-item">
                             <a class="nav-link active " id="home-tab" data-toggle="tab" href="#parkingform" role="tab"
                                 aria-controls="home" aria-selected="true">
-                                <i class="fa fa-car" aria-hidden="true"></i> Parking Location Form
+                                <i class="fa fa-train mr-1" aria-hidden="true"></i>Route Format Form
                             </a>
                         </li>
                     </ul>
@@ -69,65 +68,47 @@
                             aria-labelledby="home-tab">
                             <div id="cctvformdiv">
                                 <!-- <p>CCTV form</p>-->
-                                <p>กรุณากรอกข้อมูลตำแหน่งสถานีจอดรถ</p>
-                                <form [formGroup]="parkingForm" (ngSubmit)="submitParkingData()" novalidate>
+                                <p>กรุณากรอกข้อมูลลักษณะเส้นทาง</p>
+                                <form [formGroup]="routeformatForm" (ngSubmit)="submitRouteFormatData()" novalidate>
 
                                     <div class="form-group row">
-                                        <label for="code" class="col-sm-2 col-form-label">code*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control form-control-sm" id="code"
-                                                placeholder="code" formControlName="code">
+                                        <label for="code" class="col-sm-3 col-form-label">Route</label>
+                                        <div class="col-sm-7">
+                                            <select class="custom-select" [ngModel]="type"
+                                                (ngModelChange)="changeRoute($event)" formControlName="route">
+                                                <option value="" disabled>กรุณาเลือกเส้นทาง</option>
+                                                <option *ngFor="let route of routes" [ngValue]="route">{{route}}
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="name" class="col-sm-2 col-form-label">name*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control form-control-sm" id="name"
-                                                placeholder="name" formControlName="name">
+                                        <label for="name" class="col-sm-3 col-form-label">color*</label>
+                                        <div class="col-sm-7">
+                                            <input  type="color" class="form-control form-control-sm" id="color"
+                                            value="#ffffff" formControlName="color">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="icon" class="col-sm-2 col-form-label">icon*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control form-control-sm" id="icon"
-                                                placeholder="icon" formControlName="icon">
+                                        <label for="icon" class="col-sm-3 col-form-label">station icon*</label>
+                                        <div class="col-sm-7">
+                                            <input type="file" class="form-control form-control-sm" id="station_icon"
+                                            accept="image/*" formControlName="station_icon" (onchange)="onFileChange($event, 'station_icon')">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="image" class="col-sm-2 col-form-label">image*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control form-control-sm" id="image"
-                                                placeholder="image" formControlName="image">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="capacity" class="col-sm-2 col-form-label">capacity*</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control form-control-sm" id="capacity"
-                                                placeholder="capacity" formControlName="capacity">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="" class="col-sm-2 col-form-label">location*</label>
-
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control form-control-sm" id="latitude"
-                                                placeholder="latitude" formControlName="latitude"
-                                                [(ngModel)]="latitude">
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <input type="text" class="form-control form-control-sm" id="longitude"
-                                                placeholder="longitude" formControlName="longitude"
-                                                [(ngModel)]="longitude">
+                                        <label for="image" class="col-sm-3 col-form-label">train icon*</label>
+                                        <div class="col-sm-7">
+                                            <input type="file" class="form-control form-control-sm" id="train_icon"
+                                            accept="image/*" formControlName="train_icon" (onchange)="onFileChange($event, 'train_icon')">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-sm">เพิ่ม Parking</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">เพิ่ม Route Format</button>
                                     </div>
                                 </form>
 
@@ -141,16 +122,16 @@
                         <li class="nav-item">
                             <a id="uploadfiletab" class="nav-link active" data-toggle="tab" href="#cctvlist" role="tab"
                                 aria-controls="home">
-                                <i class="fa fa-map-o" aria-hidden="true"></i> Parking Map
+                                <i class="fa fa-map-o" aria-hidden="true"></i> Show on Map
                             </a>
                         </li>
                         <!-- <li class="nav-item">
-                                  <a class="nav-link" data-toggle="tab" href="#map1" role="tab" aria-controls="profile">Map Component</a>
-                                </li> -->
+                                      <a class="nav-link" data-toggle="tab" href="#map1" role="tab" aria-controls="profile">Map Component</a>
+                                    </li> -->
                         <li class="nav-item">
                             <a id="onmaptab" class="nav-link" data-toggle="tab" href="#onmap" role="tab"
                                 aria-controls="profile" (click)="refresh()">
-                                <i class="fa fa-table" aria-hidden="true"></i> Parking List
+                                <i class="fa fa-table" aria-hidden="true"></i> Route format List
                             </a>
                         </li>
 

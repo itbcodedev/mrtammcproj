@@ -41,6 +41,7 @@ export class CctvComponent implements OnInit {
               private fb: FormBuilder,
               private toastr: ToastrService,
               public ngxSmartModalService: NgxSmartModalService) {
+                
     this.cctvForm = this.fb.group({
       code: ['', Validators.required ],
       name: ['', Validators.required ],

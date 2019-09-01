@@ -10,6 +10,7 @@ import { MrtalineComponent } from './mrtaline/mrtaline.component';
 import { GtfsmapComponent } from './gtfsmap/gtfsmap.component'
 import { CctvComponent} from './cctv/cctv.component';
 import { ParkingComponent} from './parking/parking.component';
+import { RouteformatComponent} from './routeformat/routeformat.component'
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'mrtaline', component: MrtalineComponent},
   {path: 'gtfsmap', component: GtfsmapComponent},
   {path: 'cctv', component: CctvComponent},
-  {path: 'parking', component: ParkingComponent}
+  {path: 'parking', component: ParkingComponent},
+  {path: 'routeformat', component: RouteformatComponent}
 ];
 
 @NgModule({
