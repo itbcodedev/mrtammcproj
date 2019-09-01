@@ -221,7 +221,7 @@
               <span style="color:red;font-weight:bold">*</span>
             </label>
             <div class="col-sm-8">
-              <select class="custom-select" [ngModel]="type" (ngModelChange)="changeRoute($event)" formControlName="stop_group">
+              <select class="custom-select" [ngModel]="stop_group" (ngModelChange)="changeRoute($event)" formControlName="stop_group">
                 <option value="" disabled>กรุณาเลือกเส้นทาง</option>
                 <option *ngFor="let route of routes" [ngValue]="route">{{route}}</option>
               </select>
@@ -235,7 +235,7 @@
             </label>
             <div class="col-sm-8">
 
-              <select class="custom-select" [ngModel]="type" (ngModelChange)="changeRoute($event)" formControlName="stop_id">
+              <select class="custom-select" [ngModel]="stop_id" (ngModelChange)="changeRoute($event)" formControlName="stop_id">
                 <option value="" disabled>กรุณาเลือกสถานี</option>
                 <option *ngFor="let station of stations" [ngValue]="station">{{station}}</option>
               </select>

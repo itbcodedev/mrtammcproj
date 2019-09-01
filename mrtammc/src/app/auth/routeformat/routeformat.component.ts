@@ -29,6 +29,7 @@ export class RouteformatComponent implements OnInit {
   columnDefs
   rowData
 
+  route
   gridApi
   gridColumnApi
 
@@ -143,5 +144,32 @@ export class RouteformatComponent implements OnInit {
       } 
     )
     console.log(formData)
+  }
+
+
+  changeRoute(e){
+
+  }
+
+  onGridReady(params) {
+    //console.log(params)
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+    this.gridApi.sizeColumnsToFit();
+    // const allColumnIds = [];
+    // this.gridColumnApi.getAllColumns().forEach(function(column) {
+    //   allColumnIds.push(column.colId);
+    // });
+    // this.gridColumnApi.autoSizeColumns(allColumnIds);
+  }
+
+  onCellValueChanged(params: any) {
+    this.rowData[params.rowIndex] = params.data;
+    const obj = this.rowData;
+    console.log(obj);
+  }
+  
+  refresh(){
+
   }
 }

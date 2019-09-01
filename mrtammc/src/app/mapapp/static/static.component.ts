@@ -40,6 +40,10 @@ export class StaticComponent implements OnInit {
   allstations
   stations
   station
+
+  stop_group
+  stop_id
+  
   @ViewChild('closeBtn', { static: true }) closeBtn: ElementRef;
 
   columnDefs = [
