@@ -39,6 +39,13 @@ const parkinLocRouter = require('./routes/parkingloc.router');
 const RouteFormatRouter = require('./routes/routeformat.router')
 database.init();
 
+var fs = require('fs')
+
+source = path.resolve('./public')
+fs.symlink(source, '../mrtammc/dist/mrtammc/assets/dist/public' , (err) => {
+    console.log('----------------err---------------------')
+    console.log(err)
+})
 
 
 io.on('connection', (socket) => {
