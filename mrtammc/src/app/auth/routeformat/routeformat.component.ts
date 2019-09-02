@@ -4,6 +4,8 @@ import {GtfsService} from '../../services/gtfs2.service'
 import { ToastrService } from 'ngx-toastr';
 
 import { RouteformatService } from '../../services/routeformat.service'
+
+import { ImageFormatterComponent} from '../../image-formatter/image-formatter.component'
 declare let L;
 import * as $ from 'jquery';
 
@@ -119,8 +121,8 @@ export class RouteformatComponent implements OnInit {
     this.columnDefs = [
         {headerName: 'Route', field: 'route', editable: true },
         {headerName: 'Color', field: 'color', editable: true },
-        {headerName: 'Station icon', field: 'station_icon', editable: true},
-        {headerName: 'Train icon', field: 'train_icon' , editable: true}
+        {headerName: 'Station icon', field: 'station_icon', editable: true ,autoHeight: true, cellRendererFramework: ImageFormatterComponent },
+        {headerName: 'Train icon', field: 'train_icon' , editable: true,  autoHeight: true, cellRendererFramework: ImageFormatterComponent}
     ]
 
     this._routeformatservice.getrouteformat().subscribe(result => {

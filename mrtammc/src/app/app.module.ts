@@ -15,12 +15,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import * as bootstrap from "bootstrap";
 import * as $ from "jquery";
+import { ImageFormatterComponent } from './image-formatter/image-formatter.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ImageFormatterComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,7 @@ import * as $ from "jquery";
     UiModule,
     GtfsModule,
     HttpClientModule,
-    AgGridModule.withComponents(null),
+    AgGridModule.withComponents([ImageFormatterComponent]) ,
     FormsModule,
     ReactiveFormsModule,
     MapappModule,
