@@ -1,1 +1,2 @@
-server/public/images
+/server/upload/images
+/server/tempuploads

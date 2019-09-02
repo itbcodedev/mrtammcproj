@@ -41,7 +41,7 @@ database.init();
 
 var fs = require('fs')
 
-source = path.resolve('./public')
+source = path.resolve('./upload')
 fs.symlink(source, '../mrtammc/dist/mrtammc/assets/dist/public' , (err) => {
     console.log('----------------err---------------------')
     console.log(err)

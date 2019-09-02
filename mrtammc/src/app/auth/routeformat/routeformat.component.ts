@@ -115,7 +115,19 @@ export class RouteformatComponent implements OnInit {
       console.log(this.routes)
     })
 
-    
+    this.defaultColDef = { resizable: true };
+    this.columnDefs = [
+        {headerName: 'Route', field: 'route', editable: true },
+        {headerName: 'Color', field: 'color', editable: true },
+        {headerName: 'Station icon', field: 'station_icon', editable: true},
+        {headerName: 'Train icon', field: 'train_icon' , editable: true}
+    ]
+
+    this._routeformatservice.getrouteformat().subscribe(result => {
+      this.rowData = result
+    },(error) =>{
+      console.log(error)
+    })
   }
 
   onFileChange_station(event) {
@@ -175,6 +187,10 @@ export class RouteformatComponent implements OnInit {
   }
   
   refresh(){
-
+    this._routeformatservice.getrouteformat().subscribe(result => {
+      this.rowData = result
+    },(error) =>{
+      console.log(error)
+    })
   }
 }

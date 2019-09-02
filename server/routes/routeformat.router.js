@@ -18,23 +18,33 @@ router.get('/', async (req, res) => {
 
 router.post('/create', upload.any(), (req, res, next) => {
 
+    let station_path = ""
+    let train_path  = ""
+
     if (req.files) {
         req.files.forEach((file) => {
             console.log(file)
             var filename = (new Date).valueOf() + "-" + file.originalname
-            fs.rename(file.path, 'public/images/' + filename, (err) => {
+            fs.rename(file.path, 'upload/images/' + filename, (err) => {
                 if (err) throw err;
                 console.log(file.path)
             })
             
+            if (file.fieldname == "station_icon") {
+                station_path = '/assets/dist/public/images/' + filename
+            }
+            
+            if (file.fieldname == "train_icon") {
+                train_path = '/assets/dist/public/images/' + filename
+            }
         })
     }
 
     const routeformat = new Routeformat({
         route: req.body.route,
         color: req.body.color,
-        station_icon: req.body.station_icon,
-        train_icon: req.body.train_icon,
+        station_icon: station_path,
+        train_icon: train_path,
 
     })
 
