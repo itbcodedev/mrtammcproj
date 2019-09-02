@@ -2,6 +2,8 @@ import { Component, OnInit , ViewChild, ElementRef, Input, ChangeDetectorRef} fr
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {GtfsService} from '../../services/gtfs2.service'
 import { ToastrService } from 'ngx-toastr';
+
+import { RouteformatService } from '../../services/routeformat.service'
 declare let L;
 import * as $ from 'jquery';
 
@@ -42,7 +44,8 @@ export class RouteformatComponent implements OnInit {
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
     private toastr: ToastrService,
-    private _gtfsservice: GtfsService
+    private _gtfsservice: GtfsService,
+    private _routeformatservice  : RouteformatService
   ) { 
     this.routeformatForm = this.fb.group({
       route: ['', Validators.required ],
@@ -115,35 +118,37 @@ export class RouteformatComponent implements OnInit {
     
   }
 
-  onFileChange(event, field) {
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      // just checking if it is an image, ignore if you want
-      if (!file.type.startsWith('image')) {
-        this.routeformatForm.get(field).setErrors({
-          required: true
-        });
-        this.cd.markForCheck();
-      } else {
-        // unlike most tutorials, i am using the actual Blob/file object instead of the data-url
-        this.routeformatForm.patchValue({
-          [field]: file
-        });
-        // need to run CD since file load runs outside of zone
-        this.cd.markForCheck();
-      }
+  onFileChange_station(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(file)
+      this.routeformatForm.get('station_icon').setValue(file);
     }
 
   }
 
+  onFileChange_train(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(file)
+      this.routeformatForm.get('train_icon').setValue(file);
+    }
+
+  }
+
+
   submitRouteFormatData(){
-    const formData = new FormData();
-    Object.entries(this.routeformatForm.value).forEach(
-      ([key, value]: any[]) => {
-        formData.set(key, value);
-      } 
-    )
-    console.log(formData)
+    const formData: any = new FormData();
+
+    formData.append('route',this.routeformatForm.get('route').value)
+    formData.append('color',this.routeformatForm.get('color').value)
+    formData.append('station_icon',this.routeformatForm.get('station_icon').value)
+    formData.append('train_icon',this.routeformatForm.get('train_icon').value)
+
+    // post Formdata
+    this._routeformatservice.saverouteformat(formData).subscribe( res => {
+      console.log(res)
+    });
   }
 
 
