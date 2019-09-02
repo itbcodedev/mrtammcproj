@@ -2,7 +2,7 @@ var express = require('express');
 var multer = require('multer')
 var Routeformat = require('../models/routeformat')
 var router = express.Router()
-var upload = multer({ dest: 'uploads/' })
+var upload = multer({ dest: 'tempuploads/' })
 
 var fs = require('fs')
 
