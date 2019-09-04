@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -20,4 +20,22 @@ export class RouteformatService {
     let url = this.baseUrl + '/api/v2/routeformat'
     return this._http.get(url)
   }
+
+  deleterouteformat(id: any) {
+    let url = this.baseUrl + '/api/v2/routeformat/' + id
+    this._http.delete<any>(url).subscribe(
+      res => {
+        console.log(res);
+    },
+    (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        console.log("Client-side error occurred.");
+      } else {
+        console.log("Server-side error occurred.");
+      }
+    });
+  }
 }
+
+
+

@@ -1,11 +1,15 @@
-import { Component, OnInit , ViewChild, ElementRef, Input, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {GtfsService} from '../../services/gtfs2.service'
+import { GtfsService } from '../../services/gtfs2.service'
 import { ToastrService } from 'ngx-toastr';
 
 import { RouteformatService } from '../../services/routeformat.service'
 
-import { ImageFormatterComponent} from '../../image-formatter/image-formatter.component'
+import { ImageFormatterComponent } from '../../image-formatter/image-formatter.component'
+
+import { ColDef, GridApi, ColumnApi } from 'ag-grid-community';
+
+
 declare let L;
 import * as $ from 'jquery';
 
@@ -15,6 +19,9 @@ import * as $ from 'jquery';
   styleUrls: ['./routeformat.component.scss']
 })
 export class RouteformatComponent implements OnInit {
+
+
+
   @ViewChild("map", { static: true })
   public mapElement: ElementRef
 
@@ -34,8 +41,10 @@ export class RouteformatComponent implements OnInit {
   rowData
 
   route
-  gridApi
-  gridColumnApi
+  // gridApi and columnApi
+  private api: GridApi;
+  private columnApi: ColumnApi;
+  private userToBeEditedFromParent: any;
 
   routes
   allstations
@@ -47,13 +56,13 @@ export class RouteformatComponent implements OnInit {
     private cd: ChangeDetectorRef,
     private toastr: ToastrService,
     private _gtfsservice: GtfsService,
-    private _routeformatservice  : RouteformatService
-  ) { 
+    private _routeformatservice: RouteformatService
+  ) {
     this.routeformatForm = this.fb.group({
-      route: ['', Validators.required ],
-      color: ['', Validators.required ],
-      station_icon: ['', Validators.required ],
-      train_icon: ['', Validators.required ]
+      route: ['', Validators.required],
+      color: ['', Validators.required],
+      station_icon: ['', Validators.required],
+      train_icon: ['', Validators.required]
     })
 
     this.height = 775 + "px";
@@ -106,32 +115,46 @@ export class RouteformatComponent implements OnInit {
 
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
 
-    this._gtfsservice.getallstations().then( obj => {
+    this._gtfsservice.getallstations().then(obj => {
       this.allstations = obj
       console.log(this.allstations)
       this.routes = Object.keys(obj)
       console.log(this.routes)
     })
 
-    this.defaultColDef = { resizable: true };
-    this.columnDefs = [
-        {headerName: 'Route', field: 'route', editable: true },
-        {headerName: 'Color', field: 'color', editable: true },
-        {headerName: 'Station icon', field: 'station_icon', editable: true ,autoHeight: true, cellRendererFramework: ImageFormatterComponent },
-        {headerName: 'Train icon', field: 'train_icon' , editable: true,  autoHeight: true, cellRendererFramework: ImageFormatterComponent}
-    ]
+
+    this.columnDefs = this.createColumnDefs();
 
     this._routeformatservice.getrouteformat().subscribe(result => {
       this.rowData = result
-    },(error) =>{
+    }, (error) => {
       console.log(error)
     })
+
+  } //ngOnInit()
+
+  // one grid initialisation, grap the APIs and auto resize the columns to fit the available space
+  onGridReady(params): void {
+    this.api = params.api;
+    this.columnApi = params.columnApi;
+    this.api.sizeColumnsToFit();
   }
 
+  // create culume definitions
+  private createColumnDefs() {
+    return [
+      { headerName: 'Route', field: 'route', editable: true },
+      { headerName: 'Color', field: 'color', editable: true },
+      { headerName: 'Station icon', field: 'station_icon', editable: true, autoHeight: true, cellRendererFramework: ImageFormatterComponent },
+      { headerName: 'Train icon', field: 'train_icon', editable: true, autoHeight: true, cellRendererFramework: ImageFormatterComponent }
+    ]
+  }
+
+  // chage station icon
   onFileChange_station(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -141,6 +164,7 @@ export class RouteformatComponent implements OnInit {
 
   }
 
+  // change train icon
   onFileChange_train(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -150,49 +174,115 @@ export class RouteformatComponent implements OnInit {
 
   }
 
-
-  submitRouteFormatData(){
+  // submit data
+  submitRouteFormatData() {
     const formData: any = new FormData();
 
-    formData.append('route',this.routeformatForm.get('route').value)
-    formData.append('color',this.routeformatForm.get('color').value)
-    formData.append('station_icon',this.routeformatForm.get('station_icon').value)
-    formData.append('train_icon',this.routeformatForm.get('train_icon').value)
+    formData.append('route', this.routeformatForm.get('route').value)
+    formData.append('color', this.routeformatForm.get('color').value)
+    formData.append('station_icon', this.routeformatForm.get('station_icon').value)
+    formData.append('train_icon', this.routeformatForm.get('train_icon').value)
 
     // post Formdata
-    this._routeformatservice.saverouteformat(formData).subscribe( res => {
+    this._routeformatservice.saverouteformat(formData).subscribe(res => {
       console.log(res)
     });
   }
 
 
-  changeRoute(e){
+  changeRoute(e) {
 
   }
 
-  onGridReady(params) {
-    //console.log(params)
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    this.gridApi.sizeColumnsToFit();
-    // const allColumnIds = [];
-    // this.gridColumnApi.getAllColumns().forEach(function(column) {
-    //   allColumnIds.push(column.colId);
-    // });
-    // this.gridColumnApi.autoSizeColumns(allColumnIds);
-  }
-
-  onCellValueChanged(params: any) {
-    this.rowData[params.rowIndex] = params.data;
-    const obj = this.rowData;
-    console.log(obj);
-  }
-  
-  refresh(){
+  // refresh data  when select tab
+  refresh() {
     this._routeformatservice.getrouteformat().subscribe(result => {
       this.rowData = result
-    },(error) =>{
+    }, (error) => {
       console.log(error)
     })
   }
+
+  //Get all rows
+  getRowData() {
+    var rowData = [];
+    this.api.forEachNode(function (node) {
+      rowData.push(node.data);
+    });
+    console.log("Row Data:");
+    console.log(rowData);
+  }
+
+  // delete record from action menu
+  deleteRouteFormat() {
+    var selectedRows = this.api.getSelectedRows();
+
+    console.log(selectedRows)
+    if (selectedRows.length == 0) {
+      this.toastr.error('กรุณาเลือก ข้อมูลที่ต้องการลบ', 'Error', {
+        timeOut: 3000
+      });
+      return;
+    }
+    // remove from database
+
+    // refresh
+    //this.ngOnInit();
+    this.api.refreshRows(null);
+
+    var res = this.api.updateRowData({ remove: selectedRows });
+    console.log(res.remove[0].data);
+    var id = res.remove[0].data._id;
+
+    this._routeformatservice.deleterouteformat(id)
+
+    this.toastr.success('ได้ลบข้อมูลที่ ท่านได้เลือกแล้ว', 'Success', {
+      timeOut: 3000
+    });
+
+
+  }
+
+
+  //Get updated row
+  onSelectionChanged() {
+    var selectedRows = this.api.getSelectedRows();
+    this.userToBeEditedFromParent = selectedRows;
+    console.log(this.userToBeEditedFromParent);
+
+    var selectedRowsString = "";
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index > 5) {
+        return;
+      }
+      if (index !== 0) {
+        selectedRowsString += ", ";
+      }
+      selectedRowsString += selectedRow.id;
+    });
+    if (selectedRows.length >= 5) {
+      selectedRowsString += " - and " + (selectedRows.length - 5) + " others";
+    }
+  }
+
+  //Get edited row
+  newData = [];
+  onCellEditingStopped(e) {
+    //console.log(e.data);
+
+    this.api.forEachNode(node => {
+      if (!node.data.id)
+        this.newData.push(node.data)
+    });
+    console.log("On editing stopped");
+    console.log(this.newData);
+  }
+
+  //Get updated row  
+  onrowValueChanged(row) {
+    console.log("onrowValueChanged: ");
+    console.log("onrowValueChanged: " + row);
+  }
+
+
 }
