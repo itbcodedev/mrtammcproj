@@ -16,6 +16,16 @@ router.get('/', async (req, res) => {
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const id = req.params.id
+        console.log('route------  id')
+        console.log(id)
+    } catch (error) {
+        res.status(500).json({ message: error })
+    }
+})
+
 router.post('/create', upload.any(), (req, res, next) => {
 
     let station_path = ""
