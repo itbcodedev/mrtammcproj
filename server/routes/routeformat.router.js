@@ -19,8 +19,10 @@ router.get('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const id = req.params.id
-        console.log('route------  id')
-        console.log(id)
+        console.log('remote routeformat id....' + id)
+        const query = await Routeformat.findByIdAndRemove(id)
+        console.log(query)
+        res.status(200).json(query)
     } catch (error) {
         res.status(500).json({ message: error })
     }
