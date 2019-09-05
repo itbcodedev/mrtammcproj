@@ -245,7 +245,7 @@ export class RouteformatComponent implements OnInit {
 
 
   //Get updated row
-  onSelectionChanged() {
+  onSelectionChanged(event) {
     var selectedRows = this.api.getSelectedRows();
     this.userToBeEditedFromParent = selectedRows;
     console.log(this.userToBeEditedFromParent);
