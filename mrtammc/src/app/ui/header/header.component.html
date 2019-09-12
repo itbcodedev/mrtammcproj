@@ -70,6 +70,9 @@
     <li class="nav-item" *ngIf="isLogin">
       <a href="#" class="nav-link" (click)="logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</a>
     </li>
+    <li class="nav-item" *ngIf="isLogin">
+      <a href="/api/v2/api-docs/" target="_blank" class="nav-link"><i class="fa fa-link"></i>&nbsp;Api Docs</a>
+    </li>
   </ul>
 </nav>
 <!-- /.navbar -->
