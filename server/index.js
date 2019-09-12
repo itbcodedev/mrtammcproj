@@ -18,6 +18,13 @@ const app = express();
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 
+// Setup swagger 
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+ 
+app.use('/api/v2/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // router
 const gtfsRouter = require('./routes/gtfs.router');
 const gtfsRouter2 = require('./routes/gtfs-router2')(io);

@@ -6,3 +6,4 @@
 /simulation/node_modules/**
 /simulation/task_convert/shapes.txt
 /simulation/task_convert/temp.geojson
+/server/package-lock.json
