@@ -2,3 +2,7 @@
 /server/tempuploads
 /server/uploads
 /mrtammc/package-lock.json
+/server/package-lock.json
+/simulation/node_modules/**
+/simulation/task_convert/shapes.txt
+/simulation/task_convert/temp.geojson
