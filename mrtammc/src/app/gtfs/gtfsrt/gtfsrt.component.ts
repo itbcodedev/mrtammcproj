@@ -362,7 +362,7 @@ export class GtfsrtComponent implements OnInit {
           <p style="color: #ffffff; margin: 2px 0;">${e.target.runtime} m.</p>
           <p style="color: #ffffff; margin: 2px 0;">${e.target.trip_id}</p>
           <p style="color: #ffffff; margin: 2px 0;">
-              <img src="/assets/dist/icons/man.png"> ${e.target.passengerNum} คน
+              <img src="/assets/dist/icons/man.png"> N/A คน
           </p>
         </div>
       </div>
@@ -401,7 +401,7 @@ export class GtfsrtComponent implements OnInit {
     }, this);  
   }  // end function onMarkerClick display popup with button
 
-
+// <img src="/assets/dist/icons/man.png"> ${e.target.passengerNum} คน
   updateTrain(){
     const marker = this.selectMarker 
     const html = `
@@ -431,7 +431,7 @@ export class GtfsrtComponent implements OnInit {
           <p style="color: #ffffff; margin: 2px 0;">${marker.runtime} m.</p>
           <p style="color: #ffffff; margin: 2px 0;">${marker.trip_id}</p>
           <p style="color: #ffffff; margin: 2px 0;">
-              <img src="/assets/dist/icons/man.png"> ${marker.passengerNum} คน
+              <img src="/assets/dist/icons/man.png"> N/A คน
           </p>
         </div>
       </div>
@@ -848,7 +848,7 @@ export class GtfsrtComponent implements OnInit {
               <div class="col-md-4">
                 <p style="margin: 2px" >ความหนาแน่น</p>
                 <p style="margin: 2px" >
-                  <img src="/assets/dist/icons/man.png"> ${number} คน
+                  <img src="/assets/dist/icons/man.png"> N/A คน
                 </p>
               </div>
               </div>
