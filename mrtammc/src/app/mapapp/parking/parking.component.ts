@@ -162,20 +162,24 @@ export class ParkingComponent implements OnInit {
 
   async getShapes() {
     const shapes: Shape[] = await this.gtfsService.getShapes();
+    
     const shape_details: ShapeDetail[] = await this.gtfsService.getShapeDetail();
     this.shapes = shapes;
-    const grouped = this.groupBy(shapes, shape => shape.shapeId);
-
+    console.log(shapes)
+    console.log(shape_details)
+    const grouped = this.groupBy(shapes, shape => shape.shape_id);
+  
     grouped.forEach((values, key) => {
-      const color = shape_details.find(shape_detail => shape_detail.shapeId === key).color;
+      const color = shape_details.find(shape_detail => shape_detail.shape_id === key).color;
       const coordinates = [];
       for (const shape of values) {
-        const position = new google.maps.LatLng(shape.shapePtLat, shape.shapePtLon);
-        coordinates.push([shape.shapePtLat, shape.shapePtLon]);
+        const point = new L.LatLng(shape.shape_pt_lat, shape.shape_pt_lon)
+        coordinates.push(point);
       }
-      //console.log(color);
-      const polyline =  L.polyline(coordinates, {color: `#${color}`}).addTo(this.map);
-
+      console.log(color);
+      console.log(coordinates)
+      const polyline =  L.polyline(coordinates, {color: `#${color}`})
+      polyline.addTo(this.map)
     });
   }
 

@@ -262,7 +262,7 @@ class KmlToShape {
    * @params shapefile output file
    * @return integer 
    */
-  generate_shapesfile(filename, shapefile) {
+  generate_shapesfile(filename) {
     // output file in the same folder
     const output = []; // holds all rows of data
     output.push("shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence,shape_dist_traveled")
@@ -291,17 +291,17 @@ class KmlToShape {
       output.push(row.join()); // by default, join() uses a ','
     });
 
-    console.log(output)
-    fs.writeFileSync(shapefile, output.join(os.EOL));
-
+    // console.log(output)
+    // fs.writeFileSync(shapefile, output.join(os.EOL));
+    return output.join(os.EOL)
   }
 
   /**
    * Generate geojson from kmlfile
    * @params filename  
-   * @params geojson 
+   *  
    */
-  generate_geojson(filename, geojson) {
+  generate_geojson(filename) {
     // const FILE = path.join(__dirname, `${filename}`)
     var xml = require('fs').readFileSync(filename, 'utf8');
     const output = []

@@ -11,6 +11,7 @@ import { GtfsmapComponent } from './gtfsmap/gtfsmap.component'
 import { CctvComponent} from './cctv/cctv.component';
 import { ParkingComponent} from './parking/parking.component';
 import { RouteformatComponent} from './routeformat/routeformat.component'
+import { GtfstoolComponent} from './gtfstool/gtfstool.component'
 
 const routes: Routes = [
   {path: '', component: DashboardComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'gtfsmap', component: GtfsmapComponent},
   {path: 'cctv', component: CctvComponent},
   {path: 'parking', component: ParkingComponent},
-  {path: 'routeformat', component: RouteformatComponent}
+  {path: 'routeformat', component: RouteformatComponent},
+  {path: 'gtfstool', component: GtfstoolComponent}
 ];
 
 @NgModule({

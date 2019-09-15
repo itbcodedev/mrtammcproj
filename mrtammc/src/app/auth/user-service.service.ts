@@ -35,6 +35,7 @@ export class UserServiceService {
 
   login(body: any){
   //let url = this.baseUrl + '/users/login'
+  // use ldap authentication method
   let url = this.baseUrl + '/ldap'
     return this._http.post(url, body, { observe: 'response' });
   }

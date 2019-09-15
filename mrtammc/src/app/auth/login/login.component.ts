@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute) {
     this.loginForm = new FormGroup({
-      cnname: new FormControl(null, Validators.required),
+      //cnname: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
     });
   };
@@ -46,7 +47,8 @@ export class LoginComponent implements OnInit {
             this._router.navigate(['/gtfsrt']);
           },
           error => {
-            this._toastr.error(`ขออภัยไม่พบ ชื่อของท่านใน  OU=mmc,OU=Project,DC=mrta,DC=co,DC=th`)
+            //this._toastr.error(`ขออภัยไม่พบ ชื่อของท่านใน  OU=mmc,OU=Project,DC=mrta,DC=co,DC=th`)
+            this._toastr.error(`ขออภัยไม่พบ Email ของท่่านใน ระบบ`)
            }
         );
     }

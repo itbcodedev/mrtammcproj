@@ -71,7 +71,6 @@ router.post('/create', upload.any(), (req, res, next) => {
 
 
 
-}
-);
+});
 
 module.exports = router

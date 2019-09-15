@@ -21,10 +21,11 @@ import { GtfsmapComponent } from './gtfsmap/gtfsmap.component';
 import { CctvComponent } from './cctv/cctv.component';
 import { ParkingComponent } from './parking/parking.component';
 import { RouteformatComponent } from './routeformat/routeformat.component';
+import { GtfstoolComponent } from './gtfstool/gtfstool.component';
 @NgModule({
   declarations: [LoginComponent, RegistrationComponent,AdminComponent,
                   UserComponent, UserListComponent, DashboardComponent,
-                  UploadfileComponent, ConfigfileComponent, GtfsspecComponent, ValidateSpecComponent, LdapuserComponent, MrtalineComponent, GtfsmapComponent, CctvComponent, ParkingComponent, RouteformatComponent],
+                  UploadfileComponent, ConfigfileComponent, GtfsspecComponent, ValidateSpecComponent, LdapuserComponent, MrtalineComponent, GtfsmapComponent, CctvComponent, ParkingComponent, RouteformatComponent, GtfstoolComponent],
   imports: [
     CommonModule,
     NgxSmartModalModule.forRoot(),

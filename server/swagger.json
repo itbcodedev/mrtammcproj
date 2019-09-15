@@ -173,6 +173,22 @@
                 }
             }
         },
+        "/kmltool": {
+            "get": {
+                "tags": [
+                    "Routes"
+                ],
+                "summary": "รายการ KML file สำหรับแต่ละ Route",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/routekml"
+                        }
+                    }
+                }
+            }
+        },
         "/trips": {
             "get": {
                 "tags": [
@@ -637,6 +653,24 @@
                 }
                 
             }
+        },
+        "routekml": {
+            "type": "object",
+            "properties": {
+                "route" : {
+                    "type": "String"
+                },
+                "kml_file": {
+                    "type": "String"
+                },
+                "geojson_path": {
+                    "type": "String"
+                },
+                "shapefile_path": {
+                    "type": "String"
+                }
+            }
+
         }
     }
 

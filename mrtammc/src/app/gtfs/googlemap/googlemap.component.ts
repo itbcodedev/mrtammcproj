@@ -813,10 +813,10 @@ export class GooglemapComponent implements OnInit, AfterViewInit {
     const grouped = this.groupBy(shapes, (shape: any) => shape.shapeId);
     //console.log(grouped);
     grouped.forEach((values, key) => {
-      const color = shape_details.find(shape_detail => shape_detail.shapeId === key).color;
+      const color = shape_details.find(shape_detail => shape_detail.shape_id === key).color;
       const coordinates = [];
       for (const shape of values) {
-        const position = new google.maps.LatLng(shape.shapePtLat, shape.shapePtLon);
+        const position = new google.maps.LatLng(shape.shape_pt_lat, shape.shape_pt_lon);
         coordinates.push(position);
       }
       this.tripPath = new google.maps.Polyline({
@@ -950,7 +950,7 @@ export class GooglemapComponent implements OnInit, AfterViewInit {
 
       const shapes: Shape[] = await this.gtfsService.getShapes();
       const shape_details: ShapeDetail[] = await this.gtfsService.getShapeDetail();
-      const color = shape_details.find(shape_detail => shape_detail.shapeId === shapeId).color;
+      const color = shape_details.find(shape_detail => shape_detail.shape_id === shapeId).color;
       //console.log(color);
       const grouped = this.groupBy(shapes, (shape: any) => shape.shapeId);
       const shapefile = grouped.get(shapeId);
