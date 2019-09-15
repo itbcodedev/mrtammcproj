@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GtfsService } from '../../services/gtfs2.service'
 import { ToastrService } from 'ngx-toastr';
 
-import {  KmlfileserviceService } from '../../services/kmlfileservice.service'
+import { KmlfileserviceService } from '../../services/kmlfileservice.service'
 
 @Component({
   selector: 'app-gtfstool',
@@ -22,6 +22,7 @@ export class GtfstoolComponent implements OnInit {
 
   api
   columnApi
+  newData
 
   constructor(
     private fb: FormBuilder,
@@ -52,15 +53,40 @@ export class GtfstoolComponent implements OnInit {
     })
   }
 
-    // create culume definitions
-    private createColumnDefs() {
-      return [
-        { headerName: 'Route', field: 'route' },
-        { headerName: 'kml_path', field: 'kml_path'},
-        { headerName: 'geojson_path', field: 'geojson_path' },
-        { headerName: 'shapefile_path', field: 'shapefile_path' }
-      ]
-    }
+  // create culume definitions
+  private createColumnDefs() {
+    return [
+      { headerName: 'Route', field: 'route' },
+      { headerName: 'kml_path', field: 'kml_path' },
+      { headerName: 'geojson_path', field: 'geojson_path' },
+      { headerName: 'shapefile_path', field: 'shapefile_path' }
+    ]
+  }
+
+  changeRoute(e) {
+
+  }
+
+  // refresh data  when select tab
+  refresh() {
+
+  }
+
+  onCellEditingStopped(e) {
+    //console.log(e.data);
+    this.api.forEachNode(node => {
+      if (!node.data.id)
+        this.newData.push(node.data)
+    });
+    console.log("On editing stopped");
+    console.log(this.newData);
+  }
+
+  //Get updated row  
+  onrowValueChanged(row) {
+    console.log("onrowValueChanged: ");
+    console.log("onrowValueChanged: " + row);
+  }
 
   onFileChange_KML(event: any) {
 
@@ -76,7 +102,7 @@ export class GtfstoolComponent implements OnInit {
     const formData: any = new FormData();
     formData.append('route', this.gtfsToolForm.get('route').value)
     formData.append('kml_file', this.gtfsToolForm.get('kml_file').value)
- 
+
     // post Formdata
     this._kmlfileservice.savekmlfile(formData).subscribe(res => {
       console.log(res)
@@ -89,37 +115,37 @@ export class GtfstoolComponent implements OnInit {
     this.api.sizeColumnsToFit();
   }
 
-    // delete record from action menu
-    deletekmltool() {
-      var selectedRows = this.api.getSelectedRows();
-  
-      console.log(selectedRows)
-      if (selectedRows.length == 0) {
-        this.toastr.error('กรุณาเลือก ข้อมูลที่ต้องการลบ', 'Error', {
-          timeOut: 3000
-        });
-        return;
-      }
-      // remove from database
-  
-      // refresh
-      //this.ngOnInit();
-      this.api.refreshRows(null);
-  
-      var res = this.api.updateRowData({ remove: selectedRows });
-      console.log(res.remove[0].data);
-      var id = res.remove[0].data._id;
-  
-      this._kmlfileservice.deletekmltool(id)
-  
-      this.toastr.success('ได้ลบข้อมูลที่ ท่านได้เลือกแล้ว', 'Success', {
+  // delete record from action menu
+  deletekmltool() {
+    var selectedRows = this.api.getSelectedRows();
+
+    console.log(selectedRows)
+    if (selectedRows.length == 0) {
+      this.toastr.error('กรุณาเลือก ข้อมูลที่ต้องการลบ', 'Error', {
         timeOut: 3000
       });
-  
-  
+      return;
     }
+    // remove from database
 
-      //Get updated row
+    // refresh
+    //this.ngOnInit();
+    this.api.refreshRows(null);
+
+    var res = this.api.updateRowData({ remove: selectedRows });
+    console.log(res.remove[0].data);
+    var id = res.remove[0].data._id;
+
+    this._kmlfileservice.deletekmltool(id)
+
+    this.toastr.success('ได้ลบข้อมูลที่ ท่านได้เลือกแล้ว', 'Success', {
+      timeOut: 3000
+    });
+
+
+  }
+
+  //Get updated row
   onSelectionChanged(event) {
     var selectedRows = this.api.getSelectedRows();
     // this.userToBeEditedFromParent = selectedRows;

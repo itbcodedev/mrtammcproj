@@ -11,8 +11,8 @@ import { ParkingComponent } from './mapapp/parking/parking.component';
 import { StaticComponent } from './mapapp/static/static.component';
 import { CaltripComponent } from './mapapp/caltrip/caltrip.component';
 import { CctvComponent} from './mapapp/cctv/cctv.component';
-import {SimulationComponent} from './mapapp/simulation/simulation.component'
-import {AlertListComponent } from './mapapp/alert-list/alert-list.component';
+import { SimulationComponent} from './mapapp/simulation/simulation.component'
+import { AlertListComponent } from './mapapp/alert-list/alert-list.component';
 import { KmlslayerComponent } from './mapapp/kmlslayer/kmlslayer.component';
 import { GtfsrtComponent } from './gtfs/gtfsrt/gtfsrt.component';
 
