@@ -5,6 +5,7 @@ import * as jsmpeg from 'jsmpeg';
 declare let L;
 declare var $: any;
 
+
 import { DOCUMENT } from '@angular/common';
 import { Inject }  from '@angular/core';
 
@@ -19,6 +20,7 @@ export class CctvComponent implements OnInit {
   @ViewChild('canvas', { static: false }) canvas: ElementRef;
   map: any;
   cctvlocations: any;
+  geojson_route
 
   constructor(private _cctv: CctvService,
              @Inject(DOCUMENT) private document: Document,
@@ -47,6 +49,10 @@ export class CctvComponent implements OnInit {
     };
 
     L.control.layers(baseLayers).addTo(this.map);
+
+
+    this.loadGeojson();
+    this.showAllgeojson();
 
   }
 
@@ -129,5 +135,137 @@ export class CctvComponent implements OnInit {
     $('#canvas').width(350);
     $('#canvas').height(260);
     var player = new jsmpeg(ws, {canvas: $('#canvas')[0], autoplay:true,audio:false,loop: true});
+  }
+  
+
+  loadGeojson() {
+    // load geojson with new L.GeoJSON()
+    const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purple.geojson', {
+      style: function(feature) {
+        return {
+          color: 'purple'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const blue_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue.geojson', {
+      style: function(feature) {
+        return {
+          color: '#214374'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const blue_chalearm_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue_chalearm.geojson', {
+      style: function(feature) {
+        return {
+          color: '#2a5491'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const blue_extend_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue_extend.geojson', {
+      style: function(feature) {
+        return {
+          color: '#7f98bd'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const orange_line = new L.GeoJSON.AJAX('/assets/dist/kml/orange.geojson', {
+      style: function(feature) {
+        return {
+          color: '#FF6600'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const dark_green_line = new L.GeoJSON.AJAX('/assets/dist/kml/dark_green.geojson', {
+      style: function(feature) {
+        return {
+          color: '#458B00'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const light_green_line = new L.GeoJSON.AJAX('/assets/dist/kml/light_green.geojson', {
+      style: function(feature) {
+        return {
+          color: '#66CD00'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const light_green_extend_line = new L.GeoJSON.AJAX('/assets/dist/kml/light_green_extend.geojson', {
+      style: function(feature) {
+        return {
+          color: '#66CD00'
+        };
+      }
+    });
+
+    // blue_line.addTo(this.map);
+    // purple_line.addTo(this.map);
+    // blue_chalearm_line.addTo(this.map);
+    // blue_extend_line.addTo(this.map);
+    // orange_line.addTo(this.map);
+    // dark_green_line.addTo(this.map);
+    // light_green_line.addTo(this.map);
+    // light_green_extend_line.addTo(this.map);
+
+
+
+    this.geojson_route = {
+      purple_line: {
+        geojson: purple_line,
+        routes: ['00011', '00012']
+      },
+      blue_line: {
+        geojson: blue_line,
+        routes: []
+      },
+      blue_chalearm_line: {
+        geojson: blue_chalearm_line,
+        routes: ['00013', '00014']
+      },
+      blue_extend_line: {
+        geojson: blue_extend_line,
+        routes: []
+      },
+      orange_line: {
+        geojson: orange_line,
+        routes: []
+      },
+      dark_green_line: {
+        geojson: dark_green_line,
+        routes: []
+      },
+      light_green_line: {
+        geojson: light_green_line,
+        routes: []
+      },
+      light_green_extend_line: {
+        geojson: light_green_extend_line,
+        routes: []
+      }
+    };
+
+
+  }
+
+  showAllgeojson() {
+    const allgeojson = this.geojson_route;
+    const keys = Object.keys(allgeojson);
+    // console.log(keys)
+    keys.forEach(obj => {
+      allgeojson[obj].geojson.addTo(this.map);
+    });
   }
 }
