@@ -1,6 +1,10 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 //import { CctvserviceService } from '../../services/cctvservice.service';
 import { CctvService } from '../../services/cctv.service';
+import { GtfsService } from '../../services/gtfs2.service';
+import { environment } from '../../../environments/environment';
+
+
 import * as jsmpeg from 'jsmpeg';
 declare let L;
 declare var $: any;
@@ -21,13 +25,15 @@ export class CctvComponent implements OnInit {
   map: any;
   cctvlocations: any;
   geojson_route
+  stops 
 
   constructor(private _cctv: CctvService,
              @Inject(DOCUMENT) private document: Document,
+             private gtfsService: GtfsService,
              elementRef: ElementRef ) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     const osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const osmAttrib = '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
     const landUrl = 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png';
@@ -54,6 +60,9 @@ export class CctvComponent implements OnInit {
     this.loadGeojson();
     this.showAllgeojson();
 
+    this.stops = await this.gtfsService.getStops();
+    await this.loadStation()
+
   }
 
   ngAfterViewInit() {
@@ -64,6 +73,51 @@ export class CctvComponent implements OnInit {
     var player = new jsmpeg(ws, {canvas:canvas, autoplay:true,audio:false,loop: true});
   }
 
+  async loadStation() {
+    // 
+    this.stops.forEach(async stop => {
+      const icon = new L.icon({
+        iconSize: [22, 22],
+        // iconAnchor: [0, 0],
+        iconUrl: environment.iconbase + stop.icon,
+      });
+      // location
+      const stationLatLng = new L.LatLng(stop.stop_lat, stop.stop_lon);
+      const marker = new L.Marker();
+      marker.setIcon(icon);
+      marker.setLatLng(stationLatLng);
+      marker.bindPopup('<img width=\'45\' src=\'' + '/assets/dist/img/loading.gif' + '\'/>');
+      marker.stop_id = stop.stop_id;
+      marker.stop_url = stop.stop_url;
+      marker.stop_name = stop.stop_name;
+      marker.addTo(this.map);
+
+      async function onMarkerClick(e) {
+        const html = `
+          <div class="card trip" style="width: 18rem;">
+            <img class="card-img-top"  style="width: 100%; height: 13vw; object-fit: cover;"
+            src="${stop.stop_url}" alt="Card image cap">
+            <div class="card-body"  style="padding: 0px 8px;">
+              <div class="row border" style="background-color: #f5f5f5;">
+                <div class="col-md-8">
+                  <p style="margin: 2px" >${stop.stop_id}-${stop.stop_name}</p>
+                  <p style="margin: 2px" >lat ${stop.stop_lat} long ${stop.stop_lon}</p>
+                </div>
+            
+              </div>
+            </div>
+
+          </div>
+
+        `;
+        const popup = e.target.getPopup();
+        popup.setContent(html);
+        popup.update();
+      }  // end function onMarkerClick
+      // cb to onMarkerClick
+      marker.on('click', onMarkerClick, this);
+    });
+  }
 
   getCctv() {
     let get_cctv = this._cctv.getCctv()
