@@ -267,6 +267,7 @@ export class RouteformatComponent implements OnInit {
 
   //Get edited row
   newData = [];
+  
   onCellEditingStopped(e) {
     //console.log(e.data);
 

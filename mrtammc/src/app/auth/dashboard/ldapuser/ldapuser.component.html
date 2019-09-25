@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-  <section class="content">
+  <!-- <section class="content">
     <div class="row" style="padding-top: 2rem;">
       <div class="col-md-8">
         <h4> List Ldap user @ OU=mmc,OU=Project,DC=mrta,DC=co,DC=th </h4>
@@ -31,5 +31,37 @@
       </div>
 
     </div>
+  </section> -->
+
+  <section class="content">
+      <h4> Manage User Role Admin</h4>
+
+      <form class="form-inline" [formGroup]="userForm"  (ngSubmit)="onSubmit()">
+          <div class="form-group mb-2">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <input id="text" name="email" type="text" class="form-control" formControlName="email">
+            
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <label for="fullname"class="col-sm-2 col-form-label">Fullname</label>
+            <input id="text2" name="fullname" type="text" class="form-control" formControlName="fullname">
+            
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+              <label for="role" class="col-sm-2 col-form-label">role</label>
+              <select id="select" name="role" required="required" class="custom-select" formControlName="role">
+                  <option value="admin">admin</option>
+                  <option value="user">user</option>
+                </select>
+               
+            </div>
+          <button type="submit" class="btn btn-primary mb-2" [disabled]="!userForm.valid" >Create User</button>
+        </form>
+ 
+    
+  
   </section>
 </div>
+
+
+

@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 //import { CctvserviceService } from '../../services/cctvservice.service';
 import { CctvService } from '../../services/cctv.service';
 import { GtfsService } from '../../services/gtfs2.service';
+import { RouteformatService } from '../../services/routeformat.service'
 import { environment } from '../../../environments/environment';
 
 
@@ -11,7 +12,7 @@ declare var $: any;
 
 
 import { DOCUMENT } from '@angular/common';
-import { Inject }  from '@angular/core';
+import { Inject } from '@angular/core';
 
 
 @Component({
@@ -25,12 +26,16 @@ export class CctvComponent implements OnInit {
   map: any;
   cctvlocations: any;
   geojson_route
-  stops 
+  stops
+  allstations
+  routes
+  routformats
 
   constructor(private _cctv: CctvService,
-             @Inject(DOCUMENT) private document: Document,
-             private gtfsService: GtfsService,
-             elementRef: ElementRef ) {
+    @Inject(DOCUMENT) private document: Document,
+    private gtfsService: GtfsService,
+    private routeformatservice: RouteformatService,
+    elementRef: ElementRef) {
   }
 
   async ngOnInit() {
@@ -56,12 +61,22 @@ export class CctvComponent implements OnInit {
 
     L.control.layers(baseLayers).addTo(this.map);
 
+    this.getstations();
+    this.getRouteformat();
+
 
     this.loadGeojson();
     this.showAllgeojson();
 
     this.stops = await this.gtfsService.getStops();
     await this.loadStation()
+
+    this.gtfsService.getallstations().then(obj => {
+      this.allstations = obj
+      console.log(this.allstations)
+      this.routes = Object.keys(obj)
+      console.log(this.routes)
+    })
 
   }
 
@@ -70,16 +85,84 @@ export class CctvComponent implements OnInit {
     //console.log(this.canvas.nativeElement);
     const ws = new WebSocket("ws://192.168.3.48:5000")
     const canvas = this.canvas.nativeElement;
-    var player = new jsmpeg(ws, {canvas:canvas, autoplay:true,audio:false,loop: true});
+    var player = new jsmpeg(ws, { canvas: canvas, autoplay: true, audio: false, loop: true });
   }
 
+
+  getstations() {
+    this.gtfsService.getallstations().then(obj => {
+      this.allstations = obj
+      console.log("95", this.allstations)
+      this.routes = Object.keys(obj)
+      console.log("97", this.routes) // Array [ "BL", "PP" ]
+    })
+  }
+
+  getRouteformat() {
+    this.routeformatservice.getrouteformat().subscribe(result => {
+      // console.log("115", result)
+      this.routformats = result
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  getstationicon(stopid) {
+    let route
+    this.routes.forEach((key,index) => {
+      let arrays = []
+      this.allstations[key].forEach(record => {
+        // console.log("105",record.station)
+        arrays.push(record.station)
+      })
+      // console.log("107", key, arrays)
+      const result  = arrays.includes(stopid) ? key : null
+      if (result !== null) {
+        route = result
+        //console.log("122", index, stopid, route)
+      }
+      
+      
+    });
+    return route
+  }
+
+
+
   async loadStation() {
-    // 
-    this.stops.forEach(async stop => {
+    console.log("124", this.routformats )
+    this.stops.forEach((stop,index) => {
+      // get station icon path
+      const route = this.getstationicon(stop.stop_id.trim());
+
+      // console.log("128 ===================", index,  stop.stop_id, route)
+      let stopicon = ""
+      let station_icon
+      if (route === undefined || route === null) {
+        // default
+        stopicon = environment.iconbase + stop.icon
+        console.log("133", route, stop.stop_id, stopicon)
+      } else {
+
+        this.routformats.forEach(obj => {
+          
+          if (obj.route == route) {
+            station_icon = "."+obj.station_icon
+          }
+        })
+        console.log("140", route, stop.stop_id,  station_icon)
+        if  (station_icon === undefined || station_icon === null) {
+          stopicon = environment.iconbase + stop.icon
+        } else {
+          stopicon = station_icon
+        }
+        
+      }
+
       const icon = new L.icon({
         iconSize: [22, 22],
         // iconAnchor: [0, 0],
-        iconUrl: environment.iconbase + stop.icon,
+        iconUrl: stopicon
       });
       // location
       const stationLatLng = new L.LatLng(stop.stop_lat, stop.stop_lon);
@@ -165,7 +248,7 @@ export class CctvComponent implements OnInit {
         const popup = L.popup().setContent(html);
 
         marker.bindPopup(popup, customOptions).openPopup()
-              .on('popupopen', this.showcctv);
+          .on('popupopen', this.showcctv);
         marker.addTo(this.map);
         //this.mycasvas = this.document.getElementById("canvas");
         //console.log(this.mycasvas);
@@ -188,14 +271,14 @@ export class CctvComponent implements OnInit {
     const ws = new WebSocket("ws://192.168.3.48:5000")
     $('#canvas').width(350);
     $('#canvas').height(260);
-    var player = new jsmpeg(ws, {canvas: $('#canvas')[0], autoplay:true,audio:false,loop: true});
+    var player = new jsmpeg(ws, { canvas: $('#canvas')[0], autoplay: true, audio: false, loop: true });
   }
-  
+
 
   loadGeojson() {
     // load geojson with new L.GeoJSON()
     const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purple.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: 'purple'
         };
@@ -204,7 +287,7 @@ export class CctvComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#214374'
         };
@@ -213,7 +296,7 @@ export class CctvComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_chalearm_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue_chalearm.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#2a5491'
         };
@@ -222,7 +305,7 @@ export class CctvComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_extend_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue_extend.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#7f98bd'
         };
@@ -231,7 +314,7 @@ export class CctvComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const orange_line = new L.GeoJSON.AJAX('/assets/dist/kml/orange.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#FF6600'
         };
@@ -240,7 +323,7 @@ export class CctvComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const dark_green_line = new L.GeoJSON.AJAX('/assets/dist/kml/dark_green.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#458B00'
         };
@@ -249,7 +332,7 @@ export class CctvComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const light_green_line = new L.GeoJSON.AJAX('/assets/dist/kml/light_green.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#66CD00'
         };
@@ -258,7 +341,7 @@ export class CctvComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const light_green_extend_line = new L.GeoJSON.AJAX('/assets/dist/kml/light_green_extend.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#66CD00'
         };

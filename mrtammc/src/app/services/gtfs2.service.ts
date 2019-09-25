@@ -133,6 +133,7 @@ export class GtfsService {
       .get<any>(`${BASE_API_ENDPOINT}/getallstops`)
       .toPromise();
   }
+  
   public updateActiveTrains(trains: any) {
     return this.http.post(`${BASE_API_ENDPOINT}/updateactivetrains`, trains, {observe: 'response' } );
   }

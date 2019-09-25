@@ -46,6 +46,15 @@ export class UserServiceService {
      observe: 'response'
    });
  }
+
+ listldapuser() {
+
+ }
+
+ createldapuser(formdata) {
+
+ }
+
   getUserName() {
     let url = this.baseUrl + '/users/username';
     return this._http.get(url, {

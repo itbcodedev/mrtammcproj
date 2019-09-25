@@ -111,7 +111,7 @@ export class GtfsrtComponent implements OnInit {
     await this.loadStation();
     await this.loadTrips();
 
-    console.log(this.trips.length);
+    //console.log(this.trips.length);
     // await this.getTripsAtStop("PP01")
 
     this.controllerLayer = L.control.layers(this.baseLayers);
@@ -555,6 +555,7 @@ export class GtfsrtComponent implements OnInit {
     const latLon = L.latLng(13.788593154063312, 100.44842125132114);
     this.map = L.map('map').setView(latLon, 12);
 
+    // default
     L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
