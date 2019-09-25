@@ -3,6 +3,9 @@
 /server/uploads
 /mrtammc/package-lock.json
 /server/package-lock.json
+/server/tempuploads/*
+/server/upload/images/*
+/server/backupimages/*
 /simulation/node_modules/**
 /simulation/task_convert/shapes.txt
 /simulation/task_convert/temp.geojson
