@@ -39,7 +39,11 @@ router.post('/create', upload.any(), (req, res, next) => {
             var filename = (new Date).valueOf() + "-" + file.originalname
             fs.rename(file.path, 'upload/images/' + filename, (err) => {
                 if (err) throw err;
-                console.log(file.path)
+                
+            })
+            fs.copyFile('upload/images/' + filename, 'backupimages/' + filename, (err) => {
+                if (err) throw err;
+                
             })
             
             if (file.fieldname == "station_icon") {
@@ -60,7 +64,7 @@ router.post('/create', upload.any(), (req, res, next) => {
 
     })
 
-    console.log(req)
+    //console.log(req)
     const routeformatsave = routeformat.save()
         .then((obj) => {
             res.status(200).json(obj);

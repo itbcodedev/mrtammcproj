@@ -1,6 +1,7 @@
 const express = require('express');
 var jwt = require('jsonwebtoken');
 const router = express.Router();
+var LdapUser = require('../models/ldapuser')
 const {
   Client
 } = require('ldapts');
@@ -35,7 +36,7 @@ router.post("/", async (req, res) => {
   } catch (ex) {
     isAuthenticated = false;
     // console.log("Authentication success?" + isAuthenticated);
-    return res.status(500).json({message: "Please Verify Ldap account"});
+    return res.status(500).json({ message: "Please Verify Ldap account" });
   } finally {
     await client.unbind();
   }
@@ -51,7 +52,7 @@ function LdapToEpoch1(n) {
 const searchDN = "OU=mmc,OU=Project,DC=mrta,DC=co,DC=th";
 router.get("/list", async (req, res) => {
   try {
-    const bindDN="sawangpong.mu@mrta.co.th"
+    const bindDN = "sawangpong.mu@mrta.co.th"
     const password = '1234P@ssw0rd';
     await client.bind(bindDN, password);
     const {
@@ -65,7 +66,7 @@ router.get("/list", async (req, res) => {
       e.lastLogon = LdapToEpoch1(e.lastLogon);
       e.accountExpires = LdapToEpoch1(e.accountExpires);
     })
-    console.log(searchEntries);
+    //console.log(searchEntries);
     res.send(JSON.stringify(searchEntries));
 
   } catch (ex) {
@@ -75,4 +76,40 @@ router.get("/list", async (req, res) => {
   }
 });
 
+router.get('/listldapuser', async (req, res) => {
+  try {
+    const ldapusers = await LdapUser.find()
+    res.status(200).json(ldapusers)
+  } catch {
+    res.status(500).json({ message: error })
+  }
+})
+
+router.post('/createldapuser', async (req, res, next) => {
+
+  const ldapuser = new LdapUser({
+    email: req.body.email,
+    fullname: req.body.fullname,
+    role: req.body.role
+  })
+
+  try {
+    const ldapusersave = await ldapuser.save()
+    res.status(200).json(ldapusersave);
+  } catch {
+    res.status(500).json({ message: err })
+  }
+
+})
+
+router.delete('/deleteldapuser/:id', async (req, res) => {
+  try {
+      const id = req.params.id
+      const query = await LdapUser.findByIdAndRemove(id)
+      console.log(query)
+      res.status(200).json(query)
+  } catch (error) {
+      res.status(500).json({ message: error })
+  }
+})
 module.exports = router;

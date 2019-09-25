@@ -187,6 +187,8 @@ export class RouteformatComponent implements OnInit {
     this._routeformatservice.saverouteformat(formData).subscribe(res => {
       console.log(res)
     });
+
+    this.update()
   }
 
 
@@ -286,4 +288,8 @@ export class RouteformatComponent implements OnInit {
   }
 
 
+  update() {
+    this.refresh();
+    this.ngOnInit();
+ } 
 }
