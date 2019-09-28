@@ -12,16 +12,24 @@ import { ToastrService } from 'ngx-toastr';
 export class HeaderComponent implements OnInit {
   today: string;
   isLogin: Boolean = false;
+  isAdmin: Boolean = false;
   username =  '';
+  role = '';
   constructor(private _userservice: UserServiceService,
     private _toastr: ToastrService,
     private _router: Router) {
     this._userservice.getUserName().subscribe(
       data => {
-        this.username = data.toString();
-        console.log("-------------------------------")
-        console.log(this.username)
+        console.log("21", data)
+        this.username = data['username']
+        this.role = data['role']
+        //console.log("-------------------------------")
+        console.log("26", this.username)
+        console.log("27", this.role)
         this.isLogin = true;
+        if (this.role == "admin") {
+          this.isAdmin = true
+        }
       },
       error => this._router.navigate(['/auth/login'])
     )

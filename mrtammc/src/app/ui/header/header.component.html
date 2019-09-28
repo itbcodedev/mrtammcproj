@@ -44,7 +44,7 @@
       <a href="/auth/login" class="nav-link"><i class="fa fa-sign-in"></i>&nbsp;Log In</a>
     </li>
 
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown" *ngIf="isLogin && isAdmin">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="fa fa-adn" aria-hidden="true"></i>
           &nbsp; Admin Area
@@ -65,13 +65,14 @@
     </li>
 
     <li class="nav-item" *ngIf="isLogin">
-      <a href="#" class="nav-link"><i class="fa fa-user"></i>&nbsp;{{ username }}</a>
+      <a href="#" class="nav-link"><i class="fa fa-user"></i>&nbsp;{{ username }}, {{role}}</a>
+    </li>
+
+    <li class="nav-item" *ngIf="isLogin">
+      <a href="/api/v2/api-docs/" target="_blank" class="nav-link"><i class="fa fa-link"></i>&nbsp;Api Docs</a>
     </li>
     <li class="nav-item" *ngIf="isLogin">
       <a href="#" class="nav-link" (click)="logout()"><i class="fa fa-sign-out"></i>&nbsp;Logout</a>
-    </li>
-    <li class="nav-item" *ngIf="isLogin">
-      <a href="/api/v2/api-docs/" target="_blank" class="nav-link"><i class="fa fa-link"></i>&nbsp;Api Docs</a>
     </li>
   </ul>
 </nav>

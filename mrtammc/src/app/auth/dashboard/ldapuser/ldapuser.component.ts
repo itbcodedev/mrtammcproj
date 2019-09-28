@@ -32,7 +32,8 @@ export class LdapuserComponent implements OnInit {
   listuser() {
       console.log("list user function");
       this._userservice.ldaplist().subscribe(data => {
-          this.users = data;
+          this.users = data.body;
+          console.log("36",this.users)
         }, (error) => {
           console.log(error)
         }
@@ -55,11 +56,12 @@ export class LdapuserComponent implements OnInit {
       this.toastr.success('ได้สร้างข้อมูลเรียบร้อยแล้ว', 'Success', {
         timeOut: 3000
       });
+      this.update()
     } else {
       return;
     }
 
-    this.update()
+    
   }
 
   deleteUser(user) {

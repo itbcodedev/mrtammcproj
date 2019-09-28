@@ -186,7 +186,7 @@ export class GtfsrtComponent implements OnInit {
       // console.log('117....',trip_id,filter)
       const nextstation = routetrips.map(obj => {
         // purple 00118 224
-        console.log(obj.route_name, obj.trip_id, obj.stoptimes.length)
+        // console.log(obj.route_name, obj.trip_id, obj.stoptimes.length)
         // filter stoptime
         const selectStoptimes = obj.stoptimes.filter(st_obj => {
         // filter next time check depature_time less than timenow [0]

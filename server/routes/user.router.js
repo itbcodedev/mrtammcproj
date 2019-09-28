@@ -85,7 +85,8 @@ router.post('/login', function(req, res, next) {
 
 // need middleware verifyToken, call function only verify
 router.get('/username', verifyToken, function(req, res, next) {
-  return res.status(200).json(decodedToken.username);
+  // return res.status(200).json(decodedToken.username);
+  return res.status(200).json(decodedToken);
 })
 
 var decodedToken = '';
