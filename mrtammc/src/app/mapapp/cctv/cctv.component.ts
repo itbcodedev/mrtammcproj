@@ -212,7 +212,8 @@ export class CctvComponent implements OnInit {
         //console.log(ws);
         const marker = L.marker([cctv.latitude, cctv.longitude], {
           icon: L.AwesomeMarkers.icon({ icon: 'camera', prefix: 'fa', markerColor: 'blue' }),
-          forceZindex: 100
+          forceZindex: 100,
+          url: `ws://192.168.3.48:${cctv.port}`
         });
         var customOptions = {
           'maxWidth': '700',
@@ -257,18 +258,24 @@ export class CctvComponent implements OnInit {
   }
 
   showcctv(e) {
-    //console.log(e);
+    console.log(e);
     //console.log(e.latlng);
     //console.log(e.target.getPopup());
     //console.log(this.canvas.nativeElement);
-    var popup = e.target.getPopup();
-    var content = popup.getContent();
+    // var popup = e.target.getPopup();
+    // var content = popup.getContent();
+    // let xmldoc = $.parseXML(content)
+    // let $xml  =$(xmldoc)
+    // $xml.find("td").each( (index,elem) => {
+    //   console.log(index, elem)
+    // })
     // get source
     var marker = e.popup._source;
-    //console.log(marker);
+    console.log(marker.options.url);
     //console.log(this.document);
     //console.log($('#canvas'));
-    const ws = new WebSocket("ws://192.168.3.48:5000")
+    //const ws = new WebSocket("ws://192.168.3.48:5000")
+    const ws = new WebSocket(marker.options.url)
     $('#canvas').width(350);
     $('#canvas').height(260);
     var player = new jsmpeg(ws, { canvas: $('#canvas')[0], autoplay: true, audio: false, loop: true });
