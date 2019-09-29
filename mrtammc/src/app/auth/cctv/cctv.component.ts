@@ -196,7 +196,7 @@ export class CctvComponent implements OnInit {
   }
 
 
-  
+
   refresh() {
     this.cctvApi.getCctv().subscribe(result => {
       this.rowData = result;
@@ -216,7 +216,7 @@ export class CctvComponent implements OnInit {
         return;
       }
       this.api.refreshRows(null);
-  
+
       var res = this.api.updateRowData({ remove: selectedRows });
       console.log(res.remove[0].data);
       var id = res.remove[0].data._id;
@@ -265,6 +265,12 @@ export class CctvComponent implements OnInit {
       console.log(error);
       this.toastr.error(JSON.stringify(error))
     });
+  }
+
+  //Get updated row  
+  onrowValueChanged(row) {
+    console.log("onrowValueChanged: ");
+    console.log("onrowValueChanged: " + row);
   }
 
 }
