@@ -22,6 +22,19 @@ router.get('/delete/:cctv_id', async (req, res) => {
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    console.log('remote CCTV id....' + req.params.id)
+    try 
+    {
+        
+        const query = await Cctv.findByIdAndRemove(req.params.id)
+        console.log(query)
+        res.status(200).json(query)
+    } catch (error) {
+        res.status(500).json({message: error})
+    }
+})
+
 router.get('/:cctv_id', async (req, res) => {
     try 
     {
@@ -29,6 +42,19 @@ router.get('/:cctv_id', async (req, res) => {
         res.status(200).json(cctv)
     } catch (error) {
         res.status(500).json({message: error})
+    }
+})
+
+router.put('/:id', async (req, res) => {
+    console.log('update parking id....' + req.params.id)
+    try {
+        let routeformat = await Cctv.findById(req.params.id)
+        routeformat.set(req.body)
+        let result = await routeformat.save()
+        res.status(200).json(result)
+
+    } catch (error) {
+        res.status(500).json({ message: error })
     }
 })
 
@@ -90,6 +116,7 @@ router.get('/server/restart', async (req, res) => {
         res.status(500).json({message: error})
     }
 })
+
 module.exports = router
 
 

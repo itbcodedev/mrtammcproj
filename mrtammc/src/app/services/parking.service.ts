@@ -21,6 +21,15 @@ export class ParkingService {
     return this._http.get(url)
   }
 
+  deleteParking(id: any) {
+    let url = this.baseUrl + '/api/v2/parkings/' + id
+    return this._http.delete(url)
+  }
 
+  updateParking(data: any) {
+    console.log("40",data)
+    let url = this.baseUrl + '/api/v2/parkings/' + data._id
 
+    return this._http.put(url, data)
+  }
 }

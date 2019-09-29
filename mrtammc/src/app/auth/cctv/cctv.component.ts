@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSmartModalService } from 'ngx-smart-modal';
-import { CctvService} from '../../services/cctv.service';
+import { CctvService } from '../../services/cctv.service';
 import { ToastrService } from 'ngx-toastr';
 declare let L;
 
@@ -31,28 +31,28 @@ export class CctvComponent implements OnInit {
   columnDefs
   rowData
   defaultColDef
-  gridApi
-  gridColumnApi
-
+  api
+  columnApi
+  userToBeEditedFromParent
   cctvstatus
 
   constructor(
-              public cctvApi: CctvService,
-              private fb: FormBuilder,
-              private toastr: ToastrService,
-              public ngxSmartModalService: NgxSmartModalService) {
-                
+    public cctvApi: CctvService,
+    private fb: FormBuilder,
+    private toastr: ToastrService,
+    public ngxSmartModalService: NgxSmartModalService) {
+
     this.cctvForm = this.fb.group({
-      code: ['', Validators.required ],
-      name: ['', Validators.required ],
-      protocol: ['', Validators.required ],
-      host: ['', Validators.required ],
-      port: ['', Validators.required ],
-      username: ['', Validators.required ],
-      password: ['', Validators.required ],
-      latitude: ['', Validators.required ],
-      longitude: ['', Validators.required ],
-      description: ['', Validators.required ]
+      code: ['', Validators.required],
+      name: ['', Validators.required],
+      protocol: ['', Validators.required],
+      host: ['', Validators.required],
+      port: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      latitude: ['', Validators.required],
+      longitude: ['', Validators.required],
+      description: ['', Validators.required]
     })
 
     this.height = 775 + "px";
@@ -105,7 +105,7 @@ export class CctvComponent implements OnInit {
 
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
     this.map.on('click', (e) => {
@@ -117,25 +117,25 @@ export class CctvComponent implements OnInit {
     this.defaultColDef = { resizable: true };
 
     this.columnDefs = [
-        {headerName: 'Code', field: 'code', editable: true },
-        {headerName: 'Name', field: 'name', editable: true },
-        {headerName: 'Protocol', field: 'protocol', editable: true},
-        {headerName: 'Host', field: 'host' , editable: true},
-        {headerName: 'Port', field: 'port' , editable: true},
-        {headerName: 'Username', field: 'username', editable: true},
-        {headerName: 'Password', field: 'password', editable: true},
-        {headerName: 'Latitude', field: 'latitude' , editable: true},
-        {headerName: 'Longitude', field: 'longitude' , editable: true},
-        {headerName: 'Description', field: 'Description', editable: true},
+      { headerName: 'Code', field: 'code', editable: true },
+      { headerName: 'Name', field: 'name', editable: true },
+      { headerName: 'Protocol', field: 'protocol', editable: true },
+      { headerName: 'Host', field: 'host', editable: true },
+      { headerName: 'Port', field: 'port', editable: true },
+      { headerName: 'Username', field: 'username', editable: true },
+      { headerName: 'Password', field: 'password', editable: true },
+      { headerName: 'Latitude', field: 'latitude', editable: true },
+      { headerName: 'Longitude', field: 'longitude', editable: true },
+      { headerName: 'Description', field: 'Description', editable: true },
     ]
 
-      this.cctvApi.getCctv().subscribe(result => {
-        this.rowData = result
-      },(error) =>{
-        console.log(error)
-      })
+    this.cctvApi.getCctv().subscribe(result => {
+      this.rowData = result
+    }, (error) => {
+      console.log(error)
+    })
 
-      this.getSeverStatus()
+    this.getSeverStatus()
   }
 
   ngAfterViewInit() {
@@ -171,7 +171,7 @@ export class CctvComponent implements OnInit {
     this.cctvApi.restartserver().subscribe(result => {
       console.log(result);
       this.toastr.success(JSON.stringify(result))
-    },(error) => {
+    }, (error) => {
       console.log(error);
       this.toastr.error(JSON.stringify(error))
     });
@@ -181,29 +181,90 @@ export class CctvComponent implements OnInit {
 
 
 
-  onGridReady(params) {
-    //console.log(params)
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    this.gridApi.sizeColumnsToFit();
-    // const allColumnIds = [];
-    // this.gridColumnApi.getAllColumns().forEach(function(column) {
-    //   allColumnIds.push(column.colId);
-    // });
-    // this.gridColumnApi.autoSizeColumns(allColumnIds);
+  // one grid initialisation, grap the APIs and auto resize the columns to fit the available space
+  onGridReady(params): void {
+    this.api = params.api;
+    this.columnApi = params.columnApi;
+    this.api.sizeColumnsToFit();
   }
 
+  // cell change input
   onCellValueChanged(params: any) {
     this.rowData[params.rowIndex] = params.data;
     const obj = this.rowData;
-    console.log(obj);
+    console.log("141", obj);
   }
 
+
+  
   refresh() {
     this.cctvApi.getCctv().subscribe(result => {
       this.rowData = result;
-    }, ( error ) => {
-      console.log( error );
+    }, (error) => {
+      console.log(error);
     });
   }
+
+  deleteCCTV() {
+    if (window.confirm('ต้องการที่จะ บันทึกข้อมูลหรือไม่?')) {
+      var selectedRows = this.api.getSelectedRows();
+      console.log(selectedRows)
+      if (selectedRows.length == 0) {
+        this.toastr.error('กรุณาเลือก ข้อมูลที่ต้องการลบ', 'Error', {
+          timeOut: 3000
+        });
+        return;
+      }
+      this.api.refreshRows(null);
+  
+      var res = this.api.updateRowData({ remove: selectedRows });
+      console.log(res.remove[0].data);
+      var id = res.remove[0].data._id;
+      this.cctvApi.deletecctv(id).subscribe(result => {
+        console.log(result);
+        this.toastr.success(JSON.stringify(result))
+      }, (error) => {
+        console.log(error);
+        this.toastr.error(JSON.stringify(error))
+      });
+    }
+
+  }
+
+
+  // 1 Get updated row
+  onSelectionChanged(event) {
+    var selectedRows = this.api.getSelectedRows();
+    this.userToBeEditedFromParent = selectedRows;
+    console.log(this.userToBeEditedFromParent);
+
+    var selectedRowsString = "";
+    selectedRows.forEach(function (selectedRow, index) {
+      if (index > 5) {
+        return;
+      }
+      if (index !== 0) {
+        selectedRowsString += ", ";
+      }
+      selectedRowsString += selectedRow.id;
+    });
+    if (selectedRows.length >= 5) {
+      selectedRowsString += " - and " + (selectedRows.length - 5) + " others";
+    }
+  }
+
+  //2 Get edited row
+  newData = [];
+
+  onCellEditingStopped(e) {
+    console.log(e.data);
+    this.cctvApi.updatecctv(e.data).subscribe(result => {
+      console.log(result);
+      this.toastr.success(JSON.stringify(result))
+    }, (error) => {
+      console.log(error);
+      this.toastr.error(JSON.stringify(error))
+    });
+  }
+
 }

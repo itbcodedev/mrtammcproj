@@ -35,6 +35,13 @@ export class RouteformatService {
       }
     });
   }
+
+  updaterouteformat(data: any) {
+    console.log("40",data)
+    let url = this.baseUrl + '/api/v2/routeformat/' + data._id
+
+    return this._http.put(url, data)
+  }
 }
 
 

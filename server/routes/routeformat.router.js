@@ -28,6 +28,18 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+router.put('/:id', async (req, res) => {
+    console.log('update routeformat id....' + req.params.id)
+    try {
+        let routeformat = await Routeformat.findById(req.params.id)
+        routeformat.set(req.body)
+        let result = await routeformat.save()
+        res.status(200).json(result)
+
+    } catch (error) {
+        res.status(500).json({ message: error })
+    }
+})
 router.post('/create', upload.any(), (req, res, next) => {
 
     let station_path = ""

@@ -272,3 +272,15 @@ code {
     color: white;
     text-decoration: none;
 }
+
+
+.nav-tabs > li > a {
+  border-radius: 0;
+  padding: 10px;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  color: #495057;
+  background-color: #ffffff;
+  border-color: #0080ff #007fff #ffffff;
+}

@@ -31,4 +31,15 @@ export class CctvService {
     return this._http.get(url)
   }
 
+  deletecctv(id: any) {
+    let url = this.baseUrl + '/api/v2/cctvs/' + id
+    return this._http.delete(url)
+  }
+
+  updatecctv(data: any) {
+    console.log("40",data)
+    let url = this.baseUrl + '/api/v2/cctvs/' + data._id
+
+    return this._http.put(url, data)
+  }
 }

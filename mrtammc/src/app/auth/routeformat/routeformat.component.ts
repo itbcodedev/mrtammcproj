@@ -246,7 +246,7 @@ export class RouteformatComponent implements OnInit {
   }
 
 
-  //Get updated row
+  //Get click
   onSelectionChanged(event) {
     var selectedRows = this.api.getSelectedRows();
     this.userToBeEditedFromParent = selectedRows;
@@ -271,14 +271,14 @@ export class RouteformatComponent implements OnInit {
   newData = [];
   
   onCellEditingStopped(e) {
-    //console.log(e.data);
-
-    this.api.forEachNode(node => {
-      if (!node.data.id)
-        this.newData.push(node.data)
+    console.log(e.data);
+    this._routeformatservice.updaterouteformat(e.data).subscribe(result => {
+      console.log(result);
+      this.toastr.success(JSON.stringify(result))
+    }, (error) => {
+      console.log(error);
+      this.toastr.error(JSON.stringify(error))
     });
-    console.log("On editing stopped");
-    console.log(this.newData);
   }
 
   //Get updated row  
