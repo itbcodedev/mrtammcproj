@@ -251,8 +251,11 @@ router.get("/getallstops", (req, res, next) => {
   const query = {}
   const groupBygroup = groupBy("group")
   gtfs.getallstops(query).then(stoptimes => {
-    results = stoptimes.map(s =>{return {group: s.slice(0,2),station: s}}) 
+    
+    //results = stoptimes.map(s =>{return {group: s.slice(0,2),station: s}}) 
+    results = stoptimes.map(s =>{return {group: s.replace(/\d+|^\s+|\s+$/g,''),station: s}})
     grouped = groupBygroup(results)
+    console.log(grouped)
     res.json(grouped)
   })
 });

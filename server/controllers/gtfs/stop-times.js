@@ -1,6 +1,7 @@
 const _ = require('lodash');
 
 const StopTime = require('../../models/gtfs/stop-time');
+const Stop = require('../../models/gtfs/stop.js')
 const Trip = require('../../models/gtfs/trip');
 
 /*
@@ -127,5 +128,6 @@ exports.getallstoptimes = async (query = {}) => {
 }
 
 exports.getallstops = async (query = {}) => {
-  return StopTime.distinct("stop_id")
+  //return StopTime.distinct("stop_id")
+  return Stop.distinct("stop_id")
 }
