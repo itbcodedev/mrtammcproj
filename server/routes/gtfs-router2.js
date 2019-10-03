@@ -247,13 +247,23 @@ const groupBy = key => array =>
   }, {});
 
 
-router.get("/getallstops", (req, res, next) => {
+router.get("/getallstops", async (req, res, next) => {
   const query = {}
   const groupBygroup = groupBy("group")
+  const stops = await gtfs.getStops(query)
+  console.log("254 stops",stops)
   gtfs.getallstops(query).then(stoptimes => {
     
     //results = stoptimes.map(s =>{return {group: s.slice(0,2),station: s}}) 
-    results = stoptimes.map(s =>{return {group: s.replace(/\d+|^\s+|\s+$/g,''),station: s}})
+    results = stoptimes.map(s =>{
+      let station_name = ""
+      stops.forEach(o => {
+        if (o.stop_id === s) {
+           station_name = o.stop_name
+        }
+         
+      })
+      return {group: s.replace(/\d+|^\s+|\s+$/g,''),station: s, name: station_name }})
     grouped = groupBygroup(results)
     console.log(grouped)
     res.json(grouped)

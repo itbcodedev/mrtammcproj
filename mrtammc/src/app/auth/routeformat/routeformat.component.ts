@@ -50,6 +50,7 @@ export class RouteformatComponent implements OnInit {
   allstations
   stations
   station
+  stationonlines = []
 
   constructor(
     private fb: FormBuilder,
@@ -193,7 +194,9 @@ export class RouteformatComponent implements OnInit {
 
 
   changeRoute(e) {
-
+    //console.log(e)
+    //console.log(this.allstations[`${e}`])
+    this.stationonlines  = this.allstations[`${e}`]
   }
 
   // refresh data  when select tab

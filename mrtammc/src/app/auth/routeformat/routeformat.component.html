@@ -114,6 +114,14 @@
 
 
                             </div>
+                            <p>รายชื่อสถานี</p>
+                            <div id="stationonline" style="width: 350px; height: 370px;overflow-y: scroll;">
+                                <ul>
+                                    <li *ngFor="let item of stationonlines; let i = index">
+                                      {{i + 1}} รหัส {{item.station}} {{item.name}}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

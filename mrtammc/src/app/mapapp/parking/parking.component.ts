@@ -2,10 +2,13 @@ import { Component, OnInit,Renderer2, Inject } from '@angular/core';
 import { ParkingserviceService } from '../../services/parkingservice.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
-import { GtfsService } from '../../services/gtfs.service';
+// import { GtfsService } from '../../services/gtfs.service';
+import { GtfsService } from '../../services/gtfs2.service';
 import { Shape } from '../../models/shape.model';
 import { ShapeDetail } from '../../models/shape_detail';
 import { forkJoin } from "rxjs/observable/forkJoin";
+import { environment } from '../../../environments/environment';
+import { RouteformatService } from '../../services/routeformat.service'
 
 declare let L;
 
@@ -33,14 +36,22 @@ export class ParkingComponent implements OnInit {
     "parking-3": this.isHigh
   }
 
+  geojson_route
+  stops
+  routes
+  allstations
+  routformats
+
+
   constructor(public _parking: ParkingserviceService,
     private gtfsService: GtfsService,
     @Inject(DOCUMENT) private document,
     private renderer: Renderer2,
     private _router: Router,
+    private routeformatservice: RouteformatService,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     //this.renderer.removeClass(this.document.body, 'sidebar-open');
     //this.renderer.addClass(this.document.body, 'sidebar-collapse');
     this.document.location.hostname;
@@ -67,9 +78,18 @@ export class ParkingComponent implements OnInit {
 
     L.control.layers(baseLayers).addTo(this.map);
     this.map.on('click', (e) => { console.log(e.latlng); });
-    this.getShapes();
+    // this.getShapes();
     this.getlocation();
     this.getParking();
+    // load map
+    this.getstations();
+    this.getRouteformat();
+    this.loadGeojson();
+    this.showAllgeojson();
+
+    this.stops = await this.gtfsService.getStops();
+    console.log("87", this.stops)
+    await this.loadStation()
 
   }
 
@@ -202,5 +222,251 @@ export class ParkingComponent implements OnInit {
     //console.log(this.markers);
     const obj = this.markers.find(m =>  m.code == parking.code)
     obj.markers.openPopup();
+  }
+
+
+  loadGeojson() {
+    // load geojson with new L.GeoJSON()
+    const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purple.geojson', {
+      style: function (feature) {
+        return {
+          color: 'purple'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const blue_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue.geojson', {
+      style: function (feature) {
+        return {
+          color: '#214374'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const blue_chalearm_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue_chalearm.geojson', {
+      style: function (feature) {
+        return {
+          color: '#2a5491'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const blue_extend_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue_extend.geojson', {
+      style: function (feature) {
+        return {
+          color: '#7f98bd'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const orange_line = new L.GeoJSON.AJAX('/assets/dist/kml/orange.geojson', {
+      style: function (feature) {
+        return {
+          color: '#FF6600'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const dark_green_line = new L.GeoJSON.AJAX('/assets/dist/kml/dark_green.geojson', {
+      style: function (feature) {
+        return {
+          color: '#458B00'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const light_green_line = new L.GeoJSON.AJAX('/assets/dist/kml/light_green.geojson', {
+      style: function (feature) {
+        return {
+          color: '#66CD00'
+        };
+      }
+    });
+
+    // load geojson with new L.GeoJSON()
+    const light_green_extend_line = new L.GeoJSON.AJAX('/assets/dist/kml/light_green_extend.geojson', {
+      style: function (feature) {
+        return {
+          color: '#66CD00'
+        };
+      }
+    });
+
+    // blue_line.addTo(this.map);
+    // purple_line.addTo(this.map);
+    // blue_chalearm_line.addTo(this.map);
+    // blue_extend_line.addTo(this.map);
+    // orange_line.addTo(this.map);
+    // dark_green_line.addTo(this.map);
+    // light_green_line.addTo(this.map);
+    // light_green_extend_line.addTo(this.map);
+
+
+
+    this.geojson_route = {
+      purple_line: {
+        geojson: purple_line,
+        routes: ['00011', '00012']
+      },
+      blue_line: {
+        geojson: blue_line,
+        routes: []
+      },
+      blue_chalearm_line: {
+        geojson: blue_chalearm_line,
+        routes: ['00013', '00014']
+      },
+      blue_extend_line: {
+        geojson: blue_extend_line,
+        routes: []
+      },
+      orange_line: {
+        geojson: orange_line,
+        routes: []
+      },
+      dark_green_line: {
+        geojson: dark_green_line,
+        routes: []
+      },
+      light_green_line: {
+        geojson: light_green_line,
+        routes: []
+      },
+      light_green_extend_line: {
+        geojson: light_green_extend_line,
+        routes: []
+      }
+    };
+
+
+  }
+
+
+  showAllgeojson() {
+    const allgeojson = this.geojson_route;
+    const keys = Object.keys(allgeojson);
+    // console.log(keys)
+    keys.forEach(obj => {
+      allgeojson[obj].geojson.addTo(this.map);
+    });
+  }
+
+  getstations() {
+    this.gtfsService.getallstations().then(obj => {
+      this.allstations = obj
+      console.log("95", this.allstations)
+      this.routes = Object.keys(obj)
+      console.log("97", this.routes) // Array [ "BL", "PP" ]
+    })
+  }
+
+  getstationicon(stopid) {
+    let route
+    this.routes.forEach((key,index) => {
+      let arrays = []
+      this.allstations[key].forEach(record => {
+        // console.log("105",record.station)
+        arrays.push(record.station)
+      })
+      // console.log("107", key, arrays)
+      const result  = arrays.includes(stopid) ? key : null
+      if (result !== null) {
+        route = result
+        //console.log("122", index, stopid, route)
+      }
+      
+      
+    });
+    return route
+  }
+
+  getRouteformat() {
+    this.routeformatservice.getrouteformat().subscribe(result => {
+      console.log("115", result)
+      this.routformats = result
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  
+
+  async loadStation() {
+    console.log("loadStation")
+    this.stops.forEach((stop,index) => {
+      // get station icon path
+      const route = this.getstationicon(stop.stop_id.trim());
+
+      console.log("128 ===================", index,  stop.stop_id, route)
+      let stopicon = ""
+      let station_icon
+      if (route === undefined || route === null) {
+        // default
+        stopicon = environment.iconbase + stop.icon
+        console.log("133", route, stop.stop_id, stopicon)
+      } else {
+
+        this.routformats.forEach(obj => {
+          
+          if (obj.route == route) {
+            station_icon = "."+obj.station_icon
+          }
+        })
+        console.log("140", route, stop.stop_id,  station_icon)
+        if  (station_icon === undefined || station_icon === null) {
+          stopicon = environment.iconbase + stop.icon
+        } else {
+          stopicon = station_icon
+        }
+        
+      }
+
+      const icon = new L.icon({
+        iconSize: [22, 22],
+        // iconAnchor: [0, 0],
+        iconUrl: stopicon
+      });
+      // location
+      const stationLatLng = new L.LatLng(stop.stop_lat, stop.stop_lon);
+      const marker = new L.Marker();
+      marker.setIcon(icon);
+      marker.setLatLng(stationLatLng);
+      marker.bindPopup('<img width=\'45\' src=\'' + '/assets/dist/img/loading.gif' + '\'/>');
+      marker.stop_id = stop.stop_id;
+      marker.stop_url = stop.stop_url;
+      marker.stop_name = stop.stop_name;
+      marker.addTo(this.map);
+
+      async function onMarkerClick(e) {
+        const html = `
+          <div class="card trip" style="width: 18rem;">
+            <img class="card-img-top"  style="width: 100%; height: 13vw; object-fit: cover;"
+            src="${stop.stop_url}" alt="Card image cap">
+            <div class="card-body"  style="padding: 0px 8px;">
+              <div class="row border" style="background-color: #f5f5f5;">
+                <div class="col-md-8">
+                  <p style="margin: 2px" >${stop.stop_id}-${stop.stop_name}</p>
+                  <p style="margin: 2px" >lat ${stop.stop_lat} long ${stop.stop_lon}</p>
+                </div>
+            
+              </div>
+            </div>
+
+          </div>
+
+        `;
+        const popup = e.target.getPopup();
+        popup.setContent(html);
+        popup.update();
+      }  // end function onMarkerClick
+      // cb to onMarkerClick
+      marker.on('click', onMarkerClick, this);
+    });
   }
 }
