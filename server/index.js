@@ -45,6 +45,7 @@ const cctvRouter = require('./routes/cctvs.router');
 const parkinLocRouter = require('./routes/parkingloc.router');
 const RouteFormatRouter = require('./routes/routeformat.router')
 const KmlToolRouter = require('./routes/kmltool.router')
+const RatioParkingRouter = require('./routes/ratioparking.router')
 database.init();
 
 var fs = require('fs')
@@ -107,6 +108,7 @@ app.use('/gtfsdb',gtfsdbRouter);
 app.use('/api/v2/cctvs', cctvRouter)
 app.use('/api/v2/parkings', parkinLocRouter)
 app.use('/api/v2/routeformat', RouteFormatRouter)
+app.use('/api/v2/ratioparking', RatioParkingRouter)
 app.use('/api/v2/kmltool', KmlToolRouter)
 
 if (process.env.NODE_ENV === 'production') {
