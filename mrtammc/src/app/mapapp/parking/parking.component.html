@@ -19,7 +19,7 @@
             <ul class="parking-list">
               <li class="parking" >
                 <h4>{{ parking.percent }} %</h4>
-                <progress class="{{parking.class}}" max="100" value="{{parking.percent}}">
+                <progress [ngClass]="parking.class" max="100" value="{{parking.percent}}">
                 </progress>
               </li>
             </ul>

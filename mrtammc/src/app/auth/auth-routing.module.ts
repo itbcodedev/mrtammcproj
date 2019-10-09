@@ -10,9 +10,9 @@ import { MrtalineComponent } from './mrtaline/mrtaline.component';
 import { GtfsmapComponent } from './gtfsmap/gtfsmap.component'
 import { CctvComponent} from './cctv/cctv.component';
 import { ParkingComponent} from './parking/parking.component';
-import { RouteformatComponent} from './routeformat/routeformat.component'
-import { GtfstoolComponent} from './gtfstool/gtfstool.component'
-
+import { RouteformatComponent} from './routeformat/routeformat.component';
+import { GtfstoolComponent} from './gtfstool/gtfstool.component';
+import { RatioparkingComponent} from './ratioparking/ratioparking.component';
 const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
@@ -25,6 +25,7 @@ const routes: Routes = [
   {path: 'cctv', component: CctvComponent},
   {path: 'parking', component: ParkingComponent},
   {path: 'routeformat', component: RouteformatComponent},
+  {path: 'ratioparking', component: RatioparkingComponent},
   {path: 'gtfstool', component: GtfstoolComponent}
 ];
 

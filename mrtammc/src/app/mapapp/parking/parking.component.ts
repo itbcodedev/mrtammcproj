@@ -9,6 +9,7 @@ import { ShapeDetail } from '../../models/shape_detail';
 import { forkJoin } from "rxjs/observable/forkJoin";
 import { environment } from '../../../environments/environment';
 import { RouteformatService } from '../../services/routeformat.service'
+import { RatioparkingService } from '../../services/ratioparking.service'
 
 declare let L;
 
@@ -18,6 +19,7 @@ declare let L;
   styleUrls: ['./parking.component.scss']
 })
 export class ParkingComponent implements OnInit {
+  processStyle
   parkings: any;
   parkinglocations: any;
   apikey = 'OFCE5UCISN.A6u3fH6hKP.uhcTNtKFfk==';
@@ -41,7 +43,8 @@ export class ParkingComponent implements OnInit {
   routes
   allstations
   routformats
-
+  ratioparking: any
+  myclass
 
   constructor(public _parking: ParkingserviceService,
     private gtfsService: GtfsService,
@@ -49,9 +52,23 @@ export class ParkingComponent implements OnInit {
     private renderer: Renderer2,
     private _router: Router,
     private routeformatservice: RouteformatService,
+    private _ratioparkingservice: RatioparkingService
   ) { }
 
   async ngOnInit() {
+
+    this.myclass = "red"
+
+    this._ratioparkingservice.getratioparking().subscribe(result => {
+      
+      let output: any  = result
+      // sort from min to max
+      this.ratioparking = output.sort((a, b) => (parseInt(a.percent) > parseInt(b.percent)) ? 1 : -1)
+      console.log("64",this.ratioparking)
+    }, (error) => {
+      console.log(error)
+    })
+    
     //this.renderer.removeClass(this.document.body, 'sidebar-open');
     //this.renderer.addClass(this.document.body, 'sidebar-collapse');
     this.document.location.hostname;
@@ -112,16 +129,19 @@ export class ParkingComponent implements OnInit {
             this.totalcapacity += pl.capacity
           }
         });
+
+
+
         parking.percent = Math.round(((parking.capacity - parking.ncarrem)/parking.capacity)*100);
         switch (true) {
           case (parking.percent < 30 ):
-            parking.class="parking-1"
+            parking.class= "green"
             break;
           case (parking.percent >= 30  && parking.percent < 70):
-            parking.class="parking-2"
+            parking.class="yellow"
           break;
           case (parking.percent >= 70  && parking.percent <= 100 ):
-            parking.class="parking-3"
+            parking.class="red"
           break;
 
         }
@@ -135,6 +155,23 @@ export class ParkingComponent implements OnInit {
     });
   }
 
+  getcss() {
+    let css = `
+    leve1::-webkit-progress-value {
+      background: #cc3232;
+    }
+    
+    leve1::-moz-progress-bar {
+      background: #cc3232;
+    }
+    
+    leve1::-ms-fill {
+      background: #cc3232;
+    }
+    
+    `;
+    return  css
+  }
 
   getlocation() {
     this._parking.getParkinglocation()

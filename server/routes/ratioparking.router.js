@@ -41,14 +41,14 @@ router.post('/create', (req, res, next) => {
 
 
     const ratioparking = new Ratioparking({
-        route: req.body.level,
+        level: req.body.level,
         color: req.body.color,
-        station_icon: percent,
+        percent: req.body.percent,
 
     })
 
     //console.log(req)
-    const ratioparking = ratioparking.save()
+    const ratioparkingsave = ratioparking.save()
         .then((obj) => {
             res.status(200).json(obj);
         })

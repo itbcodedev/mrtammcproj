@@ -257,28 +257,68 @@ progress, progress[role] {
 }
 
 // The background colors
-.parking-1::-webkit-progress-value {
-  background: #2dc937;
+/*For webkit browsers*/
+.light-green::-webkit-progress-value {
+  background: #d4ea6b;
+}
+/*For firefox*/
+.light-green::-moz-progress-bar {
+  background: #d4ea6b;
+}
+/*For IE*/
+.light-green::-ms-fill {
+  background: #d4ea6b;
 }
 
-.parking-1::-moz-progress-bar {
-  background: #2dc937;
+
+/*For webkit browsers*/
+.green::-webkit-progress-value {
+  background: #468a1a;
+}
+/*For firefox*/
+.green::-moz-progress-bar {
+  background: #468a1a;
+}
+/*For IE*/
+.green::-ms-fill {
+  background: #468a1a;
 }
 
-.parking-2::-webkit-progress-value {
+.yellow::-webkit-progress-value {
   background: #e7b416;
 }
 
-.parking-2::-moz-progress-bar {
+.yellow::-moz-progress-bar {
   background: #e7b416;
 }
 
-.parking-3::-webkit-progress-value {
-  background: #cc3232;
+.yellow::-ms-fill {
+  background: #e7b416;
 }
 
-.parking-3::-moz-progress-bar {
-  background: #cc3232;
+
+.orange::-webkit-progress-value {
+  background: #ff8828;
+}
+
+.orange::-moz-progress-bar {
+  background: #ff8828;
+}
+
+.orange::-ms-fill {
+  background: #ff8828;
+}
+
+.red::-webkit-progress-value {
+  background: #cc0000;
+}
+
+.red::-moz-progress-bar {
+  background: #cc0000;
+}
+
+.red::-ms-fill {
+  background: #cc0000;
 }
 
 // The keyframes
