@@ -63,6 +63,9 @@ export class RatioparkingComponent implements OnInit {
     console.log(this.ratioparkingForm.value)
     this._ratioparkingservice.saveratioparking(this.ratioparkingForm.value).subscribe(res => {
       console.log(res)
+      this.toastr.success('ข้อมูลได้รับการบันทึกเรียบร้อยแล้ว', 'Success', {
+        timeOut: 3000
+      });
     });
 
     this.update()

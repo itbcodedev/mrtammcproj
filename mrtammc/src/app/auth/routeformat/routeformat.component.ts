@@ -187,6 +187,9 @@ export class RouteformatComponent implements OnInit {
     // post Formdata
     this._routeformatservice.saverouteformat(formData).subscribe(res => {
       console.log(res)
+      this.toastr.success('ข้อมูลได้รับการบันทึกเรียบร้อยแล้ว', 'Success', {
+        timeOut: 3000
+      });
     });
 
     this.update()
