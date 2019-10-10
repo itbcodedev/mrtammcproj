@@ -45,7 +45,8 @@ export class ParkingComponent implements OnInit {
   routformats
   ratioparking: any
   myclass
-
+  ratiolabel
+  
   constructor(public _parking: ParkingserviceService,
     private gtfsService: GtfsService,
     @Inject(DOCUMENT) private document,
@@ -64,10 +65,11 @@ export class ParkingComponent implements OnInit {
       let output: any  = result
       // sort from min to max
       this.ratioparking = output.sort((a, b) => (parseInt(a.percent) > parseInt(b.percent)) ? 1 : -1)
-      console.log("64",this.ratioparking)
+      console.log("67",this.ratioparking[0])
     }, (error) => {
       console.log(error)
     })
+    
     
     //this.renderer.removeClass(this.document.body, 'sidebar-open');
     //this.renderer.addClass(this.document.body, 'sidebar-collapse');
@@ -130,21 +132,56 @@ export class ParkingComponent implements OnInit {
           }
         });
 
-
-
         parking.percent = Math.round(((parking.capacity - parking.ncarrem)/parking.capacity)*100);
-        switch (true) {
-          case (parking.percent < 30 ):
-            parking.class= "green"
-            break;
-          case (parking.percent >= 30  && parking.percent < 70):
-            parking.class="yellow"
-          break;
-          case (parking.percent >= 70  && parking.percent <= 100 ):
-            parking.class="red"
-          break;
 
+        if (this.ratioparking.length == 0) {
+          this.ratiolabel = "green (<30%) yellow (30%-70%) red (>70%)"
+          switch (true) {
+            case (parking.percent < 30 ):
+              parking.class= "green"
+              break;
+            case (parking.percent >= 30  && parking.percent < 70):
+              parking.class="yellow"
+              break;
+            case (parking.percent >= 70  && parking.percent <= 100 ):
+              parking.class="red"
+              break;
+            default:
+              break;
+          }
+        } else {
+          let one = this.ratioparking[0].color + " " + this.ratioparking[0].percent + " > "
+          let two = this.ratioparking[1].color + " " + this.ratioparking[1].percent + " > "
+          let three = this.ratioparking[2].color + " " + this.ratioparking[2].percent + " > "
+          let four = this.ratioparking[3].color + " " + this.ratioparking[3].percent + " > "
+          let five = this.ratioparking[4].color + " " + this.ratioparking[4].percent + " "
+
+          this.ratiolabel = one + two + three + four + five
+          switch (true) {
+            case (parking.percent < this.ratioparking[0].percent ):
+              parking.class= this.ratioparking[0].color
+              break;
+            case (parking.percent >= parseInt(this.ratioparking[0].percent)  && parking.percent < parseInt(this.ratioparking[1].percent)):
+              console.log(parking.icon)
+              parking.class=this.ratioparking[1].color
+              break;
+            case (parking.percent >= parseInt(this.ratioparking[1].percent)  && parking.percent < parseInt(this.ratioparking[2].percent) ):
+              console.log(parking.icon)
+              parking.class=this.ratioparking[2].color
+              break;
+            case (parking.percent >= parseInt(this.ratioparking[2].percent)  && parking.percent < parseInt(this.ratioparking[3].percent) ):
+              console.log(parking.icon)
+              parking.class=this.ratioparking[3].color
+              break;
+            case (parking.percent >= parseInt(this.ratioparking[3].percent)  && parking.percent <= parseInt(this.ratioparking[4].percent) ):
+              console.log(parking.icon)
+              parking.class=this.ratioparking[4].color
+              break;
+            default:
+              break;
+          }
         }
+
         parking.ncarrem = parking.ncarrem < 0 ? "Full" : parking.ncarrem;
       });
 
@@ -417,8 +454,6 @@ export class ParkingComponent implements OnInit {
         route = result
         //console.log("122", index, stopid, route)
       }
-      
-      
     });
     return route
   }
