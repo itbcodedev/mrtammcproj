@@ -1,7 +1,10 @@
 var express = require('express');
 var Parking = require('../models/parking')
 var router = express.Router()
+var multer = require('multer')
+var upload = multer({ dest: 'tempuploads/' })
 
+var fs = require('fs')
 router.get('/', async (req, res) => {
     try {
         const parkings = await Parking.find();
@@ -36,15 +39,41 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.post('/create',  async (req, res, next) => {
-    console.log(req.body)
+router.post('/create',  upload.any(), async (req, res, next) => {
+
+    let icon_path = ""
+    let image_path  = ""
+
+    if (req.files) {
+        req.files.forEach((file) => {
+            console.log(file)
+            var filename = (new Date).valueOf() + "-" + file.originalname
+            fs.rename(file.path, 'upload/images/' + filename, (err) => {
+                if (err) throw err;
+                
+            })
+            fs.copyFile('upload/images/' + filename, 'backupimages/' + filename, (err) => {
+                if (err) throw err;
+                
+            })
+            
+            if (file.fieldname == "icon") {
+                icon_path = '/assets/dist/public/images/' + filename
+            }
+            
+            if (file.fieldname == "image") {
+                image_path = '/assets/dist/public/images/' + filename
+            }
+        })
+    }
+
     const parking  = new Parking({
         code: req.body.code,
         name: req.body.name,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
-        image: req.body.image,
-        icon: req.body.icon,
+        image: image_path,
+        icon: icon_path,
         capacity: req.body.capacity
     })
 

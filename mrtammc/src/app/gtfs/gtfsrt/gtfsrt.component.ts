@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GtfsrtwsService } from '../../services/gtfsrtws.service';
 import { GtfsService } from '../../services/gtfs2.service';
+import { RouteformatService } from '../../services/routeformat.service'
 import { environment } from '../../../environments/environment';
 import * as moment from 'moment';
 import * as _ from 'lodash';
@@ -60,9 +61,14 @@ export class GtfsrtComponent implements OnInit {
   geojson_route;
   endtrip;
   selectMarker;
+
+  //+
+  routformats
+  allstations
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
-    private gtfsService: GtfsService
+    private gtfsService: GtfsService,
+    private routeformatservice: RouteformatService,
   ) {
 
     // this.CurrentDate = moment().subtract(3, 'hours');
@@ -102,6 +108,11 @@ export class GtfsrtComponent implements OnInit {
       return (this.checktime(obj.start_time, obj.end_time));
     });
 
+    //+
+    this.getstations();
+    this.getRouteformat();
+
+
     this.loadGeojson();
     this.showAllgeojson();
     // this.removeAllgeojson()
@@ -121,13 +132,13 @@ export class GtfsrtComponent implements OnInit {
     //   console.log(e.latlng); 
     //   this.selectMarker = null
     // });
-    
-    this.map.on ({
-      click: () =>{
+
+    this.map.on({
+      click: () => {
         this.selectMarker = null
         // const latLon = L.latLng(13.788593154063312, 100.44842125132114);
         // this.map.setView(latLon, 12);
-    
+
         // L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         //   attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         // }).addTo(this.map);
@@ -135,7 +146,7 @@ export class GtfsrtComponent implements OnInit {
       popupclose: function () {
         this.selectMarker = null
       }
-    },this)
+    }, this)
     // let marker = new L.Marker();
 
     const icon = new L.icon({
@@ -189,17 +200,17 @@ export class GtfsrtComponent implements OnInit {
         // console.log(obj.route_name, obj.trip_id, obj.stoptimes.length)
         // filter stoptime
         const selectStoptimes = obj.stoptimes.filter(st_obj => {
-        // filter next time check depature_time less than timenow [0]
-        //   {
-        //     "_id": "5d2a8f3f1473da58b879e4f8",
-        //     "agency_key": "MRTA_Transit",
-        //     "trip_id": "041921",
-        //     "arrival_time": "16:44:31",
-        //     "departure_time": "16:44:31",
-        //     "stop_id": "BL13",
-        //     "stop_sequence": 4,
-        //     "__v": 0
-        // },
+          // filter next time check depature_time less than timenow [0]
+          //   {
+          //     "_id": "5d2a8f3f1473da58b879e4f8",
+          //     "agency_key": "MRTA_Transit",
+          //     "trip_id": "041921",
+          //     "arrival_time": "16:44:31",
+          //     "departure_time": "16:44:31",
+          //     "stop_id": "BL13",
+          //     "stop_sequence": 4,
+          //     "__v": 0
+          // },
           return this.findNextTrip(st_obj.arrival_time);
         });
         obj.selectStoptimes = _.first(selectStoptimes);
@@ -208,89 +219,89 @@ export class GtfsrtComponent implements OnInit {
 
       // console.log(nextstation)
       // tslint:disable-next-line: triple-equals
-      if ( nextstation[0] != undefined) {
-          const nextstop = nextstation[0].selectStoptimes;
-          const timenow = this.CurrentDate.format('HH:mm:ss');
-          // find difftime to station
-          const arr_time = this.getsecond(nextstop.arrival_time);
-          const arr_now = this.getsecond(timenow);
-          // console.log('arr_time,arr_now', arr_time, arr_now);
-          // 1 sec = 0.0166666667 min
-          nextstop.difftime = (arr_time - arr_now).toFixed(2);
-          // cal random number
-          const number = this.getRandom();
+      if (nextstation[0] != undefined) {
+        const nextstop = nextstation[0].selectStoptimes;
+        const timenow = this.CurrentDate.format('HH:mm:ss');
+        // find difftime to station
+        const arr_time = this.getsecond(nextstop.arrival_time);
+        const arr_now = this.getsecond(timenow);
+        // console.log('arr_time,arr_now', arr_time, arr_now);
+        // 1 sec = 0.0166666667 min
+        nextstop.difftime = (arr_time - arr_now).toFixed(2);
+        // cal random number
+        const number = this.getRandom();
 
-          if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
-            // exist
-            if (trainLocationMarkers[tripEntity] !== undefined) {
-              // update marker
-              const marker_trip = trainLocationMarkers[tripEntity];
-              // trainLatLng
-              marker_trip.setLatLng(trainLatLng);
-              // marker_trip.fire('click');
-              // markerinfo
-              marker_trip.nextstop = nextstop.stop_id;
-              marker_trip.arrival_time = nextstop.arrival_time;
-              marker_trip.departure_time = nextstop.departure_time;
-              marker_trip.difftime = nextstop.difftime;
-              // console.log(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
-            this.setStationInfo(marker_trip.stop_id, marker_trip.trip_id, marker_trip.arrival_time, marker_trip.direction);
-              // update station]
-              marker_trip.on('mouseover', this.onTrainClick, this);
-              //marker_trip.on('mouseout', this.onTrainClick, this);
-            }
-          } else {
-            // new marker
-            this.ActiveTrain[tripEntity] = vehicle;
-            //// TODO: 1 create marker
-            const marker = this.createMarker(trainLatLng, route_name);
-            marker.setForceZIndex = 999;
-            // add marker
-            // marker.addTo(this.map).bindPopup(`${tripEntity}`)
-            this.layerRouteGroup[route_id].addLayer(marker);
-            // marker function
-            marker.tripEntity = tripEntity;
-            marker.trip_id = trip_id;
-            marker.start_time = start_time;
-            marker.end_time = end_time;
-            marker.direction = direction;
-
-            marker.color = this.getColor(route_name);
-            marker.track = this.getTrack(route_name)
-            marker.headsign = headsign;
-            marker.runtime = runtime;
-
-            marker.map = this.map;
-            marker.controllerLayer = this.controllerLayer;
+        if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
+          // exist
+          if (trainLocationMarkers[tripEntity] !== undefined) {
+            // update marker
+            const marker_trip = trainLocationMarkers[tripEntity];
+            // trainLatLng
+            marker_trip.setLatLng(trainLatLng);
+            // marker_trip.fire('click');
             // markerinfo
-            marker.nextstop = nextstop.stop_id;
-            marker.arrival_time = nextstop.arrival_time;
-            marker.departure_time = nextstop.departure_time;
-            marker.difftime = nextstop.difftime;
-
-            marker.bindPopup('Trip info');
-
-            marker.on('mouseover', this.onTrainClick, this);
-
-            marker.on('click', (event) => {
-              this.map.setView(marker.getLatLng(), 16);
-              L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-                maxZoom: 20,
-                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-              }).addTo(this.map);
-              this.selectTripId = marker.tripEntity;
-            }, this);
-
-
-            trainLocationMarkers[tripEntity] = marker;
-            console.log(marker.stop_id, marker.trip_id, marker.arrival_time, marker.direction);
-            this.setStationInfo(marker.stop_id, marker.trip_id, marker.arrival_time, marker.direction);
+            marker_trip.nextstop = nextstop.stop_id;
+            marker_trip.arrival_time = nextstop.arrival_time;
+            marker_trip.departure_time = nextstop.departure_time;
+            marker_trip.difftime = nextstop.difftime;
+            // console.log(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
+            this.setStationInfo(marker_trip.stop_id, marker_trip.trip_id, marker_trip.arrival_time, marker_trip.direction);
+            // update station]
+            marker_trip.on('mouseover', this.onTrainClick, this);
+            //marker_trip.on('mouseout', this.onTrainClick, this);
           }
+        } else {
+          // new marker
+          this.ActiveTrain[tripEntity] = vehicle;
+          //// TODO: 1 create marker
+          const marker = this.createMarker(trainLatLng, route_name);
+          marker.setForceZIndex = 999;
+          // add marker
+          // marker.addTo(this.map).bindPopup(`${tripEntity}`)
+          this.layerRouteGroup[route_id].addLayer(marker);
+          // marker function
+          marker.tripEntity = tripEntity;
+          marker.trip_id = trip_id;
+          marker.start_time = start_time;
+          marker.end_time = end_time;
+          marker.direction = direction;
+
+          marker.color = this.getColor(route_name);
+          marker.track = this.getTrack(route_name)
+          marker.headsign = headsign;
+          marker.runtime = runtime;
+
+          marker.map = this.map;
+          marker.controllerLayer = this.controllerLayer;
+          // markerinfo
+          marker.nextstop = nextstop.stop_id;
+          marker.arrival_time = nextstop.arrival_time;
+          marker.departure_time = nextstop.departure_time;
+          marker.difftime = nextstop.difftime;
+
+          marker.bindPopup('Trip info');
+
+          marker.on('mouseover', this.onTrainClick, this);
+
+          marker.on('click', (event) => {
+            this.map.setView(marker.getLatLng(), 16);
+            L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+              maxZoom: 20,
+              subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            }).addTo(this.map);
+            this.selectTripId = marker.tripEntity;
+          }, this);
+
+
+          trainLocationMarkers[tripEntity] = marker;
+          console.log(marker.stop_id, marker.trip_id, marker.arrival_time, marker.direction);
+          this.setStationInfo(marker.stop_id, marker.trip_id, marker.arrival_time, marker.direction);
+        }
 
       }
 
       if (this.selectMarker != undefined) {
-             this.updateTrain()
+        this.updateTrain()
       }
       // Clear marker from array
       // check train over due
@@ -390,7 +401,7 @@ export class GtfsrtComponent implements OnInit {
     marker.openPopup();
 
     const buttonSubmit = L.DomUtil.get('button-submit');
-    L.DomEvent.addListener(buttonSubmit, 'click', function(e) {
+    L.DomEvent.addListener(buttonSubmit, 'click', function (e) {
       this.map.setView(marker.getLatLng(), 16);
       L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
         maxZoom: 20,
@@ -398,12 +409,12 @@ export class GtfsrtComponent implements OnInit {
       }).addTo(this.map);
       this.selectTripId = marker.tripEntity;
       console.log(this.selectTripId);
-    }, this);  
+    }, this);
   }  // end function onMarkerClick display popup with button
 
-// <img src="/assets/dist/icons/man.png"> ${e.target.passengerNum} คน
-  updateTrain(){
-    const marker = this.selectMarker 
+  // <img src="/assets/dist/icons/man.png"> ${e.target.passengerNum} คน
+  updateTrain() {
+    const marker = this.selectMarker
     const html = `
     <div class="card" style="width: 18rem;">
       <div class="card-header" style="background-color:${marker.color}; padding: 0.5rem 0.15rem !important;">
@@ -459,7 +470,7 @@ export class GtfsrtComponent implements OnInit {
     marker.openPopup();
 
     const buttonSubmit = L.DomUtil.get('button-submit');
-    L.DomEvent.addListener(buttonSubmit, 'click', function(e) {
+    L.DomEvent.addListener(buttonSubmit, 'click', function (e) {
       this.map.setView(marker.getLatLng(), 16);
       L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
         maxZoom: 20,
@@ -480,7 +491,7 @@ export class GtfsrtComponent implements OnInit {
   showAllMapLayer(): any {
 
     this.routes.forEach(obj => {
-      const obj_route_id  = obj.route_id;
+      const obj_route_id = obj.route_id;
       // const layerGroup[obj_route_id] = new L.layerGroup()
       this.layerRouteGroup[obj_route_id] = L.layerGroup();
       this.layerRouteGroup[obj_route_id].addTo(this.map);
@@ -488,7 +499,7 @@ export class GtfsrtComponent implements OnInit {
     });
 
     // untrip layer
-    this.layerRouteGroup['notrip'] =  L.layerGroup();
+    this.layerRouteGroup['notrip'] = L.layerGroup();
     this.layerRouteGroup['notrip'].addTo(this.map);
 
   }
@@ -498,7 +509,7 @@ export class GtfsrtComponent implements OnInit {
     //   this.map.removeLayer(layer)
     // });
     this.routes.forEach(obj => {
-      const obj_route_id  = obj.route_id;
+      const obj_route_id = obj.route_id;
       const layer = this.layerRouteGroup[obj_route_id];
       this.map.removeLayer(layer);
     });
@@ -507,14 +518,14 @@ export class GtfsrtComponent implements OnInit {
     this.map.removeLayer(this.layerRouteGroup['notrip']);
   }
 
-    // blue_line.addTo(this.map);
-    // purple_line.addTo(this.map);
-    // blue_chalearm_line.addTo(this.map);
-    // blue_extend_line.addTo(this.map);
-    // orange_line.addTo(this.map);
-    // dark_green_line.addTo(this.map);
-    // light_green_line.addTo(this.map);
-    // light_green_extend_line.addTo(this.map);
+  // blue_line.addTo(this.map);
+  // purple_line.addTo(this.map);
+  // blue_chalearm_line.addTo(this.map);
+  // blue_extend_line.addTo(this.map);
+  // orange_line.addTo(this.map);
+  // dark_green_line.addTo(this.map);
+  // light_green_line.addTo(this.map);
+  // light_green_extend_line.addTo(this.map);
 
   showRouteLayer(route_id) {
     this.removeAllRouteLayer();
@@ -578,7 +589,7 @@ export class GtfsrtComponent implements OnInit {
   loadGeojson() {
     // load geojson with new L.GeoJSON()
     const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purple.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: 'purple'
         };
@@ -587,7 +598,7 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#214374'
         };
@@ -596,7 +607,7 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_chalearm_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue_chalearm.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#2a5491'
         };
@@ -605,7 +616,7 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_extend_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue_extend.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#7f98bd'
         };
@@ -614,7 +625,7 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const orange_line = new L.GeoJSON.AJAX('/assets/dist/kml/orange.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#FF6600'
         };
@@ -623,7 +634,7 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const dark_green_line = new L.GeoJSON.AJAX('/assets/dist/kml/dark_green.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#458B00'
         };
@@ -632,7 +643,7 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const light_green_line = new L.GeoJSON.AJAX('/assets/dist/kml/light_green.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#66CD00'
         };
@@ -641,7 +652,7 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const light_green_extend_line = new L.GeoJSON.AJAX('/assets/dist/kml/light_green_extend.geojson', {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: '#66CD00'
         };
@@ -770,18 +781,81 @@ export class GtfsrtComponent implements OnInit {
     return number;
   }
 
+  // + 
 
+
+  getstations() {
+    this.gtfsService.getallstations().then(obj => {
+      this.allstations = obj
+      console.log("790", this.allstations)
+      this.routes = Object.keys(obj)
+      console.log("792", this.routes) // Array [ "BL", "PP" ]
+    })
+  }
+
+  getRouteformat() {
+    this.routeformatservice.getrouteformat().subscribe(result => {
+      // console.log("115", result)
+      this.routformats = result
+    }, (error) => {
+      console.log(error)
+    })
+  }
+
+  getstationicon(stopid) {
+    let route
+    this.routes.forEach((key, index) => {
+      let arrays = []
+      this.allstations[key].forEach(record => {
+        // console.log("105",record.station)
+        arrays.push(record.station)
+      })
+      // console.log("107", key, arrays)
+      const result = arrays.includes(stopid) ? key : null
+      if (result !== null) {
+        route = result
+        //console.log("122", index, stopid, route)
+      }
+
+
+    });
+    return route
+  }
 
   async loadStation() {
-    // // DEBUG:
-    // // TODO: add marker property
-    this.stops.forEach(async stop => {
-      // console.log('423......', stop)
-      // icon
+    console.log("826", this.routformats)
+    this.stops.forEach(async (stop, index) => {
+      // get station icon path
+      const route = this.getstationicon(stop.stop_id.trim());
+
+      // console.log("128 ===================", index,  stop.stop_id, route)
+      let stopicon = ""
+      let station_icon
+      if (route === undefined || route === null) {
+        // default
+        stopicon = environment.iconbase + stop.icon
+        console.log("133", route, stop.stop_id, stopicon)
+      } else {
+
+        this.routformats.forEach(obj => {
+
+          if (obj.route == route) {
+            station_icon = "." + obj.station_icon
+          }
+        })
+        console.log("140", route, stop.stop_id, station_icon)
+        if (station_icon === undefined || station_icon === null) {
+          stopicon = environment.iconbase + stop.icon
+        } else {
+          stopicon = station_icon
+        }
+
+      }
+
       const icon = new L.icon({
         iconSize: [22, 22],
         // iconAnchor: [0, 0],
-        iconUrl: environment.iconbase + stop.icon,
+        iconUrl: stopicon
       });
       // location
       const stationLatLng = new L.LatLng(stop.stop_lat, stop.stop_lon);
@@ -794,7 +868,7 @@ export class GtfsrtComponent implements OnInit {
       marker.stop_name = stop.stop_name;
       this.StationMarkers[stop.stop_id] = marker;
       const unique_route_ids = await this.getRoutebyStop(stop.stop_id);
-      console.log (unique_route_ids);
+      console.log(unique_route_ids);
       if (unique_route_ids.length > 0) {
         unique_route_ids.forEach(route_id => {
           this.layerRouteGroup[`${route_id}`].addLayer(marker);
@@ -815,21 +889,21 @@ export class GtfsrtComponent implements OnInit {
           // console.log(direction)
           let name;
           if (direction == 1) {
-             name = 'ขาออก';
-             li += '<li class=\'list-group-item\'>' +
-                    '<i class=\'fa fa-arrow-circle-left\' style=\'color:blue\'></i>' +
-                    '  ' + name + ' trip: ' + st.trip_id + ' ' +
-                    'arrival_time: ' + st.arrival_time +
-                   '</li>';
+            name = 'ขาออก';
+            li += '<li class=\'list-group-item\'>' +
+              '<i class=\'fa fa-arrow-circle-left\' style=\'color:blue\'></i>' +
+              '  ' + name + ' trip: ' + st.trip_id + ' ' +
+              'arrival_time: ' + st.arrival_time +
+              '</li>';
           }
 
           if (direction == 0) {
             name = 'ขาเข้า';
             li += '<li class=\'list-group-item\'>' +
-                  '<i class=\'fa fa-arrow-circle-right\' style=\'color:red\'></i>' +
-                   name + ' trip: ' + st.trip_id + ' ' +
-                   'arrival_time: ' + st.arrival_time +
-                  '</li>';
+              '<i class=\'fa fa-arrow-circle-right\' style=\'color:red\'></i>' +
+              name + ' trip: ' + st.trip_id + ' ' +
+              'arrival_time: ' + st.arrival_time +
+              '</li>';
           }
 
 
@@ -1004,7 +1078,7 @@ export class GtfsrtComponent implements OnInit {
         return 'white';
     }
   }
-  
+
   getsecond(time) {
     const seconds = moment(time, 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds');
     return seconds;
@@ -1070,10 +1144,10 @@ export class GtfsrtComponent implements OnInit {
     const obj = [];
     if (stop_id !== undefined) {
       if (+direction) {
-        obj[1] =  {'trip_id': trip_id, 'arrival_time': arrival_time, 'direction':  direction};
+        obj[1] = { 'trip_id': trip_id, 'arrival_time': arrival_time, 'direction': direction };
         this.StationTrips[stop_id] = obj;
       } else {
-        obj[0] =  {'trip_id': trip_id, 'arrival_time': arrival_time, 'direction':  direction};
+        obj[0] = { 'trip_id': trip_id, 'arrival_time': arrival_time, 'direction': direction };
         this.StationTrips[stop_id] = obj;
       }
     }

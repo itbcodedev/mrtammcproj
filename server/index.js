@@ -145,3 +145,5 @@ setInterval(simulate, 1000);
 server.listen(PORT, () => {
   console.log(`Server start port ${PORT}`)
 })
+
+//echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p

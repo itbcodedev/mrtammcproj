@@ -160,17 +160,33 @@ export class ParkingComponent implements OnInit {
       return false;
     } else {
       if (window.confirm('ต้องการที่จะ บันทึกข้อมูลหรือไม่?')) {
-        const data = this.parkingForm.value;
-        this.parking.AddParking(data).subscribe(result => {
-          console.log(result);
-          this.toastr.success(JSON.stringify(result))
+        console.log("163",this.parkingForm.value)
+        const formData: any = new FormData();
+
+        formData.append('code', this.parkingForm.get('code').value)
+        formData.append('name', this.parkingForm.get('name').value)
+        formData.append('latitude', this.parkingForm.get('latitude').value)
+        formData.append('longitude', this.parkingForm.get('longitude').value)
+        formData.append('icon', this.parkingForm.get('icon').value)
+        formData.append('image', this.parkingForm.get('image').value)
+        formData.append('capacity', this.parkingForm.get('capacity').value)
+    
+        
+        // post Formdata
+        this.parking.AddParking(formData).subscribe(res => {
+          console.log(res);
+          this.toastr.success(JSON.stringify(res))
         }, (error) => {
           console.log(error);
           this.toastr.error(JSON.stringify(error))
         });
+
+        this.update()
       }
+
     }
   }
+
 
 
   deleteParking() {
@@ -241,5 +257,31 @@ export class ParkingComponent implements OnInit {
     console.log("onrowValueChanged: " + row);
   }
 
+
+  // chage station icon
+  onFileChange_image(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(file)
+      this.parkingForm.get('image').setValue(file);
+    }
+
+  }
+
+  // chage station icon
+  onFileChange_icon(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      console.log(file)
+      this.parkingForm.get('icon').setValue(file);
+    }
+
+  }
+
+
+  update() {
+    this.refresh();
+    this.ngOnInit();
+ } 
 
 }
