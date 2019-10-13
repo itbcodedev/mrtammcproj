@@ -382,9 +382,9 @@ export class GtfsrtComponent implements OnInit {
       <li class="list-group-item m-0">
       
      <p class="m-0">
-     ${Math.floor(e.target.difftime / 60)} นาที  ${e.target.difftime % 60} วิ.
-     <img src="${e.target.track}" alt="Smiley face" height="32" width="15"> 
-     สถานีถัดไป: <b>${e.target.nextstop}</b>
+     <img src="${e.target.track}"  height="32" width="15">
+     สถานีถัดไป: <b>${e.target.nextstop}</b> ใช้เวลา
+     ${Math.floor(e.target.difftime / 60)} นาที  ${e.target.difftime % 60} วินาที
      </p>
    </li>
    <li class="list-group-item">
@@ -451,9 +451,11 @@ export class GtfsrtComponent implements OnInit {
         <li class="list-group-item m-0">
            
           <p class="m-0">
-          ${Math.floor(marker.difftime / 60)} นาที  ${marker.difftime % 60} วิ.
-          <img src="${marker.track}" alt="Smiley face" height="32" width="15"> 
-          สถานีถัดไป: <b>${marker.nextstop}</b>
+          <img src="${marker.track}"  height="32" width="15">
+          สถานีถัดไป: <b>${marker.nextstop}</b> ใช้เวลา
+          ${Math.floor(marker.difftime / 60)} นาที  ${marker.difftime % 60} วินาที
+          
+          
           </p>
         </li>
         <li class="list-group-item">
