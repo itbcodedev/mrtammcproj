@@ -5,23 +5,23 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class RouteformatService {
+export class KmltorouteService {
 
   baseUrl = environment.baseUrl;
   constructor(private _http: HttpClient) { }
 
-  saverouteformat(formData: any) {
-    let url = this.baseUrl + '/api/v2/routeformat/create'
+  savekmltoroute(formData: any) {
+    let url = this.baseUrl + '/api/v2/kmltoroute/create'
     return this._http.post(url, formData)
   }
 
-  getrouteformat() {
-    let url = this.baseUrl + '/api/v2/routeformat'
+  getkmltoroute() {
+    let url = this.baseUrl + '/api/v2/kmltoroute'
     return this._http.get(url)
   }
 
-  deleterouteformat(id: any) {
-    let url = this.baseUrl + '/api/v2/routeformat/' + id
+  deletekmltoroute(id: any) {
+    let url = this.baseUrl + '/api/v2/kmltoroute/' + id
     this._http.delete<any>(url).subscribe(
       res => {
         console.log(res);
@@ -34,14 +34,10 @@ export class RouteformatService {
       }
     });
   }
-
-  updaterouteformat(data: any) {
+  updatekmltoroute(data: any) {
     console.log("40",data)
-    let url = this.baseUrl + '/api/v2/routeformat/' + data._id
+    let url = this.baseUrl + '/api/v2/kmltoroute/' + data._id
 
     return this._http.put(url, data)
   }
 }
-
-
-

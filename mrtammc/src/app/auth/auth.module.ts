@@ -23,10 +23,11 @@ import { ParkingComponent } from './parking/parking.component';
 import { RouteformatComponent } from './routeformat/routeformat.component';
 import { GtfstoolComponent } from './gtfstool/gtfstool.component';
 import { RatioparkingComponent } from './ratioparking/ratioparking.component';
+import { KmltorouteComponent } from './kmltoroute/kmltoroute.component';
 @NgModule({
   declarations: [LoginComponent, RegistrationComponent,AdminComponent,
                   UserComponent, UserListComponent, DashboardComponent,
-                  UploadfileComponent, ConfigfileComponent, GtfsspecComponent, ValidateSpecComponent, LdapuserComponent, MrtalineComponent, GtfsmapComponent, CctvComponent, ParkingComponent, RouteformatComponent, GtfstoolComponent, RatioparkingComponent],
+                  UploadfileComponent, ConfigfileComponent, GtfsspecComponent, ValidateSpecComponent, LdapuserComponent, MrtalineComponent, GtfsmapComponent, CctvComponent, ParkingComponent, RouteformatComponent, GtfstoolComponent, RatioparkingComponent, KmltorouteComponent],
   imports: [
     CommonModule,
     NgxSmartModalModule.forRoot(),

@@ -251,7 +251,7 @@ router.get("/getallstops", async (req, res, next) => {
   const query = {}
   const groupBygroup = groupBy("group")
   const stops = await gtfs.getStops(query)
-  console.log("254 stops",stops)
+  // console.log("254 stops",stops)
   gtfs.getallstops(query).then(stoptimes => {
     
     //results = stoptimes.map(s =>{return {group: s.slice(0,2),station: s}}) 
@@ -265,7 +265,7 @@ router.get("/getallstops", async (req, res, next) => {
       })
       return {group: s.replace(/\d+|^\s+|\s+$/g,''),station: s, name: station_name }})
     grouped = groupBygroup(results)
-    console.log(grouped)
+    // console.log(grouped)
     res.json(grouped)
   })
 });

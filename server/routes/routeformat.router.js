@@ -3,7 +3,7 @@ var multer = require('multer')
 var Routeformat = require('../models/routeformat')
 var router = express.Router()
 var upload = multer({ dest: 'tempuploads/' })
-
+var path = require('path')
 var fs = require('fs')
 
 
@@ -41,19 +41,20 @@ router.put('/:id', async (req, res) => {
     }
 })
 router.post('/create', upload.any(), (req, res, next) => {
-
+    let rootPath = path.join(__dirname, '../');
     let station_path = ""
     let train_path  = ""
 
     if (req.files) {
         req.files.forEach((file) => {
-            console.log(file)
+            console.log(file)   // tempuploads/8a912a19bbd4d4a67579b38efdaea1af
+            console.log(rootPath) //60 /home/mee/AngularProj/mrtammcproj/server/
             var filename = (new Date).valueOf() + "-" + file.originalname
-            fs.rename(file.path, 'upload/images/' + filename, (err) => {
+            fs.rename(rootPath + file.path, rootPath +'upload/images/' + filename, (err) => {
                 if (err) throw err;
                 
             })
-            fs.copyFile('upload/images/' + filename, 'backupimages/' + filename, (err) => {
+            fs.copyFile(rootPath +'upload/images/' + filename, rootPath +'backupimages/' + filename, (err) => {
                 if (err) throw err;
                 
             })

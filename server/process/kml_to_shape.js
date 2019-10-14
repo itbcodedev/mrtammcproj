@@ -239,7 +239,7 @@ class KmlToShape {
    */
   createCoordinate(lat1, lng1, lat2, lng2, interval_meters) {
     // Avoid to return NAN, if finding distance between same lat long.
-    console.log(lat1, lng1, lat2, lng2, interval_meters)
+    // console.log(lat1, lng1, lat2, lng2, interval_meters)
     if (lat1 == lat2 && lng1 == lng2) {
       return 0;
     }
@@ -296,6 +296,9 @@ class KmlToShape {
     return output.join(os.EOL)
   }
 
+  isArray(obj) {
+    return !!obj && obj.constructor === Array;
+  }
   /**
    * Generate geojson from kmlfile
    * @params filename  
@@ -307,12 +310,25 @@ class KmlToShape {
     const output = []
     var result = JSON.parse(convert.xml2json(xml, { compact: true, spaces: 4 }));
     const Placemark = result.kml.Document.Placemark
-    console.log(Placemark)
-    const name = result.kml.Document.name._text
-    console.log(name)
+    let cords = []
+    console.log("314", Placemark)
+    console.log("315", this.isArray(Placemark))
+    if (this.isArray(Placemark)) {
+      Placemark.forEach(place => {
+        let subcords = place.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+        cords = cords.concat(subcords)
+      })
+    } else {
+      const name = result.kml.Document.name._text
+      cords = Placemark.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+    }
+    
+    // console.log(name)
 
     // remove space replace(/\s/g, '')
-    const cords = Placemark.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+   
+    console.log("330", cords)
+
     cords.forEach((cord, index) => {
       const location = [];
       const cord_arr = cord.split("/")
@@ -323,7 +339,7 @@ class KmlToShape {
       output.push(location)
     });
     //console.log(output)
-    console.log(output.length)
+    // console.log("342 kml_to_shape.js",output.length)
     let output_intervals = []
     output.forEach((location, index) => {
       if (index == 0) {
@@ -331,9 +347,9 @@ class KmlToShape {
         return 0
       }
       const cordinates = this.createCoordinate(location[1], location[0], output[index - 1][1], output[index - 1][0], 10)
-      console.log(cordinates)
+      // console.log(cordinates)
       output_intervals = output_intervals.concat(cordinates)
-      console.log(output_intervals)
+      // console.log(output_intervals)
     });
 
     //console.log(output_intervals.length)
@@ -349,6 +365,76 @@ class KmlToShape {
     return {
       type: 'FeatureCollection',
       features
+    }
+
+  }
+
+  /**
+   * Generate geojson from kmlfile
+   * @params filename  
+   *  
+   */
+  generate_geojsonLine(filename) {
+    // const FILE = path.join(__dirname, `${filename}`)
+    var xml = require('fs').readFileSync(filename, 'utf8');
+    const output = []
+    var result = JSON.parse(convert.xml2json(xml, { compact: true, spaces: 4 }));
+    const Placemark = result.kml.Document.Placemark
+    let cords = []
+
+    if (this.isArray(Placemark)) {
+      Placemark.forEach(place => {
+        let subcords = place.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+        cords = cords.concat(subcords)
+      })
+    } else {
+      const name = result.kml.Document.name._text
+      cords = Placemark.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+    }
+
+    // console.log("395", cords)
+    cords.forEach((cord, index) => {
+      const location = [];
+      const cord_arr = cord.split("/")
+      // console.log("longitude", cord_arr[0])
+      // console.log("latitude", cord_arr[1])
+      location.push(cord_arr[0])
+      location.push(cord_arr[1])
+      output.push(location)
+    });
+    //console.log(output)
+    //console.log(output.length)
+    let output_intervals = []
+    output.forEach((location, index) => {
+      if (index == 0) {
+        //console.log("skip 0")
+        return 0
+      }
+      const cordinates = [location[0], location[1]]
+      // console.log("391", cordinates)
+      output_intervals = output_intervals.concat([cordinates])
+      
+    });
+
+    // console.log(output)
+
+    let coordinates = output.map(cord => {
+      return [parseFloat(cord[0]), parseFloat(cord[1])]
+    })
+
+    const features = {
+      type: 'Feature',
+      "properties": {},
+      geometry: {
+        type: 'LineString',
+        coordinates: coordinates
+      }
+    }
+
+
+    return {
+      type: 'FeatureCollection',
+      features: [ features ]
     }
 
   }

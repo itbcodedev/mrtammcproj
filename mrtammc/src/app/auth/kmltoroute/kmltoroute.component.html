@@ -50,7 +50,7 @@
             </li>
             <li class="nav-item mr-2">
                 <h6 class="m-0 text-dark btn btn-outline-primary">
-                    <i class="fa fa-map-o mr-1 ml-1" aria-hidden="true"></i>
+                    <i class="fa fa-map-or-1 ml-1" aria-hidden="true"></i>
                     <a href="/auth/kmltoroute">KML to Route</a>
                 </h6>
             </li>
@@ -69,7 +69,7 @@
                         <li class="nav-item">
                             <a class="nav-link active " id="home-tab" data-toggle="tab" href="#parkingform" role="tab"
                                 aria-controls="home" aria-selected="true">
-                                <i class="fa fa-train mr-1" aria-hidden="true"></i>Route Format Form
+                                <i class="fa fa-train mr-1" aria-hidden="true"></i>Kml to Route Form
                             </a>
                         </li>
                     </ul>
@@ -79,10 +79,10 @@
                             aria-labelledby="home-tab">
                             <div id="cctvformdiv">
                                 <!-- <p>CCTV form</p>-->
-                                <p>กรุณากรอกข้อมูลลักษณะเส้นทาง</p>
-                                <form [formGroup]="routeformatForm" (ngSubmit)="submitRouteFormatData()" novalidate>
+                                <p>Upload kml เพื่อแปลงเป็น Geojson</p>
+                                <form [formGroup]="kmltorouteForm" (ngSubmit)="submitKmltoRouteFormatData()" novalidate>
 
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label for="code" class="col-sm-3 col-form-label">Route</label>
                                         <div class="col-sm-7">
                                             <select class="custom-select" [ngModel]="route"
@@ -92,8 +92,22 @@
                                                 </option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
 
+                                    <div class="form-group row">
+                                        <label for="route_th" class="col-sm-3 col-form-label">route name (ไทย)*</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control form-control-sm" id="route_th"
+                                                placeholder="route_th" formControlName="route_th">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="route_en" class="col-sm-3 col-form-label">route name (อังกฤษ)*</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control form-control-sm" id="route_en"
+                                                placeholder="route_en" formControlName="route_en">
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-3 col-form-label">color*</label>
                                         <div class="col-sm-7">
@@ -103,44 +117,37 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="icon" class="col-sm-3 col-form-label">station icon*</label>
+                                        <label for="icon" class="col-sm-3 col-form-label">kml*</label>
                                         <div class="col-sm-7">
                                             <input type="file" class="form-control form-control-sm" id="station_icon"
-                                                name="station_icon" (change)="onFileChange_station($event)">
+                                                name="station_icon" (change)="onFileChange_kml($event)">
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="image" class="col-sm-3 col-form-label">train icon*</label>
-                                        <div class="col-sm-7">
-                                            <input type="file" class="form-control form-control-sm" id="train_icon"
-                                                name="train_icon" (change)="onFileChange_train($event)">
-                                        </div>
-                                    </div>
 
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-sm">เพิ่ม Route Format</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">เพิ่ม KML</button>
                                     </div>
                                 </form>
 
 
                             </div>
-                            <p>รายชื่อสถานี</p>
+                            <!-- <p>รายชื่อสถานี</p>
                             <div id="stationonline" style="width: 350px; height: 370px;overflow-y: scroll;">
                                 <ul>
                                     <li *ngFor="let item of stationonlines; let i = index">
                                       {{i + 1}} รหัส {{item.station}} {{item.name}}
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
                 <div class="col-9">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a id="uploadfiletab" class="nav-link active" data-toggle="tab" href="#cctvlist" role="tab"
-                                aria-controls="home">
+                            <a id="uploadfiletab" class="nav-link active" data-toggle="tab" href="#routelist" role="tab"
+                                aria-controls="home" (click)="update()">
                                 <i class="fa fa-map-o" aria-hidden="true"></i> Show on Map
                             </a>
                         </li>
@@ -167,7 +174,7 @@
                                               </button> 
                                             -->
                                     <button type="button" class="btn btn-outline-danger btn-sm"
-                                        (click)="deleteRouteFormat()">
+                                        (click)="deleteKmltoRouteFormat()">
                                         <i class="fa fa-trash" aria-hidden="true"></i> Delete
                                     </button>
                                 </div>
@@ -178,7 +185,7 @@
 
                     <div class="tab-content"
                         style="padding: 0px; background-color: white; border-style: solid; border-width: 1px;  height: 80vh; overflow-y: scroll;">
-                        <div #mapdiv class="tab-pane active" id="cctvlist" role="tabpanel">
+                        <div #mapdiv class="tab-pane active" id="routelist" role="tabpanel">
                             <div #map id="map" [style.height]="height" style="width: 100%;">
 
                             </div>
@@ -200,4 +207,5 @@
         </div>
     </section>
 </div>
+
 

@@ -13,6 +13,7 @@ import { ParkingComponent} from './parking/parking.component';
 import { RouteformatComponent} from './routeformat/routeformat.component';
 import { GtfstoolComponent} from './gtfstool/gtfstool.component';
 import { RatioparkingComponent} from './ratioparking/ratioparking.component';
+import { KmltorouteComponent} from './kmltoroute/kmltoroute.component';
 const routes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'login', component: LoginComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'parking', component: ParkingComponent},
   {path: 'routeformat', component: RouteformatComponent},
   {path: 'ratioparking', component: RatioparkingComponent},
-  {path: 'gtfstool', component: GtfstoolComponent}
+  {path: 'gtfstool', component: GtfstoolComponent},
+  {path: 'kmltoroute', component: KmltorouteComponent}
 ];
 
 @NgModule({

@@ -3,24 +3,20 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GtfsService } from '../../services/gtfs2.service'
 import { ToastrService } from 'ngx-toastr';
 
-import { RouteformatService } from '../../services/routeformat.service'
-
+import { KmltorouteService } from '../../services/kmltoroute.service';
 import { ImageFormatterComponent } from '../../image-formatter/image-formatter.component'
-
 import { ColDef, GridApi, ColumnApi } from 'ag-grid-community';
-
 
 declare let L;
 import * as $ from 'jquery';
 
+
 @Component({
-  selector: 'app-routeformat',
-  templateUrl: './routeformat.component.html',
-  styleUrls: ['./routeformat.component.scss']
+  selector: 'app-kmltoroute',
+  templateUrl: './kmltoroute.component.html',
+  styleUrls: ['./kmltoroute.component.scss']
 })
-export class RouteformatComponent implements OnInit {
-
-
+export class KmltorouteComponent implements OnInit {
 
   @ViewChild("map", { static: true })
   public mapElement: ElementRef
@@ -28,42 +24,41 @@ export class RouteformatComponent implements OnInit {
   @ViewChild("mapdiv", { static: true })
   public mapDiv: ElementRef;
 
-  routeformatForm: FormGroup;
-
-  map
+  kmltorouteForm: FormGroup;
   height
-  latitude
-  longitude
-  controllerLayer
+  map
   baseLayers
-  defaultColDef
+  controllerLayer
+  allstations = []
+  routes
+
   columnDefs
   rowData
 
-  route
-  // gridApi and columnApi
-  private api: GridApi;
-  private columnApi: ColumnApi;
-  private userToBeEditedFromParent: any;
-
-  routes
-  allstations
   stations
   station
   stationonlines = []
+
+  kmlroutes
+
+    // gridApi and columnApi
+    private api: GridApi;
+    private columnApi: ColumnApi;
+    private userToBeEditedFromParent: any;
+
 
   constructor(
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
     private toastr: ToastrService,
     private _gtfsservice: GtfsService,
-    private _routeformatservice: RouteformatService
+    private _kmltorouteservice: KmltorouteService
   ) {
-    this.routeformatForm = this.fb.group({
-      route: ['', Validators.required],
+    this.kmltorouteForm = this.fb.group({
+      route_th: ['', Validators.required],
+      route_en: ['', Validators.required],
       color: ['', Validators.required],
-      station_icon: ['', Validators.required],
-      train_icon: ['', Validators.required]
+      kml_file: ['', Validators.required]
     })
 
     this.height = 775 + "px";
@@ -119,73 +114,80 @@ export class RouteformatComponent implements OnInit {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
-
     this._gtfsservice.getallstations().then(obj => {
       this.allstations = obj
-      console.log(this.allstations)
+      //console.log(this.allstations)
       this.routes = Object.keys(obj)
-      console.log(this.routes)
+      //console.log(this.routes)
     })
-
 
     this.columnDefs = this.createColumnDefs();
 
-    this._routeformatservice.getrouteformat().subscribe(result => {
+    this._kmltorouteservice.getkmltoroute().subscribe(result => {
       this.rowData = result
     }, (error) => {
       console.log(error)
     })
+    
+    this.getKmltoroute()
+  }
 
-  } //ngOnInit()
+  async getKmltoroute() {
+    this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise()
+    this.kmlroutes.forEach(obj => {
+      console.log("138", obj.geojsonline_file)
+      const line = new  L.GeoJSON.AJAX(obj.geojsonline_file ,{
+        style: function (feature) {
+          return { color: obj.color }
+        }
+      })
 
-  // one grid initialisation, grap the APIs and auto resize the columns to fit the available space
-  onGridReady(params): void {
-    this.api = params.api;
-    this.columnApi = params.columnApi;
-    this.api.sizeColumnsToFit();
+      line.addTo(this.map)
+    })
   }
 
   // create culume definitions
   private createColumnDefs() {
     return [
-      { headerName: 'Route', field: 'route', editable: true },
+      { headerName: 'ชื่อไทย', field: 'route_th', editable: true },
+      { headerName: 'ชื่ออังกฤษ', field: 'route_en', editable: true },
       { headerName: 'Color', field: 'color', editable: true },
-      { headerName: 'Station icon', field: 'station_icon', editable: true, autoHeight: true, cellRendererFramework: ImageFormatterComponent },
-      { headerName: 'Train icon', field: 'train_icon', editable: true, autoHeight: true, cellRendererFramework: ImageFormatterComponent }
+      { headerName: 'KML File', field: 'kml_file', editable: true },
+      { headerName: 'Geojson Line File', field: 'geojsonline_file', editable: true },
+      { headerName: 'Geojson Point File', field: 'geojsonpoint_file', editable: true },
     ]
   }
 
-  // chage station icon
-  onFileChange_station(event) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      console.log(file)
-      this.routeformatForm.get('station_icon').setValue(file);
-    }
 
+  //change route
+  changeRoute(e) {
+    //console.log(this.allstations[`${e}`])
+    this.stationonlines = this.allstations[`${e}`]
   }
 
-  // change train icon
-  onFileChange_train(event) {
+  // chage station icon
+  onFileChange_kml(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       console.log(file)
-      this.routeformatForm.get('train_icon').setValue(file);
+      this.kmltorouteForm.get('kml_file').setValue(file);
     }
 
   }
 
   // submit data
-  submitRouteFormatData() {
+  submitKmltoRouteFormatData() {
+    console.log("162",this.kmltorouteForm.value)
     const formData: any = new FormData();
 
-    formData.append('route', this.routeformatForm.get('route').value)
-    formData.append('color', this.routeformatForm.get('color').value)
-    formData.append('station_icon', this.routeformatForm.get('station_icon').value)
-    formData.append('train_icon', this.routeformatForm.get('train_icon').value)
+    formData.append('route_th', this.kmltorouteForm.get('route_th').value)
+    formData.append('route_en', this.kmltorouteForm.get('route_en').value)
+    formData.append('color', this.kmltorouteForm.get('color').value)
+    formData.append('kml_file', this.kmltorouteForm.get('kml_file').value)
+
 
     // post Formdata
-    this._routeformatservice.saverouteformat(formData).subscribe(res => {
+    this._kmltorouteservice.savekmltoroute(formData).subscribe(res => {
       console.log(res)
       this.toastr.success('ข้อมูลได้รับการบันทึกเรียบร้อยแล้ว', 'Success', {
         timeOut: 3000
@@ -195,34 +197,30 @@ export class RouteformatComponent implements OnInit {
     this.update()
   }
 
-  // dynamic render selection box
-  changeRoute(e) {
-    //console.log(e)
-    //console.log(this.allstations[`${e}`])
-    this.stationonlines  = this.allstations[`${e}`]
-  }
-
   // refresh data  when select tab
   refresh() {
-    this._routeformatservice.getrouteformat().subscribe(result => {
+    this._kmltorouteservice.getkmltoroute().subscribe(result => {
       this.rowData = result
     }, (error) => {
       console.log(error)
     })
   }
 
-  //Get all rows
-  getRowData() {
-    var rowData = [];
-    this.api.forEachNode(function (node) {
-      rowData.push(node.data);
-    });
-    console.log("Row Data:");
-    console.log(rowData);
+  update() {
+    this.refresh();
+    this.getKmltoroute()
+    this.ngOnInit();
+  }
+
+  // one grid initialisation, grap the APIs and auto resize the columns to fit the available space
+  onGridReady(params): void {
+    this.api = params.api;
+    this.columnApi = params.columnApi;
+    this.api.sizeColumnsToFit();
   }
 
   // delete record from action menu
-  deleteRouteFormat() {
+  deleteKmltoRouteFormat() {
     var selectedRows = this.api.getSelectedRows();
 
     console.log(selectedRows)
@@ -242,12 +240,11 @@ export class RouteformatComponent implements OnInit {
     console.log(res.remove[0].data);
     var id = res.remove[0].data._id;
 
-    this._routeformatservice.deleterouteformat(id)
+    this._kmltorouteservice.deletekmltoroute(id)
 
     this.toastr.success('ได้ลบข้อมูลที่ ท่านได้เลือกแล้ว', 'Success', {
       timeOut: 3000
     });
-
 
   }
 
@@ -278,7 +275,7 @@ export class RouteformatComponent implements OnInit {
   
   onCellEditingStopped(e) {
     console.log(e.data);
-    this._routeformatservice.updaterouteformat(e.data).subscribe(result => {
+    this._kmltorouteservice.updatekmltoroute(e.data).subscribe(result => {
       console.log(result);
       this.toastr.success(JSON.stringify(result))
     }, (error) => {
@@ -294,8 +291,4 @@ export class RouteformatComponent implements OnInit {
   }
 
 
-  update() {
-    this.refresh();
-    this.ngOnInit();
- } 
 }

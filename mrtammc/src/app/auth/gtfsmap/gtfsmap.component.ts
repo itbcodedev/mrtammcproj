@@ -78,6 +78,8 @@ export class GtfsmapComponent implements OnInit {
       "googleTerrain": googleTerrain
     };
   }
+
+
   loadGeojson() {
 
     // load geojson with new L.GeoJSON()

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GtfsrtwsService } from '../../services/gtfsrtws.service';
 import { GtfsService } from '../../services/gtfs2.service';
 import { RouteformatService } from '../../services/routeformat.service'
+import { KmltorouteService } from '../../services/kmltoroute.service';
 import { environment } from '../../../environments/environment';
 import * as moment from 'moment';
 import * as _ from 'lodash';
@@ -65,10 +66,13 @@ export class GtfsrtComponent implements OnInit {
   //+
   routformats
   allstations
+
+  kmlroutes
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
     private gtfsService: GtfsService,
     private routeformatservice: RouteformatService,
+    private _kmltorouteservice: KmltorouteService
   ) {
 
     // this.CurrentDate = moment().subtract(3, 'hours');
@@ -114,7 +118,8 @@ export class GtfsrtComponent implements OnInit {
 
 
     this.loadGeojson();
-    this.showAllgeojson();
+    //this.showAllgeojson();
+    this.getKmltoroute()
     // this.removeAllgeojson()
     // this.showgeojson("00011")
 
@@ -1153,6 +1158,22 @@ export class GtfsrtComponent implements OnInit {
         this.StationTrips[stop_id] = obj;
       }
     }
+  }
+
+
+
+  async getKmltoroute() {
+    this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise()
+    this.kmlroutes.forEach(obj => {
+      console.log("138", obj.geojsonline_file)
+      const line = new  L.GeoJSON.AJAX(obj.geojsonline_file ,{
+        style: function (feature) {
+          return { color: obj.color }
+        }
+      })
+
+      line.addTo(this.map)
+    })
   }
 
 }

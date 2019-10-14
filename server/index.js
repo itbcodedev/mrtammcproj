@@ -46,6 +46,8 @@ const parkinLocRouter = require('./routes/parkingloc.router');
 const RouteFormatRouter = require('./routes/routeformat.router')
 const KmlToolRouter = require('./routes/kmltool.router')
 const RatioParkingRouter = require('./routes/ratioparking.router')
+const KmlToRouter = require('./routes/kmltoroute.router')
+
 database.init();
 
 var fs = require('fs')
@@ -110,6 +112,7 @@ app.use('/api/v2/parkings', parkinLocRouter)
 app.use('/api/v2/routeformat', RouteFormatRouter)
 app.use('/api/v2/ratioparking', RatioParkingRouter)
 app.use('/api/v2/kmltool', KmlToolRouter)
+app.use('/api/v2/kmltoroute', KmlToRouter)
 
 if (process.env.NODE_ENV === 'production') {
   console.log("process.env.NODE_ENV :" + process.env.NODE_ENV)
