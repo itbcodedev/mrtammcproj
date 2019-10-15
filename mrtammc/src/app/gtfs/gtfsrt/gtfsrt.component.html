@@ -29,7 +29,7 @@
               </nav>
 
               <div class="collapse" style="width: 17rem;" id="navbarToggleExternalContent">
-                <div class="bg-light p-1">
+                <div class="bg-light p-1"  style="height: 250px; overflow-y: scroll;" >
                   <form #dataForm="ngForm">
                     <div class="input-group mb-1" *ngFor="let route of kmlroutes ">
                       <div class="input-group-prepend">
@@ -40,11 +40,11 @@
                       <input type="text" class="form-control" style="padding: 0.1rem" placeholder="{{route.route_th}}" readonly>
                     </div>
                   </form>
-                  <div class="btn btn-outline-primary btn-sm" role="alert" style="padding: 4px 4px; width: 264px;">
-                       ขบวนรถที่หมดระยะ  {{this.endtrip}} 
-                  </div>
-                </div>
 
+                </div>
+                <div class="btn btn-outline-primary btn-sm m-2" role="alert" style="padding: 4px 4px; width: 264px;">
+                     ขบวนรถที่หมดระยะ  {{this.endtrip}} 
+                </div>
                 <div class="bg-light p-1" style="width: 280px;">
                   <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
@@ -76,7 +76,7 @@
                       </ul>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                      <ul class="list-group list-group-flush" style="height: 450px; overflow-y: scroll;" >
+                      <ul class="list-group list-group-flush" style="height: 380px; overflow-y: scroll;" >
                         <li *ngFor="let item of totalTrips; let i = index" class="btn btn-outline-success btn-sm" style="margin: 1px; width: 260px;">
                             <div  >
                                 {{item.trip_id}} <i class="fa fa-clock-o" aria-hidden="true"></i> start {{item.start_time}} to {{ item.end_time}}
