@@ -10,6 +10,8 @@ import { forkJoin } from "rxjs/observable/forkJoin";
 import { environment } from '../../../environments/environment';
 import { RouteformatService } from '../../services/routeformat.service'
 import { RatioparkingService } from '../../services/ratioparking.service'
+import { KmltorouteService } from '../../services/kmltoroute.service';
+
 
 declare let L;
 
@@ -46,14 +48,17 @@ export class ParkingComponent implements OnInit {
   ratioparking: any
   myclass
   ratiolabel
-  
+  kmlroutes
+
+
   constructor(public _parking: ParkingserviceService,
     private gtfsService: GtfsService,
     @Inject(DOCUMENT) private document,
     private renderer: Renderer2,
     private _router: Router,
     private routeformatservice: RouteformatService,
-    private _ratioparkingservice: RatioparkingService
+    private _ratioparkingservice: RatioparkingService,
+    private _kmltorouteservice: KmltorouteService
   ) { }
 
   async ngOnInit() {
@@ -103,14 +108,32 @@ export class ParkingComponent implements OnInit {
     // load map
     this.getstations();
     this.getRouteformat();
-    this.loadGeojson();
-    this.showAllgeojson();
-
+    // this.loadGeojson();
+    // this.showAllgeojson();
+    this.getKmltoroute();
+    
     this.stops = await this.gtfsService.getStops();
     console.log("87", this.stops)
     await this.loadStation()
 
+    
   }
+
+
+  async getKmltoroute() {
+    this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise()
+    this.kmlroutes.forEach(obj => {
+      console.log("138", obj.geojsonline_file)
+      const line = new  L.GeoJSON.AJAX(obj.geojsonline_file ,{
+        style: function (feature) {
+          return { color: obj.color }
+        }
+      })
+
+      line.addTo(this.map)
+    })
+  }
+
 
   getParking() {
     let get_parking = this._parking.getParking();
