@@ -31,16 +31,16 @@
               <div class="collapse" style="width: 17rem;" id="navbarToggleExternalContent">
                 <div class="bg-light p-1">
                   <form #dataForm="ngForm">
-                    <div class="input-group mb-1" *ngFor="let route of routes">
+                    <div class="input-group mb-1" *ngFor="let route of kmlroutes ">
                       <div class="input-group-prepend">
                         <div class="input-group-text" style="padding: 0.1rem">
-                          <input type="radio" name="trip" value="{{ route.route_id }}" ngModel (change)=loadRoute(dataForm)>
+                          <input type="radio" name="trip" value="{{ route.route_th }}" ngModel (change)=loadRoute(dataForm)>
                         </div>
                       </div>
-                      <input type="text" class="form-control" style="padding: 0.1rem" placeholder="{{route.route_short_name}}" readonly>
+                      <input type="text" class="form-control" style="padding: 0.1rem" placeholder="{{route.route_th}}" readonly>
                     </div>
                   </form>
-                  <div class="btn btn-outline-primary btn-sm" role="alert" style="padding: 4px 4px; width: 260px;">
+                  <div class="btn btn-outline-primary btn-sm" role="alert" style="padding: 4px 4px; width: 264px;">
                        ขบวนรถที่หมดระยะ  {{this.endtrip}} 
                   </div>
                 </div>
@@ -49,7 +49,7 @@
                   <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                       <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
-                        trip {{selectrouteid}}
+                        ขบวน {{selectrouteid}}
                         <span class="badge badge-danger">
                           <div  *ngIf="activeRoutes?.length > 0">
                              {{activeRoutes.length}}
@@ -59,7 +59,7 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
-                        All trip
+                        ขบวนทั้งหมด
                          <span class="badge badge-info">
                             {{totalTrips.length}}
                         </span>
