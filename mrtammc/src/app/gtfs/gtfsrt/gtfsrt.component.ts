@@ -68,6 +68,8 @@ export class GtfsrtComponent implements OnInit {
   allstations
 
   kmlroutes
+  routelayerGroup
+  singleGroup
   // {station_id: , trips:  {in: ,out: }}
   constructor(private _gtfsws: GtfsrtwsService,
     private gtfsService: GtfsService,
@@ -535,10 +537,27 @@ export class GtfsrtComponent implements OnInit {
   // light_green_extend_line.addTo(this.map);
 
   showRouteLayer(route_id) {
-    this.removeAllRouteLayer();
-    this.layerRouteGroup[route_id].addTo(this.map);
+    this.routelayerGroup.clearLayers()
+    
+    let selectroute = this.kmlroutes.filter(r => {
+      return r.route_th == route_id
+    })
+ 
+    selectroute.forEach(obj => {
+      const line = new  L.GeoJSON.AJAX(obj.geojsonline_file ,{
+        style: function (feature) {
+          return { color: obj.color }
+        }
+      })
+      // line.addTo(this.map)
+      this.routelayerGroup.addLayer(line)
+    })
+    
+
+    // this.removeAllRouteLayer();
+    // this.layerRouteGroup[route_id].addTo(this.map);
     // show route geojson
-    this.showgeojson(route_id);
+    // this.showgeojson(route_id);
   }
 
   loadbaselayers() {
@@ -1122,11 +1141,15 @@ export class GtfsrtComponent implements OnInit {
     // console.log(keys)
     // const route_id = keys.filter((key) => data.value[key]).join();
     // console.log(route_id)
+    console.log("1125",this.routesinfo)
     this.selectrouteid = data.value.trip;
+    
     this.activeRoutes = this.routesinfo.filter(obj => {
       return (this.checktime(obj.start_time, obj.end_time) && obj.route_id == this.selectrouteid);
     });
     this.showRouteLayer(this.selectrouteid);
+    
+
   }
 
   refreshloadRoute() {
@@ -1163,17 +1186,23 @@ export class GtfsrtComponent implements OnInit {
 
 
   async getKmltoroute() {
+    let objects = []
     this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise()
+  
     this.kmlroutes.forEach(obj => {
-      console.log("138", obj.geojsonline_file)
+      //console.log("1173", obj.geojsonline_file)
       const line = new  L.GeoJSON.AJAX(obj.geojsonline_file ,{
         style: function (feature) {
           return { color: obj.color }
         }
       })
+      objects = objects.concat(line)
 
-      line.addTo(this.map)
+      //line.addTo(this.map)
     })
+
+    this.routelayerGroup = L.layerGroup(objects)
+    this.routelayerGroup.addTo(this.map)
   }
 
 }
