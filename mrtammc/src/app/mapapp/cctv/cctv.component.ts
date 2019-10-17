@@ -4,7 +4,7 @@ import { CctvService } from '../../services/cctv.service';
 import { GtfsService } from '../../services/gtfs2.service';
 import { RouteformatService } from '../../services/routeformat.service'
 import { environment } from '../../../environments/environment';
-
+import { KmltorouteService } from '../../services/kmltoroute.service';
 
 import * as jsmpeg from 'jsmpeg';
 declare let L;
@@ -30,11 +30,14 @@ export class CctvComponent implements OnInit {
   allstations
   routes
   routformats
+  kmlroutes
+  
 
   constructor(private _cctv: CctvService,
     @Inject(DOCUMENT) private document: Document,
     private gtfsService: GtfsService,
     private routeformatservice: RouteformatService,
+    private _kmltorouteservice: KmltorouteService,
     elementRef: ElementRef) {
   }
 
@@ -65,8 +68,10 @@ export class CctvComponent implements OnInit {
     this.getRouteformat();
 
 
-    this.loadGeojson();
-    this.showAllgeojson();
+    // this.loadGeojson();
+    // this.showAllgeojson();
+
+    this.getKmltoroute();
 
     this.stops = await this.gtfsService.getStops();
     await this.loadStation()
@@ -79,6 +84,21 @@ export class CctvComponent implements OnInit {
     })
 
   }
+
+  async getKmltoroute() {
+    this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise()
+    this.kmlroutes.forEach(obj => {
+      console.log("138", obj.geojsonline_file)
+      const line = new  L.GeoJSON.AJAX(obj.geojsonline_file ,{
+        style: function (feature) {
+          return { color: obj.color }
+        }
+      })
+
+      line.addTo(this.map)
+    })
+  }
+
 
   ngAfterViewInit() {
     this.getCctv();
