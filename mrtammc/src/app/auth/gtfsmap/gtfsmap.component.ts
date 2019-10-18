@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GtfsService } from '../../services/gtfs2.service';
 import { environment } from '../../../environments/environment';
+//
+import { RouteformatService } from '../../services/routeformat.service'
+import { KmltorouteService } from '../../services/kmltoroute.service';
 declare var fs: any;
 declare var path: any;
 
@@ -18,18 +21,63 @@ export class GtfsmapComponent implements OnInit {
   selectedStop
   allStops = {}
   isLogin
-  constructor(private gtfsService: GtfsService) { }
+  kmlroutes
+  routformats
 
-  ngOnInit() {
+  allstations
+  routes
+  constructor(private gtfsService: GtfsService,
+    private routeformatservice: RouteformatService,
+    private _kmltorouteservice: KmltorouteService) { }
+
+  async ngOnInit() {
     this.isLogin = true
     this.loadbaselayers()
 
     L.control.layers(this.baseLayers).addTo(this.map);
     this.map.on('click', (e) => { console.log(e.latlng); });
     //Load data
-    this.loadGeojson()
-    this.loadStation()
-    console.log(this.allStops)
+    // this.loadGeojson()
+    
+    // console.log(this.allStops)
+    this.getstations();
+    this.getRouteformat();
+    this.getKmltoroute();
+    // get stop
+    this.stops = await this.gtfsService.getStops();
+    await this.loadStation()
+  }
+
+  async getKmltoroute() {
+    this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise()
+    this.kmlroutes.forEach(obj => {
+      console.log("138", obj.geojsonline_file)
+      const line = new  L.GeoJSON.AJAX(obj.geojsonline_file ,{
+        style: function (feature) {
+          return { color: obj.color }
+        }
+      })
+
+      line.addTo(this.map)
+    })
+  }
+
+  getstations() {
+    this.gtfsService.getallstations().then(obj => {
+      this.allstations = obj
+      console.log("95", this.allstations)
+      this.routes = Object.keys(obj)
+      console.log("97", this.routes) // Array [ "BL", "PP" ]
+    })
+  }
+
+  getRouteformat() {
+    this.routeformatservice.getrouteformat().subscribe(result => {
+      console.log("115", result)
+      this.routformats = result
+    }, (error) => {
+      console.log(error)
+    })
   }
 
 
@@ -163,57 +211,101 @@ export class GtfsmapComponent implements OnInit {
     light_green_extend_line.addTo(this.map);
   }
 
+  getstationicon(stopid) {
+    let route
+    this.routes.forEach((key,index) => {
+      let arrays = []
+      this.allstations[key].forEach(record => {
+        // console.log("105",record.station)
+        arrays.push(record.station)
+      })
+      // console.log("107", key, arrays)
+      const result  = arrays.includes(stopid) ? key : null
+      if (result !== null) {
+        route = result
+        //console.log("122", index, stopid, route)
+      }
+    });
+    return route
+  }
 
   async loadStation() {
 
-    this.stops = await this.gtfsService.getStops();
-    console.log(this.stops)
+    // this.stops = await this.gtfsService.getStops();
+    console.log("234",this.stops)
 
-    this.stops.forEach(stop => {
+    this.stops.forEach((stop,index) => {
+            // get station icon path
+      const route = this.getstationicon(stop.stop_id.trim());
+
       this.allStops[stop.stop_id] = stop
-      //icon
-      let icon = new L.icon({
-        iconSize: [22, 22],
-        //iconAnchor: [0, 0],
-        iconUrl: environment.iconbase + stop.icon,
-      })
+ 
+      let stopicon = ""
+      let station_icon
+      if (route === undefined || route === null) {
+        // default
+        stopicon = environment.iconbase + stop.icon
+        console.log("256", route, stop.stop_id, stopicon)
+      } else {
 
-      //location
+        this.routformats.forEach(obj => {
+          
+          if (obj.route == route) {
+            station_icon = "."+obj.station_icon
+          }
+        })
+        console.log("261", route, stop.stop_id,  station_icon)
+        if  (station_icon === undefined || station_icon === null) {
+          stopicon = environment.iconbase + stop.icon
+        } else {
+          stopicon = station_icon
+        }
+        
+      }
+      // icon
+      const icon = new L.icon({
+        iconSize: [22, 22],
+        // iconAnchor: [0, 0],
+        iconUrl: stopicon
+      });
+      // location
+      console.log("276",stop.stop_lat, stop.stop_lon )
       const stationLatLng = new L.LatLng(stop.stop_lat, stop.stop_lon);
-      var marker = new L.marker(stationLatLng, {
+      var marker = new L.marker(stationLatLng,{
         draggable: 'true'
       });
+
+      // action on marker
       marker.setIcon(icon);
-
+      // marker.setLatLng(stationLatLng);
       //marker.setLatLng(stationLatLng)
-      marker.addTo(this.map).bindPopup(`${stop.stop_id}-${stop.stop_name}`)
-
+      marker.addTo(this.map).bindPopup(`${stop.stop_id}-${stop.stop_name}`);
       const position = marker.getLatLng();
-
       marker.setLatLng(new L.LatLng(position.lat, position.lng), {
         draggable: 'true'
       });
       //add stop_id to marker
       marker.stop_id = stop.stop_id
-      console.log('122 Old Marker', marker)
       //dragged event
       marker.on('click', (event => {
         const marker = event.target;
         this.selectedStop = this.allStops[marker.stop_id]
-        console.log(this.allStops[marker.stop_id])
+
       }))
       marker.on('dragend', (event) => {
         const marker = event.target;
-        console.log('126 new marker', marker.stop_id, marker)
+        //console.log('308 new marker', marker.stop_id, marker)
         // this.selectedMarker = marker
         const position = marker.getLatLng();
-        console.log('129 new position', position)
+       //console.log('311 new position', position)
         marker.setLatLng(new L.LatLng(position.lat, position.lng), { draggable: 'true' });
         // map.panTo(new L.LatLng(position.lat, position.lng))
         this.allStops[marker.stop_id].stop_lat = position.lat
         this.allStops[marker.stop_id].stop_lon = position.lng
-        //console.log(this.allStops[stop.stop_id])
+       
+      
         this.selectedStop = this.allStops[marker.stop_id]
+        
         this.gtfsService.updateStops(this.selectedStop)
 
       });
