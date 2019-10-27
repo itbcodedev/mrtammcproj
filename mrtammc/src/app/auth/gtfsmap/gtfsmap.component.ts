@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GtfsService } from '../../services/gtfs2.service';
+import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environments/environment';
 //
 import { RouteformatService } from '../../services/routeformat.service'
@@ -26,9 +28,25 @@ export class GtfsmapComponent implements OnInit {
 
   allstations
   routes
-  constructor(private gtfsService: GtfsService,
+
+  stopForm: FormGroup
+  submitted = false;
+  buttonClicked: string;
+  constructor(
+    private fb: FormBuilder,
+    private gtfsService: GtfsService,
+    private toastr: ToastrService,
     private routeformatservice: RouteformatService,
-    private _kmltorouteservice: KmltorouteService) { }
+    private _kmltorouteservice: KmltorouteService) {
+    this.stopForm = this.fb.group({
+      stop_id: ['', Validators.required],
+      stop_name: ['', Validators.required],
+      stop_lat: ['', Validators.required],
+      stop_lon: ['', Validators.required],
+      stop_url: '',
+      icon: ''
+    })
+  }
 
   async ngOnInit() {
     this.isLogin = true
@@ -38,9 +56,9 @@ export class GtfsmapComponent implements OnInit {
     this.map.on('click', (e) => { console.log(e.latlng); });
     //Load data
     // this.loadGeojson()
-    
+
     // console.log(this.allStops)
-    this.getstations();
+    await this.getstations();
     this.getRouteformat();
     this.getKmltoroute();
     // get stop
@@ -52,7 +70,7 @@ export class GtfsmapComponent implements OnInit {
     this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise()
     this.kmlroutes.forEach(obj => {
       console.log("138", obj.geojsonline_file)
-      const line = new  L.GeoJSON.AJAX(obj.geojsonline_file ,{
+      const line = new L.GeoJSON.AJAX(obj.geojsonline_file, {
         style: function (feature) {
           return { color: obj.color }
         }
@@ -132,7 +150,7 @@ export class GtfsmapComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const purple_line = new L.GeoJSON.AJAX("/assets/dist/kml/purple.geojson", {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: "purple"
         };
@@ -141,7 +159,7 @@ export class GtfsmapComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_line = new L.GeoJSON.AJAX("/assets/dist/kml/blue.geojson", {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: "#214374"
         };
@@ -150,7 +168,7 @@ export class GtfsmapComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_chalearm_line = new L.GeoJSON.AJAX("/assets/dist/kml/blue_chalearm.geojson", {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: "#2a5491"
         };
@@ -159,7 +177,7 @@ export class GtfsmapComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_extend_line = new L.GeoJSON.AJAX("/assets/dist/kml/blue_extend.geojson", {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: "#7f98bd"
         };
@@ -168,7 +186,7 @@ export class GtfsmapComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const orange_line = new L.GeoJSON.AJAX("/assets/dist/kml/orange.geojson", {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: "#FF6600"
         };
@@ -177,7 +195,7 @@ export class GtfsmapComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const dark_green_line = new L.GeoJSON.AJAX("/assets/dist/kml/dark_green.geojson", {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: "#458B00"
         };
@@ -186,7 +204,7 @@ export class GtfsmapComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const light_green_line = new L.GeoJSON.AJAX("/assets/dist/kml/light_green.geojson", {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: "#66CD00"
         };
@@ -195,7 +213,7 @@ export class GtfsmapComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const light_green_extend_line = new L.GeoJSON.AJAX("/assets/dist/kml/light_green_extend.geojson", {
-      style: function(feature) {
+      style: function (feature) {
         return {
           color: "#66CD00"
         };
@@ -213,14 +231,14 @@ export class GtfsmapComponent implements OnInit {
 
   getstationicon(stopid) {
     let route
-    this.routes.forEach((key,index) => {
+    this.routes.forEach((key, index) => {
       let arrays = []
       this.allstations[key].forEach(record => {
         // console.log("105",record.station)
         arrays.push(record.station)
       })
       // console.log("107", key, arrays)
-      const result  = arrays.includes(stopid) ? key : null
+      const result = arrays.includes(stopid) ? key : null
       if (result !== null) {
         route = result
         //console.log("122", index, stopid, route)
@@ -232,14 +250,14 @@ export class GtfsmapComponent implements OnInit {
   async loadStation() {
 
     // this.stops = await this.gtfsService.getStops();
-    console.log("234",this.stops)
+    console.log("234", this.stops)
 
-    this.stops.forEach((stop,index) => {
-            // get station icon path
+    this.stops.forEach((stop, index) => {
+      // get station icon path
       const route = this.getstationicon(stop.stop_id.trim());
 
       this.allStops[stop.stop_id] = stop
- 
+
       let stopicon = ""
       let station_icon
       if (route === undefined || route === null) {
@@ -249,18 +267,18 @@ export class GtfsmapComponent implements OnInit {
       } else {
 
         this.routformats.forEach(obj => {
-          
+
           if (obj.route == route) {
-            station_icon = "."+obj.station_icon
+            station_icon = "." + obj.station_icon
           }
         })
-        console.log("261", route, stop.stop_id,  station_icon)
-        if  (station_icon === undefined || station_icon === null) {
+        console.log("261", route, stop.stop_id, station_icon)
+        if (station_icon === undefined || station_icon === null) {
           stopicon = environment.iconbase + stop.icon
         } else {
           stopicon = station_icon
         }
-        
+
       }
       // icon
       const icon = new L.icon({
@@ -269,9 +287,9 @@ export class GtfsmapComponent implements OnInit {
         iconUrl: stopicon
       });
       // location
-      console.log("276",stop.stop_lat, stop.stop_lon )
+      console.log("276", stop.stop_lat, stop.stop_lon)
       const stationLatLng = new L.LatLng(stop.stop_lat, stop.stop_lon);
-      var marker = new L.marker(stationLatLng,{
+      var marker = new L.marker(stationLatLng, {
         draggable: 'true'
       });
 
@@ -290,27 +308,75 @@ export class GtfsmapComponent implements OnInit {
       marker.on('click', (event => {
         const marker = event.target;
         this.selectedStop = this.allStops[marker.stop_id]
-
+        this.stopForm.setValue({
+          stop_id: this.selectedStop.stop_id,
+          stop_name: this.selectedStop.stop_name,
+          stop_lat: this.selectedStop.stop_lat,
+          stop_lon: this.selectedStop.stop_lon,
+          stop_url: this.selectedStop.stop_url,
+          icon: this.selectedStop.icon
+        })
       }))
       marker.on('dragend', (event) => {
         const marker = event.target;
         //console.log('308 new marker', marker.stop_id, marker)
         // this.selectedMarker = marker
         const position = marker.getLatLng();
-       //console.log('311 new position', position)
+        //console.log('311 new position', position)
         marker.setLatLng(new L.LatLng(position.lat, position.lng), { draggable: 'true' });
         // map.panTo(new L.LatLng(position.lat, position.lng))
         this.allStops[marker.stop_id].stop_lat = position.lat
         this.allStops[marker.stop_id].stop_lon = position.lng
-       
-      
+
+
         this.selectedStop = this.allStops[marker.stop_id]
-        
+
         this.gtfsService.updateStops(this.selectedStop)
 
       });
 
     })
+  }
+
+  onstopSubmit() {
+    if (this.buttonClicked == 'update') {
+      console.log('update')
+      this.submitted = true;
+      // stop here if form is invalid
+      if (this.stopForm.invalid) {
+        return;
+      }
+      this.gtfsService.updateStops(this.stopForm.value).then((result: any) => {
+        let msg = result.message
+        this.toastr.success('ข้อมูลได้รับการบันทึกเรียบร้อยแล้ว', msg, {
+          timeOut: 3000
+        });
+      })
+    } else {
+      this.gtfsService.deleteStops(this.stopForm.value.stop_id).then((result: any) => {
+        let msg = result.message
+        this.toastr.success('ลบข้อมูลเรียบร้อยแล้ว', msg, {
+          timeOut: 3000
+        })
+        console.log('delete click')
+      })
+    }
+
+    this.update()
+  }
+
+  async update() {
+    this.stops = await this.gtfsService.getStops();
+    await this.loadStation()
+    this.stopForm.setValue({
+      stop_id: "",
+      stop_name: "",
+      stop_lat: "",
+      stop_lon: "",
+      stop_url: "",
+      icon: ""
+    })
+    this.ngOnInit();
   }
 
   // convert Json to CSV data in Angular2
@@ -341,16 +407,16 @@ export class GtfsmapComponent implements OnInit {
 
   async dumpToText() {
     this.stops = await this.gtfsService.getStops()
-    const result = this.stops.map(obj=>{
-      return  {
-      agency_key: obj.agency_key,
-      stop_id: obj.stop_id,
-      stop_name: obj.stop_name,
-      stop_lat: obj.stop_lat,
-      stop_lon: obj.stop_lon,
-      zone_id: obj.zone_id,
-      stop_url: obj.stop_url,
-      icon: obj.icon
+    const result = this.stops.map(obj => {
+      return {
+        agency_key: obj.agency_key,
+        stop_id: obj.stop_id,
+        stop_name: obj.stop_name,
+        stop_lat: obj.stop_lat,
+        stop_lon: obj.stop_lon,
+        zone_id: obj.zone_id,
+        stop_url: obj.stop_url,
+        icon: obj.icon
       }
     })
 

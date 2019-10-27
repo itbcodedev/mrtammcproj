@@ -155,3 +155,9 @@ exports.updateStops =  async (data) => {
   console.log(stop)
   return stop
 }
+
+exports.deleteStops = async (stop_id) => {
+  stop = await Stop.findOneAndRemove({stop_id: stop_id})
+  console.log(stop)
+  return stop
+}

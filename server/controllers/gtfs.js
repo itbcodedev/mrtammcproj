@@ -11,7 +11,7 @@ const {getFeedInfo} = require('./gtfs/feed-info');
 const {getFrequencies} = require('./gtfs/frequencies');
 const {getRoutes, getRoutesBasic} = require('./gtfs/routes');
 const {getShapes, getShapesAsGeoJSON} = require('./gtfs/shapes');
-const {getStops, getStopsAsGeoJSON, updateStops} = require('./gtfs/stops');
+const {getStops, getStopsAsGeoJSON, updateStops, deleteStops} = require('./gtfs/stops');
 const {getStoptimes, getStoptimesBasic, getallstoptimes, getallstops} = require('./gtfs/stop-times');
 const {getTransfers} = require('./gtfs/transfers');
 const {getTrips, getDirectionsByRoute} = require('./gtfs/trips');
@@ -46,7 +46,7 @@ exports.getShapesAsGeoJSON = getShapesAsGeoJSON;
 exports.getStops = getStops;
 exports.getStoptimesBasic =  getStoptimesBasic;
 exports.updateStops = updateStops
-
+exports.deleteStops = deleteStops
 exports.getStopsAsGeoJSON = getStopsAsGeoJSON;
 
 exports.getStoptimes = getStoptimes;

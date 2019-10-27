@@ -38,6 +38,15 @@ module.exports = function(io) {
 
   })
 
+  router.delete('/stops/:data',  (req,res,next) => {
+    const { data } = req.params;
+    console.log("delete stop", data)
+    gtfs.deleteStops(data).then(stops => {
+      res.json({message: "delete success"})
+    })
+
+  })
+
 
   router.get('/stops', async (req, res) => {
     const {agency_key} = req.params
