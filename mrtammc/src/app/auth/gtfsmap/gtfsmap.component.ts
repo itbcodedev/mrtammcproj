@@ -44,7 +44,7 @@ export class GtfsmapComponent implements OnInit {
       stop_lat: ['', Validators.required],
       stop_lon: ['', Validators.required],
       stop_url: '',
-      icon: ''
+      icon: ['', Validators.required]
     })
   }
 
@@ -418,12 +418,18 @@ export class GtfsmapComponent implements OnInit {
       })
     } else {
       console.log('add ')
-      this.gtfsService.createStops(this.stopForm.value).then((result: any) => {
-        let msg = result.message
-        this.toastr.success('ข้อมูลได้รับการบันทึกเรียบร้อยแล้ว', msg, {
-          timeOut: 3000
-        });
-      })
+      if (this.stopForm.invalid) {
+        alert("Missing Field: กรุณากรอกข้อมูลให้ครบถ้วน")
+        return;
+      } else {
+        this.gtfsService.createStops(this.stopForm.value).then((result: any) => {
+          let msg = result.message
+          this.toastr.success('ข้อมูลได้รับการบันทึกเรียบร้อยแล้ว', msg, {
+            timeOut: 3000
+          });
+        })
+      }
+
     }
 
     this.update()

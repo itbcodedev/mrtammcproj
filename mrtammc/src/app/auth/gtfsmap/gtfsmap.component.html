@@ -9,28 +9,28 @@
 
           <form [formGroup]="stopForm" (ngSubmit)="onstopSubmit()">
             <div class="form-group">
-              <label>Stop ID</label>
+              <label>ID *</label>
               <input type="text" formControlName="stop_id">
             </div>
             <div class="form-group">
-              <label>Stop Name</label>
+              <label>Name * </label>
               <input type="text" formControlName="stop_name">
             </div>
             <div class="form-group">
-              <label>Stop Latitude</label>
+              <label>Latitude * </label>
               <input type="text" formControlName="stop_lat">
             </div>
             <div class="form-group">
-              <label>Stop Longitude</label>
+              <label>Longitude *</label>
               <input type="text" formControlName="stop_lon">
             </div>
             <div class="form-group">
-              <label>Stop Url</label>
+              <label>Url</label>
               <input type="text" formControlName="stop_url">
             </div>
             <div class="form-group">
-              <label>Icon</label>
-              <input type="text" formControlName="stop_icon">
+              <label>Icon *</label>
+              <input type="text" formControlName="icon">
             </div>
             <div class="form-group">
               <button class="btn btn-secondary" type="submit" (click)="buttonClicked = 'add'">
