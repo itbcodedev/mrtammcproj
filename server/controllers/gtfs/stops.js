@@ -148,16 +148,27 @@ exports.getStopsAsGeoJSON = async (query = {}) => {
 exports.updateStops =  async (data) => {
   stop = await Stop.findOneAndUpdate({stop_id: data.stop_id},data)
   
-  console.log('exports.updateStops data')
-  console.log(data)
+  // console.log('exports.updateStops data')
+  // console.log(data)
 
-  console.log('exports.updateStops')
-  console.log(stop)
+  // console.log('exports.updateStops')
+  // console.log(stop)
   return stop
 }
 
 exports.deleteStops = async (stop_id) => {
   stop = await Stop.findOneAndRemove({stop_id: stop_id})
+  console.log(stop)
+  return stop
+}
+
+exports.createStops =  async (data) => {
+  stop = await Stop.create(data)
+  
+  // console.log('exports.updateStops data')
+  // console.log(data)
+
+  // console.log('exports.updateStops')
   console.log(stop)
   return stop
 }

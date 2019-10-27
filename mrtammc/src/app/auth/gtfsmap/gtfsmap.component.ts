@@ -85,7 +85,7 @@ export class GtfsmapComponent implements OnInit {
       this.allstations = obj
       console.log("95", this.allstations)
       this.routes = Object.keys(obj)
-      console.log("97", this.routes) // Array [ "BL", "PP" ]
+      console.log("97", this.routes) // Array ["BL", "CEN", "E-", "E", "N", "OR", "PP"]
     })
   }
 
@@ -143,6 +143,62 @@ export class GtfsmapComponent implements OnInit {
       "googleSat": googleSat,
       "googleTerrain": googleTerrain
     };
+
+    this.map.on('click', (e) => {
+      let newmarker = new L.marker(e.latlng, { draggable: 'true' }).addTo(this.map);
+      this.stopForm.setValue({
+        stop_id: '',
+        stop_name: '',
+        stop_lat: e.latlng.lat,
+        stop_lon: e.latlng.lng,
+        stop_url: '',
+        icon: ''
+      })
+      newmarker.on('dragend', (event) => {
+        const marker = event.target;
+        const position = marker.getLatLng();
+        marker.setLatLng(new L.LatLng(position.lat, position.lng));
+        this.stopForm.setValue({
+          stop_id: '',
+          stop_name: '',
+          stop_lat: position.lat,
+          stop_lon: position.lng,
+          stop_url: '',
+          icon: ''
+        })
+      });
+      newmarker.on('dblclick', (event) => {
+        const marker = event.target;
+        this.map.removeLayer(marker)
+        this.stopForm.setValue({
+          stop_id: '',
+          stop_name: '',
+          stop_lat: '',
+          stop_lon: '',
+          stop_url: '',
+          icon: ''
+        })
+      })
+      newmarker.on('click', (event) => {
+        const marker = event.target;
+        this.map.removeLayer(marker)
+        this.stopForm.setValue({
+          stop_id: '',
+          stop_name: '',
+          stop_lat: '',
+          stop_lon: '',
+          stop_url: '',
+          icon: ''
+        })
+      })
+    });
+
+
+  }
+
+  addMarker(e) {
+    // Add marker to map at click location; add popup window
+    var newMarker = new L.marker(e.latlng).addTo(this.map);
   }
 
 
@@ -352,13 +408,21 @@ export class GtfsmapComponent implements OnInit {
           timeOut: 3000
         });
       })
-    } else {
+    } else if (this.buttonClicked == 'delete') {
       this.gtfsService.deleteStops(this.stopForm.value.stop_id).then((result: any) => {
         let msg = result.message
         this.toastr.success('ลบข้อมูลเรียบร้อยแล้ว', msg, {
           timeOut: 3000
         })
         console.log('delete click')
+      })
+    } else {
+      console.log('add ')
+      this.gtfsService.createStops(this.stopForm.value).then((result: any) => {
+        let msg = result.message
+        this.toastr.success('ข้อมูลได้รับการบันทึกเรียบร้อยแล้ว', msg, {
+          timeOut: 3000
+        });
       })
     }
 

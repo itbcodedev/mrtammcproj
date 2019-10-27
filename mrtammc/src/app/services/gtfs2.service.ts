@@ -29,8 +29,13 @@ export class GtfsService {
   }
 
   public updateStops(data): Promise<Stop[]> {
+    return this.http.put<Stop[]>(`${BASE_API_ENDPOINT}/stops`,data).toPromise();
+  }
+
+  public createStops(data): Promise<Stop[]> {
     return this.http.post<Stop[]>(`${BASE_API_ENDPOINT}/stops`,data).toPromise();
   }
+
 
   public deleteStops(data) {
     return this.http.delete(`${BASE_API_ENDPOINT}/stops/${data}`).toPromise();

@@ -30,7 +30,7 @@ module.exports = function(io) {
 
   });
 
-  router.post('/stops',  (req,res,next) => {
+  router.put('/stops',  (req,res,next) => {
     //console.log(req.body)
     gtfs.updateStops(req.body).then(stops => {
       res.json({message: "update success"})
@@ -38,6 +38,14 @@ module.exports = function(io) {
 
   })
 
+
+  router.post('/stops',  (req,res,next) => {
+    //console.log(req.body)
+    gtfs.createStops(req.body).then(stops => {
+      res.json({message: "update success"})
+    })
+
+  })
   router.delete('/stops/:data',  (req,res,next) => {
     const { data } = req.params;
     console.log("delete stop", data)
