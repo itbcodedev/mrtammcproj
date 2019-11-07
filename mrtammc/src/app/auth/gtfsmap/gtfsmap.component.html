@@ -3,9 +3,7 @@
     <div class="row">
       <div class="col-sm-2">
         <div class="fullbox">
-          <h6> Marker
-            <button type="button" class="btn btn-primary btn-sm" (click)="dumpToText()">Save to file</button>
-          </h6>
+          <h6> ข้อมูล Marker สถานี </h6>
 
           <form [formGroup]="stopForm" (ngSubmit)="onstopSubmit()">
             <div class="form-group">
@@ -44,7 +42,12 @@
               </button>
             </div>
           </form>
+          <h6> บันทึก Marker สู่ file
+            <button type="button" class="btn btn-primary btn-sm" (click)="dumpToText()">Backup <i class="fa fa-file-code-o" aria-hidden="true"></i></button>
+          </h6>
         </div>
+
+
       </div>
       <div class="col-sm-10">
         <div class="fullbox">

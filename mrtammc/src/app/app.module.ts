@@ -17,6 +17,7 @@ import * as bootstrap from "bootstrap";
 import * as $ from "jquery";
 import { ImageFormatterComponent } from './image-formatter/image-formatter.component';
 
+import { FileSaverModule } from 'ngx-filesaver';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ImageFormatterComponent } from './image-formatter/image-formatter.compo
     ReactiveFormsModule,
     MapappModule,
     AuthModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FileSaverModule
   ],
   exports: [
     BrowserAnimationsModule

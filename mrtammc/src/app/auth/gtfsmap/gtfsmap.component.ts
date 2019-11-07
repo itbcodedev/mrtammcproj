@@ -6,7 +6,9 @@ import { environment } from '../../../environments/environment';
 //
 import { RouteformatService } from '../../services/routeformat.service'
 import { KmltorouteService } from '../../services/kmltoroute.service';
-declare var fs: any;
+import {FileSaverService} from 'ngx-filesaver';
+
+
 declare var path: any;
 
 declare let L;
@@ -37,6 +39,7 @@ export class GtfsmapComponent implements OnInit {
     private gtfsService: GtfsService,
     private toastr: ToastrService,
     private routeformatservice: RouteformatService,
+    private fileSaverService: FileSaverService,
     private _kmltorouteservice: KmltorouteService) {
     this.stopForm = this.fb.group({
       stop_id: ['', Validators.required],
@@ -495,15 +498,18 @@ export class GtfsmapComponent implements OnInit {
       }
     })
 
-    const csvData = this.ConvertToCSV(result);
-    //new Angular5Csv(data, 'MyFileName');
-    // fs.writeFile('file.txt', csvData, function(err) {
+    // const csvData = this.ConvertToCSV(result);
+    let buffer = JSON.stringify(result,null,2)
+    let datetime = new Date().toISOString().split('T')[0];
+
+    this.fileSaverService.save(new Blob([buffer], {type: "application/json"}), `${datetime}-stations.json`)
+    // fs.writeFile('./assets/masterdb/backupfile.json', JSON.stringify(csvData,null,2), err => {
     //   if (err) {
     //     return console.error(err);
     //   }
     //   console.log("File created!");
     // });
-    console.log(csvData)
+    //console.log(csvData)
   }
 
 

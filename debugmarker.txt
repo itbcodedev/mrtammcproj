@@ -68,3 +68,28 @@ timedatectl set-time 16:00:00
 
 sudo kill -9 $(lsof -t -i:3000)
 sudo kill -9 $(lsof -t -i:4200)
+
+
+
+git checkout   server/upload/kmls/1571072435056-blue-extend.kml
+git checkout    server/upload/kmls/1571072932758-blue.kml
+git checkout    server/upload/kmls/1571072957325-blue-chalearm.kml
+git checkout    server/upload/kmls/1571072994045-purple_gold.kml
+git checkout    server/upload/kmls/1571073803543-blue-chalearm.kml
+git checkout    server/upload/kmls/1571073936396-purple_gold.kml
+git checkout    server/upload/kmls/1571075036138-orange.kml
+git checkout   server/upload/kmls/1571075213656-orange.kml
+git checkout    server/upload/kmls/1571075501599-yellow.kml
+git checkout    server/upload/kmls/1571116929772-purple.kml
+git checkout    server/upload/kmls/1571128365071-purple.kml
+git checkout    server/upload/kmls/1571129028803-blue.kml
+git checkout    server/upload/kmls/1571139326317-purple.kml
+git checkout    server/upload/kmls/1571139326317-purple_line.geojson
+git checkout   server/upload/kmls/1571139326317-purple_point.geojson
+git checkout    server/upload/kmls/1571139357812-blue.kml
+git checkout    server/upload/kmls/1571139357812-blue_line.geojson
+git checkout    server/upload/kmls/1571139357812-blue_point.geojson
+
+
+unlink /home/mee/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
+ng build
