@@ -143,9 +143,14 @@ export class GtfsmapComponent implements OnInit {
       "googleSat": googleSat,
       "googleTerrain": googleTerrain
     };
-
+    let icon = new L.icon({
+      iconSize: [ 25, 41 ],
+      iconAnchor: [ 13, 41 ],
+      iconUrl: './assets/leaflet/images/marker-icon-red.png'
+    });
     this.map.on('click', (e) => {
       let newmarker = new L.marker(e.latlng, { draggable: 'true' }).addTo(this.map);
+      newmarker.setIcon(icon)
       this.stopForm.setValue({
         stop_id: '',
         stop_name: '',
