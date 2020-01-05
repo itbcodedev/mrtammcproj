@@ -83,6 +83,9 @@ export class GtfsrtComponent implements OnInit {
   async ngOnInit() {
     setInterval(() => {
       this.updatetime();
+      this.totalTrips = this.routesinfo.filter(obj => {
+        return this.checktime(obj.start_time, obj.end_time);
+      });
     }, 1000);
 
     this.loadbaselayers();
@@ -603,6 +606,7 @@ export class GtfsrtComponent implements OnInit {
     this.time = currentDate.toLocaleTimeString("th-TH", {
       timeZone: "Asia/Bangkok"
     });
+
   }
 
   showAllMapLayer(): any {
