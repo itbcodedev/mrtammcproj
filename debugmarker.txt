@@ -99,3 +99,13 @@ server$ npm install
 server$ node initdatabase.js
 
 server$ npm run dev
+
+
+
+  966  cd mrtammcproj/
+  967  git pull
+  968  history
+  969  unlink /home/sawangpong/app/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
+  970  cd mrtammc/
+  971  ng build --prod
+  972  sudo systemctl restart mrta-app1 && sudo systemctl restart mrta-app2
