@@ -93,3 +93,9 @@ git checkout    server/upload/kmls/1571139357812-blue_point.geojson
 
 unlink /home/mee/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
 ng build
+
+
+server$ npm install
+server$ node initdatabase.js
+
+server$ npm run dev

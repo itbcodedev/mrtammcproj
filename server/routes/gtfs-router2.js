@@ -9,14 +9,17 @@ const gtfs = require('../controllers/gtfs')
 module.exports = function(io) {
 
   router.get('/agencies', async (req, res) => {
-      gtfs.getAgencies((err, agencies) => {
+      // gtfs.getAgencies((err, agencies) => {
+      //   return res.json(agencies);
+      // });
+      gtfs.getAgencies().then((agencies) => {
         return res.json(agencies);
-      });
+      }).catch(error => {return res.json(error.message)})
   });
 
   router.get('/agencies/:agency_key', async (req, res) => {
     const { agency_key } = req.params;
-    gtfs.getAgencie(agency_key, (err, agency) =>  {
+    gtfs.getAgencies(agency_key, (err, agency) =>  {
       return res.json(agency);
     })
   });

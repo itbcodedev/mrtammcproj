@@ -93,8 +93,8 @@ export class GtfsrtComponent implements OnInit {
     function style(feature, latlng) {
       return L.circleMarker(latlng, {
         radius: 2,
-        fillColor: "#ff7800",
-        color: "#ff0000",
+        fillColor: '#ff7800',
+        color: '#ff0000',
         weight: 1,
         opacity: 1,
         fillOpacity: 0.5
@@ -735,7 +735,7 @@ export class GtfsrtComponent implements OnInit {
 
   loadGeojson() {
     // load geojson with new L.GeoJSON()
-    const purple_line = new L.GeoJSON.AJAX("/assets/dist/kml/purple.geojson", {
+    const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purple.geojson', {
       style: function(feature) {
         return {
           color: "purple"
@@ -744,7 +744,7 @@ export class GtfsrtComponent implements OnInit {
     });
 
     // load geojson with new L.GeoJSON()
-    const blue_line = new L.GeoJSON.AJAX("/assets/dist/kml/blue.geojson", {
+    const blue_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue.geojson', {
       style: function(feature) {
         return {
           color: "#214374"
@@ -754,7 +754,7 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_chalearm_line = new L.GeoJSON.AJAX(
-      "/assets/dist/kml/blue_chalearm.geojson",
+      '/assets/dist/kml/blue_chalearm.geojson',
       {
         style: function(feature) {
           return {
@@ -766,32 +766,32 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const blue_extend_line = new L.GeoJSON.AJAX(
-      "/assets/dist/kml/blue_extend.geojson",
+      '/assets/dist/kml/blue_extend.geojson',
       {
         style: function(feature) {
           return {
-            color: "#7f98bd"
+            color: '#7f98bd'
           };
         }
       }
     );
 
     // load geojson with new L.GeoJSON()
-    const orange_line = new L.GeoJSON.AJAX("/assets/dist/kml/orange.geojson", {
+    const orange_line = new L.GeoJSON.AJAX('/assets/dist/kml/orange.geojson', {
       style: function(feature) {
         return {
-          color: "#FF6600"
+          color: '#FF6600'
         };
       }
     });
 
     // load geojson with new L.GeoJSON()
     const dark_green_line = new L.GeoJSON.AJAX(
-      "/assets/dist/kml/dark_green.geojson",
+      '/assets/dist/kml/dark_green.geojson',
       {
         style: function(feature) {
           return {
-            color: "#458B00"
+            color: '#458B00'
           };
         }
       }
@@ -799,11 +799,11 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const light_green_line = new L.GeoJSON.AJAX(
-      "/assets/dist/kml/light_green.geojson",
+      '/assets/dist/kml/light_green.geojson',
       {
         style: function(feature) {
           return {
-            color: "#66CD00"
+            color: '#66CD00'
           };
         }
       }
@@ -811,11 +811,11 @@ export class GtfsrtComponent implements OnInit {
 
     // load geojson with new L.GeoJSON()
     const light_green_extend_line = new L.GeoJSON.AJAX(
-      "/assets/dist/kml/light_green_extend.geojson",
+      '/assets/dist/kml/light_green_extend.geojson',
       {
         style: function(feature) {
           return {
-            color: "#66CD00"
+            color: '#66CD00'
           };
         }
       }
@@ -833,7 +833,7 @@ export class GtfsrtComponent implements OnInit {
     this.geojson_route = {
       purple_line: {
         geojson: purple_line,
-        routes: ["00011", "00012"]
+        routes: ['00011', '00012']
       },
       blue_line: {
         geojson: blue_line,
@@ -841,7 +841,7 @@ export class GtfsrtComponent implements OnInit {
       },
       blue_chalearm_line: {
         geojson: blue_chalearm_line,
-        routes: ["00013", "00014"]
+        routes: ['00013', '00014']
       },
       blue_extend_line: {
         geojson: blue_extend_line,
@@ -944,9 +944,9 @@ export class GtfsrtComponent implements OnInit {
   getstations() {
     this.gtfsService.getallstations().then(obj => {
       this.allstations = obj;
-      console.log("790", this.allstations);
+      console.log('790', this.allstations);
       this.routes = Object.keys(obj);
-      console.log("792", this.routes); // Array [ "BL", "PP" ]
+      console.log('792', this.routes); // Array [ "BL", "PP" ]
     });
   }
 
@@ -965,7 +965,7 @@ export class GtfsrtComponent implements OnInit {
   getstationicon(stopid) {
     let route;
     this.routes.forEach((key, index) => {
-      let arrays = [];
+      const arrays = [];
       this.allstations[key].forEach(record => {
         // console.log("105",record.station)
         arrays.push(record.station);
@@ -974,7 +974,7 @@ export class GtfsrtComponent implements OnInit {
       const result = arrays.includes(stopid) ? key : null;
       if (result !== null) {
         route = result;
-        //console.log("122", index, stopid, route)
+        // console.log("122", index, stopid, route)
       }
     });
     return route;
@@ -987,7 +987,7 @@ export class GtfsrtComponent implements OnInit {
       const route = this.getstationicon(stop.stop_id.trim());
 
       // console.log("128 ===================", index,  stop.stop_id, route)
-      let stopicon = "";
+      let stopicon = '';
       let station_icon;
       if (route === undefined || route === null) {
         // default
