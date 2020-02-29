@@ -102,10 +102,179 @@ server$ npm run dev
 
 
 
-  966  cd mrtammcproj/
+  {
+[0]     agency_key: 'MRTA_Transit',
+[0]     route_name: 'blue',
+[0]     route_id: '00014',
+[0]     trip_id: '090346',
+[0]     start_point: 'HUA',
+[0]     start_time: '06:58:00',
+[0]     end_point: 'TAO',
+[0]     end_time: '07:32:16',
+[0]     length: '21028',
+[0]     runtime: 34,
+[0]     direction: '1',
+[0]     speed: '1',
+[0]     __v: 0,
+[0]     start_time_secs: 25080,
+[0]     end_time_secs: 27136,
+[0]     runtime_secs: 2056,
+[0]     time_now: '07:03:29',
+[0]     time_now_sec: 25409,
+[0]     file: 'blue_chalearm_path_out',
+[0]     location: {
+[0]       index: 328,
+[0]       latitude: '13.7253158239296',
+[0]       longitude: '100.546663101329'
+[0]     },
+[0]     stoptimes: [
+[0]       [Object], [Object], [Object],
+[0]       [Object], [Object], [Object],
+[0]       [Object], [Object], [Object],
+[0]       [Object], [Object], [Object],
+[0]       [Object], [Object], [Object],
+[0]       [Object], [Object], [Object],
+[0]       [Object]
+[0]     ]
+[0]   }
+[0] ]
+
+  966  cd app/mrtammcproj/
   967  git pull
   968  history
   969  unlink /home/sawangpong/app/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
   970  cd mrtammc/
   971  ng build --prod
   972  sudo systemctl restart mrta-app1 && sudo systemctl restart mrta-app2
+
+
+// ]   {
+// [0]     agency_key: 'MRTA_Transit',
+// [0]     route_name: 'blue',
+// [0]     trip_id: '082946',
+// [0]     start_point: 'HUA',
+// [0]     start_time: '22:33:15',
+// [0]     end_point: 'TAO',
+// [0]     end_time: '23:07:31',
+// [0]     length: '21028',
+// [0]     runtime: '',
+// [0]     direction: '1',
+// [0]     __v: 0,
+// [0]     start_time_secs: 81195,
+// [0]     end_time_secs: 83251,
+// [0]     runtime_secs: 2056,
+// [0]     time_now: '22:33:50',
+// [0]     time_now_sec: 81230,
+// [0]     file: 'blue_chalearm_path_out',
+// [0]     location: {
+// [0]       index: 36,
+// [0]       latitude: '13.7363351676309',
+// [0]       longitude: '100.52005564644'
+// [0]     }
+// [0]   }
+
+
+          //console.log(trip.trip_id, stoptimes.length)
+          // const select_stoptimes = stoptimes.filter( stoptime => {
+          //   const time = moment(stoptime.departure_time, format)
+          //   const at = moment(start_time, format)
+          //   const dt = moment(end_time, format)
+
+          //   if (time.isBetween(at, dt)) {
+          //     //console.log('true')
+          //     return true
+          //   } else {
+          //     //console.log('false')
+          //     return false
+          //   }
+
+          // })
+          // calulate location
+          // moment(time, 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds');
+
+
+          // {
+          //   [0]   agency_key: 'MRTA_Transit',
+          //   [0]   route_name: 'blue',
+          //   [0]   route_id: '00014',
+          //   [0]   trip_id: '080746',
+          //   [0]   start_point: 'HUA',
+          //   [0]   start_time: '09:15:45',
+          //   [0]   end_point: 'TAO',
+          //   [0]   end_time: '09:50:01',
+          //   [0]   length: '21028',
+          //   [0]   runtime: 34,
+          //   [0]   direction: '1',
+          //   [0]   __v: 0,
+          //   [0]   start_time_secs: 33345,
+          //   [0]   end_time_secs: 35401,
+          //   [0]   runtime_secs: 2056,
+          //   [0]   time_now: '09:15:51',
+          //   [0]   time_now_sec: 33351,
+          //   [0]   file: 'blue_chalearm_path_out',
+          //   [0]   location: {
+          //   [0]     index: 6,
+          //   [0]     latitude: '13.737285666636',
+          //   [0]     longitude: '100.517780102064'
+          //   [0]   },
+          //   [0]   stoptimes: [
+          //   [0]     {
+          //   [0]       _id: 5d2a8f3f1473da58b879eb88,
+          //   [0]       agency_key: 'MRTA_Transit',
+          //   [0]       trip_id: '080746',
+          //   [0]       arrival_time: '09:15:45',
+          //   [0]       departure_time: '09:15:45',
+          //   [0]       stop_id: 'BL28',
+          //   [0]       stop_sequence: 1,
+          //   [0]       __v: 0
+          //   [0]     },
+          //   [0]     {
+          //   [0]       _id: 5d2a8f3f1473da58b879eb89,
+          //   [0]       agency_key: 'MRTA_Transit',
+          //   [0]       trip_id: '080746',
+          //   [0]       arrival_time: '09:18:11',
+          //   [0]       departure_time: '09:18:11',
+          //   [0]       stop_id: 'BL27',
+          //   [0]       stop_sequence: 2,
+          //   [0]       __v: 0
+          //   [0]     },
+          //   [0]     {
+          //   [0]       _id: 5d2a8f3f1473da58b879eb8a,
+          //   [0]       agency_key: 'MRTA_Transit',
+          //   [0]       trip_id: '080746',
+          //   [0]       arrival_time: '09:19:43',
+          //   [0]       departure_time: '09:19:43',
+          //   [0]       stop_id: 'BL26',
+          //   [0]       stop_sequence: 3,
+          //   [0]       __v: 0
+          //   [0]     },
+          //   [0]     {
+          //   [0]       _id: 5d2a8f3f1473da58b879eb8b,
+          //   [0]       agency_key: 'MRTA_Transit',
+          //   [0]       trip_id: '080746',
+          //   [0]       arrival_time: '09:21:23',
+          //   [0]       departure_time: '09:21:23',
+          //   [0]       stop_id: 'BL25',
+          //   [0]       stop_sequence: 4,
+          //   [0]       __v: 0
+          //   [0]     },
+          //   [0]     {
+          //   [0]       _id: 5d2a8f3f1473da58b879eb8c,
+          //   [0]       agency_key: 'MRTA_Transit',
+          //   [0]       trip_id: '080746',
+          //   [0]       arrival_time: '09:23:03',
+          //   [0]       departure_time: '09:23:03',
+          //   [0]       stop_id: 'BL24',
+          //   [0]       stop_sequence: 5,
+          //   [0]       __v: 0
+          //   [0]     },
+          //   [0]     {
+          //   [0]       _id: 5d2a8f3f1473da58b879eb8d,
+          //   [0]       agency_key: 'MRTA_Transit',
+          //   [0]       trip_id: '080746',
+          //   [0]       arrival_time: '09:24:46',
+          //   [0]       departure_time: '09:24:46',
+          //   [0]       stop_id: 'BL23',
+          //   [0]       stop_sequence: 6,
+          //   [0]       __v: 0
+          //   [0]     },

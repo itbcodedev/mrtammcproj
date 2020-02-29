@@ -17,13 +17,18 @@ module.exports = function(io) {
       }).catch(error => {return res.json(error.message)})
   });
 
-  router.get('/agencies/:agency_key', async (req, res) => {
-    const { agency_key } = req.params;
-    gtfs.getAgencies(agency_key, (err, agency) =>  {
+  router.get('/agencies/:agency_id', async (req, res) => {
+    const { agency_id } = req.params;
+   
+    gtfs.getAgencies(req.params)
+    .then(agency => {
       return res.json(agency);
+    }).catch(error => {
+      return res.json(error.message);
     })
   });
 
+  
   router.get('/stops', async (req, res) => {
     const query = {}
 
@@ -144,7 +149,7 @@ module.exports = function(io) {
     res.json(stops);
   });
   // -------------------------------------------------------------
-  //localhost:3000/api/v2/stoptimes/MRTA_Transit/00011
+  //http://localhost:3000/api/v2/stoptimes/MRTA_Transit/00011
   router.get("/stoptimes/:agency_key/:route_id", (req, res, next) => {
     const {agency_key,route_id} = req.params
     const query = {agency_key: agency_key, route_id: route_id}
@@ -159,7 +164,7 @@ module.exports = function(io) {
       res.json(stoptimes)
     })
   });
-  // localhost:3000/api/v2/stoptimes_basic/MRTA_Transit/00316
+  // http://localhost:3000/api/v2/stoptimes_basic/MRTA_Transit/00316
   router.get('/stoptimes_basic/:agency_key/:trip_id', async (req, res) => {
     const {agency_key,trip_id} = req.params
     const query = {agency_key: agency_key, trip_id: trip_id}

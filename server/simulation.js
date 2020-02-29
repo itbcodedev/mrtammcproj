@@ -11,7 +11,6 @@ const simulate = async (io) => {
   const train = new TrainSimulator(gtfs)
 
   await train.main()
-  //console.log(train.trip_gtfs)
   train.trip_gtfs.map(trip => {
     request({
         url: simulate_url,
@@ -22,10 +21,6 @@ const simulate = async (io) => {
         //console.log(response);
     });
   })
-
-
-
-
 
 }
 

@@ -141,8 +141,8 @@ var db = mongoose.connection;
 //4 Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-const {simulate} = require('./simulation')
 //simulate()
+const {simulate} = require('./simulation')
 setInterval(simulate, 1000);
 
 server.listen(PORT, () => {
