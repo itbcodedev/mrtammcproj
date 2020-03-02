@@ -69,8 +69,7 @@ exports.TrainSimulator = class {
     // find path 
     function getPathfile(trip) {
       const index = path.config.findIndex(c => {
-        //console.log(trip.route_name, trip.speed)
-        return (c.route_name == trip.route_name && c.direction == trip.direction && c.speed == trip.speed)
+        return (c.route_name == trip.route_name && c.direction == trip.direction && c.speed == trip.speed )
       })
 
       if (index > -1) {
@@ -155,26 +154,29 @@ exports.TrainSimulator = class {
     function addStoptime(gtfs,trips){
 
       return Promise.all(trips.map( async trip => {
-        // calculate location from trip start time
-
+        
+       //console.log("159", trip.trip_id, trip.start_time, trip.end_time)
         const delta_t = trip.time_now_sec - trip.start_time_secs 
         const runtime_secs = trip.runtime_secs
         const filemodule = getPathfile(trip)
+        // console.log("174",  filemodule)
         const loc_length = path[`${filemodule}`].points.length
         const loc_order = Math.round((delta_t/ runtime_secs) * loc_length) 
         // use loc_order to estimate lat lng
         const location = path[`${filemodule}`].points[loc_order]
-        // console.log(trip.trip_id,runtime_secs,loc_order,loc_length)
+        // console.log("Line 167", trip.trip_id,runtime_secs,loc_order,loc_length)
+        // Line 167 0513195 3507 78 2051
         trip.file = filemodule
         trip.location = location
-        
 
         try {
           const query = {}
           query.trip_id = trip.trip_id
+          // console.log("line 176", query)
           // use trip_id query stop_times
           const result = await gtfs.getRouteInfoWithTrip(query)
-          // console.log(result[0])
+          // console.log("line 179",query, result[0])
+
           const format = 'hh:mm:ss'
           // start_time , end_time trip property
           const start_time = result[0].start_time
@@ -212,11 +214,12 @@ exports.TrainSimulator = class {
       const routeinfos_now = routeinfos_addsec.filter(trip => {
         return checktime(trip, trip.start_time, trip.end_time)
       })
-      console.log("215",routeinfos_now)
+      //console.log("215",routeinfos_now)
       // contruct data
       const routeinfos_stoptimes = await addStoptime(this.gtfs, routeinfos_now)
-      // console.log("213....",routeinfos_stoptimes)
+      console.log("218....", routeinfos_stoptimes)
       const trip_gtfs = transformFormat(routeinfos_stoptimes)
+      // console.log("220",trip_gtfs)
       return trip_gtfs
     } catch (err) {
       // console.log(err)
