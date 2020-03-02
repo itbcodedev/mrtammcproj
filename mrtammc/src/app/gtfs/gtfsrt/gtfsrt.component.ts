@@ -175,7 +175,7 @@ export class GtfsrtComponent implements OnInit {
       this.CurrentDate = moment();
       this.wsdata = JSON.stringify(data, null, 2);
       // // DEBUG: data from webservice
-      console.log('178..........', this.wsdata)
+      // console.log('178..........', this.wsdata)
       const route_name = data['header']['route_name'];
       const route_id = data['header']['route_id'];
       const direction = data['header']['direction'];

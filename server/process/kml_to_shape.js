@@ -519,11 +519,10 @@ class KmlToShape {
     //console.log(output_intervals.length)
 
     const features = output_intervals.map((cord,index)=> ({
-      points: {
         index: index,
-        latitude: cord[0],
-        longitude: cord[1]
-      }
+        latitude: cord[0].toString(),
+        longitude: cord[1].toString()
+      
     }));
     return {
       "path": {
@@ -585,11 +584,10 @@ class KmlToShape {
     //console.log(output_intervals.length)
 
     const features = output_intervals.reverse().map((cord,index)=> ({
-      points: {
+      
         index: index,
-        latitude: cord[0],
-        longitude: cord[1]
-      }
+        latitude: cord[0].toString(),
+        longitude: cord[1].toString()
     }));
     return {
       "path": {

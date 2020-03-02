@@ -88,8 +88,8 @@ exports.TrainSimulator = class {
     function transformFormat(stoptimes) {
       //each trip 
       const trip_gtfs = stoptimes.map(stoptime => {
-        // console.log("85...", stoptime)
-        // console.log("85......................")
+        console.log("85...", stoptime)
+        console.log("85......................")
         const route_name = stoptime.route_name
         const time_now = stoptime.time_now
         const tripEntity = `${stoptime.route_name}-${stoptime.trip_id}`

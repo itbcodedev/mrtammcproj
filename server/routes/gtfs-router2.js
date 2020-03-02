@@ -125,7 +125,7 @@ module.exports = function(io) {
   });
 
   router.post('/simulate',  (req,res,next) => {
-    console.log("128...", req.body)
+    console.log("128...at post /simulate", req.body)
     io.sockets.emit('gtfsrt', req.body);
     return res.status(200).json(req.body);
 
