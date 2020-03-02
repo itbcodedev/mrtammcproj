@@ -55,6 +55,10 @@ const RouteInfoSchema = new mongoose.Schema({
   speed: {
     type: String,
     index: true
+  },
+  calendar: {
+    type: String,
+    index: true
   }
 })
 

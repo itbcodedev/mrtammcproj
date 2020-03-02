@@ -265,8 +265,8 @@ class KmlToShape {
   generate_shapesfile(filename) {
     // output file in the same folder
     const output = []; // holds all rows of data
-    output.push("shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence,shape_dist_traveled")
-
+    const output_in = [];
+    output_in.push("shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence,shape_dist_traveled")
     // const FILE = path.join(__dirname, `${filename}`)
     var xml = require('fs').readFileSync(filename, 'utf8');
 
@@ -278,22 +278,48 @@ class KmlToShape {
 
     // remove space replace(/\s/g, '')
     const cords = Placemark.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+    // console.log("281......", cords)
     // a new array for each row of data
+
+
     cords.forEach((cord, index) => {
-      const row = [];
+      const location = [];
       const cord_arr = cord.split("/")
-      // console.log("longitude", cord_arr[0])
-      // console.log("latitude", cord_arr[1])
-      row.push(name)
-      row.push(cord_arr[1])
-      row.push(cord_arr[0])
-      row.push(index)
-      output.push(row.join()); // by default, join() uses a ','
+      location.push(cord_arr[0])
+      location.push(cord_arr[1])
+      output.push(location)
     });
 
-    // console.log(output)
+    let output_intervals = []
+    output.forEach((location, index) => {
+      if (index == 0) {
+        //console.log("skip 0")
+        return 0
+      }
+      // every 10 meters
+      const cordinates = this.createCoordinate(location[1], location[0], output[index - 1][1], output[index - 1][0], 10)
+      // console.log(cordinates)
+      output_intervals = output_intervals.concat(cordinates)
+      // console.log(output_intervals)
+    });
+
+    output_intervals.map((cord, index) => {
+
+      const row = []
+      if (! isNaN(cord[1])) {
+        row.push(name)
+        row.push(cord[0])
+        row.push(cord[1])
+        row.push(index)
+        row.push(index*10)
+        output_in.push(row.join()); // by default, join() uses a ','
+      }
+
+    });
+
+    // console.log("318",output_in)
     // fs.writeFileSync(shapefile, output.join(os.EOL));
-    return output.join(os.EOL)
+    return output_in.join(os.EOL)
   }
 
   isArray(obj) {
@@ -311,8 +337,8 @@ class KmlToShape {
     var result = JSON.parse(convert.xml2json(xml, { compact: true, spaces: 4 }));
     const Placemark = result.kml.Document.Placemark
     let cords = []
-    console.log("314", Placemark)
-    console.log("315", this.isArray(Placemark))
+    // console.log("314", Placemark)
+    // console.log("315", this.isArray(Placemark))
     if (this.isArray(Placemark)) {
       Placemark.forEach(place => {
         let subcords = place.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
@@ -346,6 +372,7 @@ class KmlToShape {
         //console.log("skip 0")
         return 0
       }
+      // every 10 meters
       const cordinates = this.createCoordinate(location[1], location[0], output[index - 1][1], output[index - 1][0], 10)
       // console.log(cordinates)
       output_intervals = output_intervals.concat(cordinates)
@@ -435,6 +462,140 @@ class KmlToShape {
     return {
       type: 'FeatureCollection',
       features: [ features ]
+    }
+
+  }
+
+  generate_path_in(filename) {
+        // const FILE = path.join(__dirname, `${filename}`)
+        var xml = require('fs').readFileSync(filename, 'utf8');
+        const output = []
+        var result = JSON.parse(convert.xml2json(xml, { compact: true, spaces: 4 }));
+        const Placemark = result.kml.Document.Placemark
+        let cords = []
+        // console.log("314", Placemark)
+        // console.log("315", this.isArray(Placemark))
+        if (this.isArray(Placemark)) {
+          Placemark.forEach(place => {
+            let subcords = place.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+            cords = cords.concat(subcords)
+          })
+        } else {
+          const name = result.kml.Document.name._text
+          cords = Placemark.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+        }
+        
+        // console.log(name)
+    
+        // remove space replace(/\s/g, '')
+       
+        //console.log("492", cords)
+    
+        cords.forEach((cord, index) => {
+          const location = [];
+          const cord_arr = cord.split("/")
+          // console.log("longitude", cord_arr[0])
+          // console.log("latitude", cord_arr[1])
+          location.push(cord_arr[1])
+          location.push(cord_arr[0])
+          output.push(location)
+        });
+        //console.log(output)
+        // console.log("342 kml_to_shape.js",output.length)
+        let output_intervals = []
+        output.forEach((location, index) => {
+          if (index == 0) {
+            //console.log("skip 0")
+            return 0
+          }
+          // every 10 meters
+          const cordinates = this.createCoordinate(location[1], location[0], output[index - 1][1], output[index - 1][0], 10)
+          // console.log(cordinates)
+          output_intervals = output_intervals.concat(cordinates)
+          // console.log(output_intervals)
+        });
+    
+        console.log("518",output_intervals.length)
+        // cord[1]  logitude
+        // cord[0]  latitude
+        const features = output_intervals.map((cord,index) => ({
+          index: index,
+          latitude: cord[1],
+          longitude: cord[0]
+        }));
+        // console.log("526", features)
+
+        return {
+          "path": {name: "name", direction: "direction"},
+          "points": [ features ]
+        }
+    
+  }
+
+  generate_path_out(filename) {
+    // const FILE = path.join(__dirname, `${filename}`)
+    var xml = require('fs').readFileSync(filename, 'utf8');
+    const output = []
+    var result = JSON.parse(convert.xml2json(xml, { compact: true, spaces: 4 }));
+    const Placemark = result.kml.Document.Placemark
+    let cords = []
+    // console.log("314", Placemark)
+    // console.log("315", this.isArray(Placemark))
+    if (this.isArray(Placemark)) {
+      Placemark.forEach(place => {
+        let subcords = place.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+        cords = cords.concat(subcords)
+      })
+    } else {
+      const name = result.kml.Document.name._text
+      cords = Placemark.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+    }
+    
+    // console.log(name)
+
+    // remove space replace(/\s/g, '')
+   
+    // console.log("492", cords)
+
+    cords.forEach((cord, index) => {
+      const location = [];
+      const cord_arr = cord.split("/")
+      // console.log("longitude", cord_arr[0])
+      // console.log("latitude", cord_arr[1])
+      location.push(cord_arr[1])
+      location.push(cord_arr[0])
+      output.push(location)
+    });
+    //console.log(output)
+    // console.log("342 kml_to_shape.js",output.length)
+    let output_intervals = []
+    output.forEach((location, index) => {
+      if (index == 0) {
+        //console.log("skip 0")
+        return 0
+      }
+      // every 10 meters
+      const cordinates = this.createCoordinate(location[1], location[0], output[index - 1][1], output[index - 1][0], 10)
+      // console.log(cordinates)
+      output_intervals = output_intervals.concat(cordinates)
+      // console.log(output_intervals)
+    });
+
+    console.log("518",output_intervals.length)
+    // cord[1]  logitude
+    // cord[0]  latitude
+    const features = output_intervals.map((cord,index) => ({
+      index: index,
+      latitude: cord[1],
+      longitude: cord[0]
+    }));
+    // console.log("526", features)
+    
+    const features_reverses = features.reverse()
+
+    return {
+      "path": {name: "name", direction: "direction"},
+      "points": [ features_reverses ]
     }
 
   }
