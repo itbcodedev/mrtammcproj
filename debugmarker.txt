@@ -147,7 +147,7 @@ server$ npm run dev
   971  ng build --prod
   972  sudo systemctl restart mrta-app1 && sudo systemctl restart mrta-app2
 
-
+sudo systemctl restart nginx
 // ]   {
 // [0]     agency_key: 'MRTA_Transit',
 // [0]     route_name: 'blue',

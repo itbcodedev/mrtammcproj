@@ -1,4 +1,4 @@
-const {init, DATABASE} = require('./initdb_route_infos');
+const {init, DATABASE} = require('./update_route_infos');
 const main = async () => {
   const result = await init()
   if (result) {

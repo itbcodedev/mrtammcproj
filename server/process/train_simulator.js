@@ -196,6 +196,7 @@ exports.TrainSimulator = class {
       const query = {}
       // step 1
       const routeinfos = await this.gtfs.getRouteInfo(query)
+      // console.log("199",routeinfos)
       // const routeexclude = routeinfos.filter( trip => {
       //   return ! (trip.trip_id == "PT4" || trip.trip_id == "DEP-PL")
       // })
@@ -211,6 +212,7 @@ exports.TrainSimulator = class {
       const routeinfos_now = routeinfos_addsec.filter(trip => {
         return checktime(trip, trip.start_time, trip.end_time)
       })
+      console.log("215",routeinfos_now)
       // contruct data
       const routeinfos_stoptimes = await addStoptime(this.gtfs, routeinfos_now)
       // console.log("213....",routeinfos_stoptimes)
