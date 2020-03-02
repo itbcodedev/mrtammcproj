@@ -20,9 +20,9 @@ export const environment = {
     {file: 'stops.txt', validatefile: 'file1', path: 'file1'},
     {file: 'trips.txt', validatefile: 'file1', path: 'file1'}
   ],
-  baseUrl: 'http://localhost:3000',
-  baseSocket: 'ws://localhost:3000',
-  ws_url: 'ws://localhost:3000'
+  baseUrl: 'http://127.0.0.1:3000',
+  baseSocket: 'ws://127.0.0.1:3000',
+  ws_url: 'ws://127.0.0.1:3000'
 };
 
 /*

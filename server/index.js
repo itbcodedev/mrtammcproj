@@ -17,7 +17,14 @@ const database = require('./database');
 const app = express();
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+io.on('connection', (socket) => {
+  console.log('User connect from angular')
+  socket.emit('message', 'here is simulate data aaa')
+});
 
+io.on('error', (error) => {
+  console.log(error)
+});
 // Setup swagger 
 
 const swaggerUi = require('swagger-ui-express');
@@ -62,10 +69,7 @@ fs.symlink(source, '../mrtammc/dist/mrtammc/assets/dist/public' , (err) => {
 })
 
 
-io.on('connection', (socket) => {
-  console.log('User connect from angular')
-  socket.emit('message', 'here is simulate data aaa')
-});
+
 
 
 // var originsWhitelist = [
@@ -145,7 +149,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const {simulate} = require('./simulation')
 setInterval(simulate, 1000);
 
-server.listen(PORT, () => {
+server.listen(PORT, '127.0.0.1', () => {
   console.log(`Server start port ${PORT}`)
 })
 

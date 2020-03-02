@@ -90,8 +90,9 @@ git checkout    server/upload/kmls/1571139357812-blue.kml
 git checkout    server/upload/kmls/1571139357812-blue_line.geojson
 git checkout    server/upload/kmls/1571139357812-blue_point.geojson
 
-
+## before build 
 unlink /home/mee/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
+cd mrtammc
 ng build
 
 
@@ -149,6 +150,14 @@ server$ npm run dev
 
 
 unlink /home/mee/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
+
+[0] [Error: EEXIST: file already exists, symlink '/home/mee/AngularProj/mrtammcproj/server/upload' -> '../mrtammc/dist/mrtammc/assets/dist/public'] {
+[0]   errno: -17,
+[0]   code: 'EEXIST',
+[0]   syscall: 'symlink',
+[0]   path: '/home/mee/AngularProj/mrtammcproj/server/upload',
+[0]   dest: '../mrtammc/dist/mrtammc/assets/dist/public'
+[0] }
 
 
 sudo systemctl restart nginx

@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 export class GtfsrtwsService {
   private socket;
   constructor() {
+    console.log(environment.ws_url)
     this.socket = io(environment.ws_url);
   }
 
