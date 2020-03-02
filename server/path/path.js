@@ -1,6 +1,8 @@
 
 const blue_chalearm_path_in = require('./parted_blue_chalearm_in.json')
 const blue_chalearm_path_out = require('./parted_blue_chalearm_out.json')
+const blue_in = require('./blue_in.json')
+const blue_out = require('./blue_out.json')
 const purple_1_in = require('./purple_1_in.json')
 const purple_1_out = require('./purple_1_out.json')
 const purple_2_in = require('./purple_2_in.json')
@@ -24,6 +26,9 @@ const purple_8_out = require('./purple_8_out.json')
 
 exports.blue_chalearm_path_in  = blue_chalearm_path_in
 exports.blue_chalearm_path_out = blue_chalearm_path_out
+
+exports.blue_in = blue_in
+exports.blue_out = blue_out
 exports.purple_1_in = purple_1_in
 exports.purple_1_out = purple_1_out
 exports.purple_2_in = purple_2_in
@@ -47,10 +52,10 @@ exports.purple_8_out = purple_8_out
 
 exports.config = [
   {
-    route_name: "blue", direction: "0", speed: "1", file: "blue_chalearm_path_in"
+    route_name: "blue", direction: "0", speed: "1", file: "blue_in"
   },
   {
-    route_name: "blue", direction: "1", speed: "1", file: "blue_chalearm_path_out"
+    route_name: "blue", direction: "1", speed: "1", file: "blue_out"
   },
   {
     route_name: "purple", direction: "0", speed: "1", file: "purple_1_in"

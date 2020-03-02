@@ -68,11 +68,17 @@ exports.TrainSimulator = class {
 
     // find path 
     function getPathfile(trip) {
+      console.log("71.....", trip)
+      console.log("71.........................")
       const index = path.config.findIndex(c => {
+        console.log("73.......", c )
+        console.log("73.........................")
         return (c.route_name == trip.route_name && c.direction == trip.direction && c.speed == trip.speed )
       })
 
       if (index > -1) {
+        console.log("80",path.config[index].file )
+        console.log("80............................")
         return path.config[index].file
       }
 
@@ -158,7 +164,7 @@ exports.TrainSimulator = class {
 
       return Promise.all(trips.map( async trip => {
         
-       //console.log("159", trip.trip_id, trip.start_time, trip.end_time)
+        //console.log("159", trip.route_name, trip.trip_id, trip.start_time, trip.end_time)
         const delta_t = trip.time_now_sec - trip.start_time_secs 
         const runtime_secs = trip.runtime_secs
         const filemodule = getPathfile(trip)

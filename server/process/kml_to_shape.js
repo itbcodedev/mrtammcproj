@@ -393,7 +393,6 @@ class KmlToShape {
       type: 'FeatureCollection',
       features
     }
-
   }
 
   /**
@@ -466,73 +465,9 @@ class KmlToShape {
 
   }
 
+
   generate_path_in(filename) {
-        // const FILE = path.join(__dirname, `${filename}`)
-        var xml = require('fs').readFileSync(filename, 'utf8');
-        const output = []
-        var result = JSON.parse(convert.xml2json(xml, { compact: true, spaces: 4 }));
-        const Placemark = result.kml.Document.Placemark
-        let cords = []
-        // console.log("314", Placemark)
-        // console.log("315", this.isArray(Placemark))
-        if (this.isArray(Placemark)) {
-          Placemark.forEach(place => {
-            let subcords = place.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
-            cords = cords.concat(subcords)
-          })
-        } else {
-          const name = result.kml.Document.name._text
-          cords = Placemark.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
-        }
-        
-        // console.log(name)
-    
-        // remove space replace(/\s/g, '')
-       
-        //console.log("492", cords)
-    
-        cords.forEach((cord, index) => {
-          const location = [];
-          const cord_arr = cord.split("/")
-          // console.log("longitude", cord_arr[0])
-          // console.log("latitude", cord_arr[1])
-          location.push(cord_arr[1])
-          location.push(cord_arr[0])
-          output.push(location)
-        });
-        //console.log(output)
-        // console.log("342 kml_to_shape.js",output.length)
-        let output_intervals = []
-        output.forEach((location, index) => {
-          if (index == 0) {
-            //console.log("skip 0")
-            return 0
-          }
-          // every 10 meters
-          const cordinates = this.createCoordinate(location[1], location[0], output[index - 1][1], output[index - 1][0], 10)
-          // console.log(cordinates)
-          output_intervals = output_intervals.concat(cordinates)
-          // console.log(output_intervals)
-        });
-    
-        console.log("518",output_intervals.length)
-        // cord[1]  logitude
-        // cord[0]  latitude
-        const features = output_intervals.map((cord,index) => ({
-          index: index,
-          latitude: cord[1],
-          longitude: cord[0]
-        }));
-        // console.log("526", features)
 
-        return {
-          "path": {name: "name", direction: "direction"},
-          "points": [ features ]
-        }
-    
-  }
-
-  generate_path_out(filename) {
     // const FILE = path.join(__dirname, `${filename}`)
     var xml = require('fs').readFileSync(filename, 'utf8');
     const output = []
@@ -555,15 +490,15 @@ class KmlToShape {
 
     // remove space replace(/\s/g, '')
    
-    // console.log("492", cords)
+    console.log("330", cords)
 
     cords.forEach((cord, index) => {
       const location = [];
       const cord_arr = cord.split("/")
       // console.log("longitude", cord_arr[0])
       // console.log("latitude", cord_arr[1])
-      location.push(cord_arr[1])
       location.push(cord_arr[0])
+      location.push(cord_arr[1])
       output.push(location)
     });
     //console.log(output)
@@ -581,23 +516,88 @@ class KmlToShape {
       // console.log(output_intervals)
     });
 
-    console.log("518",output_intervals.length)
-    // cord[1]  logitude
-    // cord[0]  latitude
-    const features = output_intervals.map((cord,index) => ({
-      index: index,
-      latitude: cord[1],
-      longitude: cord[0]
+    //console.log(output_intervals.length)
+
+    const features = output_intervals.map((cord,index)=> ({
+      points: {
+        index: index,
+        latitude: cord[0],
+        longitude: cord[1]
+      }
     }));
-    // console.log("526", features)
-    
-    const features_reverses = features.reverse()
-
     return {
-      "path": {name: "name", direction: "direction"},
-      "points": [ features_reverses ]
+      "path": {
+        "name": "name",
+        "direction": "direction"
+      },
+      points: features
     }
+  }
+  generate_path_out(filename) {
+         // const FILE = path.join(__dirname, `${filename}`)
+    var xml = require('fs').readFileSync(filename, 'utf8');
+    const output = []
+    var result = JSON.parse(convert.xml2json(xml, { compact: true, spaces: 4 }));
+    const Placemark = result.kml.Document.Placemark
+    let cords = []
+    // console.log("314", Placemark)
+    // console.log("315", this.isArray(Placemark))
+    if (this.isArray(Placemark)) {
+      Placemark.forEach(place => {
+        let subcords = place.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+        cords = cords.concat(subcords)
+      })
+    } else {
+      const name = result.kml.Document.name._text
+      cords = Placemark.LineString.coordinates._text.trim().replace(/\r?\n?/g, '').replace(/,/g, "/").split(/\s+/)
+    }
+    
+    // console.log(name)
 
+    // remove space replace(/\s/g, '')
+   
+    console.log("330", cords)
+
+    cords.forEach((cord, index) => {
+      const location = [];
+      const cord_arr = cord.split("/")
+      // console.log("longitude", cord_arr[0])
+      // console.log("latitude", cord_arr[1])
+      location.push(cord_arr[0])
+      location.push(cord_arr[1])
+      output.push(location)
+    });
+    //console.log(output)
+    // console.log("342 kml_to_shape.js",output.length)
+    let output_intervals = []
+    output.forEach((location, index) => {
+      if (index == 0) {
+        //console.log("skip 0")
+        return 0
+      }
+      // every 10 meters
+      const cordinates = this.createCoordinate(location[1], location[0], output[index - 1][1], output[index - 1][0], 10)
+      // console.log(cordinates)
+      output_intervals = output_intervals.concat(cordinates)
+      // console.log(output_intervals)
+    });
+
+    //console.log(output_intervals.length)
+
+    const features = output_intervals.reverse().map((cord,index)=> ({
+      points: {
+        index: index,
+        latitude: cord[0],
+        longitude: cord[1]
+      }
+    }));
+    return {
+      "path": {
+        "name": "name",
+        "direction": "direction"
+      },
+      points: features
+    }  
   }
 }
 
