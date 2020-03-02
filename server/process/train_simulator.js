@@ -82,7 +82,8 @@ exports.TrainSimulator = class {
     function transformFormat(stoptimes) {
       //each trip 
       const trip_gtfs = stoptimes.map(stoptime => {
-        //console.log(stoptime)
+        // console.log("85...", stoptime)
+        // console.log("85......................")
         const route_name = stoptime.route_name
         const time_now = stoptime.time_now
         const tripEntity = `${stoptime.route_name}-${stoptime.trip_id}`
@@ -125,9 +126,9 @@ exports.TrainSimulator = class {
                 "end_time_secs": "${end_time_secs}",
                 "time_now_sec": "${time_now_sec}",
                 "start_time": "${start_time}",
-                "end_time": "${end_time}"
+                "end_time": "${end_time}",
                 "start_point": "${start_point}",
-                "end_point" : "${end_point}
+                "end_point" : "${end_point}"
               },
               "position": {
                 "latitude": "${latitude}",
@@ -137,6 +138,8 @@ exports.TrainSimulator = class {
           }
         }
         `
+        console.log(gtfsrt)
+        console.log("142...............................")
         return JSON.parse(gtfsrt)
       })
       return trip_gtfs
@@ -217,9 +220,11 @@ exports.TrainSimulator = class {
       //console.log("215",routeinfos_now)
       // contruct data
       const routeinfos_stoptimes = await addStoptime(this.gtfs, routeinfos_now)
-      console.log("218....", routeinfos_stoptimes)
+      // console.log("218....", routeinfos_stoptimes)
+      // console.log("218...................................")
       const trip_gtfs = transformFormat(routeinfos_stoptimes)
-      // console.log("220",trip_gtfs)
+      console.log("222",trip_gtfs)
+      console.log("222...................................")
       return trip_gtfs
     } catch (err) {
       // console.log(err)

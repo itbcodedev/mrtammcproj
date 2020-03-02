@@ -63,7 +63,7 @@ fs.symlink(source, '../mrtammc/dist/mrtammc/assets/dist/public' , (err) => {
 
 
 io.on('connection', (socket) => {
-  console.log('User connect')
+  console.log('User connect from angular')
   socket.emit('message', 'here is simulate data aaa')
 });
 
