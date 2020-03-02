@@ -17,14 +17,8 @@ const database = require('./database');
 const app = express();
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
-io.on('connection', (socket) => {
-  console.log('User connect from angular')
-  socket.emit('message', 'here is simulate data aaa')
-});
 
-io.on('error', (error) => {
-  console.log(error)
-});
+
 // Setup swagger 
 
 const swaggerUi = require('swagger-ui-express');
@@ -145,12 +139,18 @@ var db = mongoose.connection;
 //4 Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+io.on('connection', (socket) => {
+  console.log('>>>> User connect from angular')
+  // socket.emit('message', 'here is simulate data aaa')
+});
+
+
 //simulate()
 const {simulate} = require('./simulation')
 setInterval(simulate, 1000);
 
-server.listen(PORT, '127.0.0.1', () => {
-  console.log(`Server start port ${PORT}`)
+server.listen(PORT, () => {
+  console.log(`>>>> Application Server start port ${PORT}`)
 })
 
 //echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p

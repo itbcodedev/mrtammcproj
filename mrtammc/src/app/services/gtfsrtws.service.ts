@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as io from 'socket.io-client';
+// import * as io from 'socket.io-client';
+import io from 'socket.io-client';
 import { Observable, of, Subject, Subscription, forkJoin } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -9,7 +10,6 @@ import { environment } from '../../environments/environment';
 export class GtfsrtwsService {
   private socket;
   constructor() {
-    console.log(environment.ws_url)
     this.socket = io(environment.ws_url);
   }
 
