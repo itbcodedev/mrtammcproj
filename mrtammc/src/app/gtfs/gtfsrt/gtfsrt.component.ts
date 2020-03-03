@@ -274,10 +274,10 @@ export class GtfsrtComponent implements OnInit {
             //// TODO: 1 create marker
             const marker = this.createMarker(trainLatLng, route_name);
             console.log('276 create marker result', route_name, marker)
-            marker.setForceZIndex = 100;
             // add marker
             // marker.addTo(this.map).bindPopup(`${tripEntity}`)
             this.layerRouteGroup[route_id].addLayer(marker);
+            console.log("281", this.layerRouteGroup)
             // marker function
             marker.tripEntity = tripEntity;
             marker.trip_id = trip_id;
@@ -1269,7 +1269,8 @@ export class GtfsrtComponent implements OnInit {
       fillOpacity: 1,
       color: 'black',
       fillColor: this.getColor(color),
-      weight: 2
+      weight: 2,
+      forceZIndex: 999
     });
   }
 
