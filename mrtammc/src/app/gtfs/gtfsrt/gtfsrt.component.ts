@@ -62,7 +62,7 @@ export class GtfsrtComponent implements OnInit {
   endtrip;
   selectMarker;
 
-  //+
+  // +
   routformats;
   allstations;
 
@@ -120,7 +120,7 @@ export class GtfsrtComponent implements OnInit {
     this.getRouteformat();
 
     this.loadGeojson();
-    //this.showAllgeojson();
+    // this.showAllgeojson();
     this.getKmltoroute();
     // this.removeAllgeojson()
     // this.showgeojson("00011")
@@ -129,7 +129,7 @@ export class GtfsrtComponent implements OnInit {
     await this.loadStation();
     await this.loadTrips();
 
-    //console.log(this.trips.length);
+    // console.log(this.trips.length);
     // await this.getTripsAtStop("PP01")
 
     this.controllerLayer = L.control.layers(this.baseLayers);
@@ -176,7 +176,7 @@ export class GtfsrtComponent implements OnInit {
         this.CurrentDate = moment();
         this.wsdata = JSON.stringify(data, null, 2);
         // // DEBUG: data from webservice
-        // console.log('178..........', this.wsdata)
+        // console.log('178..........', this.wsdata);
         const route_name = data['header']['route_name'];
         const route_id = data['header']['route_id'];
         const direction = data['header']['direction'];
@@ -190,6 +190,7 @@ export class GtfsrtComponent implements OnInit {
         const end_time = data['entity']['vehicle']['trip']['end_time'];
         const trip_id = data['entity']['vehicle']['trip']['trip_id'];
         // // TODO: display info on marker
+        // tripEntity = `${stoptime.route_name}-${stoptime.trip_id}`
         const tripEntity = data['entity']['id'];
         const vehicle = data['entity']['vehicle'];
         const latitude = data['entity']['vehicle']['position']['latitude'];
@@ -272,7 +273,8 @@ export class GtfsrtComponent implements OnInit {
             this.ActiveTrain[tripEntity] = vehicle;
             //// TODO: 1 create marker
             const marker = this.createMarker(trainLatLng, route_name);
-            marker.setForceZIndex = 999;
+            console.log('276 create marker result', route_name, marker)
+            marker.setForceZIndex = 100;
             // add marker
             // marker.addTo(this.map).bindPopup(`${tripEntity}`)
             this.layerRouteGroup[route_id].addLayer(marker);
@@ -282,7 +284,7 @@ export class GtfsrtComponent implements OnInit {
             marker.start_time = start_time;
             marker.end_time = end_time;
             marker.direction = direction;
-
+            console.log('287...', route_name)
             marker.color = this.getColor(route_name);
             marker.track = this.getTrack(route_name);
             marker.headsign = headsign;
@@ -558,7 +560,7 @@ export class GtfsrtComponent implements OnInit {
     popup.update();
     marker.openPopup();
 
-    //click follow
+    // click follow
     const buttonSubmit = L.DomUtil.get('button-submit');
     L.DomEvent.addListener(
       buttonSubmit,
@@ -577,7 +579,7 @@ export class GtfsrtComponent implements OnInit {
       this
     ); // point to this context
 
-    //click un follow
+    // click un follow
     const unfollow = L.DomUtil.get('unfollow');
     L.DomEvent.addListener(
       unfollow,
@@ -650,7 +652,7 @@ export class GtfsrtComponent implements OnInit {
   showRouteLayer(route_id) {
     this.routelayerGroup.clearLayers();
 
-    let selectroute = this.kmlroutes.filter(r => {
+    const selectroute = this.kmlroutes.filter(r => {
       return r.route_th == route_id;
     });
 
@@ -1223,17 +1225,15 @@ export class GtfsrtComponent implements OnInit {
   getColor(color) {
     switch (color) {
       case 'orange':
-        return 'orange';
+        return '#FF6600';
       case 'green':
-        return 'green';
+        return '#00EE00';
       case 'blue':
-        return 'blue';
+        return '#0000BB';
       case 'purple':
-        return 'purple';
-      case 'blue':
-        return 'blue';
+        return '#9933CC';
       default:
-        return 'white';
+        return '#0000BB';
     }
   }
 
@@ -1263,6 +1263,7 @@ export class GtfsrtComponent implements OnInit {
   }
 
   createMarker(latlng, color) {
+    console.log('1267 create marker args', latlng, color);
     return new L.CircleMarker(latlng, {
       radius: 10,
       fillOpacity: 1,
@@ -1354,7 +1355,7 @@ export class GtfsrtComponent implements OnInit {
     this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise();
 
     this.kmlroutes.forEach(obj => {
-      //console.log("1173", obj.geojsonline_file)
+      // console.log("1173", obj.geojsonline_file)
       const line = new L.GeoJSON.AJAX(obj.geojsonline_file, {
         style: function(feature) {
           return { color: obj.color };
@@ -1362,7 +1363,7 @@ export class GtfsrtComponent implements OnInit {
       });
       objects = objects.concat(line);
 
-      //line.addTo(this.map)
+      // line.addTo(this.map)
     });
 
     this.routelayerGroup = L.layerGroup(objects);

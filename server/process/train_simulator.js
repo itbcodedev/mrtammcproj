@@ -68,17 +68,17 @@ exports.TrainSimulator = class {
 
     // find path 
     function getPathfile(trip) {
-      console.log("71.....", trip)
-      console.log("71.........................")
+      // console.log("71.....", trip)
+      // console.log("71.........................")
       const index = path.config.findIndex(c => {
-        console.log("73.......", c )
-        console.log("73.........................")
+        //console.log("73.......", c )
+        // console.log("73.........................")
         return (c.route_name == trip.route_name && c.direction == trip.direction && c.speed == trip.speed )
       })
 
       if (index > -1) {
-        console.log("80",path.config[index].file )
-        console.log("80............................")
+        // console.log("80",path.config[index].file )
+        // console.log("80............................")
         return path.config[index].file
       }
 
@@ -88,8 +88,8 @@ exports.TrainSimulator = class {
     function transformFormat(stoptimes) {
       //each trip 
       const trip_gtfs = stoptimes.map(stoptime => {
-        console.log("85...", stoptime)
-        console.log("85......................")
+        // console.log("85...", stoptime)
+        // console.log("85......................")
         const route_name = stoptime.route_name
         const time_now = stoptime.time_now
         const tripEntity = `${stoptime.route_name}-${stoptime.trip_id}`
@@ -144,8 +144,8 @@ exports.TrainSimulator = class {
           }
         }
         `
-        console.log(gtfsrt)
-        console.log("142...............................")
+        // console.log(gtfsrt)
+        // console.log("142...............................")
         return JSON.parse(gtfsrt)
       })
       return trip_gtfs
@@ -229,8 +229,8 @@ exports.TrainSimulator = class {
       console.log("218....", routeinfos_stoptimes)
       console.log("218...................................")
       const trip_gtfs = transformFormat(routeinfos_stoptimes)
-      console.log("222",trip_gtfs)
-      console.log("222...................................")
+      // console.log("222",trip_gtfs)
+      // console.log("222...................................")
       return trip_gtfs
     } catch (err) {
       // console.log(err)

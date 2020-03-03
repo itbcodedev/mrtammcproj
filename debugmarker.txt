@@ -148,6 +148,8 @@ server$ npm run dev
   971  ng build --prod
   972  sudo systemctl restart mrta-app1 && sudo systemctl restart mrta-app2
 
+sudo systemctl start mrta-app1 && sudo systemctl start mrta-app2
+sudo systemctl stop mrta-app1 && sudo systemctl stop mrta-app2
 
 unlink /home/mee/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
 
