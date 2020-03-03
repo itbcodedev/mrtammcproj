@@ -16,12 +16,13 @@ export class SidebarComponent implements OnInit {
   parkings;
   alerts;
   alert;
-  constructor(public _parking: ParkingserviceService,
+  constructor(
+    public _parking: ParkingserviceService,
     private _alertservice: AlertService) { }
 
   ngOnInit() {
-    this.getParking();
-    this.getAlert();
+    // this.getParking();
+    // this.getAlert();
   }
 
   getParking() {

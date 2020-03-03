@@ -226,8 +226,8 @@ exports.TrainSimulator = class {
       //console.log("215",routeinfos_now)
       // contruct data
       const routeinfos_stoptimes = await addStoptime(this.gtfs, routeinfos_now)
-      // console.log("218....", routeinfos_stoptimes)
-      // console.log("218...................................")
+      console.log("218....", routeinfos_stoptimes)
+      console.log("218...................................")
       const trip_gtfs = transformFormat(routeinfos_stoptimes)
       console.log("222",trip_gtfs)
       console.log("222...................................")

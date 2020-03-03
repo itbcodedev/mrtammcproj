@@ -169,207 +169,209 @@ export class GtfsrtComponent implements OnInit {
     const trainLocationMarkers = {};
 
     // get data from web socket
-    this._gtfsws.listen('gtfsrt').subscribe(async data => {
-      // get time
-      // this.CurrentDate = moment().subtract(3, 'hours');
-      this.CurrentDate = moment();
-      this.wsdata = JSON.stringify(data, null, 2);
-      // // DEBUG: data from webservice
-      // console.log('178..........', this.wsdata)
-      const route_name = data['header']['route_name'];
-      const route_id = data['header']['route_id'];
-      const direction = data['header']['direction'];
-      const headsign = data['header']['headsign'];
-      const runtime = data['header']['runtime'];
-      const time_now_sec = data['entity']['vehicle']['trip']['time_now_sec'];
-      const start_time_secs =
-        data['entity']['vehicle']['trip']['start_time_secs'];
-      const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs'];
-      const start_time = data['entity']['vehicle']['trip']['start_time'];
-      const end_time = data['entity']['vehicle']['trip']['end_time'];
-      const trip_id = data['entity']['vehicle']['trip']['trip_id'];
-      // // TODO: display info on marker
-      const tripEntity = data['entity']['id'];
-      const vehicle = data['entity']['vehicle'];
-      const latitude = data['entity']['vehicle']['position']['latitude'];
-      const longitude = data['entity']['vehicle']['position']['longitude'];
+    this._gtfsws.listen('gtfsrt').subscribe(
+        async data => {
+        // get time
+        // this.CurrentDate = moment().subtract(3, 'hours');
+        this.CurrentDate = moment();
+        this.wsdata = JSON.stringify(data, null, 2);
+        // // DEBUG: data from webservice
+        // console.log('178..........', this.wsdata)
+        const route_name = data['header']['route_name'];
+        const route_id = data['header']['route_id'];
+        const direction = data['header']['direction'];
+        const headsign = data['header']['headsign'];
+        const runtime = data['header']['runtime'];
+        const time_now_sec = data['entity']['vehicle']['trip']['time_now_sec'];
+        const start_time_secs =
+          data['entity']['vehicle']['trip']['start_time_secs'];
+        const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs'];
+        const start_time = data['entity']['vehicle']['trip']['start_time'];
+        const end_time = data['entity']['vehicle']['trip']['end_time'];
+        const trip_id = data['entity']['vehicle']['trip']['trip_id'];
+        // // TODO: display info on marker
+        const tripEntity = data['entity']['id'];
+        const vehicle = data['entity']['vehicle'];
+        const latitude = data['entity']['vehicle']['position']['latitude'];
+        const longitude = data['entity']['vehicle']['position']['longitude'];
 
-      const trainLatLng = new L.LatLng(latitude, longitude);
+        const trainLatLng = new L.LatLng(latitude, longitude);
 
-      // getdata from api
-      const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(
-        trip_id
-      );
-      // filter again filter only active trip
-      const routetrips = routeinfowithtrips.filter(obj => {
-        return this.checktime(obj.start_time, obj.end_time);
-      });
-      // debug
-      // console.log('117....',trip_id,filter)
-      const nextstation = routetrips.map(obj => {
-        // purple 00118 224
-        // console.log(obj.route_name, obj.trip_id, obj.stoptimes.length)
-        // filter stoptime
-        const selectStoptimes = obj.stoptimes.filter(st_obj => {
-          // filter next time check depature_time less than timenow [0]
-          //   {
-          //     "_id": "5d2a8f3f1473da58b879e4f8",
-          //     "agency_key": "MRTA_Transit",
-          //     "trip_id": "041921",
-          //     "arrival_time": "16:44:31",
-          //     "departure_time": "16:44:31",
-          //     "stop_id": "BL13",
-          //     "stop_sequence": 4,
-          //     "__v": 0
-          // },
-          return this.findNextTrip(st_obj.arrival_time);
+        // getdata from api
+        const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(
+          trip_id
+        );
+        // filter again filter only active trip
+        const routetrips = routeinfowithtrips.filter(obj => {
+          return this.checktime(obj.start_time, obj.end_time);
         });
-        obj.selectStoptimes = _.first(selectStoptimes);
-        return obj;
-      });
+        // debug
+        // console.log('117....',trip_id,filter)
+        const nextstation = routetrips.map(obj => {
+          // purple 00118 224
+          // console.log(obj.route_name, obj.trip_id, obj.stoptimes.length)
+          // filter stoptime
+          const selectStoptimes = obj.stoptimes.filter(st_obj => {
+            // filter next time check depature_time less than timenow [0]
+            //   {
+            //     "_id": "5d2a8f3f1473da58b879e4f8",
+            //     "agency_key": "MRTA_Transit",
+            //     "trip_id": "041921",
+            //     "arrival_time": "16:44:31",
+            //     "departure_time": "16:44:31",
+            //     "stop_id": "BL13",
+            //     "stop_sequence": 4,
+            //     "__v": 0
+            // },
+            return this.findNextTrip(st_obj.arrival_time);
+          });
+          obj.selectStoptimes = _.first(selectStoptimes);
+          return obj;
+        });
 
-      // console.log(nextstation)
-      // tslint:disable-next-line: triple-equals
-      if (nextstation[0] != undefined) {
-        const nextstop = nextstation[0].selectStoptimes;
-        const timenow = this.CurrentDate.format('HH:mm:ss');
-        // find difftime to station
-        const arr_time = this.getsecond(nextstop.arrival_time);
-        const arr_now = this.getsecond(timenow);
-        // console.log('arr_time,arr_now', arr_time, arr_now);
-        // 1 sec = 0.0166666667 min
-        nextstop.difftime = (arr_time - arr_now).toFixed(2);
-        // cal random number
-        const number = this.getRandom();
+        // console.log(nextstation)
+        // tslint:disable-next-line: triple-equals
+        if (nextstation[0] != undefined) {
+          const nextstop = nextstation[0].selectStoptimes;
+          const timenow = this.CurrentDate.format('HH:mm:ss');
+          // find difftime to station
+          const arr_time = this.getsecond(nextstop.arrival_time);
+          const arr_now = this.getsecond(timenow);
+          // console.log('arr_time,arr_now', arr_time, arr_now);
+          // 1 sec = 0.0166666667 min
+          nextstop.difftime = (arr_time - arr_now).toFixed(2);
+          // cal random number
+          const number = this.getRandom();
 
-        if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
-          // exist
-          if (trainLocationMarkers[tripEntity] !== undefined) {
-            // update marker
-            const marker_trip = trainLocationMarkers[tripEntity];
-            // trainLatLng
-            marker_trip.setLatLng(trainLatLng);
-            // marker_trip.fire('click');
+          if (this.ActiveTrain.hasOwnProperty(tripEntity)) {
+            // exist
+            if (trainLocationMarkers[tripEntity] !== undefined) {
+              // update marker
+              const marker_trip = trainLocationMarkers[tripEntity];
+              // trainLatLng
+              marker_trip.setLatLng(trainLatLng);
+              // marker_trip.fire('click');
+              // markerinfo
+              marker_trip.nextstop = nextstop.stop_id;
+              marker_trip.arrival_time = nextstop.arrival_time;
+              marker_trip.departure_time = nextstop.departure_time;
+              marker_trip.difftime = nextstop.difftime;
+              // console.log(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
+              this.setStationInfo(
+                marker_trip.stop_id,
+                marker_trip.trip_id,
+                marker_trip.arrival_time,
+                marker_trip.direction
+              );
+              // update station
+              marker_trip.on('mouseover', this.onTrainClick, this);
+              marker_trip.on('mouseout', this.onTrainClick, this);
+            }
+          } else {
+            // new marker
+            this.ActiveTrain[tripEntity] = vehicle;
+            //// TODO: 1 create marker
+            const marker = this.createMarker(trainLatLng, route_name);
+            marker.setForceZIndex = 999;
+            // add marker
+            // marker.addTo(this.map).bindPopup(`${tripEntity}`)
+            this.layerRouteGroup[route_id].addLayer(marker);
+            // marker function
+            marker.tripEntity = tripEntity;
+            marker.trip_id = trip_id;
+            marker.start_time = start_time;
+            marker.end_time = end_time;
+            marker.direction = direction;
+
+            marker.color = this.getColor(route_name);
+            marker.track = this.getTrack(route_name);
+            marker.headsign = headsign;
+            marker.runtime = runtime;
+
+            marker.map = this.map;
+            marker.controllerLayer = this.controllerLayer;
             // markerinfo
-            marker_trip.nextstop = nextstop.stop_id;
-            marker_trip.arrival_time = nextstop.arrival_time;
-            marker_trip.departure_time = nextstop.departure_time;
-            marker_trip.difftime = nextstop.difftime;
-            // console.log(marker_trip.stop_id,marker_trip.trip_id,marker_trip.arrival_time,marker_trip.direction)
-            this.setStationInfo(
-              marker_trip.stop_id,
-              marker_trip.trip_id,
-              marker_trip.arrival_time,
-              marker_trip.direction
+            marker.nextstop = nextstop.stop_id;
+            marker.arrival_time = nextstop.arrival_time;
+            marker.departure_time = nextstop.departure_time;
+            marker.difftime = nextstop.difftime;
+
+            marker.bindPopup('Trip info');
+
+            marker.on('mouseover', this.onTrainClick, this);
+            marker.on('mouseout', this.onTrainClick, this);
+            marker.on(
+              'click',
+              event => {
+                this.map.setView(marker.getLatLng(), 16);
+                L.tileLayer(
+                  'http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
+                  {
+                    maxZoom: 20,
+                    subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+                  }
+                ).addTo(this.map);
+                this.selectTripId = marker.tripEntity;
+                this.onTrainClick(this);
+              },
+              this
             );
-            // update station
-            marker_trip.on('mouseover', this.onTrainClick, this);
-            marker_trip.on('mouseout', this.onTrainClick, this);
+
+            trainLocationMarkers[tripEntity] = marker;
+            console.log(
+              marker.stop_id,
+              marker.trip_id,
+              marker.arrival_time,
+              marker.direction
+            );
+            this.setStationInfo(
+              marker.stop_id,
+              marker.trip_id,
+              marker.arrival_time,
+              marker.direction
+            );
           }
-        } else {
-          // new marker
-          this.ActiveTrain[tripEntity] = vehicle;
-          //// TODO: 1 create marker
-          const marker = this.createMarker(trainLatLng, route_name);
-          marker.setForceZIndex = 999;
-          // add marker
-          // marker.addTo(this.map).bindPopup(`${tripEntity}`)
-          this.layerRouteGroup[route_id].addLayer(marker);
-          // marker function
-          marker.tripEntity = tripEntity;
-          marker.trip_id = trip_id;
-          marker.start_time = start_time;
-          marker.end_time = end_time;
-          marker.direction = direction;
-
-          marker.color = this.getColor(route_name);
-          marker.track = this.getTrack(route_name);
-          marker.headsign = headsign;
-          marker.runtime = runtime;
-
-          marker.map = this.map;
-          marker.controllerLayer = this.controllerLayer;
-          // markerinfo
-          marker.nextstop = nextstop.stop_id;
-          marker.arrival_time = nextstop.arrival_time;
-          marker.departure_time = nextstop.departure_time;
-          marker.difftime = nextstop.difftime;
-
-          marker.bindPopup('Trip info');
-
-          marker.on('mouseover', this.onTrainClick, this);
-          marker.on('mouseout', this.onTrainClick, this);
-          marker.on(
-            'click',
-            event => {
-              this.map.setView(marker.getLatLng(), 16);
-              L.tileLayer(
-                'http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
-                {
-                  maxZoom: 20,
-                  subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-                }
-              ).addTo(this.map);
-              this.selectTripId = marker.tripEntity;
-              this.onTrainClick(this);
-            },
-            this
-          );
-
-          trainLocationMarkers[tripEntity] = marker;
-          console.log(
-            marker.stop_id,
-            marker.trip_id,
-            marker.arrival_time,
-            marker.direction
-          );
-          this.setStationInfo(
-            marker.stop_id,
-            marker.trip_id,
-            marker.arrival_time,
-            marker.direction
-          );
         }
-      }
 
-      if (this.selectMarker != undefined) {
-        this.updateTrain();
-      }
-      // Clear marker from array
-      // check train over due
-      for (const key in this.ActiveTrain) {
-        if (time_now_sec > this.ActiveTrain[key]['trip']['end_time_secs']) {
-          console.log(
-            'remove key',
-            key,
-            this.ActiveTrain[key]['trip']['trip_id']
-          );
-          this.endtrip = this.ActiveTrain[key]['trip']['trip_id'];
-          delete this.ActiveTrain[key];
-          // this.endtrip = this.ActiveTrain[key]['trip']
-        } else {
-          // console.log("not over due")
+        if (this.selectMarker != undefined) {
+          this.updateTrain();
         }
-      }
-      // delete marker of overdue
-      for (const key in trainLocationMarkers) {
-        if (this.ActiveTrain.hasOwnProperty(key)) {
-          // console.log(`${key} still on tracks`);
-        } else {
-          const marker = trainLocationMarkers[key];
-          this.map.removeLayer(marker);
-          // console.log(`${key} remove marker`)
-          delete trainLocationMarkers[key];
+        // Clear marker from array
+        // check train over due
+        for (const key in this.ActiveTrain) {
+          if (time_now_sec > this.ActiveTrain[key]['trip']['end_time_secs']) {
+            console.log(
+              'remove key',
+              key,
+              this.ActiveTrain[key]['trip']['trip_id']
+            );
+            this.endtrip = this.ActiveTrain[key]['trip']['trip_id'];
+            delete this.ActiveTrain[key];
+            // this.endtrip = this.ActiveTrain[key]['trip']
+          } else {
+            // console.log("not over due")
+          }
         }
+        // delete marker of overdue
+        for (const key in trainLocationMarkers) {
+          if (this.ActiveTrain.hasOwnProperty(key)) {
+            // console.log(`${key} still on tracks`);
+          } else {
+            const marker = trainLocationMarkers[key];
+            this.map.removeLayer(marker);
+            // console.log(`${key} remove marker`)
+            delete trainLocationMarkers[key];
+          }
+        }
+        if (this.ActiveTrain.hasOwnProperty(this.selectTripId)) {
+          console.log('select Tripid', this.selectTripId);
+          const Center = trainLocationMarkers[this.selectTripId];
+          this.map.setView(Center.getLatLng(), 16);
+        }
+        // update active trip
+        this.refreshloadRoute();
       }
-      if (this.ActiveTrain.hasOwnProperty(this.selectTripId)) {
-        console.log('select Tripid', this.selectTripId);
-        const Center = trainLocationMarkers[this.selectTripId];
-        this.map.setView(Center.getLatLng(), 16);
-      }
-      // update active trip
-      this.refreshloadRoute();
-    }); // end web service
+    ); // end web service
 
     // updated latlng follow trip()
   } // init
