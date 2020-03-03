@@ -149,7 +149,7 @@ io.on('connection', (socket) => {
 const {simulate} = require('./simulation')
 setInterval(simulate, 1000);
 
-server.listen(PORT, '127.0.0.1', () => {
+server.listen(PORT, () => {
   console.log(`>>>> Application Server start port ${PORT}`)
 })
 
