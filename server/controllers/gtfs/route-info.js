@@ -1,9 +1,10 @@
 const RouteInfo = require('../../models/gtfs/route-info');
-
+const calendar = require('../../process/getCalendar');
 /*
  * Returns an array of route_info that match the query parameters.
  */
 exports.getRouteInfo = (query = {}, projection = '-_id', options = {lean: true, timeout: true}) => {
+  query.calendar = calendar.gtfsCalendar();
   return RouteInfo.find(query, projection, options);
 };
 
