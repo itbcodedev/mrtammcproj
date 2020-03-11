@@ -134,8 +134,8 @@ const mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/mmcmrtadb',{ useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 mongoose.set('debug', true);
-mongoose.connect('mongodb://localhost/mmcmrtadb',{ useNewUrlParser: true });
-//mongoose.connect('mongodb://192.168.3.48/mmcmrtadb',{ useNewUrlParser: true });
+//mongoose.connect('mongodb://localhost/mmcmrtadb',{ useNewUrlParser: true });
+mongoose.connect('mongodb://192.168.3.48/mmcmrtadb',{ useNewUrlParser: true });
 
 //3 Get the default connection
 var db = mongoose.connection;
