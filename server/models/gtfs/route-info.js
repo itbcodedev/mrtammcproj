@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const RouteInfoSchema = new mongoose.Schema({
-
+  trip_id: {
+    type: String,
+    required: true,
+    index: true
+  },
   agency_key: {
     type: String,
     required: false,
@@ -16,49 +20,38 @@ const RouteInfoSchema = new mongoose.Schema({
     type: String,
     index: true
   },
-  trip_id: {
-    type: String,
-    required: true
-  },
+
   start_point: {
     type: String,
     required: true
   },
   start_time: {
     type: String,
-    required: true,
-    index: true
+    required: true
   },
   end_point: {
     type: String,
-    required: true,
-    index: true
+    required: true
   },
   end_time: {
     type: String,
-    required: true,
-    index: true
+    required: true
   },
   length: {
     type: String,
-    required: true,
-    index: true
+    required: true
   },
   runtime: {
-    type: String,
-    index: true
+    type: String
   },
   direction: {
-    type: String,
-    index: true
+    type: String
   },
   speed: {
-    type: String,
-    index: true
+    type: String
   },
   calendar: {
-    type: String,
-    index: true
+    type: String
   }
 })
 

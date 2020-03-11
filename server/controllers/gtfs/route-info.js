@@ -14,7 +14,8 @@ exports.getRouteInfoWithTrip = (query = {}, projection = '-_id', options = {lean
   const routeInfoQuery = {}
   if (query.trip_id !== undefined){
     routeInfoQuery.trip_id = query.trip_id
-    //console.log("----------exports.getRouteInfoWithTrip-----------------/ ",routeInfoQuery)
+    routeInfoQuery.calendar = query.calendar
+    console.log("17 route-info.js --exports.getRouteInfoWithTrip----------/ ",routeInfoQuery)
   } else {
     //console.log("19 exports.getRouteInfoWithTrip  query undefined/",routeInfoQuery)
   }

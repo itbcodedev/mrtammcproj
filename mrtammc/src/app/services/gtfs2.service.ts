@@ -155,5 +155,5 @@ export class GtfsService {
       .get<any>(`${BASE_API_ENDPOINT}/routeinfowithtrip/${tripId}`)
       .toPromise();
   }
-
+zz
 }

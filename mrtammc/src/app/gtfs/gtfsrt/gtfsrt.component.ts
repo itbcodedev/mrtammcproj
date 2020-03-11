@@ -198,14 +198,20 @@ export class GtfsrtComponent implements OnInit {
 
         const trainLatLng = new L.LatLng(latitude, longitude);
 
+        const t0 = performance.now();
         // getdata from api
         const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(
           trip_id
         );
+        const t1 = performance.now();
+        console.log( ' Time for routeinfowithtrips ' + (t1 - t0) + ' millisec')
         // filter again filter only active trip
+        const t2 = performance.now();
         const routetrips = routeinfowithtrips.filter(obj => {
           return this.checktime(obj.start_time, obj.end_time);
         });
+        const t3 = performance.now();
+        console.log( ' Time for routetrips ' + (t3 - t2) + ' millisec')
         // debug
         // console.log('117....',trip_id,filter)
         const nextstation = routetrips.map(obj => {

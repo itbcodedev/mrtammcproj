@@ -1,5 +1,6 @@
 const moment = require('moment');
 const _ = require('lodash');
+const calendar = require('./getCalendar');
 //const fetch = require('node-fetch');
 
 const path = require('../path/path')
@@ -181,6 +182,7 @@ exports.TrainSimulator = class {
         try {
           const query = {}
           query.trip_id = trip.trip_id
+          query.calendar = calendar.gtfsCalendar()
           // console.log("line 176", query)
           // use trip_id query stop_times
           const result = await gtfs.getRouteInfoWithTrip(query)
@@ -223,14 +225,14 @@ exports.TrainSimulator = class {
       const routeinfos_now = routeinfos_addsec.filter(trip => {
         return checktime(trip, trip.start_time, trip.end_time)
       })
-      //console.log("215",routeinfos_now)
+      //console.log("226",routeinfos_now)
       // contruct data
       const routeinfos_stoptimes = await addStoptime(this.gtfs, routeinfos_now)
-      console.log("218....", routeinfos_stoptimes)
-      console.log("218...................................")
+      // console.log("229....", routeinfos_stoptimes)
+      // console.log("229...................................")
       const trip_gtfs = transformFormat(routeinfos_stoptimes)
-      // console.log("222",trip_gtfs)
-      // console.log("222...................................")
+      // console.log("232",trip_gtfs)
+      // console.log("232...................................")
       return trip_gtfs
     } catch (err) {
       // console.log(err)
@@ -238,3 +240,9 @@ exports.TrainSimulator = class {
     }
   }
 }
+
+
+
+// Debug
+    // console.log("229....", routeinfos_stoptimes)
+    // console.log("229...................................")

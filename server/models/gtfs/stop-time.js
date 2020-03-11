@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 
 const stopTimeSchema = new mongoose.Schema({
-  
-  agency_key: {
-    type: String,
-    required: false,
-    index: true
-  },
   trip_id: {
     type: String,
     required: true,
+    index: true
+  },
+  agency_key: {
+    type: String,
+    required: false,
     index: true
   },
   arrival_time: {
