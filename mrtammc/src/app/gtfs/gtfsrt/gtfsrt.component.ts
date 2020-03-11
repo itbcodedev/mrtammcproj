@@ -52,7 +52,7 @@ export class GtfsrtComponent implements OnInit {
   routesinfo;
   activeRoutes;
   incomingTrain = [];
-  totalTrips = 0;
+  totalTrips ;
   selectrouteid;
   controllerLayer;
   selectTripId;
