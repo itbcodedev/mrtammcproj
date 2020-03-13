@@ -120,7 +120,7 @@ export class GtfsrtComponent implements OnInit {
     this.getRouteformat();
 
     this.loadGeojson();
-    // this.showAllgeojson();
+    this.showAllgeojson();
     this.getKmltoroute();
     // this.removeAllgeojson()
     // this.showgeojson("00011")
@@ -744,6 +744,7 @@ export class GtfsrtComponent implements OnInit {
   }
 
   loadGeojson() {
+    console.log("747...... LoadGeojson")
     // load geojson with new L.GeoJSON()
     const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purple.geojson', {
       style: function(feature) {
@@ -847,11 +848,11 @@ export class GtfsrtComponent implements OnInit {
       },
       blue_line: {
         geojson: blue_line,
-        routes: []
+        routes: ['00002', '00001']
       },
       blue_chalearm_line: {
         geojson: blue_chalearm_line,
-        routes: ['00013', '00014']
+        routes: ['00002', '00001']
       },
       blue_extend_line: {
         geojson: blue_extend_line,
