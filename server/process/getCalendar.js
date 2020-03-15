@@ -1,13 +1,13 @@
 const moment = require('moment');
 let weekday = moment().format('dddd');
-let calendar = ''
+let calendar = []
 exports.gtfsCalendar = () => {
     if ( weekday == "Sunday")  {
-        calendar  = 'SU'
+        calendar  = ['SU','WE']
     } else if (weekday == "Saturday") {
-        calendar  = 'SA'
+        calendar  = ['SA','WE']
     } else {
-        calendar  = 'WD'
+        calendar  = ['WD']
     }
     return  calendar
 }

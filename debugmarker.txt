@@ -66,6 +66,10 @@ timedatectl set-time 14:00:00
 
 timedatectl set-time 16:00:00
 
+
+Failed to set time: Automatic time synchronization is enabled
+
+timedatectl set-ntp 0
 sudo kill -9 $(lsof -t -i:3000)
 sudo kill -9 $(lsof -t -i:4200)
 
@@ -293,3 +297,5 @@ sudo systemctl restart nginx
           //   [0]       stop_sequence: 6,
           //   [0]       __v: 0
           //   [0]     },
+
+      

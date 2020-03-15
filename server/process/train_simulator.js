@@ -49,7 +49,7 @@ exports.TrainSimulator = class {
     function checktime(trip, start_time, endtime_time) {
       const format = 'hh:mm:ss'
 
-      //const CurrentDate = moment().subtract(3,'hours');
+      //const CurrentDate = moment().subtract(3,'// const calendar = require('../../process/getCalendar');// const calendar = require('../../process/getCalendar');s');
       const CurrentDate = moment()
 
       let timenow = CurrentDate.format("HH:mm:ss")
@@ -214,25 +214,30 @@ exports.TrainSimulator = class {
       //   return ! (trip.trip_id == "PT4" || trip.trip_id == "DEP-PL")
       // })
       // step 2 add sececond
-      const routeinfos_addsec = routeinfos.map(trip => {
+      const c = calendar.gtfsCalendar()
+      
+            // step 3 find active train
+      
+      const routeinfos_now = routeinfos.filter(trip => {
+            return checktime(trip, trip.start_time, trip.end_time)
+      })
+
+      
+      const routeinfos_addsec = routeinfos_now.filter(trip => c.includes(trip.calendar)).map(trip => {
+  
         trip.start_time_secs = getsecond(trip.start_time)
         trip.end_time_secs = getsecond(trip.end_time)
         trip.runtime_secs = trip.end_time_secs - trip.start_time_secs
         trip.runtime = Math.round(trip.runtime_secs/60)
+        console.log(trip.trip_id, trip.runtime_secs)
         return trip
+
       })
-      // step 3 find active train
-      const routeinfos_now = routeinfos_addsec.filter(trip => {
-        return checktime(trip, trip.start_time, trip.end_time)
-      })
-      //console.log("226",routeinfos_now)
-      // contruct data
-      const routeinfos_stoptimes = await addStoptime(this.gtfs, routeinfos_now)
-      // console.log("229....", routeinfos_stoptimes)
-      // console.log("229...................................")
+
+      console.log('237  total | active | calendar ', routeinfos.length, routeinfos_now.length, routeinfos_addsec.length)
+
+      const routeinfos_stoptimes = await addStoptime(this.gtfs, routeinfos_addsec)
       const trip_gtfs = transformFormat(routeinfos_stoptimes)
-      // console.log("232",trip_gtfs)
-      // console.log("232...................................")
       return trip_gtfs
     } catch (err) {
       // console.log(err)
@@ -240,9 +245,3 @@ exports.TrainSimulator = class {
     }
   }
 }
-
-
-
-// Debug
-    // console.log("229....", routeinfos_stoptimes)
-    // console.log("229...................................")
