@@ -110,6 +110,7 @@ exports.TrainSimulator = class {
         const runtime = stoptime.runtime
         const start_point = stoptime.start_point
         const end_point = stoptime.end_point
+        const loc_order = stoptime.loc_order
 
         const gtfsrt = `
         {
@@ -135,7 +136,8 @@ exports.TrainSimulator = class {
                 "start_time": "${start_time}",
                 "end_time": "${end_time}",
                 "start_point": "${start_point}",
-                "end_point" : "${end_point}"
+                "end_point" : "${end_point}",
+                "loc_order" : "${loc_order}"
               },
               "position": {
                 "latitude": "${latitude}",
@@ -169,15 +171,17 @@ exports.TrainSimulator = class {
         const delta_t = trip.time_now_sec - trip.start_time_secs 
         const runtime_secs = trip.runtime_secs
         const filemodule = getPathfile(trip)
-        // console.log("174",  filemodule)
+        console.log('172',  trip, filemodule)
         const loc_length = path[`${filemodule}`].points.length
+        
         const loc_order = Math.round((delta_t/ runtime_secs) * loc_length) 
         // use loc_order to estimate lat lng
         const location = path[`${filemodule}`].points[loc_order]
-        // console.log("Line 167", trip.trip_id,runtime_secs,loc_order,loc_length)
+        console.log("178 filemodule | trip_id | runtime_sec | loc_order | loc_length  ", filemodule, trip.trip_id, runtime_secs, loc_order,loc_length)
         // Line 167 0513195 3507 78 2051
         trip.file = filemodule
         trip.location = location
+        trip.loc_order = loc_order
 
         try {
           const query = {}

@@ -53,6 +53,7 @@ export class GtfsrtComponent implements OnInit {
   activeRoutes;
   incomingTrain = [];
   totalTrips ;
+  tripbycalendar ;
   selectrouteid;
   controllerLayer;
   selectTripId;
@@ -115,6 +116,7 @@ export class GtfsrtComponent implements OnInit {
       return this.checktime(obj.start_time, obj.end_time);
     });
 
+    this.tripbycalendar = this.checkCalenadar(this.totalTrips)
     //
     this.getstations();
     this.getRouteformat();
@@ -189,6 +191,7 @@ export class GtfsrtComponent implements OnInit {
         const start_time = data['entity']['vehicle']['trip']['start_time'];
         const end_time = data['entity']['vehicle']['trip']['end_time'];
         const trip_id = data['entity']['vehicle']['trip']['trip_id'];
+        const loc_order = data['entity']['vehicle']['trip']['loc_order'];
         // // TODO: display info on marker
         // tripEntity = `${stoptime.route_name}-${stoptime.trip_id}`
         const tripEntity = data['entity']['id'];
@@ -213,7 +216,7 @@ export class GtfsrtComponent implements OnInit {
         const t3 = performance.now();
         console.log( ' Time for routetrips ' + (t3 - t2) + ' millisec')
         // debug
-        // console.log('117....',trip_id,filter)
+        console.log('218..gtfs.component ', trip_id, loc_order, latitude, longitude )
         const nextstation = routetrips.map(obj => {
           // purple 00118 224
           // console.log(obj.route_name, obj.trip_id, obj.stoptimes.length)
@@ -283,7 +286,7 @@ export class GtfsrtComponent implements OnInit {
             // add marker
             // marker.addTo(this.map).bindPopup(`${tripEntity}`)
             this.layerRouteGroup[route_id].addLayer(marker);
-            console.log("281", this.layerRouteGroup)
+            console.log('281', this.layerRouteGroup)
             // marker function
             marker.tripEntity = tripEntity;
             marker.trip_id = trip_id;
@@ -419,6 +422,7 @@ export class GtfsrtComponent implements OnInit {
           <p style="color: #ffffff; margin: 2px 0;">${e.target.headsign}</p>
           <p style="color: #ffffff; margin: 2px 0;">${e.target.runtime} m.</p>
           <p style="color: #ffffff; margin: 2px 0;">${e.target.trip_id}</p>
+          <p style="color: #ffffff; margin: 2px 0;">${e.target.loc_order}</p>
           <p style="color: #ffffff; margin: 2px 0;">
               <img src="/assets/dist/icons/man.png"> N/A คน
           </p>
@@ -744,7 +748,7 @@ export class GtfsrtComponent implements OnInit {
   }
 
   loadGeojson() {
-    console.log("747...... LoadGeojson")
+    console.log('747...... LoadGeojson')
     // load geojson with new L.GeoJSON()
     const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purple.geojson', {
       style: function(feature) {
@@ -1294,6 +1298,19 @@ export class GtfsrtComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  checkCalenadar(trips) {
+    const weekday = moment().format('dddd');
+    let calendar = []
+    if ( weekday === 'Sunday')  {
+      calendar  = ['SU', 'WE']
+    } else if (weekday === 'Saturday') {
+      calendar  = ['SA', 'WE']
+    } else {
+      calendar  = ['WD']
+    }
+    return trips.filter((trip) => calendar.includes(trip.calendar))
   }
 
   loadRoute(data: NgForm) {

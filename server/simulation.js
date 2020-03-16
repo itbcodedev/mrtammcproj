@@ -12,7 +12,7 @@ const simulate = async (io) => {
 
   await train.main()
   train.trip_gtfs.map(trip => {
-    console.log("response to app socket");
+    // console.log("response to app socket");
     request({
         url: simulate_url,
         method: "POST",
