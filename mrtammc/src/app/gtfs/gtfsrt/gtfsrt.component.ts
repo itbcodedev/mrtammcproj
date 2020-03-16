@@ -422,7 +422,6 @@ export class GtfsrtComponent implements OnInit {
           <p style="color: #ffffff; margin: 2px 0;">${e.target.headsign}</p>
           <p style="color: #ffffff; margin: 2px 0;">${e.target.runtime} m.</p>
           <p style="color: #ffffff; margin: 2px 0;">${e.target.trip_id}</p>
-          <p style="color: #ffffff; margin: 2px 0;">${e.target.loc_order}</p>
           <p style="color: #ffffff; margin: 2px 0;">
               <img src="/assets/dist/icons/man.png"> N/A คน
           </p>

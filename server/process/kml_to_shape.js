@@ -247,7 +247,7 @@ class KmlToShape {
 
     // point interval in meters
     if (!interval_meters) {
-      interval_meters = 20.0
+      interval_meters = 5.0
     }
 
     azimuth = this.calculateBearing(parseFloat(lat1), parseFloat(lng1), parseFloat(lat2), parseFloat(lng2))
