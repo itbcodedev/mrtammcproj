@@ -835,6 +835,42 @@ export class GtfsrtComponent implements OnInit {
       }
     );
 
+    // load geojson with new L.GeoJSON()
+    const pink_line = new L.GeoJSON.AJAX(
+      '/assets/dist/kml/pink_line.geojson',
+      {
+        style: function(feature) {
+          return {
+            color: '#FF1493'
+          };
+        }
+      }
+    );
+
+    // load geojson with new L.GeoJSON()
+    const purple_line_south = new L.GeoJSON.AJAX(
+      '/assets/dist/kml/purple_line_south.geojson',
+      {
+        style: function(feature) {
+          return {
+            color: '#FF00FF'
+          };
+        }
+      }
+    );
+
+    // load geojson with new L.GeoJSON()
+    const yellow_line = new L.GeoJSON.AJAX(
+      '/assets/dist/kml/yellow_line.geojson',
+      {
+        style: function(feature) {
+          return {
+            color: '#FFFF00'
+          };
+        }
+      }
+    );
+
     // blue_line.addTo(this.map);
     // purple_line.addTo(this.map);
     // blue_chalearm_line.addTo(this.map);
@@ -875,6 +911,18 @@ export class GtfsrtComponent implements OnInit {
       },
       light_green_extend_line: {
         geojson: light_green_extend_line,
+        routes: []
+      },
+      pink_line: {
+        geojson: pink_line,
+        routes: []
+      },
+      purple_line_south: {
+        geojson: purple_line_south,
+        routes: []
+      },
+      yellow_line: {
+        geojson: yellow_line,
         routes: []
       }
     };
