@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"mmcmrtadb.stopattributes"},{"v":2,"key":{"agency_key":1},"name":"agency_key_1","ns":"mmcmrtadb.stopattributes","background":true},{"v":2,"key":{"stop_id":1},"name":"stop_id_1","background":true,"ns":"mmcmrtadb.stopattributes"}],"uuid":"32730f69cfcc4ea8a0e419d7dc31ed68"}

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"mmcmrtadb.frequencies"},{"v":2,"key":{"agency_key":1},"name":"agency_key_1","ns":"mmcmrtadb.frequencies","background":true},{"v":2,"key":{"trip_id":1},"name":"trip_id_1","background":true,"ns":"mmcmrtadb.frequencies"}],"uuid":"05eeac8e0fdb4f91a4f7173d7fb065a5"}

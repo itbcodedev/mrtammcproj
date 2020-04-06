@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"mmcmrtadb.feedinfos"},{"v":2,"key":{"agency_key":1},"name":"agency_key_1","ns":"mmcmrtadb.feedinfos","background":true}],"uuid":"0ad3d2c4fa424d2a8e237230cd0e7f83"}
