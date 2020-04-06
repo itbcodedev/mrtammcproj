@@ -171,13 +171,14 @@ exports.TrainSimulator = class {
         const delta_t = trip.time_now_sec - trip.start_time_secs 
         const runtime_secs = trip.runtime_secs
         const filemodule = getPathfile(trip)
-        console.log('172',  trip, filemodule)
+        // debug 
+        console.log('175',  trip, filemodule)
         const loc_length = path[`${filemodule}`].points.length
         
         const loc_order = Math.round((delta_t/ runtime_secs) * loc_length) 
         // use loc_order to estimate lat lng
         const location = path[`${filemodule}`].points[loc_order]
-        console.log("178 filemodule | trip_id | runtime_sec | loc_order | loc_length  ", filemodule, trip.trip_id, runtime_secs, loc_order,loc_length)
+        console.log("181 filemodule | trip_id | runtime_sec | loc_order | loc_length  ", filemodule, trip.trip_id, runtime_secs, loc_order,loc_length)
         // Line 167 0513195 3507 78 2051
         trip.file = filemodule
         trip.location = location

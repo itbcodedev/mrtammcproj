@@ -49,11 +49,11 @@ export class GtfsrtComponent implements OnInit {
   StationMarkers = {};
   layerRouteGroup = {};
   SelectedTrain = [];
-  routesinfo;
+  routesinfo = [];
   activeRoutes;
   incomingTrain = [];
-  totalTrips ;
-  tripbycalendar ;
+  totalTrips = [];
+  tripbycalendar = [ ] ;
   selectrouteid;
   controllerLayer;
   selectTripId;
@@ -116,7 +116,7 @@ export class GtfsrtComponent implements OnInit {
       return this.checktime(obj.start_time, obj.end_time);
     });
 
-    this.tripbycalendar = this.checkCalenadar(this.totalTrips)
+    this.tripbycalendar = this.checkCalenadar(this.totalTrips);
     //
     this.getstations();
     this.getRouteformat();
@@ -178,7 +178,7 @@ export class GtfsrtComponent implements OnInit {
         this.CurrentDate = moment();
         this.wsdata = JSON.stringify(data, null, 2);
         // // DEBUG: data from webservice
-        // console.log('178..........', this.wsdata);
+        // console.log('181..........', this.wsdata);
         const route_name = data['header']['route_name'];
         const route_id = data['header']['route_id'];
         const direction = data['header']['direction'];
@@ -207,16 +207,16 @@ export class GtfsrtComponent implements OnInit {
           trip_id
         );
         const t1 = performance.now();
-        console.log( ' Time for routeinfowithtrips ' + (t1 - t0) + ' millisec')
+        // console.log( ' debug Time for routeinfowithtrips ' + (t1 - t0) + ' millisec');
         // filter again filter only active trip
         const t2 = performance.now();
         const routetrips = routeinfowithtrips.filter(obj => {
           return this.checktime(obj.start_time, obj.end_time);
         });
         const t3 = performance.now();
-        console.log( ' Time for routetrips ' + (t3 - t2) + ' millisec')
+        // console.log( 'debug Time for routetrips ' + (t3 - t2) + ' millisec');
         // debug
-        console.log('218..gtfs.component ', trip_id, loc_order, latitude, longitude )
+        // console.log('218..gtfs.component ', trip_id, loc_order, latitude, longitude );
         const nextstation = routetrips.map(obj => {
           // purple 00118 224
           // console.log(obj.route_name, obj.trip_id, obj.stoptimes.length)
@@ -282,18 +282,18 @@ export class GtfsrtComponent implements OnInit {
             this.ActiveTrain[tripEntity] = vehicle;
             //// TODO: 1 create marker
             const marker = this.createMarker(trainLatLng, route_name);
-            console.log('276 create marker result', route_name, marker)
+            console.log('276 create marker result', route_name, marker);
             // add marker
             // marker.addTo(this.map).bindPopup(`${tripEntity}`)
             this.layerRouteGroup[route_id].addLayer(marker);
-            console.log('281', this.layerRouteGroup)
+            console.log('281', this.layerRouteGroup);
             // marker function
             marker.tripEntity = tripEntity;
             marker.trip_id = trip_id;
             marker.start_time = start_time;
             marker.end_time = end_time;
             marker.direction = direction;
-            console.log('287...', route_name)
+            console.log('287...', route_name);
             marker.color = this.getColor(route_name);
             marker.track = this.getTrack(route_name);
             marker.headsign = headsign;
@@ -747,7 +747,7 @@ export class GtfsrtComponent implements OnInit {
   }
 
   loadGeojson() {
-    console.log('747...... LoadGeojson')
+    console.log('747...... LoadGeojson');
     // load geojson with new L.GeoJSON()
     const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purple.geojson', {
       style: function(feature) {
@@ -962,10 +962,11 @@ export class GtfsrtComponent implements OnInit {
   }
 
   getdirection(trip_id) {
+    console.log('965..', trip_id)
     const trip = this.trips.find(t => {
       return t.trip_id == trip_id;
     });
-    console.log(trip);
+    console.log('968 ..', trip)
     return trip.direction_id;
   }
 
@@ -1043,31 +1044,33 @@ export class GtfsrtComponent implements OnInit {
   }
 
   async loadStation() {
-    console.log('826', this.routformats);
+
     this.stops.forEach(async (stop, index) => {
       // get station icon path
       const route = this.getstationicon(stop.stop_id.trim());
 
-      // console.log("128 ===================", index,  stop.stop_id, route)
       let stopicon = '';
       let station_icon;
       if (route === undefined || route === null) {
         // default
         stopicon = environment.iconbase + stop.icon;
-        console.log('133', route, stop.stop_id, stopicon);
+
       } else {
         this.routformats.forEach(obj => {
           if (obj.route == route) {
             station_icon = '.' + obj.station_icon;
           }
         });
-        console.log('140', route, stop.stop_id, station_icon);
+
         if (station_icon === undefined || station_icon === null) {
           stopicon = environment.iconbase + stop.icon;
         } else {
           stopicon = station_icon;
         }
+
       }
+
+      // console.log('1072... ', stop.stop_id, stopicon);
 
       const icon = new L.icon({
         iconSize: [22, 22],
@@ -1100,14 +1103,15 @@ export class GtfsrtComponent implements OnInit {
         this.selectMarker = null;
         const stoptimes_next = await this.loadallstoptimes(e.target.stop_id);
         // console.log(stoptimes_next)
-
+        console.log('1105', stop.stop_url)
         let li = '';
         stoptimes_next.forEach(st => {
-          // console.log(st.trip_id)
+          console.log('1108 ...', st.trip_id)
           const direction = this.getdirection(st.trip_id);
+          
           // console.log(direction)
           let name;
-          if (direction == 1) {
+          if (direction === 1) {
             name = 'ขาออก';
             li +=
               '<li class=\'list-group-item\'>' +
@@ -1122,7 +1126,7 @@ export class GtfsrtComponent implements OnInit {
               '</li>';
           }
 
-          if (direction == 0) {
+          if (direction === 0) {
             name = 'ขาเข้า';
             li +=
               '<li class=\'list-group-item\'>' +
@@ -1349,15 +1353,15 @@ export class GtfsrtComponent implements OnInit {
 
   checkCalenadar(trips) {
     const weekday = moment().format('dddd');
-    let calendar = []
+    let calendar = [];
     if ( weekday === 'Sunday')  {
-      calendar  = ['SU', 'WE']
+      calendar  = ['SU', 'WE'];
     } else if (weekday === 'Saturday') {
-      calendar  = ['SA', 'WE']
+      calendar  = ['SA', 'WE'];
     } else {
-      calendar  = ['WD']
+      calendar  = ['WD'];
     }
-    return trips.filter((trip) => calendar.includes(trip.calendar))
+    return trips.filter((trip) => calendar.includes(trip.calendar));
   }
 
   loadRoute(data: NgForm) {

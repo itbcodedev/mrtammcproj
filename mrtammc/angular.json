@@ -52,10 +52,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -144,5 +146,8 @@
       }
     }
   },
-  "defaultProject": "mrtammc"
+  "defaultProject": "mrtammc",
+  "cli": {
+    "analytics": "c3bc467b-b637-4b60-8813-012b3c6167e1"
+  }
 }
