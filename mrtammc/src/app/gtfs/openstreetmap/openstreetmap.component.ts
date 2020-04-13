@@ -1,7 +1,7 @@
 import { Component, OnInit, Renderer2, Inject } from '@angular/core';
-//import { GtfsService } from '../../services/gtfs.service';
+// import { GtfsService } from '../../services/gtfs.service';
 import { GtfsService } from '../../services/gtfs2.service';
-import { GtfsrtwsService } from '../../services/gtfsrtws.service'
+import { GtfsrtwsService } from '../../services/gtfsrtws.service';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import * as moment from 'moment';
@@ -9,128 +9,124 @@ import * as _ from 'lodash';
 
 declare let L;
 
-
 import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-openstreetmap',
   templateUrl: './openstreetmap.component.html',
-  styleUrls: ['./openstreetmap.component.scss']
+  styleUrls: ['./openstreetmap.component.scss'],
 })
-
 export class OpenstreetmapComponent implements OnInit {
   map: any;
   activeTrains: any;
-  wsdata
-  path
+  wsdata;
+  path;
 
-  //csvUrl = 'assets/tubemapdata/testlatlng.csv';
+  // csvUrl = 'assets/tubemapdata/testlatlng.csv';
   csvUrl = 'assets/tubemapdata/purplecoordinate.csv';
   purple_csvUrl = 'assets/tubemapdata/purplecoordinate.csv';
-  blue_csvUrl = 'assets/tubemapdata/bluecoordinate.csv';
+  blue_csvUrl = 'assets/tubemapdata/blueline_coordinate.csv';
   // array store data
   csvData: any[] = [];
   blue_csvData: any[] = [];
 
-
   purplestations = [
     {
-      'station': 'คลองบางไผ่',
-      'code': 'PP01',
-      'distance': 0,
-      'location': [50.05, 730.6]
+      station: 'คลองบางไผ่',
+      code: 'PP01',
+      distance: 0,
+      location: [50.05, 730.6],
     },
     {
-      'station': 'ตลาดบางใหญ่',
-      'code': 'PP02',
-      'distance': 1.26,
-      'location': [50.05, 713.94]
+      station: 'ตลาดบางใหญ่',
+      code: 'PP02',
+      distance: 1.26,
+      location: [50.05, 713.94],
     },
     {
-      'station': 'สามแยกบางใหญ่',
-      'code': 'PP03',
-      'distance': 2.94,
-      'location': [60.93, 697.94]
+      station: 'สามแยกบางใหญ่',
+      code: 'PP03',
+      distance: 2.94,
+      location: [60.93, 697.94],
     },
     {
-      'station': 'บางพูล',
-      'code': 'PP04',
-      'distance': 4.50,
-      'location': [86.8, 697.94]
+      station: 'บางพูล',
+      code: 'PP04',
+      distance: 4.5,
+      location: [86.8, 697.94],
     },
     {
-      'station': 'บางรักใหญ่',
-      'code': 'PP05',
-      'distance': 5.69,
-      'location': [112.07, 697.94]
+      station: 'บางรักใหญ่',
+      code: 'PP05',
+      distance: 5.69,
+      location: [112.07, 697.94],
     },
     {
-      'station': 'ท่าอิฐ',
-      'code': 'PP06',
-      'distance': 6.97,
-      'location': [138.44, 697.94]
+      station: 'ท่าอิฐ',
+      code: 'PP06',
+      distance: 6.97,
+      location: [138.44, 697.94],
     },
     {
-      'station': 'ไทรม้า',
-      'code': 'PP07',
-      'distance': 8.20,
-      'location': [164.07, 697.94]
+      station: 'ไทรม้า',
+      code: 'PP07',
+      distance: 8.2,
+      location: [164.07, 697.94],
     },
     {
-      'station': 'สะพานพระนั่งเกล้า',
-      'code': 'PP08',
-      'distance': 9.68,
-      'location': [192.43, 697.94]
+      station: 'สะพานพระนั่งเกล้า',
+      code: 'PP08',
+      distance: 9.68,
+      location: [192.43, 697.94],
     },
     {
-      'station': 'แยกนนทบุรี 1',
-      'code': 'PP09',
-      'distance': 11.3,
-      'location': [221.82, 697.94]
+      station: 'แยกนนทบุรี 1',
+      code: 'PP09',
+      distance: 11.3,
+      location: [221.82, 697.94],
     },
     {
-      'station': 'ศรีพรสวรรค์',
-      'code': 'PP10',
-      'distance': 12.5,
-      'location': [249.01, 697.94]
+      station: 'ศรีพรสวรรค์',
+      code: 'PP10',
+      distance: 12.5,
+      location: [249.01, 697.94],
     },
     {
-      'station': 'ศูนย์ราชการนนทบุรี',
-      'code': 'PP11',
-      'distance': 13.5,
-      'location': [275.75, 697.94]
+      station: 'ศูนย์ราชการนนทบุรี',
+      code: 'PP11',
+      distance: 13.5,
+      location: [275.75, 697.94],
     },
     {
-      'station': 'กระทรวงสาธารณสุข',
-      'code': 'PP12',
-      'distance': 15.5,
-      'location': [329.24, 663.61]
+      station: 'กระทรวงสาธารณสุข',
+      code: 'PP12',
+      distance: 15.5,
+      location: [329.24, 663.61],
     },
     {
-      'station': 'แยกติวานนท์',
-      'code': 'PP13',
-      'distance': 16.9,
-      'location': [349.13, 644.13]
+      station: 'แยกติวานนท์',
+      code: 'PP13',
+      distance: 16.9,
+      location: [349.13, 644.13],
     },
     {
-      'station': 'แยกวงค์สว่าง',
-      'code': 'PP14',
-      'distance': 18.5,
-      'location': [356.97, 619.88]
+      station: 'แยกวงค์สว่าง',
+      code: 'PP14',
+      distance: 18.5,
+      location: [356.97, 619.88],
     },
     {
-      'station': 'บางซ่อน',
-      'code': 'PP15',
-      'distance': 19.9,
-      'location': [356.97, 591.64]
+      station: 'บางซ่อน',
+      code: 'PP15',
+      distance: 19.9,
+      location: [356.97, 591.64],
     },
     {
-      'station': 'เตาปูน',
-      'code': 'PP16',
-      'distance': 21.5,
-      'location': [356.97, 562.77]
+      station: 'เตาปูน',
+      code: 'PP16',
+      distance: 21.5,
+      location: [356.97, 562.77],
     },
-
   ];
   purple_points = [];
   blue_points = [];
@@ -138,25 +134,33 @@ export class OpenstreetmapComponent implements OnInit {
   myTrains;
   notfollow = true;
 
-  constructor(@Inject(DOCUMENT) private document,
+  constructor(
+    @Inject(DOCUMENT) private document,
     private renderer: Renderer2,
     private _gtfsws: GtfsrtwsService,
     private gtfsService: GtfsService,
-    private http: HttpClient) { }
-
+    private http: HttpClient
+  ) {}
 
   readCsvData(csvUrl) {
-    const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8');
-    return this.http.get(csvUrl, { headers, responseType: 'text' }).toPromise()
-      .then(res => this.extractData(res), err => this.handleError(err));
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'text/plain; charset=utf-8'
+    );
+    return this.http
+      .get(csvUrl, { headers, responseType: 'text' })
+      .toPromise()
+      .then(
+        (res) => this.extractData(res),
+        (err) => this.handleError(err)
+      );
   }
 
   private extractData(res) {
-
     let csvData = res || '';
     let allTextLines = csvData.split(/\r\n|\n/);
     let headers = allTextLines[0].split(',');
-    console.log(allTextLines.length)
+    console.log(allTextLines.length);
 
     let lines = [];
 
@@ -171,37 +175,46 @@ export class OpenstreetmapComponent implements OnInit {
         lines.push(tarr);
       }
     }
-    //this.csvData = lines;
-    return lines
+    // this.csvData = lines;
+    return lines;
   }
 
   private handleError(error: any) {
     // In a real world app, we might use a remote logging infrastructure
     // We'd also dig deeper into the error to get a better message
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    let errMsg = error.message
+      ? error.message
+      : error.status
+      ? `${error.status} - ${error.statusText}`
+      : 'Server error';
     console.error(errMsg); // log to console instead
     return errMsg;
   }
 
-
-
   async ngOnInit() {
-    //this.renderer.removeClass(this.document.body, 'sidebar-open');
-    //this.renderer.addClass(this.document.body, 'sidebar-collapse');
-    this.loadStation()
-    this.csvData = await this.readCsvData(this.purple_csvUrl)
-    this.csvData.shift() //remove first row
+    // this.renderer.removeClass(this.document.body, 'sidebar-open');
+    // this.renderer.addClass(this.document.body, 'sidebar-collapse');
+    this.loadStation();
+    this.csvData = await this.readCsvData(this.purple_csvUrl);
+    this.csvData.shift(); // remove first row
 
-    this.blue_csvData = await this.readCsvData(this.blue_csvUrl)
-    this.blue_csvData.shift() //remove first row
-
+    this.blue_csvData = await this.readCsvData(this.blue_csvUrl);
+    this.blue_csvData.shift(); // remove first row
 
     this.map = L.map('map', {
-      crs: L.CRS.Simple, //important display as flat xy not map
+      crs: L.CRS.Simple, // important display as flat xy not map
       center: [300, 240],
-      zoom: 1
+      zoom: 1,
     });
+
+    // const LatLng = new L.LatLng(197.91, 81.37);
+    // const testMaker = L.circle(LatLng, {
+    //   color: '#000000',
+    //   fillColor: '#f400ff',
+    //   fillOpacity: 1,
+    //   radius: 5,
+    // });
+    // testMaker.addTo(this.map);
 
     // Test show marker
     // this.csvData.forEach( obj => {
@@ -221,127 +234,145 @@ export class OpenstreetmapComponent implements OnInit {
       iconUrl: './assets/leaflet/images/left-train.svg',
       iconSize: [28, 25],
       iconAnchor: [14, 14],
-      popupAnchor: [-3, -10]
+      popupAnchor: [-3, -10],
     });
     const righttrain = L.icon({
       iconUrl: './assets/leaflet/images/right-train.svg',
       iconSize: [28, 25],
       iconAnchor: [14, 14],
-      popupAnchor: [-3, -10]
+      popupAnchor: [-3, -10],
     });
 
-    //step 1 display tubemap  on csr
+    // step 1 display tubemap  on csr
     const tubemap = './assets/dist/img/mrtatube.svg';
-    const bounds = [[0, 0], [583.59, 594.6]];
+    const bounds = [
+      [0, 0],
+      [583.59, 594.6],
+    ];
     L.imageOverlay(tubemap, bounds).addTo(this.map).bringToBack();
     // const point = L.circle([730.6, 50], { color: 'green', radius: 4 }).addTo(map);
     // 0,0 to bottum left
-    const purple = [[28.02, 447.1], [28.02, 426.7], [180, 426.8], [281.70, 387.73], [281.70, 343.20]];
-    const blue = [[357.04, 563.27], [479.55, 563.27], [479.55, 616.77], [533.86, 616.77], [598.86, 551.26], [598.86, 361.90], [421.20, 361.90]]
-
+    const purple = [
+      [28.02, 447.1],
+      [28.02, 426.7],
+      [180, 426.8],
+      [281.7, 387.73],
+      [281.7, 343.2],
+    ];
+    const blue = [
+      [357.04, 563.27],
+      [479.55, 563.27],
+      [479.55, 616.77],
+      [533.86, 616.77],
+      [598.86, 551.26],
+      [598.86, 361.9],
+      [421.2, 361.9],
+    ];
 
     this.group1 = L.featureGroup();
     this.group1.addTo(this.map);
 
-    const ActiveTrain = {}
-    const trainLocationMarkers = {}
+    const ActiveTrain = {};
+    const trainLocationMarkers = {};
 
     // get data from web socket
 
     // get Realtime data
-    this._gtfsws.listen('gtfsrt').subscribe(async data => {
-
-      this.wsdata = JSON.stringify(data, null, 2)
+    this._gtfsws.listen('gtfsrt').subscribe(async (data) => {
+      this.wsdata = JSON.stringify(data, null, 2);
       // // DEBUG: data from webservice
-      //console.log('230..........', this.wsdata)
+      // console.log('230..........', this.wsdata)
 
-      const route_name = data['header']['route_name']
-      const direction = data['header']['direction']
-      const headsign = data['header']['headsign']
-      const runtime = data['header']['runtime']
-      const time_now_sec = data['entity']['vehicle']['trip']['time_now_sec']
-      const start_time_secs = data['entity']['vehicle']['trip']['start_time_secs']
-      const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs']
-      const start_time = data['entity']['vehicle']['trip']['start_time']
-      const end_time = data['entity']['vehicle']['trip']['end_time']
-      const trip_id = data['entity']['vehicle']['trip']['trip_id']
+      const route_name = data['header']['route_name'];
+      const direction = data['header']['direction'];
+      const headsign = data['header']['headsign'];
+      const runtime = data['header']['runtime'];
+      const time_now_sec = data['entity']['vehicle']['trip']['time_now_sec'];
+      const start_time_secs =
+        data['entity']['vehicle']['trip']['start_time_secs'];
+      const end_time_secs = data['entity']['vehicle']['trip']['end_time_secs'];
+      const start_time = data['entity']['vehicle']['trip']['start_time'];
+      const end_time = data['entity']['vehicle']['trip']['end_time'];
+      const trip_id = data['entity']['vehicle']['trip']['trip_id'];
       // // TODO: display info on marker
-      const tripEntity = data['entity']['id']
-      const vehicle = data['entity']['vehicle']
-      const latitude = data['entity']['vehicle']['position']['latitude']
-      const longitude = data['entity']['vehicle']['position']['longitude']
-      const stoptimes = data['entity']['vehicle']['stoptimes']
+      const tripEntity = data['entity']['id'];
+      const vehicle = data['entity']['vehicle'];
+      const latitude = data['entity']['vehicle']['position']['latitude'];
+      const longitude = data['entity']['vehicle']['position']['longitude'];
+      const stoptimes = data['entity']['vehicle']['stoptimes'];
 
       // getdata
-      const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(trip_id);
-      //filter again
-      const routetrips = routeinfowithtrips.filter(obj => {
-        return this.checktime(obj.start_time, obj.end_time)
-      })
-      //debug
-      //console.log('117....',trip_id,filter)
-      const nextstation = routetrips.map(obj => {
-        const selectStoptimes = obj.stoptimes.filter(st_obj => {
+      const routeinfowithtrips = await this.gtfsService.getrouteinfowithtrip(
+        trip_id
+      );
+      // filter again
+      const routetrips = routeinfowithtrips.filter((obj) => {
+        return this.checktime(obj.start_time, obj.end_time);
+      });
+      // debug
+      // console.log('117....',trip_id,filter)
+      const nextstation = routetrips.map((obj) => {
+        const selectStoptimes = obj.stoptimes.filter((st_obj) => {
           // filter next time check depature_time less than timenow [0]
-          return this.findNextTrip(st_obj.arrival_time)
-        })
-        obj.selectStoptimes = _.first(selectStoptimes)
-        return obj
-      })
+          return this.findNextTrip(st_obj.arrival_time);
+        });
+        obj.selectStoptimes = _.first(selectStoptimes);
+        return obj;
+      });
 
       // // DEBUG: success ? filter next station
 
-      const nexttrip = nextstation[0].selectStoptimes
+      const nexttrip = nextstation[0].selectStoptimes;
 
-      //console.log('130....',nexttrip)
+      // console.log('130....',nexttrip)
       // // TODO: filter with time select next station
-      console.log('time_now_sec - start_time_secs', time_now_sec, start_time_secs)
-      const delta_t = time_now_sec - start_time_secs
+      console.log(
+        'time_now_sec - start_time_secs',
+        time_now_sec,
+        start_time_secs
+      );
+      const delta_t = time_now_sec - start_time_secs;
 
+      const runtime_secs = runtime * 60;
 
-      const runtime_secs = runtime * 60
-
-      let loc_length
-      let loc_order
-      let position
-      let trainLocation
+      let loc_length;
+      let loc_order;
+      let position;
+      let trainLocation;
 
       // select route_name and csvData to get location
       switch (route_name) {
-        case "purple":
-          loc_length = this.csvData.length
-          loc_order = Math.round((delta_t / runtime_secs) * loc_length)
-          //console.log('trip_id,delta_t,loc_order,loc_length',trip_id,delta_t,loc_order,loc_length)
+        case 'purple':
+          loc_length = this.csvData.length;
+          loc_order = Math.round((delta_t / runtime_secs) * loc_length);
+          // console.log('trip_id,delta_t,loc_order,loc_length',trip_id,delta_t,loc_order,loc_length)
 
           if (+direction) {
-            console.log(+direction)
-            position = this.csvData[loc_length - loc_order]
-            trainLocation = new L.LatLng(position[2], position[1])
+            console.log(+direction);
+            position = this.csvData[loc_length - loc_order];
+            trainLocation = new L.LatLng(position[2], position[1]);
           } else {
-            console.log(+direction)
-            position = this.csvData[loc_order]
-            trainLocation = new L.LatLng(position[2], position[1])
+            console.log(+direction);
+            position = this.csvData[loc_order];
+            trainLocation = new L.LatLng(position[2], position[1]);
           }
           break;
-        case "blue":
-          loc_length = this.blue_csvData.length
-          loc_order = Math.round((delta_t / runtime_secs) * loc_length)
-          //console.log('trip_id,delta_t,loc_order,loc_length',trip_id,delta_t,loc_order,loc_length)
+        case 'blue':
+          loc_length = this.blue_csvData.length;
+          loc_order = Math.round((delta_t / runtime_secs) * loc_length);
+          // console.log('trip_id,delta_t,loc_order,loc_length',trip_id,delta_t,loc_order,loc_length)
 
           if (+direction) {
-            console.log(+direction)
-            position = this.blue_csvData[loc_order]
-            trainLocation = new L.LatLng(position[2], position[1])
+            console.log(+direction);
+            position = this.blue_csvData[loc_order];
+            trainLocation = new L.LatLng(position[2], position[1]);
           } else {
-            console.log(+direction)
-            position = this.blue_csvData[loc_length - loc_order]
-            trainLocation = new L.LatLng(position[2], position[1])
+            console.log(+direction);
+            position = this.blue_csvData[loc_length - loc_order];
+            trainLocation = new L.LatLng(position[2], position[1]);
           }
           break;
       }
-
-
-
 
       function onTrainClick(e) {
         const html = `
@@ -379,109 +410,110 @@ export class OpenstreetmapComponent implements OnInit {
             <li class="list-group-item">arrival: ${e.target.arrival_time} departure: ${e.target.departure_time}</li>
           </ul>
      </div>
-        `
+        `;
         const popup = e.target.getPopup();
         popup.setContent(html);
         popup.update();
-      }  // end function onMarkerClick
+      } // end function onMarkerClick
 
       if (ActiveTrain.hasOwnProperty(tripEntity)) {
         // exist only update location
-        console.log("update exist marker")
+        console.log('update exist marker');
         if (trainLocationMarkers[tripEntity] !== undefined) {
-          trainLocationMarkers[tripEntity].setLatLng(trainLocation)
-          console.log(trainLocationMarkers[tripEntity])
+          trainLocationMarkers[tripEntity].setLatLng(trainLocation);
+          console.log(trainLocationMarkers[tripEntity]);
         }
       } else {
         // add new
-        console.log("add new marker")
-        ActiveTrain[tripEntity] = vehicle
+        console.log('add new marker');
+        ActiveTrain[tripEntity] = vehicle;
         //// TODO: 1 create marker
-        //let marker = this.createMarker(trainLatLng, route_name)
+        // let marker = this.createMarker(trainLatLng, route_name)
 
         const marker = L.circle(trainLocation, {
-          color: "#202020",
+          color: '#202020',
           fillColor: this.getColor(route_name),
           fillOpacity: 1,
-          radius: 3
+          radius: 3,
         });
 
-        marker.bindPopup("Trip info");
-        marker.addTo(this.map).bindPopup(`${tripEntity}`)
+        marker.bindPopup('Trip info');
+        marker.addTo(this.map).bindPopup(`${tripEntity}`);
         // marker function
-        marker.trip_id = trip_id
-        marker.start_time = start_time
-        marker.end_time = end_time
-        marker.direction = direction
-        marker.stoptimes = stoptimes
-        marker.color = this.getColor(route_name)
-        marker.headsign = headsign
-        marker.runtime = runtime
+        marker.trip_id = trip_id;
+        marker.start_time = start_time;
+        marker.end_time = end_time;
+        marker.direction = direction;
+        marker.stoptimes = stoptimes;
+        marker.color = this.getColor(route_name);
+        marker.headsign = headsign;
+        marker.runtime = runtime;
 
-        marker.nextstop = nexttrip.stop_id
-        marker.arrival_time = nexttrip.arrival_time
-        marker.departure_time = nexttrip.departure_time
-        trainLocationMarkers[tripEntity] = marker
+        marker.nextstop = nexttrip.stop_id;
+        marker.arrival_time = nexttrip.arrival_time;
+        marker.departure_time = nexttrip.departure_time;
+        trainLocationMarkers[tripEntity] = marker;
 
         marker.on('click', onTrainClick);
 
+        marker.on('mouseover', onTrainClick, this);
+        marker.on('mouseout', onTrainClick, this);
 
-        marker.on('mouseover', onTrainClick,this);
-        marker.on('mouseout', onTrainClick,this );
-
-        //marker.on('mouseover', onTrainClick, marker);
-        marker.on("click", function(event) {
-            //this.map.flyTo(marker.getLatLng())
+        // marker.on('mouseover', onTrainClick, marker);
+        marker.on(
+          'click',
+          function (event) {
+            // this.map.flyTo(marker.getLatLng())
             this.map.setView(marker.getLatLng(), 3);
-            this.selectTripId = marker.tripEntity
-            //this.map.panTo(marker.getLatLng())
-        }, this);
-
+            this.selectTripId = marker.tripEntity;
+            // this.map.panTo(marker.getLatLng())
+          },
+          this
+        );
       }
 
       // check train over due
       for (let key in ActiveTrain) {
         if (time_now_sec > ActiveTrain[key]['trip']['end_time_secs']) {
-          //console.log(`over due delete .. ${ActiveTrain[key]}`)
-          delete ActiveTrain[key]
+          // console.log(`over due delete .. ${ActiveTrain[key]}`)
+          delete ActiveTrain[key];
         } else {
-          //console.log("not over due")
+          // console.log("not over due")
         }
       }
 
       // delete marker of overdue
       for (let key in trainLocationMarkers) {
         if (ActiveTrain.hasOwnProperty(key)) {
-          //console.log(`${key} still on tracks`)
+          // console.log(`${key} still on tracks`)
         } else {
-          const marker = trainLocationMarkers[key]
-          this.map.removeLayer(marker)
-          //console.log(`${key} remove marker`)
-          delete trainLocationMarkers[key]
+          const marker = trainLocationMarkers[key];
+          this.map.removeLayer(marker);
+          // console.log(`${key} remove marker`)
+          delete trainLocationMarkers[key];
         }
       }
-    })  // end web service
+    }); // end web service
   }
 
   timeToMidnight() {
     const time = new Date();
-    const secs = +time.getHours() * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
-    //const secs = 20 * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
+    const secs =
+      +time.getHours() * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
+    // const secs = 20 * 3600 + +time.getMinutes() * 60 + +time.getSeconds();
     return secs;
   }
 
-
-
   // getposition function
   getPosition(arr) {
-    const result = []
+    const result = [];
     function pairwise(arr, func) {
       for (var i = 0; i < arr.length - 1; i++) {
-        func(arr[i], arr[i + 1])
+        func(arr[i], arr[i + 1]);
       }
     }
 
-    pairwise(arr, function(current, next) {
+    pairwise(arr, function (current, next) {
       // initialize
       let x0 = current[0];
       let y0 = current[1];
@@ -514,69 +546,68 @@ export class OpenstreetmapComponent implements OnInit {
             result.push([position, y1]);
           }
         }
-
       }
       //
-      if ((x1 != x0) && (y1 != y0)) {
+      if (x1 != x0 && y1 != y0) {
         while (x0 <= x1) {
           const position_x = x0++;
           const position_y = y0--;
           result.push([position_x, position_y]);
         }
       }
-
-    })
+    });
     return result;
   }
 
-
   checktime(start_time, endtime_time) {
-    const format = 'hh:mm:ss'
-    //Adjust time
-    //const CurrentDate = moment().subtract('hours',5);
-    const CurrentDate = moment()
-    //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
+    const format = 'hh:mm:ss';
+    // Adjust time
+    // const CurrentDate = moment().subtract('hours',5);
+    const CurrentDate = moment();
+    // console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
     // console.log('start_time',start_time)
     // console.log('endtime_time',endtime_time)
-    let timenow = CurrentDate.format("HH:mm:ss")
+    let timenow = CurrentDate.format('HH:mm:ss');
 
-    const time = moment(timenow, format)
-    const at = moment(start_time, format)
-    const dt = moment(endtime_time, format)
+    const time = moment(timenow, format);
+    const at = moment(start_time, format);
+    const dt = moment(endtime_time, format);
 
     if (time.isBetween(at, dt)) {
-      return true
+      return true;
     } else {
-      return false
+      return false;
     }
   }
 
   findNextTrip(arrival_time: any): any {
+    const format = 'hh:mm:ss';
+    // const CurrentDate = moment().subtract('hours',5);
+    // console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
+    const CurrentDate = moment();
+    let timenow = CurrentDate.format('HH:mm:ss');
 
-    const format = 'hh:mm:ss'
-    //const CurrentDate = moment().subtract('hours',5);
-    //console.log('CurrentDate........',  CurrentDate.format("HH:mm:ss"))
-    const CurrentDate = moment()
-    let timenow = CurrentDate.format("HH:mm:ss")
-
-    //console.log('448........arrival_time < timenow',arrival_time,timenow )
+    // console.log('448........arrival_time < timenow',arrival_time,timenow )
     // // TODO: convert to sec
-    const arrival_time_secs = this.getsecond(arrival_time)
-    const timenow_secs = this.getsecond(timenow)
+    const arrival_time_secs = this.getsecond(arrival_time);
+    const timenow_secs = this.getsecond(timenow);
 
-    //console.log('timenow_secs,arrival_time_secs',timenow_secs,arrival_time_secs)
+    // console.log('timenow_secs,arrival_time_secs',timenow_secs,arrival_time_secs)
     if (arrival_time_secs > timenow_secs) {
-      //console.log('true')
-      return true
+      // console.log('true')
+      return true;
     } else {
-      //console.log('false')
-      return false
+      // console.log('false')
+      return false;
     }
   }
 
   getsecond(time) {
-    const seconds = moment(time, 'HH:mm:ss: A').diff(moment().startOf('day'), 'seconds');
-    return seconds
+    const seconds = moment(time, 'HH:mm:ss: A').diff(
+      moment().startOf('day'),
+      'seconds'
+    );
+    return seconds;
   }
 
   createMarker(latlng, color) {
@@ -585,7 +616,7 @@ export class OpenstreetmapComponent implements OnInit {
       fillOpacity: 0.8,
       color: 'black',
       fillColor: this.getColor(color),
-      weight: 2
+      weight: 2,
     });
   }
 
@@ -607,22 +638,20 @@ export class OpenstreetmapComponent implements OnInit {
   }
 
   getPathfile(route_name, direction) {
-    const index = this.path.findIndex(c => {
-      return (c.route_name == route_name && c.direction == direction)
-    })
+    const index = this.path.findIndex((c) => {
+      return c.route_name == route_name && c.direction == direction;
+    });
     if (index > -1) {
-      //console.log('72 file.......', path.config[index].file)
-      return this.path[index].file
+      // console.log('72 file.......', path.config[index].file)
+      return this.path[index].file;
     }
   }
 
   loadStation() {
     const purpleUrl = 'assets/tubemapdata/purplestation.json';
-    console.log(purpleUrl)
-    const purplestation = this.http.get(purpleUrl).subscribe(data => {
-      console.log(data)
+    console.log(purpleUrl);
+    const purplestation = this.http.get(purpleUrl).subscribe((data) => {
+      console.log(data);
     });
-
   }
-
 }
