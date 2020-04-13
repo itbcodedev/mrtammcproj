@@ -298,4 +298,6 @@ sudo systemctl restart nginx
           //   [0]       __v: 0
           //   [0]     },
 
-      
+    
+$ ln -s  ~/AngularProj/upload  ~/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
+unlink  ~/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
