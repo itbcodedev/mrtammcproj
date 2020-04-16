@@ -1365,6 +1365,7 @@ export class GtfsrtComponent implements OnInit {
 
   loadRoute(data: NgForm) {
     // console.log(data.value)  // {trip: "00011"}
+    console.log(1368, data.value); // {trip: "สีชมพ"}
     const keys = Object.keys(data.value);
     // console.log(keys)
     // const route_id = keys.filter((key) => data.value[key]).join();
