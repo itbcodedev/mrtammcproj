@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"mmcmrtadb.farerules"},{"v":2,"key":{"agency_key":1},"name":"agency_key_1","background":true,"ns":"mmcmrtadb.farerules"}],"uuid":"76fa21b967f84e199bd2aaa9b52cebbd"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.farerules"},{"v":{"$numberInt":"2"},"key":{"agency_key":{"$numberInt":"1"}},"name":"agency_key_1","background":true,"ns":"mmcmrtadb.farerules"}],"uuid":"fad4ba6c1327485cb7c2af6648824c4a"}

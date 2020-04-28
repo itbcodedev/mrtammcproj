@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"mmcmrtadb.cctvs"}],"uuid":"6eafa09cb58f4449a5c523b6c4c4fd57"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.cctvs"}],"uuid":"cbb2c63e298d4c498c536ec909930393"}
