@@ -23,6 +23,9 @@ const purple_7_out = require('./purple_7_out.json')
 const purple_8_in = require('./purple_8_in.json')
 const purple_8_out = require('./purple_8_out.json')
 
+const purplenorth_in = require('./purplenorthline_in.json')
+const purplenorth_out = require('./purplenorthline_out.json')
+
 
 exports.blue_chalearm_path_in  = blue_chalearm_path_in
 exports.blue_chalearm_path_out = blue_chalearm_path_out
@@ -49,6 +52,9 @@ exports.purple_7_out = purple_7_out
 exports.purple_8_in = purple_8_in
 exports.purple_8_out = purple_8_out
 
+exports.purplenorth_in = purplenorth_in
+exports.purplenorth_out = purplenorth_out
+
 
 exports.config = [
   {
@@ -58,52 +64,10 @@ exports.config = [
     route_name: "blue", direction: "1", speed: "1", file: "blue_out"
   },
   {
-    route_name: "purple", direction: "0", speed: "1", file: "purple_1_in"
+    route_name: "purple", direction: "0", speed: "1", file: "purplenorth_in"
   },
   {
-    route_name: "purple", direction: "1", speed: "1", file: "purple_1_out"
-  },
-  {
-    route_name: "purple", direction: "0", speed: "2", file: "purple_2_in"
-  },
-  {
-    route_name: "purple", direction: "1", speed: "2", file: "purple_2_out"
-  },
-  {
-    route_name: "purple", direction: "0", speed: "3", file: "purple_3_in"
-  },
-  {
-    route_name: "purple", direction: "1", speed: "3", file: "purple_3_out"
-  },
-  {
-    route_name: "purple", direction: "0", speed: "4", file: "purple_4_in"
-  },
-  {
-    route_name: "purple", direction: "1", speed: "4", file: "purple_4_out"
-  },
-  {
-    route_name: "purple", direction: "0", speed: "5", file: "purple_5_in"
-  },
-  {
-    route_name: "purple", direction: "1", speed: "5", file: "purple_5_out"
-  },
-  {
-    route_name: "purple", direction: "0", speed: "6", file: "purple_6_in"
-  },
-  {
-    route_name: "purple", direction: "1", speed: "6", file: "purple_6_out"
-  },
-  {
-    route_name: "purple", direction: "0", speed: "7", file: "purple_7_in"
-  },
-  {
-    route_name: "purple", direction: "1", speed: "7", file: "purple_7_out"
-  },
-  {
-    route_name: "purple", direction: "0", speed: "8", file: "purple_8_in"
-  },
-  {
-    route_name: "purple", direction: "1", speed: "8", file: "purple_8_out"
-  },
+    route_name: "purple", direction: "1", speed: "1", file: "purplenorth_out"
+  }
 ]
 

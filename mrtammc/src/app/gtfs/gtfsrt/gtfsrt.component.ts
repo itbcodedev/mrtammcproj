@@ -761,7 +761,7 @@ export class GtfsrtComponent implements OnInit {
   loadGeojson() {
     console.log('747...... LoadGeojson');
     // load geojson with new L.GeoJSON()
-    const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purple.geojson', {
+    const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purplenorthline.geojson', {
       style: function (feature) {
         return {
           color: 'purple',
