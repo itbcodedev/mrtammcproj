@@ -108,6 +108,7 @@ export class GtfsrtComponent implements OnInit {
     this.allStopTimes = await this.gtfsService.allStopTimes();
     this.stops = await this.gtfsService.getStops();
     this.trips = await this.gtfsService.getTrips();
+    this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise();
     // Create layerRouteGroup
     this.showAllMapLayer();
     // this.removeAllRouteLayer()
@@ -1416,24 +1417,24 @@ export class GtfsrtComponent implements OnInit {
     }
   }
 
+  // display on kml on map
   async getKmltoroute() {
     let objects = [];
-    this.kmlroutes = await this._kmltorouteservice.getkmltoroute().toPromise();
-
-    this.kmlroutes.forEach((obj) => {
-      // console.log("1173", obj.geojsonline_file)
+    await this.kmlroutes.forEach( async (obj) => {
+      console.log("1426", obj.geojsonline_file)
       const line = new L.GeoJSON.AJAX(obj.geojsonline_file, {
         style: function (feature) {
           return { color: obj.color };
         },
-      });
+      }).addTo(this.map);
       objects = objects.concat(line);
-
-      // line.addTo(this.map)
+      
     });
 
-    this.routelayerGroup = L.layerGroup(objects);
-    this.routelayerGroup.addTo(this.map);
+    console.log(1437, objects)
+    // this.routelayerGroup = L.layerGroup(objects);
+
+    // this.routelayerGroup.addTo(this.map);
   }
 }
 
