@@ -660,7 +660,7 @@ export class GtfsrtComponent implements OnInit {
   showRouteLayer(kml) {
     console.log(660, kml)
 
-    
+    this.removeAllRouteLayer();
     this.routelayerGroup.clearLayers();
     
     const line = new L.GeoJSON.AJAX(kml.geojsonline_file, {
@@ -922,6 +922,7 @@ export class GtfsrtComponent implements OnInit {
   resumeGeojson() {
     this.showAllgeojson();
   }
+
 
   showAllgeojson() {
     const allgeojson = this.geojson_route;
