@@ -1426,15 +1426,14 @@ export class GtfsrtComponent implements OnInit {
         style: function (feature) {
           return { color: obj.color };
         },
-      }).addTo(this.map);
+      });
       objects = objects.concat(line);
       
     });
 
-    console.log(1437, objects)
-    // this.routelayerGroup = L.layerGroup(objects);
-
-    // this.routelayerGroup.addTo(this.map);
+    //console.log(1437, objects)
+    this.routelayerGroup = L.layerGroup(objects);
+    this.routelayerGroup.addTo(this.map);
   }
 }
 
