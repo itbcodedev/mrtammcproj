@@ -656,41 +656,31 @@ export class GtfsrtComponent implements OnInit {
   // light_green_line.addTo(this.map);
   // light_green_extend_line.addTo(this.map);
 
-  showRouteLayer(route_id) {
+  showRouteLayer(kml) {
+    console.log(660, kml)
+
     this.routelayerGroup.clearLayers();
-
-    const selectroute = this.kmlroutes.filter((r) => {
-      return r.route_th == route_id;
-    });
-
-    if (typeof selectroute[0].geojsonline_file === 'undefined') {
-      console.log(
-        'debug geojsonline_file - undefined',
-        selectroute[0].geojsonline_file
-      );
-    } else {
-      console.log('debug geojsonline_file ', selectroute[0].geojsonline_file);
-    }
-
-    if (typeof selectroute[0].kml_file === 'undefined') {
-      console.log('debug kml_file undefined', selectroute[0].kml_file);
-    } else {
-      console.log('debug kml_file', selectroute[0].kml_file);
-    }
-    selectroute.forEach((obj) => {
-      const line = new L.GeoJSON.AJAX(obj.geojsonline_file, {
+    
+    const line = new L.GeoJSON.AJAX(kml.geojsonline_file, {
         style: function (feature) {
-          return { color: obj.color };
+          return { color: kml.color };
         },
       });
-      // line.addTo(this.map)
-      this.routelayerGroup.addLayer(line);
-    });
+
+    console.log(669, line);
+    
+    line.on('data:progress', () => {
+      this.map.fitBounds(this.routelayerGroup.getBounds())
+      })
+      .addTo(this.routelayerGroup)
+    // this.routelayerGroup.addLayer(line);
+
+    this.routelayerGroup.addTo(this.map);
 
     // this.removeAllRouteLayer();
     // this.layerRouteGroup[route_id].addTo(this.map);
     // show route geojson
-    this.showgeojson(route_id);
+    // this.showgeojson(route_id);
   }
 
   loadbaselayers() {
@@ -758,9 +748,9 @@ export class GtfsrtComponent implements OnInit {
     };
   }
 
+  // load geojson
   loadGeojson() {
-    console.log('747...... LoadGeojson');
-    // load geojson with new L.GeoJSON()
+
     const purple_line = new L.GeoJSON.AJAX('/assets/dist/kml/purplenorthline.geojson', {
       style: function (feature) {
         return {
@@ -769,7 +759,7 @@ export class GtfsrtComponent implements OnInit {
       },
     });
 
-    // load geojson with new L.GeoJSON()
+    
     const blue_line = new L.GeoJSON.AJAX('/assets/dist/kml/blue.geojson', {
       style: function (feature) {
         return {
@@ -778,7 +768,6 @@ export class GtfsrtComponent implements OnInit {
       },
     });
 
-    // load geojson with new L.GeoJSON()
     const blueline = new L.GeoJSON.AJAX('/assets/dist/kml/blueline.geojson', {
       style: function (feature) {
         return {
@@ -787,7 +776,6 @@ export class GtfsrtComponent implements OnInit {
       },
     });
 
-    // load geojson with new L.GeoJSON()
     const blueline_extend = new L.GeoJSON.AJAX(
       '/assets/dist/kml/blueline_extend.geojson',
       {
@@ -799,7 +787,6 @@ export class GtfsrtComponent implements OnInit {
       }
     );
 
-    // load geojson with new L.GeoJSON()
     const orange_line = new L.GeoJSON.AJAX('/assets/dist/kml/orange.geojson', {
       style: function (feature) {
         return {
@@ -808,7 +795,7 @@ export class GtfsrtComponent implements OnInit {
       },
     });
 
-    // load geojson with new L.GeoJSON()
+
     const dark_green_line = new L.GeoJSON.AJAX(
       '/assets/dist/kml/dark_green.geojson',
       {
@@ -820,7 +807,7 @@ export class GtfsrtComponent implements OnInit {
       }
     );
 
-    // load geojson with new L.GeoJSON()
+  
     const light_green_line = new L.GeoJSON.AJAX(
       '/assets/dist/kml/light_green.geojson',
       {
@@ -832,7 +819,7 @@ export class GtfsrtComponent implements OnInit {
       }
     );
 
-    // load geojson with new L.GeoJSON()
+
     const light_green_extend_line = new L.GeoJSON.AJAX(
       '/assets/dist/kml/light_green_extend.geojson',
       {
@@ -844,7 +831,7 @@ export class GtfsrtComponent implements OnInit {
       }
     );
 
-    // load geojson with new L.GeoJSON()
+
     const pink_line = new L.GeoJSON.AJAX('/assets/dist/kml/pink_line.geojson', {
       style: function (feature) {
         return {
@@ -853,7 +840,7 @@ export class GtfsrtComponent implements OnInit {
       },
     });
 
-    // load geojson with new L.GeoJSON()
+
     const purple_line_south = new L.GeoJSON.AJAX(
       '/assets/dist/kml/purple_line_south2.geojson',
       {
@@ -865,7 +852,7 @@ export class GtfsrtComponent implements OnInit {
       }
     );
 
-    // load geojson with new L.GeoJSON()
+
     const yellow_line = new L.GeoJSON.AJAX(
       '/assets/dist/kml/yellow_line.geojson',
       {
@@ -942,7 +929,7 @@ export class GtfsrtComponent implements OnInit {
   removeAllgeojson() {
     const allgeojson = this.geojson_route;
     const keys = Object.keys(allgeojson);
-    // console.log(keys)
+    
     keys.forEach((obj) => {
       this.map.removeLayer(allgeojson[obj].geojson);
     });
@@ -1364,14 +1351,15 @@ export class GtfsrtComponent implements OnInit {
   }
 
   loadRoute(data: NgForm) {
-    // console.log(data.value)  // {trip: "00011"}
-    console.log(1368, data.value); // {trip: "สีชมพ"}
-    const keys = Object.keys(data.value);
-    // console.log(keys)
-    // const route_id = keys.filter((key) => data.value[key]).join();
-    // console.log(route_id)
-    console.log('1125', this.routesinfo);
-    this.selectrouteid = data.value.trip;
+   
+    console.log(1350, data.value); // {route_en:  }
+
+    const kml = this.kmlroutes.filter( (obj) => {
+      return (obj.route_en == data.value.route_en)
+    })
+
+  
+    this.selectrouteid = kml[0].route_id;
 
     this.activeRoutes = this.routesinfo.filter((obj) => {
       return (
@@ -1379,7 +1367,9 @@ export class GtfsrtComponent implements OnInit {
         obj.route_id == this.selectrouteid
       );
     });
-    this.showRouteLayer(this.selectrouteid);
+
+    console.log(1366, kml[0])
+    this.showRouteLayer(kml[0]);
   }
 
   refreshloadRoute() {
