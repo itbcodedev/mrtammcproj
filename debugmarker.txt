@@ -1,4 +1,5 @@
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+/etc/sysctl.d/50-max_user_watches.conf
 
 train_simulator  +58
 
