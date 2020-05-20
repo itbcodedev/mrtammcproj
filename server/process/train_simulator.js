@@ -169,7 +169,7 @@ exports.TrainSimulator = class {
 
       return Promise.all(trips.map( async trip => {
       if (trip.route_name == "purple")  {
-          console.log(172, trip.route_name, trip.direction)
+          // console.log(172, trip.route_name, trip.direction)
       }
         //console.log("159", trip.route_name, trip.trip_id, trip.start_time, trip.end_time)
         const delta_t = trip.time_now_sec - trip.start_time_secs 
@@ -188,7 +188,7 @@ exports.TrainSimulator = class {
         
         if ( filemodule == "purplenorth_in" ) {
 
-          console.log("181 ", filemodule, trip.route_id, trip.trip_id, " [", trip.direction,  "]",  runtime_secs, loc_order,loc_length)
+          // console.log("181 ", filemodule, trip.route_id, trip.trip_id, " [", trip.direction,  "]",  runtime_secs, loc_order,loc_length)
         }
         // Line 167 0513195 3507 78 2051
         trip.file = filemodule
@@ -231,7 +231,7 @@ exports.TrainSimulator = class {
       // })
       // step 2 add sececond
       const c = calendar.gtfsCalendar()
-      console.log(234, c)
+      // console.log(234, c)
             // step 3 find active train
       
       const routeinfos_now = routeinfos.filter(trip => {
@@ -250,7 +250,7 @@ exports.TrainSimulator = class {
 
       })
 
-      console.log('237  total | active | calendar ', routeinfos.length, routeinfos_now.length, routeinfos_addsec.length)
+      // console.log('237  total | active | calendar ', routeinfos.length, routeinfos_now.length, routeinfos_addsec.length)
 
       const routeinfos_stoptimes = await addStoptime(this.gtfs, routeinfos_addsec)
       const trip_gtfs = transformFormat(routeinfos_stoptimes)

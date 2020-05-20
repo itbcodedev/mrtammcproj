@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GtfsService } from '../../services/gtfs2.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService, ToastrComponentlessModule } from 'ngx-toastr';
 
 import { KmltorouteService } from '../../services/kmltoroute.service';
 import { ImageFormatterComponent } from '../../image-formatter/image-formatter.component';
@@ -61,8 +61,9 @@ export class KmltorouteComponent implements OnInit {
     this.kmltorouteForm = this.fb.group({
       route_th: ['', Validators.required],
       route_en: ['', Validators.required],
-      color: ['', Validators.required],
+      color: [''],
       kml_file: ['', Validators.required],
+      route_id: ['']
     });
 
     this.height = 775 + 'px';
@@ -205,14 +206,19 @@ export class KmltorouteComponent implements OnInit {
 
   // submit data
   submitKmltoRouteFormatData() {
-    console.log('162', this.kmltorouteForm.value);
+    console.log('208', this.kmltorouteForm.get('kml_file').value.name);
+    const route_th = this.kmltorouteForm.get('route_th').value;
+    const route_en = this.kmltorouteForm.get('route_en').value;
+    const color = this.kmltorouteForm.get('color').value;
+    const kml_file = this.kmltorouteForm.get('kml_file').value;
+    const route_id = this.kmltorouteForm.get('route_id').value
     const formData: any = new FormData();
 
-    formData.append('route_th', this.kmltorouteForm.get('route_th').value);
-    formData.append('route_en', this.kmltorouteForm.get('route_en').value);
-    formData.append('color', this.kmltorouteForm.get('color').value);
-    formData.append('kml_file', this.kmltorouteForm.get('kml_file').value);
-    formData.append('route_id', this.kmltorouteForm.get('route_id').value);
+    formData.append('route_th', route_th);
+    formData.append('route_en', route_en);
+    formData.append('color', color);
+    formData.append('kml_file', kml_file);
+    formData.append('route_id', route_id);
 
     // post Formdata to backend
     this._kmltorouteservice.savekmltoroute(formData).subscribe((res) => {

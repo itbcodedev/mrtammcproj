@@ -11,7 +11,9 @@ export class KmltorouteService {
   constructor(private _http: HttpClient) { }
 
   savekmltoroute(formData: any) {
+    
     let url = this.baseUrl + '/api/v2/kmltoroute/create'
+    console.log(14, '/api/v2/kmltoroute/create', url , formData )
     return this._http.post(url, formData)
   }
 
