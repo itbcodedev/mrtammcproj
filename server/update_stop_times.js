@@ -61,6 +61,8 @@ mongoose.connect('mongodb://localhost/mmcmrtadb', function (err) {
    console.log('Successfully to Database connected');
 });
 
+// mongoose.connect('mongodb://root:secret@localhost:27017/mmcmrtadb?authSource=admin', { useNewUrlParser: true });
+
 
 const StopTime = require('./models/gtfs/stop-time')
 

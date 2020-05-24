@@ -198,7 +198,7 @@ export class GtfsrtComponent implements OnInit {
       const vehicle = data['entity']['vehicle'];
       const latitude = data['entity']['vehicle']['position']['latitude'];
       const longitude = data['entity']['vehicle']['position']['longitude'];
-
+      // create lat lng instance
       const trainLatLng = new L.LatLng(latitude, longitude);
 
       const t0 = performance.now();
@@ -210,6 +210,7 @@ export class GtfsrtComponent implements OnInit {
       // console.log( ' debug Time for routeinfowithtrips ' + (t1 - t0) + ' millisec');
       // filter again filter only active trip
       const t2 = performance.now();
+      // filter  ontrack  
       const routetrips = routeinfowithtrips.filter((obj) => {
         return this.checktime(obj.start_time, obj.end_time);
       });
@@ -217,6 +218,7 @@ export class GtfsrtComponent implements OnInit {
       // console.log( 'debug Time for routetrips ' + (t3 - t2) + ' millisec');
       // debug
       // console.log('218..gtfs.component ', trip_id, loc_order, latitude, longitude );
+      // 2 find next station
       const nextstation = routetrips.map((obj) => {
         // purple 00118 224
         // console.log(obj.route_name, obj.trip_id, obj.stoptimes.length)
@@ -233,13 +235,15 @@ export class GtfsrtComponent implements OnInit {
           //     "stop_sequence": 4,
           //     "__v": 0
           // },
-          return this.findNextTrip(st_obj.arrival_time);
+          
+          return this.findNextTrip60min(st_obj.arrival_time);
         });
+        // console.log(241, selectStoptimes.length)
         obj.selectStoptimes = _.first(selectStoptimes);
         return obj;
       });
 
-      // console.log(nextstation)
+      console.log(246, nextstation)
       // tslint:disable-next-line: triple-equals
       if (nextstation[0] != undefined) {
         const nextstop = nextstation[0].selectStoptimes;
@@ -392,6 +396,8 @@ export class GtfsrtComponent implements OnInit {
     const marker = e.target;
     marker.passengerNum = this.getRandom();
     this.selectMarker = marker;
+    console.log(397, e.target.nextstop)
+
     const html = `
     <div class="card" style="width: 18rem;">
       <div class="card-header" style="background-color:${
@@ -1174,7 +1180,7 @@ export class GtfsrtComponent implements OnInit {
     return this.allStopTimes.filter((stoptime) => {
       // console.log("stoptime.arrival_time",stoptime.arrival_time)
       return (
-        this.findNextTrip30min(stoptime.arrival_time) &&
+        this.findNextTrip60min(stoptime.arrival_time) &&
         stoptime.stop_id == stop_id
       );
     });
@@ -1219,6 +1225,7 @@ export class GtfsrtComponent implements OnInit {
   }
 
   async loadStoptimes() {
+    // fix default data
     const agency_key = 'MRTA_Transit';
     const route_id = '00011';
     this.stoptimes = await this.gtfsService.getStopTimes(agency_key, route_id);
@@ -1239,10 +1246,10 @@ export class GtfsrtComponent implements OnInit {
     if (selectedStoptimes.length > 0) {
       const intime = selectedStoptimes.filter((stoptime) => {
         // return this.checktime(stoptime.arrival_time, stoptime.departure_time)
-        return this.findNextTrip(stoptime.arrival_time);
+        return this.findNextTrip60min(stoptime.arrival_time);
       });
       // lastest
-      // console.log(trip_id)
+      console.log(1251, intime.length)
       const incomingtrip = _.last(intime);
       return incomingtrip;
     }
@@ -1252,6 +1259,7 @@ export class GtfsrtComponent implements OnInit {
     const timenow = this.CurrentDate.format('HH:mm:ss');
     const arrival_time_secs = this.getsecond(arrival_time);
     const timenow_secs = this.getsecond(timenow);
+
     if (arrival_time_secs > timenow_secs) {
       // console.log('true')
       return true;
@@ -1261,13 +1269,29 @@ export class GtfsrtComponent implements OnInit {
     }
   }
 
-  findNextTrip30min(arrival_time: any): any {
+  findNextTrip30min(arrival_time: any): any{ 
     const timenow = this.CurrentDate.format('HH:mm:ss');
     const arrival_time_secs = this.getsecond(arrival_time);
     const timenow_secs = this.getsecond(timenow);
     if (
       arrival_time_secs > timenow_secs &&
       arrival_time_secs < timenow_secs + 1800
+    ) {
+      // console.log('true')
+      return true;
+    } else {
+      // console.log('false')
+      return false;
+    }
+  }
+
+  findNextTrip60min(arrival_time: any): any {
+    const timenow = this.CurrentDate.format('HH:mm:ss');
+    const arrival_time_secs = this.getsecond(arrival_time);
+    const timenow_secs = this.getsecond(timenow);
+    if (
+      arrival_time_secs > timenow_secs &&
+      arrival_time_secs < timenow_secs + 3600
     ) {
       // console.log('true')
       return true;
@@ -1329,6 +1353,7 @@ export class GtfsrtComponent implements OnInit {
     });
   }
 
+  // Check valid train between start_time, endtime_time
   checktime(start_time, endtime_time) {
     const format = 'hh:mm:ss';
     const timenow = this.CurrentDate.format('HH:mm:ss');

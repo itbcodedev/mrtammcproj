@@ -57,11 +57,12 @@ const numericFields = {
   const mongoose = require('mongoose');
   
   mongoose.connect('mongodb://localhost/mmcmrtadb', function (err) {
-     if (err) throw err;
-     console.log('Successfully to Database connected');
+      if (err) throw err;
+      console.log('Successfully to Database connected');
   });
   
-  
+  //mongoose.connect('mongodb://root:secret@localhost:27017/mmcmrtadb?authSource=admin', { useNewUrlParser: true });
+
   const Trip = require('./models/gtfs/trip')
   
   

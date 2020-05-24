@@ -57,9 +57,11 @@ function loadGTFSDataFromFile(filepath, agency_key) {
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/mmcmrtadb', function (err) {
-   if (err) throw err;
+    if (err) throw err;
    console.log('Successfully to Database connected');
 });
+
+//mongoose.connect('mongodb://root:secret@localhost:27017/mmcmrtadb?authSource=admin', { useNewUrlParser: true });
 
 
 const RouteInfo = require('./models/gtfs/route-info')
@@ -78,7 +80,7 @@ async function init() {
   DATABASE.route_infos = await loadGTFSDataFromFile('./feed/route_infos.txt', agency_key);
 
   console.log("Summary Report On Initialdatabase")
-  
+
   await RouteInfo.deleteMany({})
   await RouteInfo.insertMany(DATABASE.route_infos)
   await RouteInfo.count({}, function(err, count){
