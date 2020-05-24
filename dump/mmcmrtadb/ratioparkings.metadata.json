@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.ratioparkings"}],"uuid":"73b7d7af8fc44390b6b3d27a11c09306"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.ratioparkings"}],"uuid":"8800b43d9af1452db836f79dc39bf3b7"}

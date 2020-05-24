@@ -69,13 +69,13 @@ exports.TrainSimulator = class {
 
     // find path 
     function getPathfile(trip) {
-      // console.log("71.....", trip)
-      // console.log("71.........................")
+      // console.log("71..trip id...", trip.trip_id)
+      // console.log("71..trip direction.............", trip.direction)
 
 
       const index = path.config.findIndex(c => {
-        //console.log("73.......", c )
-        // console.log("73.........................")
+        // console.log("73.......", c )
+        // console.log("73.........................", c.direction)
         return (c.route_name == trip.route_name && c.direction == trip.direction )
       })
 
@@ -168,29 +168,17 @@ exports.TrainSimulator = class {
     function addStoptime(gtfs,trips){
 
       return Promise.all(trips.map( async trip => {
-      if (trip.route_name == "purple")  {
-          // console.log(172, trip.route_name, trip.direction)
-      }
-        //console.log("159", trip.route_name, trip.trip_id, trip.start_time, trip.end_time)
+    
         const delta_t = trip.time_now_sec - trip.start_time_secs 
         const runtime_secs = trip.runtime_secs
         const filemodule = getPathfile(trip)
-        // debug 
-        //console.log('175',  trip, filemodule)
         const loc_length = path[`${filemodule}`].points.length
-        
         const loc_order = Math.round((delta_t/ runtime_secs) * loc_length) 
-        // use loc_order to estimate lat lng
         const location = path[`${filemodule}`].points[loc_order]
-        // console.log("181 filemodule | trip_id | route_id | runtime_sec | loc_order | loc_length")
-        // console.log("181 ", filemodule, trip.route_id, trip.trip_id, " [", trip.direction,  "]",  runtime_secs, loc_order,loc_length)
 
-        
-        if ( filemodule == "purplenorth_in" ) {
+        console.log("181 filemodule | trip_id | route_id | runtime_sec | loc_order | loc_length")
+        console.log("181 ", "<",filemodule, ">", trip.route_name, trip.route_id, trip.trip_id, "[", trip.direction,  "]",  runtime_secs, loc_order,loc_length)
 
-          // console.log("181 ", filemodule, trip.route_id, trip.trip_id, " [", trip.direction,  "]",  runtime_secs, loc_order,loc_length)
-        }
-        // Line 167 0513195 3507 78 2051
         trip.file = filemodule
         trip.location = location
         trip.loc_order = loc_order
@@ -238,14 +226,13 @@ exports.TrainSimulator = class {
             return checktime(trip, trip.start_time, trip.end_time)
       })
 
-      const routeinfos_addsec = routeinfos_now.filter(trip => c.includes(trip.calendar)).map(trip => {
-      //const routeinfos_addsec = routeinfos_now.map(trip => {
-  
+      const routeinfos_addsec = routeinfos_now.filter(trip => c.includes(trip.calendar)).map(trip => {  
         trip.start_time_secs = getsecond(trip.start_time)
         trip.end_time_secs = getsecond(trip.end_time)
         trip.runtime_secs = trip.end_time_secs - trip.start_time_secs
         trip.runtime = Math.round(trip.runtime_secs/60)
-        console.log(trip.trip_id, trip.runtime_secs)
+        // console.log("236  trip.trip_id  trip.runtime_secs  trip.calendar")
+        console.log("236", trip.trip_id, trip.runtime_secs, trip.calendar)
         return trip
 
       })
