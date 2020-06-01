@@ -123,7 +123,7 @@ export class GtfsrtComponent implements OnInit {
     this.getRouteformat();
 
     this.loadGeojson();
-    this.showAllgeojson();
+    // this.showAllgeojson();
     this.getKmltoroute();
     // this.removeAllgeojson()
     // this.showgeojson("00011")
