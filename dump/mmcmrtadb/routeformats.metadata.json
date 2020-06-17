@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.routeformats"}],"uuid":"bcae9b4cfda14c938f281fb36a91b0fe"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.routeformats"}],"uuid":"5c50b585b1314362b6bf87a4e0f6a371"}

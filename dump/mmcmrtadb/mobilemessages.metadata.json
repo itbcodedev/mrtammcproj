@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.mobilemessages"}],"uuid":"b9b113732ed44e599b9d385b73242983"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.mobilemessages"}],"uuid":"3d22ad39dd914d8a8c89d95e5348c056"}

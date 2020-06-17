@@ -302,3 +302,29 @@ sudo systemctl restart nginx
     
 $ ln -s  ~/AngularProj/upload  ~/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
 unlink  ~/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
+
+
+## Backup and Restore Database
+
+```
+mongodump
+dump/
+cd ..
+tar cvf dump_28april.tar.gz  dump/*
+```
+
+```
+tar xvf dump_5may.tar.gz
+mongorestore dump/
+mongorestore --db mmcmrtadb dump/mmcmrtadb
+```
+
+
+unlink /home/mee/AngularProj/mrtammcproj/mrtammc/dist/mrtammc/assets/dist/public
+ng build
+
+
+## Upload directory 
+
+
+	 <!-- viewBox="0 0 595.648 584.088" 
