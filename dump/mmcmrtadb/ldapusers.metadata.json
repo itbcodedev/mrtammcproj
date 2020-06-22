@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.ldapusers"}],"uuid":"5ac2cd8565434c48a814a5cdf7944fcc"}
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"mmcmrtadb.ldapusers"}],"uuid":"937fb79595ac4c32b8332a5efeb31f48"}
