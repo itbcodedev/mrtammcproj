@@ -69,8 +69,8 @@ exports.TrainSimulator = class {
 
     // find path 
     function getPathfile(trip) {
-      console.log("71..trip id...", trip.trip_id)
-      console.log("71..trip direction.............", trip.direction)
+      // console.log("71..trip id...", trip.trip_id)
+      // console.log("71..trip direction.............", trip.direction)
 
 
       const index = path.config.findIndex(c => {
@@ -165,15 +165,19 @@ exports.TrainSimulator = class {
     //  start_time      time_now
     // 2 loc_order = % of loc_lenght
     
+    
     function addStoptime(gtfs,trips){
 
       return Promise.all(trips.map( async trip => {
     
         const delta_t = trip.time_now_sec - trip.start_time_secs 
         const runtime_secs = trip.runtime_secs
+        
         const filemodule = getPathfile(trip)
         const loc_length = path[`${filemodule}`].points.length
         const loc_order = Math.round((delta_t/ runtime_secs) * loc_length) 
+
+
         const location = path[`${filemodule}`].points[loc_order]
 
         console.log("181 filemodule | trip_id | route_id | runtime_sec | loc_order | loc_length")

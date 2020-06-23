@@ -101,7 +101,7 @@ exports.getStoptimes = async (query = {}, projection = '-_id', options = {
   }
 
   const stopsequenceQuery = {
-    stop_sequence: { $in: [1,16]}
+    stop_sequence: { $in: [1,40]}
   }
   //return StopTime.find(stoptimeQuery, projection, options);
   return StopTime.aggregate([
