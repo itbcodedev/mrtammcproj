@@ -70,6 +70,7 @@ export class GtfsrtComponent implements OnInit {
   kmlroutes;
   routelayerGroup;
   singleGroup;
+  selectlayer;
   // {station_id: , trips:  {in: ,out: }}
   constructor(
     private _gtfsws: GtfsrtwsService,
@@ -157,6 +158,10 @@ export class GtfsrtComponent implements OnInit {
         popupclose: function () {
           this.selectMarker = null;
         },
+        baselayerchange: (e) => {
+          console.log("161", e);
+          this.selectlayer = e 
+        }
       },
       this
     );
@@ -319,13 +324,18 @@ export class GtfsrtComponent implements OnInit {
             'click',
             (event) => {
               this.map.setView(marker.getLatLng(), 16);
-              L.tileLayer(
-                'http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
-                {
-                  maxZoom: 20,
-                  subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-                }
-              ).addTo(this.map);
+              // L.tileLayer(
+              //   'http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',
+              //   {
+              //     maxZoom: 20,
+              //     subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+              //   }
+              // ).addTo(this.map);
+
+              L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+              attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              }).addTo(this.map);
+
               this.selectTripId = marker.tripEntity;
               this.onTrainClick(this);
             },
@@ -472,10 +482,15 @@ export class GtfsrtComponent implements OnInit {
       'click',
       function (e) {
         this.map.setView(marker.getLatLng(), 16);
-        L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-          maxZoom: 20,
-          subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-        }).addTo(this.map);
+        // L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+        //   maxZoom: 20,
+        //   subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+        // }).addTo(this.map);
+
+        L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+         }).addTo(this.map);
+
         this.selectTripId = marker.tripEntity;
       },
       this
