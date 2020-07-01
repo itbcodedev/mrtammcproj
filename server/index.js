@@ -122,7 +122,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-//1 Import the mongoose module
+//1 Import the mongoose module database
 const mongoose = require('mongoose');
 
 //2 Set up default mongoose connection
