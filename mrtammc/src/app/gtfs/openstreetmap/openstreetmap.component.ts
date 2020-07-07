@@ -24,8 +24,10 @@ export class OpenstreetmapComponent implements OnInit {
   CurrentDate;
   // csvUrl = 'assets/tubemapdata/testlatlng.csv';
   csvUrl = 'assets/tubemapdata/purplecoordinate.csv';
-  purple_csvUrl = 'assets/tubemapdata/purplecoordinate.csv';
-  blue_csvUrl = 'assets/tubemapdata/blueline_coordinate.csv';
+  //purple_csvUrl = 'assets/tubemapdata/purplecoordinate.csv';
+  //blue_csvUrl = 'assets/tubemapdata/blueline_coordinate.csv';
+  purple_csvUrl = 'assets/tubemapdata/purpledotmaptube.csv';
+  blue_csvUrl = 'assets/tubemapdata/bluedotmaptube.csv';
   // array store data
   csvData: any[] = [];
   blue_csvData: any[] = [];
