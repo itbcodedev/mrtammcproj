@@ -12,6 +12,7 @@ const https = require('https');
 function getParkRt(){
   console.log("getParkRt called")
   return new Promise((resolve,reject)=>{
+    
     https.get('https://bds.mrta.co.th/BDS/service/SvcPRt.asmx/GetParkRT?AccessKey=x8mkM2TDQW.6ofNJG09Qf.5xqnJIFNRn==',  (resp) => {
       let rawdata = '';
       // A chunk of data has been recieved.
