@@ -90,7 +90,7 @@ exports.TrainSimulator = class {
     
     function transformFormat(stoptimes) {
       //each trip 
-      const trip_gtfs = stoptimes.map(stoptime => {
+      return Promise.all(stoptimes.map(stoptime => {
         // console.log("85...", stoptime)
         // console.log("85......................")
         const route_name = stoptime.route_name
@@ -152,8 +152,8 @@ exports.TrainSimulator = class {
         // console.log(gtfsrt)
         // console.log("142...............................")
         return JSON.parse(gtfsrt)
-      })
-      return trip_gtfs
+      }))
+      //return trip_gtfs
     }
 
     // step 3
@@ -180,13 +180,17 @@ exports.TrainSimulator = class {
 
         const location = path[`${filemodule}`].points[loc_order]
 
-        console.log("181 filemodule | trip_id | route_id | runtime_sec | loc_order | loc_length")
-        console.log("181 ", "<",filemodule, ">", trip.route_name, trip.route_id, trip.trip_id, "[", trip.direction,  "]",  runtime_secs, loc_order,loc_length)
+        //console.log("181 filemodule | trip_id | route_id | runtime_sec | loc_order | loc_length")
+        //console.log("181 ", "<",filemodule, ">", trip.route_name, trip.route_id, trip.trip_id, "[", trip.direction,  "]",  runtime_secs, loc_order,loc_length)
 
+       // 181 filemodule | trip_id | route_id | runtime_sec | loc_order | loc_length
+       // 181  < purplenorth_in > purple 00011 01816 [ 0 ] 2118 3474 4285
+      
         trip.file = filemodule
         trip.location = location
         trip.loc_order = loc_order
 
+        // add stoptimes
         try {
           const query = {}
           query.trip_id = trip.trip_id
@@ -204,13 +208,28 @@ exports.TrainSimulator = class {
           const stoptimes = result[0].stoptimes
           // trip + stoptime
           trip.stoptimes = stoptimes
-    
+          // console.log("=== 211", trip.route_id)
+          // console.log("=== 212", trip.stoptimes)
           return trip
         } catch (err) {
           return err.toString()
         }
       }))
     } // end addstoptime
+
+  // ] === 211 00011   route id with stoptimes
+  // [0] === 212 [
+  // [0]   {
+  // [0]     _id: 5eef6199f94fbc1e0fdaa306,
+  // [0]     agency_key: 'MRTA_Transit',
+  // [0]     trip_id: '00516',
+  // [0]     arrival_time: '06:19:00',
+  // [0]     departure_time: '06:19:30',
+  // [0]     stop_id: 'PP01',
+  // [0]     stop_sequence: 1,
+  // [0]     __v: 0
+  // [0]   },
+  
 
     let routeinfos = []
     try {
@@ -224,7 +243,7 @@ exports.TrainSimulator = class {
       // step 2 add sececond
       const c = calendar.gtfsCalendar()
       // console.log(234, c)
-            // step 3 find active train
+      // step 3 find active train  start_time   - now - endtime)
       
       const routeinfos_now = routeinfos.filter(trip => {
             return checktime(trip, trip.start_time, trip.end_time)
@@ -236,7 +255,8 @@ exports.TrainSimulator = class {
         trip.runtime_secs = trip.end_time_secs - trip.start_time_secs
         trip.runtime = Math.round(trip.runtime_secs/60)
         // console.log("236  trip.trip_id  trip.runtime_secs  trip.calendar")
-        console.log("236", trip.trip_id, trip.runtime_secs, trip.calendar)
+        // 236 5404252 4728 WD  , runtime_secs fully scale
+        // console.log("236", trip.trip_id, trip.runtime_secs, trip.calendar)
         return trip
 
       })
@@ -244,7 +264,7 @@ exports.TrainSimulator = class {
       // console.log('237  total | active | calendar ', routeinfos.length, routeinfos_now.length, routeinfos_addsec.length)
 
       const routeinfos_stoptimes = await addStoptime(this.gtfs, routeinfos_addsec)
-      const trip_gtfs = transformFormat(routeinfos_stoptimes)
+      const trip_gtfs = await transformFormat(routeinfos_stoptimes)
       return trip_gtfs
     } catch (err) {
       // console.log(err)

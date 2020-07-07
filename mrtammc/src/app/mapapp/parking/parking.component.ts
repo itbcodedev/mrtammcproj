@@ -136,13 +136,22 @@ export class ParkingComponent implements OnInit {
 
 
   getParking() {
+    console.log("139", "getParking")
+    // return observable
     let get_parking = this._parking.getParking();
     let get_location = this._parking.getParkinglocation();
+    // subscribe to observable
+
+    get_location.subscribe(result=> {
+      console.log("145", result)
+    })
+
     forkJoin([get_parking, get_location]).subscribe(result=>{
+      console.log("148", result);
       this.parkinglocations = result[1];
       this.parkings = result[0];
 
-      //console.log(this.parkings);
+      console.log("152",this.parkings);
       this.parkings.forEach(parking => {
         this.totoalncarrem += +parking.ncarrem
         parking.ncarrem = parking.ncarrem < 0 ? 0 : parking.ncarrem
@@ -498,7 +507,7 @@ export class ParkingComponent implements OnInit {
       // get station icon path
       const route = this.getstationicon(stop.stop_id.trim());
 
-      console.log("128 ===================", index,  stop.stop_id, route)
+      // console.log("128 ===================", index,  stop.stop_id, route)
       let stopicon = ""
       let station_icon
       if (route === undefined || route === null) {

@@ -328,3 +328,8 @@ ng build
 
 
 	 <!-- viewBox="0 0 595.648 584.088" 
+
+   [1] Error from chokidar (/home/mee/AngularProj/mrtammcproj/mrtammc/src/assets/plugins/font-awesome): Error: ENOSPC: System limit for number of file watchers reached, watch '/home/mee/AngularProj/mrtammcproj/mrtammc/src/assets/plugins/font-awesome'
+
+
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p

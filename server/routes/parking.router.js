@@ -2,11 +2,17 @@ const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
 const parseString = require('xml2js').parseString;
-const http = require('http');
+const https = require('https');
+
+// https://bds.mrta.co.th/BDS/service/SvcPRt.asmx?op=GetParkRT
+
+
+// AccessKey : x8mkM2TDQW.6ofNJG09Qf.5xqnJIFNRn==
 
 function getParkRt(){
+  console.log("getParkRt called")
   return new Promise((resolve,reject)=>{
-    http.get('http://bds.mrta.co.th/BDS/service/SvcPRt.asmx/GetParkRT?AccessKey=x8mkM2TDQW.6ofNJG09Qf.5xqnJIFNRn==',  (resp) => {
+    https.get('https://bds.mrta.co.th/BDS/service/SvcPRt.asmx/GetParkRT?AccessKey=x8mkM2TDQW.6ofNJG09Qf.5xqnJIFNRn==',  (resp) => {
       let rawdata = '';
       // A chunk of data has been recieved.
       resp.on('data', (chunk) => {
@@ -31,8 +37,7 @@ function getParkRt(){
 }
 
 router.get('/all', function(req, res, next) {
-  getParkRt()
-  .then( values => {
+  getParkRt().then( values => {
     const today = new Date();
     proxy = [];
     values.forEach( value => {
@@ -53,4 +58,9 @@ router.get('/all', function(req, res, next) {
     console.log(error);
   })
 });
+
+router.get('/test' , (req, res) => {
+  res.send('<h1>Hello Fucking World</h1>');
+  res.end()
+})
 module.exports = router;
