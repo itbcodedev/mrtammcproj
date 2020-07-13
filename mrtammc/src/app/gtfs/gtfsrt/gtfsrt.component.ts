@@ -241,24 +241,29 @@ export class GtfsrtComponent implements OnInit {
           //     "__v": 0
           // },
           
-          return this.findNextTrip60min(st_obj.arrival_time);
+          return this.findNextTrip(st_obj.arrival_time);
         });
         // console.log(241, selectStoptimes.length)
         obj.selectStoptimes = _.first(selectStoptimes);
         return obj;
       });
 
-      console.log(246, nextstation)
+      console.log(251, nextstation)
       // tslint:disable-next-line: triple-equals
       if (nextstation[0] != undefined) {
         const nextstop = nextstation[0].selectStoptimes;
         const timenow = this.CurrentDate.format('HH:mm:ss');
         // find difftime to station
-        const arr_time = this.getsecond(nextstop.arrival_time);
-        const arr_now = this.getsecond(timenow);
+        console.log("257",nextstop.arrival_time)
+        if (nextstop.arrival_time != undefined) {
+            const arr_time = this.getsecond(nextstop.arrival_time);
+            const arr_now = this.getsecond(timenow);
+            nextstop.difftime = (arr_time - arr_now).toFixed(2);
+        }
+
         // console.log('arr_time,arr_now', arr_time, arr_now);
         // 1 sec = 0.0166666667 min
-        nextstop.difftime = (arr_time - arr_now).toFixed(2);
+        
         // cal random number
         const number = this.getRandom();
 
@@ -1195,7 +1200,7 @@ export class GtfsrtComponent implements OnInit {
     return this.allStopTimes.filter((stoptime) => {
       // console.log("stoptime.arrival_time",stoptime.arrival_time)
       return (
-        this.findNextTrip60min(stoptime.arrival_time) &&
+        this.findNextTrip(stoptime.arrival_time) &&
         stoptime.stop_id == stop_id
       );
     });
@@ -1261,7 +1266,7 @@ export class GtfsrtComponent implements OnInit {
     if (selectedStoptimes.length > 0) {
       const intime = selectedStoptimes.filter((stoptime) => {
         // return this.checktime(stoptime.arrival_time, stoptime.departure_time)
-        return this.findNextTrip60min(stoptime.arrival_time);
+        return this.findNextTrip(stoptime.arrival_time);
       });
       // lastest
       console.log(1251, intime.length)

@@ -182,7 +182,6 @@ exports.TrainSimulator = class {
 
 
         const location = path[`${filemodule}`].points[loc_order]
-        //const location = path[`${filemodule}`].points[loc_order]
 
         //console.log("181 filemodule | trip_id | route_id | runtime_sec | loc_order | loc_length")
         //console.log("181 ", "<",filemodule, ">", trip.route_name, trip.route_id, trip.trip_id, "[", trip.direction,  "]",  runtime_secs, loc_order,loc_length)
