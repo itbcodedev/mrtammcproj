@@ -174,10 +174,14 @@ exports.TrainSimulator = class {
         const runtime_secs = trip.runtime_secs
         
         const filemodule = getPathfile(trip)
+        // calculte location
+        // find total number
         const loc_length = path[`${filemodule}`].points.length
+        
         const loc_order = Math.round((delta_t/ runtime_secs) * loc_length) 
 
 
+        const location = path[`${filemodule}`].points[loc_order]
         const location = path[`${filemodule}`].points[loc_order]
 
         //console.log("181 filemodule | trip_id | route_id | runtime_sec | loc_order | loc_length")
@@ -253,7 +257,8 @@ exports.TrainSimulator = class {
         trip.start_time_secs = getsecond(trip.start_time)
         trip.end_time_secs = getsecond(trip.end_time)
         trip.runtime_secs = trip.end_time_secs - trip.start_time_secs
-        trip.runtime = Math.round(trip.runtime_secs/60)
+        // trip.runtime = Math.round(trip.runtime_secs/60)
+        trip.runtime = trip.runtime_secs
         // console.log("236  trip.trip_id  trip.runtime_secs  trip.calendar")
         // 236 5404252 4728 WD  , runtime_secs fully scale
         // console.log("236", trip.trip_id, trip.runtime_secs, trip.calendar)
