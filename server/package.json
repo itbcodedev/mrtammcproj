@@ -35,7 +35,7 @@
     "jsonwebtoken": "^8.4.0",
     "ldapjs": "^1.0.2",
     "ldapts": "^1.4.1",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "mongodb": "^3.2.3",
     "mongoose": "^5.4.2",
