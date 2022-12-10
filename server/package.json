@@ -27,7 +27,7 @@
     "csvjson": "^5.1.0",
     "csvtojson": "^2.0.8",
     "encoding": "^0.1.12",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-http-proxy": "^1.5.1",
     "fast-csv": "^3.4.0",
     "http-proxy-middleware": "^0.19.1",
